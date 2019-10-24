@@ -51,11 +51,10 @@
   ],
   "lint-staged": {
     "*.js": [
-     "npm run lint:eslint:fix"
+      "npm run lint:eslint:fix"
     ],
     "*.json": [
-      "prettier --write",
-     
+      "prettier --write"
     ]
   },
   "pre-commit": "lint:staged",
@@ -64,8 +63,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.4.3",
-    "@material-ui/core": "^4.4.3",
-    "@material-ui/icons": "^4.4.3",
+    "@material-ui/core": "^4.5.1",
+    "@material-ui/icons": "^4.5.1",
     "chalk": "^2.4.2",
     "compression": "1.7.4",
     "connected-react-router": "6.4.0",
@@ -81,9 +80,9 @@
     "invariant": "2.2.4",
     "ip": "1.1.5",
     "lodash": "4.17.11",
-    "match-sorter": "^3.0.0",
+    "match-sorter": "^3.1.1",
     "minimist": "1.2.0",
-    "namor": "^1.1.2",
+    "namor": "^1.1.3",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
@@ -94,8 +93,8 @@
     "react-redux": "7.0.2",
     "react-router-dom": "5.0.0",
     "react-swipeable-views": "^0.13.3",
-    "react-table": "^6.10.0",
-    "recharts": "^1.6.2",
+    "react-table": "^6.10.3",
+    "recharts": "^1.8.5",
     "redux": "4.0.1",
     "redux-saga": "1.0.2",
     "reselect": "4.0.0",
