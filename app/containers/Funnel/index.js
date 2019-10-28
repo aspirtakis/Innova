@@ -20,88 +20,163 @@ import makeSelectFunnel from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-
 class Funnel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
+      targetOn: true,
+      initiate: [
         {
           taskID: 1,
-          task: 'Walk the walk',
+          task: 'TASK1',
+          status: 'yellow',
         },
         {
           taskID: 2,
-          task: 'Talk the talk',
-        },
-        {
-          taskID: 3,
-          task: 'Jump the jump',
+          task: 'TaSk2',
+          status: 'red',
         },
       ],
-      completedTasks: [],
-      draggedTask: {},
+      scope: [
+        {
+          taskID: 3,
+          task: 'task3',
+          status: 'blue',
+        },
+        {
+          taskID: 4,
+          task: 'task4',
+          status: 'white',
+        },
+      ],
     };
   }
-
-  onDrag = (event, todo) => {
-    event.preventDefault();
-    this.setState({
-      draggedTask: todo,
-    });
-  };
 
   onDragOver = event => {
     event.preventDefault();
   };
 
-  onDrop = event => {
-    const { completedTasks, draggedTask, todos } = this.state;
+  onDrag = (event, task) => {
+    console.log(event.target.className);
+    event.preventDefault();
     this.setState({
-      completedTasks: [...completedTasks, draggedTask],
-      todos: todos.filter(task => task.taskID !== draggedTask.taskID),
-      draggedTask: {},
+      draggedTask: task,
+      draggedFrom: event.target.className,
     });
   };
 
+  onDrop = (event, task) => {
+    const targetContainer = event.target.className;
+    if (!targetContainer) {
+      return;
+    }
+
+    // fix Probble on double click
+    if (targetContainer === 'scope' || targetContainer === 'initiate') {
+      this.setState({ targetOn: true });
+    } else {
+      this.setState({ targetOn: false });
+    }
+    const targ = this.state.targetOn;
+
+    const { initiate, draggedTask, scope, draggedFrom } = this.state;
+    if (draggedFrom === targetContainer) {
+      return;
+    }
+
+    if (draggedFrom === 'scope' && targ) {
+      this.setState({
+        scope: scope.filter(tasks => tasks.taskID !== draggedTask.taskID),
+      });
+    }
+
+    if (draggedFrom === 'initiate' && targ) {
+      this.setState({
+        initiate: initiate.filter(tasks => tasks.taskID !== draggedTask.taskID),
+      });
+    }
+    if (targetContainer === 'initiate') {
+      this.setState({
+        initiate: [...initiate, draggedTask],
+        draggedTask: {},
+      });
+    }
+    if (targetContainer === 'scope') {
+      this.setState({
+        scope: [...scope, draggedTask],
+        draggedTask: {},
+      });
+    }
+  };
+
   render() {
-    const { todos, completedTasks } = this.state;
+    const { initiate, scope } = this.state;
     return (
       <Row>
-        <Col style={{ backgroundColor: 'red', maxWidth: '20%' }} xs>
+        <Col style={{ backgroundColor: ' #99ddff', maxWidth: '20%' }} xs>
           EXPLORE
           <Row>
             <Col xs>
-              INITIATE
-              {todos.map(todo => (
-                <div
-                  draggable
-                  key={todo.taskID}
-                  onDrag={event => this.onDrag(event, todo)}
-                >
-                  {todo.task}
-                </div>
-              ))}
+              <div
+                style={{ height: 200, backgroundColor: '#4dc3ff' }}
+                className="initiate"
+                onDrop={event => this.onDrop(event)}
+                onDragOver={event => this.onDragOver(event)}
+              >
+                INITIATE
+                {initiate.map(task => (
+                  <div
+                    key={task.taskID}
+                    className="initiate"
+                    draggable
+                    onDrag={event => this.onDrag(event, task)}
+                    onDragOver={event => this.onDragOver(event)}
+                  >
+                    {
+                      <Paper style={{ backgroundColor: task.status }}>
+                        {' '}
+                        {task.task}
+                      </Paper>
+                    }
+                  </div>
+                ))}
+              </div>
             </Col>
-            <Col xs>SCOPE</Col>
+
+            <Col xs>
+              <div
+                className="scope"
+                style={{ height: 200, backgroundColor: 'green' }}
+                onDrop={event => this.onDrop(event)}
+                onDragOver={event => this.onDragOver(event)}
+              >
+                SCOPE
+                {scope.map((tasksc, index) => (
+                  <div
+                    className="scope"
+                    onDrag={event => this.onDrag(event, tasksc)}
+                    onDragOver={event => this.onDragOver(event)}
+                    key={tasksc.taskID}
+                    draggable
+                  >
+                    <Paper style={{ backgroundColor: tasksc.status }}>
+                      {' '}
+                      {tasksc.task}
+                    </Paper>
+                  </div>
+                ))}
+              </div>
+            </Col>
           </Row>
         </Col>
-        <Col style={{ backgroundColor: 'Blue', minWidth: '30%' }} xs>
+        <Col style={{ backgroundColor: '#33bbff', minWidth: '30%' }} xs>
           EXPERIMENT
           <Row>
             <Col xs>PROBLEM</Col>
 
             <Col xs>
               SOLUTION
-              <div
-                className="done"
-                onDrop={event => this.onDrop(event)}
-                onDragOver={event => console.log('hhh',event)}
-              >
-                {completedTasks.map((task, index) => (
-                  <div key={task.taskID}>{task.task}</div>
-                ))}
-              </div>
+              <div />
             </Col>
 
             <Col xs>BUSSINESS</Col>
@@ -119,11 +194,6 @@ class Funnel extends Component {
           <Row>
             <Col xs>
               SOFTLAUNCH
-              <Paper>dsdsdsdsds</Paper>
-              <Paper>dsdsdsdsds</Paper>
-              <Paper>dsdsdsdsds</Paper>
-              <Paper>dsdsdsdsds</Paper>
-              <Paper>dsdsdsdsds</Paper>
               <Paper>dsdsdsdsds</Paper>
             </Col>
             <Col xs>SCALELAUNCH</Col>
