@@ -55,7 +55,6 @@ function handleResult({ changes, failures }) {
     if (Array.isArray(failures) && failures.length > 0) {
       reject(new Error(prettyStringify(failures)));
     }
-
     resolve(changes);
   });
 }
