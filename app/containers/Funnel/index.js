@@ -4,7 +4,10 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import { Row, Col } from 'react-flexbox-grid';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 import makeSelectFunnel from './selectors';
+import FunnelForm from '../../components/addFunnelForm';
 
 const data = {
   initiate: [
@@ -18,6 +21,7 @@ const data = {
       status: 'yellow',
       project_name: 'API-STORE',
     },
+
     {
       taskID: 2,
       task: 'Familie Abbo',
@@ -25,7 +29,7 @@ const data = {
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
       horizon: 'AGRI',
-      status: 'red',
+      status: '#87F39E',
     },
   ],
   scope: [
@@ -36,7 +40,7 @@ const data = {
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
       horizon: 'MEDIA-ADV',
-      status: 'blue',
+      status: 'pink',
     },
     {
       taskID: 4,
@@ -45,13 +49,13 @@ const data = {
       horizon: 'API',
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
-      status: 'white',
+      status: 'orange',
     },
     {
       taskID: 5,
       task: 'ReferalDeals',
       funnelPhase: 'scope',
-      status: 'white',
+      status: 'orange',
       horizon: 'API',
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
@@ -65,7 +69,7 @@ const data = {
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
       horizon: 'MEDIA-ADV',
-      status: 'blue',
+      status: '#C6F197',
     },
     {
       taskID: 7,
@@ -74,13 +78,13 @@ const data = {
       horizon: 'API',
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
-      status: 'white',
+      status: '#81F0E4',
     },
     {
       taskID: 8,
       task: 'ReferalDeals',
       funnelPhase: 'scope',
-      status: 'white',
+      status: '#81F0E4',
       horizon: 'API',
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
@@ -94,7 +98,7 @@ const data = {
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
       horizon: 'MEDIA-ADV',
-      status: 'blue',
+      status: 'yellow',
     },
     {
       taskID: 11,
@@ -103,7 +107,7 @@ const data = {
       horizon: 'API',
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
-      status: 'white',
+      status: '#81F0E4',
     },
   ],
   bussiness: [
@@ -114,7 +118,7 @@ const data = {
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
       horizon: 'MEDIA-ADV',
-      status: 'blue',
+      status: '#93D4F7',
     },
     {
       taskID: 13,
@@ -123,7 +127,7 @@ const data = {
       horizon: 'API',
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
-      status: 'white',
+      status: '#81F0E4',
     },
   ],
   feasibility: [
@@ -134,7 +138,7 @@ const data = {
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
       horizon: 'MEDIA-ADV',
-      status: 'blue',
+      status: '#93D4F7',
     },
     {
       taskID: 15,
@@ -143,7 +147,7 @@ const data = {
       horizon: 'API',
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
-      status: 'white',
+      status: '#81F0E4',
     },
   ],
   mvp: [
@@ -154,7 +158,7 @@ const data = {
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
       horizon: 'MEDIA-ADV',
-      status: 'blue',
+      status: 'pink',
     },
     {
       taskID: 17,
@@ -174,7 +178,7 @@ const data = {
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
       horizon: 'MEDIA-ADV',
-      status: 'blue',
+      status: 'pink',
     },
     {
       taskID: 19,
@@ -194,7 +198,7 @@ const data = {
       description:
         'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
       horizon: 'MEDIA-ADV',
-      status: 'blue',
+      status: 'pink',
     },
     {
       taskID: 21,
@@ -210,18 +214,57 @@ const data = {
 
 const styles = {
   containerInit: {
+    backgroundColor: '#BFD3F0',
+    maxWidth: '30%',
+    minHeight: '100%',
+  },
+  titles: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: '#19569E',
+    textAlign: 'center',
+  },
+  modal: {
+    position: 'absolute',
+    width: 400,
     backgroundColor: 'white',
-    maxWidth: '20%',
+    border: '2px solid #000',
+  },
+  zebra1: {
+    minHeight: 500,
+    backgroundColor: '#DCF3FF',
+    border: '2px solid black',
+  },
+  zebra2: {
+    minHeight: 500,
+    backgroundColor: '#CCE8F6',
+    border: '2px solid black',
+  },
+
+  ColTitles: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: '#72ACFF',
+    textAlign: 'center',
+  },
+  containerEnd: {
+    backgroundColor: '#BFD3F0',
+    maxWidth: '30%',
+    minWidth: '24%',
     minHeight: '100%',
   },
 
   colInit: {
-    minHeight: '100%',
-    backgroundColor: 'rgba(230, 230, 230,1)',
+    minHeight: 500,
+
+    border: '2px solid black',
   },
   containerExperiment: {
-    backgroundColor: '#f0f0f0',
-    minWidth: '30%',
+    backgroundColor: '#BFD3F0',
+    minWidth: '35%',
+    maxWidth: '40%',
     minHeight: '100%',
   },
 };
@@ -231,13 +274,28 @@ class Funnel extends Component {
     super(props);
     this.state = {
       targetOn: true,
+      setOpen: false,
       initiate: data.initiate,
       scope: data.scope,
       problem: data.problem,
       solution: data.solution,
       bussiness: data.bussiness,
+      mvp: data.mvp,
+      feasibility: data.feasibility,
+      scalelaunch: data.scalelaunch,
+      softlaunch: data.softlaunch,
     };
   }
+  
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
+  };
+
 
   onDragOver = event => {
     event.preventDefault();
@@ -251,6 +309,19 @@ class Funnel extends Component {
     });
   };
 
+  handleOpen = () => {
+    console.log('clic');
+    this.setState({ setOpen: true });
+  };
+  
+  handleOk = () => {
+    console.log('clicOk');
+  };
+  
+  handleClose = () => {
+    this.setState({ setOpen: false });
+  };
+
   onDrop = event => {
     const targetContainer = event.target.getAttribute('container');
     if (!targetContainer) {
@@ -261,13 +332,16 @@ class Funnel extends Component {
       targetContainer === 'initiate' ||
       targetContainer === 'bussiness' ||
       targetContainer === 'solution' ||
+      targetContainer === 'mvp' ||
+      targetContainer === 'scalelaunch' ||
+      targetContainer === 'softlaunch' ||
+      targetContainer === 'feasibility' ||
       targetContainer === 'problem'
     ) {
       this.setState({ targetOn: true });
     } else {
       this.setState({ targetOn: false });
     }
-
     const targ = this.state.targetOn;
     const {
       initiate,
@@ -277,6 +351,10 @@ class Funnel extends Component {
       problem,
       solution,
       bussiness,
+      scalelaunch,
+      softlaunch,
+      mvp,
+      feasibility,
     } = this.state;
     // FIX out of draggin space
     if (draggedFrom === targetContainer) {
@@ -306,6 +384,32 @@ class Funnel extends Component {
     if (draggedFrom === 'bussiness' && targ) {
       this.setState({
         bussiness: bussiness.filter(
+          tasks => tasks.taskID !== draggedTask.taskID,
+        ),
+      });
+    }
+    if (draggedFrom === 'mvp' && targ) {
+      this.setState({
+        mvp: mvp.filter(tasks => tasks.taskID !== draggedTask.taskID),
+      });
+    }
+    if (draggedFrom === 'feasibility' && targ) {
+      this.setState({
+        feasibility: feasibility.filter(
+          tasks => tasks.taskID !== draggedTask.taskID,
+        ),
+      });
+    }
+    if (draggedFrom === 'softlaunch' && targ) {
+      this.setState({
+        softlaunch: softlaunch.filter(
+          tasks => tasks.taskID !== draggedTask.taskID,
+        ),
+      });
+    }
+    if (draggedFrom === 'scalelaunch' && targ) {
+      this.setState({
+        scalelaunch: scalelaunch.filter(
           tasks => tasks.taskID !== draggedTask.taskID,
         ),
       });
@@ -342,6 +446,30 @@ class Funnel extends Component {
         draggedTask: {},
       });
     }
+    if (targetContainer === 'feasibility') {
+      this.setState({
+        feasibility: [...feasibility, draggedTask],
+        draggedTask: {},
+      });
+    }
+    if (targetContainer === 'scalelaunch') {
+      this.setState({
+        scalelaunch: [...scalelaunch, draggedTask],
+        draggedTask: {},
+      });
+    }
+    if (targetContainer === 'softlaunch') {
+      this.setState({
+        softlaunch: [...softlaunch, draggedTask],
+        draggedTask: {},
+      });
+    }
+    if (targetContainer === 'mvp') {
+      this.setState({
+        mvp: [...mvp, draggedTask],
+        draggedTask: {},
+      });
+    }
   };
 
   onColumn = (datas, container) => (
@@ -350,9 +478,9 @@ class Funnel extends Component {
         container={container}
         onDrop={event => this.onDrop(event)}
         onDragOver={event => this.onDragOver(event)}
-        style={styles.colInit}
+        style={styles.zebra2}
       >
-        {container}
+        <Paper style={styles.ColTitles}>{container.toUpperCase()}</Paper>
         {datas.map(taskproblem => (
           <div
             key={taskproblem.taskID}
@@ -362,7 +490,50 @@ class Funnel extends Component {
             onDragOver={event => this.onDragOver(event)}
           >
             {
-              <Paper style={{ backgroundColor: taskproblem.status }}>
+              <Paper
+                style={{
+                  backgroundColor: taskproblem.status,
+                  color: 'black',
+                  fontSize: 12,
+                  margin: 5,
+                }}
+              >
+                {taskproblem.task}
+              </Paper>
+            }
+          </div>
+        ))}
+      </div>
+    </Col>
+  );
+
+  onColumn2 = (datas, container) => (
+    <Col xs>
+      <div
+        container={container}
+        onDrop={event => this.onDrop(event)}
+        onDragOver={event => this.onDragOver(event)}
+        style={styles.zebra1}
+      >
+        <Paper style={styles.ColTitles}>{container.toUpperCase()}</Paper>
+        {datas.map(taskproblem => (
+          <div
+            key={taskproblem.taskID}
+            container={container}
+            draggable
+            onDrag={event => this.onDrag(event, taskproblem)}
+            onDragOver={event => this.onDragOver(event)}
+          >
+            {
+              <Paper
+                style={{
+                  backgroundColor: taskproblem.status,
+                  color: 'black',
+                  fontSize: 12,
+                  margin: 5,
+                  maxWidth: 150,
+                }}
+              >
                 {taskproblem.task}
               </Paper>
             }
@@ -373,42 +544,63 @@ class Funnel extends Component {
   );
 
   render() {
-    const { initiate, scope, problem, solution, bussiness } = this.state;
+    const {
+      initiate,
+      scope,
+      problem,
+      solution,
+      bussiness,
+      feasibility,
+      softlaunch,
+      scalelaunch,
+      mvp,
+    } = this.state;
+
     return (
-      <Row>
-        <Col style={styles.containerInit} xs>
-          <Paper>EXPLORE</Paper>
-          <Row>
-            {this.onColumn(initiate, 'initiate')}
-            {this.onColumn(scope, 'scope')}
-          </Row>
-        </Col>
-        <Col style={styles.containerExperiment} xs>
-          <Paper>EXPERIMENT</Paper>
-          <Row>
-            {this.onColumn(problem, 'problem')}
-            {this.onColumn(solution, 'solution')}
-            {this.onColumn(bussiness, 'bussiness')}
-          </Row>
-        </Col>
-        <Col style={styles.containerInit} xs>
-          EXPLORE
-          <Row>
-            <Col xs>FEASIBILITY</Col>
-            <Col xs>MVP</Col>
-          </Row>
-        </Col>
-        <Col style={styles.containerInit} xs>
-          SCALE UP
-          <Row>
-            <Col xs>
-              SOFTLAUNCH
-              <Paper>dsdsdsdsds</Paper>
-            </Col>
-            <Col xs>SCALELAUNCH</Col>
-          </Row>
-        </Col>
-      </Row>
+      <div>
+        <FunnelForm
+          visible={this.state.setOpen}
+          onCancel={this.handleClose}
+          onOK={this.handleOk}
+          handleSubmit={this.handleSubmit}
+        />
+        <Row>
+          <Button onClick={this.handleOpen} type="button">
+            Create Task
+          </Button>
+        </Row>
+        <Row>
+          <Col style={styles.containerInit} xs>
+            <Paper style={styles.titles}>EXPLORE</Paper>
+            <Row>
+              {this.onColumn(initiate, 'initiate')}
+              {this.onColumn2(scope, 'scope')}
+            </Row>
+          </Col>
+          <Col style={styles.containerExperiment} xs>
+            <Paper style={styles.titles}>EXPERIMENT</Paper>
+            <Row>
+              {this.onColumn(problem, 'problem')}
+              {this.onColumn2(solution, 'solution')}
+              {this.onColumn(bussiness, 'bussiness')}
+            </Row>
+          </Col>
+          <Col style={styles.containerInit} xs>
+            <Paper style={styles.titles}>EXPLORE</Paper>
+            <Row>
+              {this.onColumn2(feasibility, 'feasibility')}
+              {this.onColumn(mvp, 'mvp')}
+            </Row>
+          </Col>
+          <Col style={styles.containerEnd} xs>
+            <Paper style={styles.titles}>SCALE UP</Paper>
+            <Row>
+              {this.onColumn(softlaunch, 'softlaunch')}
+              {this.onColumn2(scalelaunch, 'scalelaunch')}
+            </Row>
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
