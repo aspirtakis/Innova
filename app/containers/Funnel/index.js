@@ -126,6 +126,86 @@ const data = {
       status: 'white',
     },
   ],
+  feasibility: [
+    {
+      taskID: 14,
+      task: 'E-Sim Tracking',
+      funnelPhase: 'scope',
+      description:
+        'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
+      horizon: 'MEDIA-ADV',
+      status: 'blue',
+    },
+    {
+      taskID: 15,
+      task: 'ReferalDeals',
+      funnelPhase: 'scope',
+      horizon: 'API',
+      description:
+        'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
+      status: 'white',
+    },
+  ],
+  mvp: [
+    {
+      taskID: 16,
+      task: 'E-Sim Tracking',
+      funnelPhase: 'scope',
+      description:
+        'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
+      horizon: 'MEDIA-ADV',
+      status: 'blue',
+    },
+    {
+      taskID: 17,
+      task: 'ReferalDeals',
+      funnelPhase: 'scope',
+      horizon: 'API',
+      description:
+        'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
+      status: 'white',
+    },
+  ],
+  softlaunch: [
+    {
+      taskID: 18,
+      task: 'E-Sim Tracking',
+      funnelPhase: 'scope',
+      description:
+        'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
+      horizon: 'MEDIA-ADV',
+      status: 'blue',
+    },
+    {
+      taskID: 19,
+      task: 'ReferalDeals',
+      funnelPhase: 'scope',
+      horizon: 'API',
+      description:
+        'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
+      status: 'white',
+    },
+  ],
+  scalelaunch: [
+    {
+      taskID: 20,
+      task: 'E-Sim Tracking',
+      funnelPhase: 'scope',
+      description:
+        'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
+      horizon: 'MEDIA-ADV',
+      status: 'blue',
+    },
+    {
+      taskID: 21,
+      task: 'ReferalDeals',
+      funnelPhase: 'scope',
+      horizon: 'API',
+      description:
+        'Generatei opvolgeras;dk;askd;aks;dkaskdsakdkl;asdl;as;d;asl;dkaskl;dkl;as',
+      status: 'white',
+    },
+  ],
 };
 
 const styles = {
