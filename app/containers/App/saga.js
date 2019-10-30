@@ -22,13 +22,47 @@ import {
 export function* fetchSignIn(action) {
   try {
     const { payload } = action;
+    const url = 'http://datafactory.openinnovationhub.nl./api/v2/user/session';
+    const apptoken =
+      '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
+      console.log(payload);
     // here you can call your API in order to authenticate the user
-    if (payload.email === 'demo@test.com' && payload.password === 'demo') {
+    let res =[];
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: payload.email,
+        password: payload.password,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(resdata => (
+                
+                        console.log(resdata))
+      )
+      
+      .catch(response => console.log(response));
+      console.log(res);
+    if (res === 'demo@test.com' && payload.password === 'demo') {
+
       yield put({
         type: AUTHENTICATED,
         user: {
           name: 'John Smith',
           email: action.payload.email,
+          token: action.payload.email,
         },
       });
     } else if (

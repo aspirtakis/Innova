@@ -4,15 +4,69 @@ import 'antd/dist/antd.css';
 
 import { Select, Form, Input, Icon, Modal, Button } from 'antd';
 const { Option } = Select;
+
+const apptoken =
+'36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
 // eslint-disable-next-line react/prefer-stateless-function
 class ModalAddTask extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+  }
+
+  onSave = (values) => {
+    console.log(values);
+    const url4 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks`;
+    fetch(url4, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        
+          "resource": [
+            {
+              "description": values.description,
+              "asssignedUser": "1",
+              "projectname": values.project,
+              "horizon": values.horizon,
+              "theme": values.theme,
+              "prjid": 1,
+              "status": values.status,
+              "FunnelPhase": values.funnelPhase,
+              "title": values.taskname,
+              "themeid": 1
+            }
+        
+          ]
+        
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        console.log(taskData);
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
 
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+      this.onSave(values);
       }
     });
   };
@@ -33,18 +87,32 @@ class ModalAddTask extends React.Component {
         >
             <Form onSubmit={this.handleSubmit} className="login-form">
                 <Form.Item>
-
-                <Select style={{ width: 150 }}>
-                <Option value="AGRI">AGRI</Option>
-                <Option value="API">API</Option>
-                <Option value="MEDIA-ADV">MEDIA-ADV</Option>
-              </Select>
+                {getFieldDecorator('project', {
+                  rules: [
+              { required: true, message: 'Horizon!' },
+            ],
+          })(
+            <Select style={{ width: 150 }}>
+            <Option value="AGRI">PLATFORM</Option>
+            <Option value="API">ECOSYSTEM</Option>
+          </Select>
+          )}
+          {getFieldDecorator('theme', {
+            rules: [
+        { required: true, message: 'Horizon!' },
+      ],
+    })(
+      <Select style={{ width: 150 }}>
+      <Option value="AGRI">AGRI</Option>
+    </Select>
+    )}
+         
               {getFieldDecorator('taskname', {
                 rules: [{ required: true, message: 'Please input your username!' }],
                     })(
                       <Input
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        placeholder="Task"
+                        placeholder="title"
                 />,
               )}
                     {getFieldDecorator('description', {
@@ -54,33 +122,54 @@ class ModalAddTask extends React.Component {
               })(
                       <Input
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        placeholder="FunnelPhase"
+                        placeholder="Description"
                 />,
               )}
                     {getFieldDecorator('horizon', {
                       rules: [
-                  { required: true, message: 'Please input your username!' },
+                  { required: true, message: 'Horizon!' },
                 ],
               })(
                 <Select style={{ width: 150 }}>
-                <Option value="SMART-CAR">SMART-CAR</Option>
-                <Option value="API-STORE">API-STORE</Option>
-                <Option value="MOBILE-CONNECT">MOBILE-CONNECT</Option>
+                <Option value="H1">H1</Option>
+                <Option value="H2">H2</Option>
+                <Option value="H3">H3</Option>
               </Select>
               )}
+
+              {getFieldDecorator('funnelPhase', {
+                rules: [
+            { required: true, message: 'Please input your username!' },
+          ],
+        })(
+          <Select style={{ width: 150 }}>
+          <Option value="initiate">INITIATE</Option>
+          <Option value="scope">SCOPE</Option>
+          <Option value="problem">PROBLEM</Option>
+          <Option value="solution">SOLUTIONs</Option>
+          <Option value="bussiness">BUSSINESS</Option>
+          <Option value="feasibility">FEASIBILITY</Option>
+          <Option value="mvp">MVP</Option>
+          <Option value="softlaunch">SOFTLAUNCH</Option>
+          <Option value="scalelaunch">SCALELAUNCH</Option>
+        </Select>
+        )}
+        {getFieldDecorator('status', {
+          rules: [
+      { required: true, message: 'Please input your username!' },
+    ],
+  })(
+    <Select style={{ width: 150 }}>
+    <Option value="green">GREEN</Option>
+    <Option value="red">RED</Option>
+
+  </Select>
+  )}
+  
+        
                   </Form.Item>
                   <Form.Item>
-                  <Select style={{ width: 150 }}>
-                  <Option value="INITIATE">INITIATE</Option>
-                  <Option value="SCOPE">SCOPE</Option>
-                  <Option value="PROBLEM">PROBLEM</Option>
-                  <Option value="SOLUTION">SOLUTIONs</Option>
-                  <Option value="BUSSINESS">BUSSINESS</Option>
-                  <Option value="FEASIBILITY">FEASIBILITY</Option>
-                  <Option value="MVP">MVP</Option>
-                  <Option value="SOFLAUNCH">SOFTLAUNCH</Option>
-                  <Option value="SCALELAUNCH">SCALELAUNCH</Option>
-                </Select>
+
                   </Form.Item>
                   <Form.Item>
                   <Button type="primary" htmlType="submit">
