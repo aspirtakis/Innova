@@ -294,6 +294,7 @@ class Funnel extends Component {
       feasibility: data.feasibility,
       scalelaunch: data.scalelaunch,
       softlaunch: data.softlaunch,
+      projectnames:[],
     };
   }
 
@@ -386,9 +387,59 @@ class Funnel extends Component {
     this.setState({ setOpen: true });
   };
 
-  filterTheme = theme => {}
+  filterTheme2 = project => {
+    const url5 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks?filter=projectname=${project}`;
 
-  filterTheme2 = theme => {
+    fetch(url5, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        const officersIds = datas.map(function(officer) {
+          return officer.projectname;
+        });
+
+        const projectnames = officersIds.reduce(
+          (unique, item) =>
+            unique.includes(item) ? unique : [...unique, item],
+          [],
+        );
+        this.setState({projectnames: projectnames});
+
+        this.setState({
+          initiate: datas.filter(word => word.FunnelPhase === 'initiate'),
+          scope: datas.filter(word => word.FunnelPhase === 'scope'),
+          problem: datas.filter(word => word.FunnelPhase === 'problem'),
+          solution: datas.filter(word => word.FunnelPhase === 'solution'),
+          bussiness: datas.filter(word => word.FunnelPhase === 'bussiness'),
+          mvp: datas.filter(word => word.FunnelPhase === 'mvp'),
+          feasibility: datas.filter(word => word.FunnelPhase === 'feasibility'),
+          scalelaunch: datas.filter(word => word.FunnelPhase === 'scalelaunch'),
+          softlaunch: datas.filter(word => word.FunnelPhase === 'softlaunch'),
+        });
+        this.setState({ setOpen: false });
+        console.log(this.state);
+      })
+      .catch(taskData => console.log(taskData));
+
+
+  };
+
+  filterTheme = theme => {
     const url5 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks?filter=theme=${theme}`;
 
     fetch(url5, {
@@ -410,8 +461,16 @@ class Funnel extends Component {
       .then(response => response.json())
       .then(taskData => {
         const datas = taskData.resource;
-        console.log(datas);
-        console.log(datas.filter(word => word.FunnelPhase === 'initiate'));
+        const officersIds = datas.map(function(officer) {
+          return officer.projectname;
+        });
+
+        const projectnames = officersIds.reduce(
+          (unique, item) =>
+            unique.includes(item) ? unique : [...unique, item],
+          [],
+        );
+        this.setState({projectnames: projectnames});
 
         this.setState({
           initiate: datas.filter(word => word.FunnelPhase === 'initiate'),
@@ -741,6 +800,7 @@ class Funnel extends Component {
       scalelaunch,
       mvp,
       sestoken,
+      projectnames,
     } = this.state;
 
     return (
@@ -756,14 +816,16 @@ class Funnel extends Component {
           <Button onClick={this.handleOpen} type="button">
             Create Task
           </Button>
+       
           <Select onChange={this.filterTheme} style={{ width: 150 }}>
             <Option value="AGRI">AGRI</Option>
             <Option value="MOBILITY">MOBILITY</Option>
           </Select>
-          <Select onChange={this.filterTheme} style={{ width: 150 }}>
-          <Option value="SMART-CAR">SMART-CAR</Option>
-          <Option value="API-STORE">API-STORE</Option>
-        </Select>
+
+          <Select onChange={this.filterTheme2} style={{ width: 150 }}>
+          {projectnames.map((row) =>  <Option value={row}>{row}</Option> )
+          }
+          </Select>
         </Row>
         <Row>
           <Col style={styles.containerInit} xs>
