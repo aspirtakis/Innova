@@ -12,7 +12,6 @@ class ModalAddTask extends React.Component {
 
   constructor(props) {
     super(props);
-
   }
 
   onSave = (values) => {
@@ -104,6 +103,8 @@ class ModalAddTask extends React.Component {
     })(
       <Select style={{ width: 150 }}>
       <Option value="AGRI">AGRI</Option>
+      <Option value="MOBILITY">MOBILITY</Option>
+      <Option value="HEALTH">HEALTH</Option>
     </Select>
     )}
          
@@ -162,6 +163,7 @@ class ModalAddTask extends React.Component {
     <Select style={{ width: 150 }}>
     <Option value="green">GREEN</Option>
     <Option value="red">RED</Option>
+    <Option value="pink">PINK</Option>
 
   </Select>
   )}

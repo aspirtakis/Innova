@@ -4,10 +4,13 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import { Row, Col } from 'react-flexbox-grid';
-import Modal from '@material-ui/core/Modal';
+
 import Button from '@material-ui/core/Button';
+import { Select } from 'antd';
 import makeSelectFunnel from './selectors';
 import FunnelForm from '../../components/addFunnelForm';
+
+const { Option } = Select;
 
 const url = 'http://datafactory.openinnovationhub.nl./api/v2/user/session';
 const url2 =
@@ -383,6 +386,50 @@ class Funnel extends Component {
     this.setState({ setOpen: true });
   };
 
+  filterTheme = theme => {}
+
+  filterTheme2 = theme => {
+    const url5 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks?filter=theme=${theme}`;
+
+    fetch(url5, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        console.log(datas);
+        console.log(datas.filter(word => word.FunnelPhase === 'initiate'));
+
+        this.setState({
+          initiate: datas.filter(word => word.FunnelPhase === 'initiate'),
+          scope: datas.filter(word => word.FunnelPhase === 'scope'),
+          problem: datas.filter(word => word.FunnelPhase === 'problem'),
+          solution: datas.filter(word => word.FunnelPhase === 'solution'),
+          bussiness: datas.filter(word => word.FunnelPhase === 'bussiness'),
+          mvp: datas.filter(word => word.FunnelPhase === 'mvp'),
+          feasibility: datas.filter(word => word.FunnelPhase === 'feasibility'),
+          scalelaunch: datas.filter(word => word.FunnelPhase === 'scalelaunch'),
+          softlaunch: datas.filter(word => word.FunnelPhase === 'softlaunch'),
+        });
+        this.setState({ setOpen: false });
+        console.log(this.state);
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
   handleOk = () => {
     fetch(url2, {
       method: 'GET',
@@ -709,6 +756,14 @@ class Funnel extends Component {
           <Button onClick={this.handleOpen} type="button">
             Create Task
           </Button>
+          <Select onChange={this.filterTheme} style={{ width: 150 }}>
+            <Option value="AGRI">AGRI</Option>
+            <Option value="MOBILITY">MOBILITY</Option>
+          </Select>
+          <Select onChange={this.filterTheme} style={{ width: 150 }}>
+          <Option value="SMART-CAR">SMART-CAR</Option>
+          <Option value="API-STORE">API-STORE</Option>
+        </Select>
         </Row>
         <Row>
           <Col style={styles.containerInit} xs>
