@@ -14,11 +14,11 @@ import { styles } from './funnel_styles';
 
 const { Option } = Select;
 
-const url = 'http://datafactory.openinnovationhub.nl./api/v2/user/session';
+const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
 const url2 =
-  'http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks';
+  'https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks';
 const apptoken =
-  '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
+  'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89';
 
 class Funnel extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class Funnel extends Component {
       targetOn: true,
       setOpen: false,
       setOpenEdit: false,
-      selectedTask:'',
+      selectedTask: '',
       initiate: [],
       scope: [],
       problem: [],
@@ -52,7 +52,7 @@ class Funnel extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: 'test@gmail.com',
+        email: 'be@openinnovationhub.nl',
         password: 'a224935a',
       }),
     })
@@ -135,7 +135,7 @@ class Funnel extends Component {
 
   filterThemeProject = project => {
     this.setState({ spinning: true });
-    const url5 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks?filter=projectname=${project}`;
+    const url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=projectname=${project}`;
     fetch(url5, {
       method: 'GET',
       headers: {
@@ -174,9 +174,9 @@ class Funnel extends Component {
   filterTheme = theme => {
     this.setState({ spinning: true });
     const filter = theme;
-    let url5 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks?filter=theme=${filter}`;
+    let url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=theme=${filter}`;
     if (theme === 'ALL') {
-      url5 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks`;
+      url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks`;
     }
     fetch(url5, {
       method: 'GET',
@@ -423,7 +423,7 @@ class Funnel extends Component {
   };
 
   onSave = (task, scope) => {
-    const url4 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks/${task}`;
+    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks/${task}`;
     fetch(url4, {
       method: 'PATCH',
       headers: {

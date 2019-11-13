@@ -28,7 +28,7 @@ shell.rm('-rf', 'app/containers');
 shell.mv('internals/templates/containers', 'app');
 
 // Handle tests/
-shell.mv('internals/templates/tests', 'app');
+// shell.mv('internals/templates/tests', 'app');
 
 // Handle translations/
 shell.rm('-rf', 'app/translations');
