@@ -2,7 +2,7 @@
 export const styles = {
     containerInit: {
       backgroundColor: '#BFD3F0',
-      maxWidth: '30%',
+      maxWidth: '25%',
       minHeight: '100%',
     },
     titles: {
@@ -11,6 +11,7 @@ export const styles = {
       color: 'white',
       backgroundColor: '#19569E',
       textAlign: 'center',
+      minWidth: 150.
     },
     modal: {
       position: 'absolute',

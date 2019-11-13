@@ -79,8 +79,8 @@ class ModalAddTask extends React.Component {
                 rules: [{ required: true, message: 'funnel' }],
               })(
                 <Select key={8} style={{ width: 150 }}>
-                  <Option value="AGRI">PLATFORM</Option>
-                  <Option value="API">ECOSYSTEM</Option>
+                  <Option value="PLATFORM">PLATFORM</Option>
+                  <Option value="ECOSYSTEM">ECOSYSTEM</Option>
                 </Select>,
               )}
             </Form.Item>

@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { Select, Spin } from 'antd';
 import makeSelectFunnel from './selectors';
 import FunnelForm from '../../components/addFunnelForm';
+import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
 
 const { Option } = Select;
@@ -25,6 +26,8 @@ class Funnel extends Component {
     this.state = {
       targetOn: true,
       setOpen: false,
+      setOpenEdit: false,
+      selectedTask:'',
       initiate: [],
       scope: [],
       problem: [],
@@ -124,6 +127,12 @@ class Funnel extends Component {
     this.setState({ setOpen: true });
   };
 
+  handleOpenEdit = (data) => {
+    this.setState({ selectedTask: data });
+    this.setState({ setOpenEdit: true });
+  };
+
+
   filterThemeProject = project => {
     this.setState({ spinning: true });
     const url5 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks?filter=projectname=${project}`;
@@ -214,6 +223,7 @@ class Funnel extends Component {
   };
 
   handleOk = () => {
+    this.setState({ spinning: true });
     fetch(url2, {
       method: 'GET',
       headers: {
@@ -245,12 +255,15 @@ class Funnel extends Component {
           softlaunch: datas.filter(word => word.FunnelPhase === 'softlaunch'),
         });
         this.setState({ setOpen: false });
+        this.setState({ setOpenEdit: false });
+        this.setState({ spinning: false });
       })
       .catch(taskData => console.log(taskData));
   };
 
   handleClose = () => {
     this.setState({ setOpen: false });
+    this.setState({ setOpenEdit: false });
   };
 
   onDrop = (event, task) => {
@@ -462,10 +475,11 @@ class Funnel extends Component {
                   fontSize: 10,
                   margin: 5,
                   minHeight: 100,
-                  minWidth: '90%',
+                  minWidth: 120,
                   maxHeight: 100,
-                  maxWidth: '90%',
+                  maxWidth: 120,
                 }}
+                onDoubleClick={() => this.handleOpenEdit(taskproblem)}
               >
                 <div
                   style={{
@@ -506,6 +520,7 @@ class Funnel extends Component {
   render() {
     const {
       initiate,
+      selectedTask,
       scope,
       problem,
       solution,
@@ -519,74 +534,78 @@ class Funnel extends Component {
     } = this.state;
 
     return (
-
       <div>
-              <Spin spinning={this.state.spinning}tip="Loading...">
+        <Spin spinning={this.state.spinning} tip="Loading...">
+          <FunnelForm
+            sestoken={sestoken}
+            visible={this.state.setOpen}
+            onCancel={this.handleClose}
+            onOK={this.handleOk}
+            handleSubmit={this.handleSubmit}
+          />
+          <FunnelEditForm
+            sestoken={sestoken}
+            visible={this.state.setOpenEdit}
+            onCancel={this.handleClose}
+            onOK={this.handleOk}
+            data={selectedTask}
+            footer={null}
+          //  handleSubmit={this.handleSubmit}
+          />
+          <Row>
+            <Button onClick={this.handleOpen} type="button">
+              Create Task
+            </Button>
+            <Select onChange={this.filterTheme} style={{ width: 180 }}>
+              <Option value="ALL">ALL</Option>
+              <Option value="AGRI">AGRI</Option>
+              <Option value="MOBILITY">MOBILITY</Option>
+              <Option value="MEDIA-ADVERTISING">MEDIA-ADVERTISING</Option>
+              <Option value="DIGITAL-IDENTITY">DIGITAL-IDENTITY</Option>
+              <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
+            </Select>
 
-        
-
-        <FunnelForm
-          sestoken={sestoken}
-          visible={this.state.setOpen}
-          onCancel={this.handleClose}
-          onOK={this.handleOk}
-          handleSubmit={this.handleSubmit}
-        />
-        <Row>
-          <Button onClick={this.handleOpen} type="button">
-            Create Task
-          </Button>
-          <Select onChange={this.filterTheme} style={{ width: 180 }}>
-            <Option value="ALL">ALL</Option>
-            <Option value="AGRI">AGRI</Option>
-            <Option value="MOBILITY">MOBILITY</Option>
-            <Option value="MEDIA-ADVERTISING">MEDIA-ADVERTISING</Option>
-            <Option value="DIGITAL-IDENTITY">DIGITAL-IDENTITY</Option>
-            <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
-          </Select>
-
-          <Select onChange={this.filterThemeProject} style={{ width: 150 }}>
-            {projectnames.map(row => (
-              <Option key={row} value={row}>
-                {row}
-              </Option>
-            ))}
-          </Select>
-        </Row>
-        <Row>
-          <Col style={styles.containerInit} xs>
-            <Paper style={styles.titles}>EXPLORE</Paper>
-            <Row>
-              {this.onColumn(initiate, 'initiate')}
-              {this.onColumn(scope, 'scope')}
-            </Row>
-          </Col>
-          <Col style={styles.containerExperiment} xs>
-            <Paper style={styles.titles}>EXPERIMENT</Paper>
-            <Row>
-              {this.onColumn(problem, 'problem')}
-              {this.onColumn(solution, 'solution')}
-              {this.onColumn(bussiness, 'bussiness')}
-            </Row>
-          </Col>
-          <Col style={styles.containerInit} xs>
-            <Paper style={styles.titles}>EXECUTE</Paper>
-            <Row>
-              {this.onColumn(feasibility, 'feasibility')}
-              {this.onColumn(mvp, 'mvp')}
-            </Row>
-          </Col>
-          <Col style={styles.containerEnd} xs>
-            <Paper style={styles.titles}>SCALE UP</Paper>
-            <Row>
-              {this.onColumn(softlaunch, 'softlaunch')}
-              {this.onColumn(scalelaunch, 'scalelaunch')}
-            </Row>
-          </Col>
-        </Row>
+            <Select onChange={this.filterThemeProject} style={{ width: 150 }}>
+              {projectnames.map(row => (
+                <Option key={row} value={row}>
+                  {row}
+                </Option>
+              ))}
+            </Select>
+          </Row>
+          <Row>
+            <Col style={styles.containerInit} xs>
+              <Paper style={styles.titles}>EXPLORE</Paper>
+              <Row>
+                {this.onColumn(initiate, 'initiate')}
+                {this.onColumn(scope, 'scope')}
+              </Row>
+            </Col>
+            <Col style={styles.containerExperiment} xs>
+              <Paper style={styles.titles}>EXPERIMENT</Paper>
+              <Row>
+                {this.onColumn(problem, 'problem')}
+                {this.onColumn(solution, 'solution')}
+                {this.onColumn(bussiness, 'bussiness')}
+              </Row>
+            </Col>
+            <Col style={styles.containerInit} xs>
+              <Paper style={styles.titles}>EXECUTE</Paper>
+              <Row>
+                {this.onColumn(feasibility, 'feasibility')}
+                {this.onColumn(mvp, 'mvp')}
+              </Row>
+            </Col>
+            <Col style={styles.containerEnd} xs>
+              <Paper style={styles.titles}>SCALE UP</Paper>
+              <Row>
+                {this.onColumn(softlaunch, 'softlaunch')}
+                {this.onColumn(scalelaunch, 'scalelaunch')}
+              </Row>
+            </Col>
+          </Row>
         </Spin>
       </div>
-
     );
   }
 }
