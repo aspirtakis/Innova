@@ -7,7 +7,7 @@ const apptoken =
 // eslint-disable-next-line react/prefer-stateless-function
 class ModalAddTask extends React.Component {
   onSave = values => {
-    const url4 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks`;
+    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks`;
     fetch(url4, {
       method: 'POST',
       headers: {

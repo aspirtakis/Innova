@@ -41,8 +41,7 @@ class ModalEditTask extends React.Component {
   onUpdate = values => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
-    const url4 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks/${taskid}`;
-    console.log(values);
+    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks/${taskid}`;
 
     fetch(url4, {
       method: 'PATCH',
@@ -91,7 +90,7 @@ class ModalEditTask extends React.Component {
   onDelete = values => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
-    const url4 = `http://datafactory.openinnovationhub.nl./api/v2/Funelis/_table/funnel.tasks/${taskid}`;
+    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks/${taskid}`;
     console.log(values);
 
     fetch(url4, {

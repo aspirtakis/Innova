@@ -22,7 +22,7 @@ import {
 export function* fetchSignIn(action) {
   try {
     const { payload } = action;
-    const url = 'http://datafactory.openinnovationhub.nl./api/v2/user/session';
+    const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
     const apptoken =
       '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
       console.log(payload);
