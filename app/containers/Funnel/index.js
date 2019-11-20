@@ -4,13 +4,14 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import { Row, Col } from 'react-flexbox-grid';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '@material-ui/core/Button';
 import { Select, Spin } from 'antd';
 import makeSelectFunnel from './selectors';
 import FunnelForm from '../../components/addFunnelForm';
 import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
+
 const { Option } = Select;
 
 const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
@@ -38,6 +39,7 @@ class Funnel extends Component {
       softlaunch: [],
       projectnames: [],
       spinning: false,
+      themes: [],
     };
   }
 
@@ -110,6 +112,40 @@ class Funnel extends Component {
       .catch(response => console.log(response));
   }
 
+  setStates = datas => {
+    const officersIds = datas.map(function(officer) {
+      return officer.projectname;
+    });
+
+    const projectnames = officersIds.reduce(
+      (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
+      [],
+    );
+
+    const officersIds2 = datas.map(function(officer2) {
+      return officer2.theme;
+    });
+
+    const themes = officersIds2.reduce(
+      (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
+      [],
+    );
+
+    this.setState({
+      initiate: datas.filter(word => word.FunnelPhase === 'initiate'),
+      scope: datas.filter(word => word.FunnelPhase === 'scope'),
+      problem: datas.filter(word => word.FunnelPhase === 'problem'),
+      solution: datas.filter(word => word.FunnelPhase === 'solution'),
+      bussiness: datas.filter(word => word.FunnelPhase === 'bussiness'),
+      mvp: datas.filter(word => word.FunnelPhase === 'mvp'),
+      feasibility: datas.filter(word => word.FunnelPhase === 'feasibility'),
+      scalelaunch: datas.filter(word => word.FunnelPhase === 'scalelaunch'),
+      softlaunch: datas.filter(word => word.FunnelPhase === 'softlaunch'),
+      projectnames,
+      themes,
+    });
+  };
+
   onDragOver = event => {
     event.preventDefault();
   };
@@ -126,11 +162,10 @@ class Funnel extends Component {
     this.setState({ setOpen: true });
   };
 
-  handleOpenEdit = (data) => {
+  handleOpenEdit = data => {
     this.setState({ selectedTask: data });
     this.setState({ setOpenEdit: true });
   };
-
 
   filterThemeProject = project => {
     this.setState({ spinning: true });
@@ -154,17 +189,39 @@ class Funnel extends Component {
       .then(response => response.json())
       .then(taskData => {
         const datas = taskData.resource;
-        this.setState({
-          initiate: datas.filter(word => word.FunnelPhase === 'initiate'),
-          scope: datas.filter(word => word.FunnelPhase === 'scope'),
-          problem: datas.filter(word => word.FunnelPhase === 'problem'),
-          solution: datas.filter(word => word.FunnelPhase === 'solution'),
-          bussiness: datas.filter(word => word.FunnelPhase === 'bussiness'),
-          mvp: datas.filter(word => word.FunnelPhase === 'mvp'),
-          feasibility: datas.filter(word => word.FunnelPhase === 'feasibility'),
-          scalelaunch: datas.filter(word => word.FunnelPhase === 'scalelaunch'),
-          softlaunch: datas.filter(word => word.FunnelPhase === 'softlaunch'),
-        });
+        this.setStates(datas);
+        this.setState({ spinning: false });
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  filterFunnel = theme => {
+    this.setState({ spinning: true });
+    const filter = theme;
+    let url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=funnel=${filter}`;
+    if (theme === 'ALL') {
+      url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks`;
+    }
+    fetch(url5, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        this.setStates(datas);
         this.setState({ spinning: false });
       })
       .catch(taskData => console.log(taskData));
@@ -196,26 +253,7 @@ class Funnel extends Component {
       .then(response => response.json())
       .then(taskData => {
         const datas = taskData.resource;
-        const officersIds = datas.map(function(officer) {
-          return officer.projectname;
-        });
-        const projectnames = officersIds.reduce(
-          (unique, item) =>
-            unique.includes(item) ? unique : [...unique, item],
-          [],
-        );
-        this.setState({
-          initiate: datas.filter(word => word.FunnelPhase === 'initiate'),
-          scope: datas.filter(word => word.FunnelPhase === 'scope'),
-          problem: datas.filter(word => word.FunnelPhase === 'problem'),
-          solution: datas.filter(word => word.FunnelPhase === 'solution'),
-          bussiness: datas.filter(word => word.FunnelPhase === 'bussiness'),
-          mvp: datas.filter(word => word.FunnelPhase === 'mvp'),
-          feasibility: datas.filter(word => word.FunnelPhase === 'feasibility'),
-          scalelaunch: datas.filter(word => word.FunnelPhase === 'scalelaunch'),
-          softlaunch: datas.filter(word => word.FunnelPhase === 'softlaunch'),
-          projectnames,
-        });
+        this.setStates(datas);
         this.setState({ spinning: false });
       })
       .catch(taskData => console.log(taskData));
@@ -223,6 +261,8 @@ class Funnel extends Component {
 
   handleOk = () => {
     this.setState({ spinning: true });
+    this.setState({ setOpen: false });
+    this.setState({ setOpenEdit: false });
     fetch(url2, {
       method: 'GET',
       headers: {
@@ -242,19 +282,8 @@ class Funnel extends Component {
       .then(response => response.json())
       .then(taskData => {
         const datas = taskData.resource;
-        this.setState({
-          initiate: datas.filter(word => word.FunnelPhase === 'initiate'),
-          scope: datas.filter(word => word.FunnelPhase === 'scope'),
-          problem: datas.filter(word => word.FunnelPhase === 'problem'),
-          solution: datas.filter(word => word.FunnelPhase === 'solution'),
-          bussiness: datas.filter(word => word.FunnelPhase === 'bussiness'),
-          mvp: datas.filter(word => word.FunnelPhase === 'mvp'),
-          feasibility: datas.filter(word => word.FunnelPhase === 'feasibility'),
-          scalelaunch: datas.filter(word => word.FunnelPhase === 'scalelaunch'),
-          softlaunch: datas.filter(word => word.FunnelPhase === 'softlaunch'),
-        });
-        this.setState({ setOpen: false });
-        this.setState({ setOpenEdit: false });
+        this.setStates(datas);
+
         this.setState({ spinning: false });
       })
       .catch(taskData => console.log(taskData));
@@ -450,16 +479,19 @@ class Funnel extends Component {
   };
 
   onColumn = (datas, container, styler) => (
-    <Col xs>
+    <Col xs style={styles.zebra1}>
       <div
         container={container}
         onDrop={event => this.onDrop(event)}
+        style={styles.zebra2}
         onDragOver={event => this.onDragOver(event)}
-        style={styles.zebra1}
       >
-        <Paper style={styles.ColTitles}>{container.toUpperCase()}</Paper>
+        <Paper className="h5" style={styles.ColTitles}>
+          {container.toUpperCase()}
+        </Paper>
         {datas.map(taskproblem => (
           <div
+            style={styles.card}
             key={taskproblem.task_id}
             container={container}
             draggable
@@ -467,48 +499,73 @@ class Funnel extends Component {
             onDragOver={event => this.onDragOver(event)}
           >
             {
-              <Paper
+              <Row
                 style={{
-                  backgroundColor: 'white',
-                  color: 'black',
-                  fontSize: 10,
-                  margin: 5,
-                  minHeight: 100,
-                  minWidth: 120,
-                  maxHeight: 100,
-                  maxWidth: 120,
+                  display: 'flex',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  justifyContent: 'center',
                 }}
-                onDoubleClick={() => this.handleOpenEdit(taskproblem)}
               >
-                <div
+                <Paper
                   style={{
-                    minWidth: 100,
-                    minHeigh: 50,
-                    fontWeight: 'bolder',
-                    backgroundColor: taskproblem.status,
-                    textAlign: 'center',
-                  }}
-                >
-                  <div>
-                    {taskproblem.projectname}/{taskproblem.horizon} <br />
-                  </div>
-                </div>
-
-                <div
-                  style={{
+                    backgroundColor: 'white',
+                    color: 'black',
+                    fontSize: 10,
                     margin: 5,
+                    minHeight: 100,
+                    maxWidth: '90%',
+                    minWidth: '90%',
                   }}
+                  onDoubleClick={() => this.handleOpenEdit(taskproblem)}
                 >
-                  {taskproblem.leader}/{taskproblem.sponsor} <br />
-                  <br />
-                  <div>
-                    Title:{taskproblem.title} <br />
+                  <div style={styles.cardTitle} className="h4">
+                    {taskproblem.projectname}
                   </div>
-                  <div>
-                    Coach:{taskproblem.coach} <br />
-                  </div>
-                </div>
-              </Paper>
+                  <Row
+                    style={{
+                      marginLeft: 5,
+                      marginBottom: 5,
+                    }}
+                    xs
+                  >
+                    <Col>
+                      <div
+                        style={{
+                          minHeigh: 50,
+                          maxWidth: 50,
+                          fontWeight: 'bolder',
+                          color: 'white',
+                          backgroundColor: taskproblem.status,
+                          textAlign: 'center',
+                        }}
+                      >
+                        Status
+                      </div>
+                    </Col>
+                    <Col xs>{taskproblem.horizon}</Col>
+                  </Row>
+
+                  <Row style={{ marginLeft: 3, marginBottom: 5 }}>
+                    <div
+                      style={{
+                        fontWeight: 'bold',
+                        maxWidth: '90%',
+                      }}
+                    >
+                      {taskproblem.leader}/{taskproblem.sponsor}{' '}
+                    </div>
+
+                    <div>
+                      Title:{taskproblem.title} <br />
+                    </div>
+
+                    <div>
+                      <div className="h5"> Coach: {taskproblem.coach}</div>
+                    </div>
+                  </Row>
+                </Paper>
+              </Row>
             }
           </div>
         ))}
@@ -530,6 +587,7 @@ class Funnel extends Component {
       mvp,
       sestoken,
       projectnames,
+      themes,
     } = this.state;
 
     return (
@@ -549,42 +607,68 @@ class Funnel extends Component {
             onOK={this.handleOk}
             data={selectedTask}
             footer={null}
-          //  handleSubmit={this.handleSubmit}
+            //  handleSubmit={this.handleSubmit}
           />
-          <div class="title-bar">
-  <div class="title-bar__title">Innovation Funnel</div>
-</div>
+          <div style={styles.headerRow} className="title-bar">
+            <div style={styles.header} className="title-bar__title">
+              Innovation Funnel
+            </div>
+          </div>
           <Row style={styles.containerTop}>
             <Col style={styles.containerTopCol}>
-            <Button onClick={this.handleOpen} type="button">     
-              Create Task
-            </Button>
+              <Row style={{ maxHeigth: 10 }}>Funnel</Row>
+              <Row>
+                <Select onChange={this.filterFunnel} style={{ width: 180 }}>
+                  <Option value="PLATFORM">PLATFORM</Option>
+                  <Option value="MOBILITY">ECOSYSTEM</Option>
+                  <Option value="ALL">ALL</Option>
+                </Select>
+              </Row>
             </Col>
+
             <Col style={styles.containerTopCol}>
-            <Select onChange={this.filterTheme} style={{ width: 180 }}>
-              <Option value="ALL">ALL</Option>
-              <Option value="AGRI">AGRI</Option>
-              <Option value="MOBILITY">MOBILITY</Option>
-              <Option value="MEDIA-ADVERTISING">MEDIA-ADVERTISING</Option>
-              <Option value="DIGITAL-IDENTITY">DIGITAL-IDENTITY</Option>
-              <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
-            </Select>
+              <Row style={{ maxHeigth: 5 }}> Theme</Row>
+              <Row>
+                <Select onChange={this.filterTheme} style={{ width: 150 }}>
+                  {themes.map(row => (
+                    <Option key={row} value={row}>
+                      {row}
+                    </Option>
+                  ))}
+                </Select>
+              </Row>
             </Col>
+
             <Col style={styles.containerTopCol}>
-            <Select onChange={this.filterThemeProject} style={{ width: 150 }}>
-              {projectnames.map(row => (
-                <Option key={row} value={row}>
-                  {row}
-                </Option>
-              ))}
-            </Select>
+              <Row style={{ maxHeigth: 5 }}> Project</Row>
+              <Row>
+                <Select
+                  onChange={this.filterThemeProject}
+                  style={{ width: 200 }}
+                >
+                  {projectnames.map(row => (
+                    <Option key={row} value={row}>
+                      {row}
+                    </Option>
+                  ))}
+                </Select>
+              </Row>
+            </Col>
+
+            <Col style={styles.containerTopColButt}>
+              <Row style={{ maxHeigth: 5 }} />
+              <Button onClick={this.handleOpen} type="button">
+                Create Task
+              </Button>
             </Col>
           </Row>
           <Row>
             <Col style={styles.containerInit} xs>
               <Paper style={styles.titles}>
-              <h2 style={styles.funnelHeaders} class="h2">Explore</h2>
-                </Paper>
+                <h2 style={styles.funnelHeaders} className="h2">
+                  Explore
+                </h2>
+              </Paper>
               <Row>
                 {this.onColumn(initiate, 'initiate')}
                 {this.onColumn(scope, 'scope')}
@@ -592,8 +676,10 @@ class Funnel extends Component {
             </Col>
             <Col style={styles.containerExperiment} xs>
               <Paper style={styles.titles}>
-              <h2 style={styles.funnelHeaders} class="h2">Experiment</h2>
-                </Paper>
+                <h2 style={styles.funnelHeaders} className="h2">
+                  Experiment
+                </h2>
+              </Paper>
               <Row>
                 {this.onColumn(problem, 'problem')}
                 {this.onColumn(solution, 'solution')}
@@ -602,15 +688,21 @@ class Funnel extends Component {
             </Col>
             <Col style={styles.containerInit} xs>
               <Paper style={styles.titles}>
-                <h2 style={styles.funnelHeaders} class="h2">Execute</h2></Paper>
+                <h2 style={styles.funnelHeaders} className="h2">
+                  Execute
+                </h2>
+              </Paper>
               <Row>
                 {this.onColumn(feasibility, 'feasibility')}
                 {this.onColumn(mvp, 'mvp')}
               </Row>
             </Col>
-            <Col style={styles.containerEnd} xs>
-              <Paper style={styles.titles}>  
-              <h2 style={styles.funnelHeaders} class="h2">Scale Up</h2></Paper>
+            <Col style={styles.containerInit} xs>
+              <Paper style={styles.titles}>
+                <h2 style={styles.funnelHeaders} className="h2">
+                  Scale Up
+                </h2>
+              </Paper>
               <Row>
                 {this.onColumn(softlaunch, 'softlaunch')}
                 {this.onColumn(scalelaunch, 'scalelaunch')}

@@ -1,21 +1,33 @@
 export const styles = {
+
+ header: {
+    fontSize: 20,
+  },
+  headerRow: {
+    maxHeight: 40,
+  },
   containerInit: {
     backgroundColor: 'fff',
-    maxWidth: '25%',
     minHeight: '100%',
+
   },
+
   containerTop: {
-    flex:1,
+    flex: 1,
     backgroundColor: 'white',
     minHeight: 30,
   },
   containerTopCol: {
-margin:15,
+    margin: 15,
+  },
+  containerTopColButt: {
+    margin: 15,
+    marginLeft: '20%',
   },
 
   funnelHeaders: {
     color: 'white',
-    fontSize: 25,
+    fontSize: 20,
   },
   titles: {
     fontSize: 20,
@@ -23,7 +35,7 @@ margin:15,
     color: 'white',
     backgroundColor: '#009900',
     textAlign: 'center',
-    minWidth: 150.
+    minWidth: 150,
   },
   modal: {
     position: 'absolute',
@@ -31,15 +43,33 @@ margin:15,
     backgroundColor: 'white',
     border: '2px solid #000',
   },
+  colphases: {
+    position: 'absolute',
+    maxWidth: 200,
+  },
   zebra1: {
-    minHeight: 500,
-    backgroundColor: '#DCF3FF',
-    border: '2px solid black',
+    minHeight: '80%',
+    maxWidth: '50%',
+    alignItems: 'center',
+    display:'flex',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    justifyContent: 'center',
+
   },
   zebra2: {
-    minHeight: 500,
-    backgroundColor: '#CCE8F6',
-    border: '2px solid black',
+    backgroundColor: '#f2f2f2',
+    minHeight: 620,
+    minWidth: '100%',
+
+  },
+  cardTitle: {
+    fontSize: 10,
+    minWidth: '100%',
+    backgroundColor: '#eafaea',
+    textAlign: 'center',
+    minHeight: 15,
+    justifyContent: 'center',
   },
 
   ColTitles: {
@@ -52,7 +82,6 @@ margin:15,
   containerEnd: {
     backgroundColor: '#fff',
     maxWidth: '30%',
-    minWidth: '24%',
     minHeight: '100%',
   },
 
@@ -63,8 +92,8 @@ margin:15,
   },
   containerExperiment: {
     backgroundColor: '#fff',
-    minWidth: '35%',
-    maxWidth: '40%',
+    minWidth: '32%',
+    maxWidth: '32%',
     minHeight: '100%',
   },
 };
