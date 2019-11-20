@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    background-color: #f2f3f8;
+    background-color: #fff;
     min-height: 100%;
     min-width: 100%;
   }
@@ -90,7 +90,7 @@ const GlobalStyle = createGlobalStyle`
 
   /* main container */
   main.main-container {
-    background-color: #f2f3f8;
+    background-color: #fff;
   }
 
   main.main-container-sidebar-closed {
@@ -107,6 +107,8 @@ const GlobalStyle = createGlobalStyle`
       margin-left: 0px;
     }
   }
+
+  @import '@kpn-style/bundle/bundle';
 
   .main-container.subtabs {
     height: calc(100% - 112px);

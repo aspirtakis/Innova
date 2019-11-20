@@ -1,14 +1,27 @@
 export const styles = {
   containerInit: {
-    backgroundColor: '#333',
+    backgroundColor: 'fff',
     maxWidth: '25%',
     minHeight: '100%',
+  },
+  containerTop: {
+    flex:1,
+    backgroundColor: 'white',
+    minHeight: 30,
+  },
+  containerTopCol: {
+margin:15,
+  },
+
+  funnelHeaders: {
+    color: 'white',
+    fontSize: 25,
   },
   titles: {
     fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
-    backgroundColor: '#19569E',
+    backgroundColor: '#009900',
     textAlign: 'center',
     minWidth: 150.
   },
@@ -33,11 +46,11 @@ export const styles = {
     fontSize: 14,
     fontWeight: 'bold',
     color: 'white',
-    backgroundColor: '#72ACFF',
+    backgroundColor: '#99cc00',
     textAlign: 'center',
   },
   containerEnd: {
-    backgroundColor: '#BFD3F0',
+    backgroundColor: '#fff',
     maxWidth: '30%',
     minWidth: '24%',
     minHeight: '100%',
@@ -49,7 +62,7 @@ export const styles = {
     border: '2px solid black',
   },
   containerExperiment: {
-    backgroundColor: '#BFD3F0',
+    backgroundColor: '#fff',
     minWidth: '35%',
     maxWidth: '40%',
     minHeight: '100%',

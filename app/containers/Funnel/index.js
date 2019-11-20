@@ -11,7 +11,6 @@ import makeSelectFunnel from './selectors';
 import FunnelForm from '../../components/addFunnelForm';
 import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
-
 const { Option } = Select;
 
 const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
@@ -552,10 +551,16 @@ class Funnel extends Component {
             footer={null}
           //  handleSubmit={this.handleSubmit}
           />
-          <Row>
-            <Button onClick={this.handleOpen} type="button">
+          <div class="title-bar">
+  <div class="title-bar__title">Innovation Funnel</div>
+</div>
+          <Row style={styles.containerTop}>
+            <Col style={styles.containerTopCol}>
+            <Button onClick={this.handleOpen} type="button">     
               Create Task
             </Button>
+            </Col>
+            <Col style={styles.containerTopCol}>
             <Select onChange={this.filterTheme} style={{ width: 180 }}>
               <Option value="ALL">ALL</Option>
               <Option value="AGRI">AGRI</Option>
@@ -564,7 +569,8 @@ class Funnel extends Component {
               <Option value="DIGITAL-IDENTITY">DIGITAL-IDENTITY</Option>
               <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
             </Select>
-
+            </Col>
+            <Col style={styles.containerTopCol}>
             <Select onChange={this.filterThemeProject} style={{ width: 150 }}>
               {projectnames.map(row => (
                 <Option key={row} value={row}>
@@ -572,17 +578,22 @@ class Funnel extends Component {
                 </Option>
               ))}
             </Select>
+            </Col>
           </Row>
           <Row>
             <Col style={styles.containerInit} xs>
-              <Paper style={styles.titles}>EXPLORE</Paper>
+              <Paper style={styles.titles}>
+              <h2 style={styles.funnelHeaders} class="h2">Explore</h2>
+                </Paper>
               <Row>
                 {this.onColumn(initiate, 'initiate')}
                 {this.onColumn(scope, 'scope')}
               </Row>
             </Col>
             <Col style={styles.containerExperiment} xs>
-              <Paper style={styles.titles}>EXPERIMENT</Paper>
+              <Paper style={styles.titles}>
+              <h2 style={styles.funnelHeaders} class="h2">Experiment</h2>
+                </Paper>
               <Row>
                 {this.onColumn(problem, 'problem')}
                 {this.onColumn(solution, 'solution')}
@@ -590,14 +601,16 @@ class Funnel extends Component {
               </Row>
             </Col>
             <Col style={styles.containerInit} xs>
-              <Paper style={styles.titles}>EXECUTE</Paper>
+              <Paper style={styles.titles}>
+                <h2 style={styles.funnelHeaders} class="h2">Execute</h2></Paper>
               <Row>
                 {this.onColumn(feasibility, 'feasibility')}
                 {this.onColumn(mvp, 'mvp')}
               </Row>
             </Col>
             <Col style={styles.containerEnd} xs>
-              <Paper style={styles.titles}>SCALE UP</Paper>
+              <Paper style={styles.titles}>  
+              <h2 style={styles.funnelHeaders} class="h2">Scale Up</h2></Paper>
               <Row>
                 {this.onColumn(softlaunch, 'softlaunch')}
                 {this.onColumn(scalelaunch, 'scalelaunch')}
