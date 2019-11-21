@@ -33,6 +33,7 @@ class ModalEditTask extends React.Component {
     };
   }
 
+
   onUpdate = values => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
@@ -145,8 +146,8 @@ class ModalEditTask extends React.Component {
                           rules: [{ required: true, message: 'funnel' }],
                         })(
                             <Select key={8} style={{ width: 150 }}>
-                            <Option value="AGRI">PLATFORM</Option>
-                              <Option value="API">ECOSYSTEM</Option>
+                            <Option value="PLATFORM">PLATFORM</Option>
+                              <Option value="ECOSYSTEM">ECOSYSTEM</Option>
                           </Select>,
                         )}
                       </Form.Item>
@@ -357,7 +358,6 @@ class ModalEditTask extends React.Component {
                   style={{ margin: 10 }}
                   onClick={this.onDelete}
                   type="danger"
-                  htmlType="submit"
                 >
                   Delete
                 </Button>
@@ -365,7 +365,6 @@ class ModalEditTask extends React.Component {
                   style={{ margin: 10 }}
                   onClick={onCancel}
                   type="danger"
-                  htmlType="submit"
                 >
                   Cancel
                 </Button>

@@ -44,6 +44,7 @@ class Funnel extends Component {
   }
 
   componentDidMount() {
+    console.log('DID MOUNTY');
     this.setState({ spinning: true });
     fetch(url, {
       method: 'POST',
@@ -66,51 +67,36 @@ class Funnel extends Component {
       .then(response => response.json())
       .then(resdata => {
         this.setState({ sestoken: resdata.session_token });
-        fetch(url2, {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'X-DreamFactory-API-Key': apptoken,
-            'X-DreamFactory-Session-Token': resdata.session_token,
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json',
-          },
-        })
-          .then(response => {
-            if (!response.ok) {
-              throw Error(response.statusText);
-            }
-            return response;
-          })
-          .then(response => response.json())
-          .then(taskData => {
-            const datas = taskData.resource;
-            this.setState({
-              initiate: datas.filter(word => word.FunnelPhase === 'initiate'),
-              scope: datas.filter(word => word.FunnelPhase === 'scope'),
-              problem: datas.filter(word => word.FunnelPhase === 'problem'),
-              solution: datas.filter(word => word.FunnelPhase === 'solution'),
-              bussiness: datas.filter(word => word.FunnelPhase === 'bussiness'),
-              mvp: datas.filter(word => word.FunnelPhase === 'mvp'),
-              feasibility: datas.filter(
-                word => word.FunnelPhase === 'feasibility',
-              ),
-              scalelaunch: datas.filter(
-                word => word.FunnelPhase === 'scalelaunch',
-              ),
-              softlaunch: datas.filter(
-                word => word.FunnelPhase === 'softlaunch',
-              ),
-            });
-
-            this.setState({ spinning: false });
-          })
-
-          .catch(taskData => console.log(taskData));
+        this.getData();
       })
-
       .catch(response => console.log(response));
   }
+
+  getData = () => {
+    console.log('GET DATA');
+    fetch(url2, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        this.setStates(datas);
+      })
+      .catch(taskData => console.log(taskData));
+  };
 
   setStates = datas => {
     const officersIds = datas.map(function(officer) {
@@ -130,7 +116,6 @@ class Funnel extends Component {
       (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
       [],
     );
-
     this.setState({
       initiate: datas.filter(word => word.FunnelPhase === 'initiate'),
       scope: datas.filter(word => word.FunnelPhase === 'scope'),
@@ -144,6 +129,7 @@ class Funnel extends Component {
       projectnames,
       themes,
     });
+    this.setState({ spinning: false });
   };
 
   onDragOver = event => {
@@ -333,6 +319,7 @@ class Funnel extends Component {
     if (draggedFrom === targetContainer) {
       return;
     }
+    this.onSave(draggedTask.task_id, targetContainer);
 
     if (draggedFrom === 'scope' && targ) {
       this.setState({
@@ -447,7 +434,7 @@ class Funnel extends Component {
         draggedTask: {},
       });
     }
-    this.onSave(draggedTask.task_id, targetContainer);
+    this.getData();
   };
 
   onSave = (task, scope) => {
@@ -527,7 +514,7 @@ class Funnel extends Component {
                       marginLeft: 5,
                       marginBottom: 5,
                     }}
-                    xs
+                    xs={12}
                   >
                     <Col>
                       <div
@@ -546,7 +533,7 @@ class Funnel extends Component {
                     <Col xs>{taskproblem.horizon}</Col>
                   </Row>
 
-                  <Row style={{ marginLeft: 3, marginBottom: 5 }}>
+                  <Row style={{ marginLeft: 3, marginBottom: 1 }}>
                     <div
                       style={{
                         fontWeight: 'bold',
@@ -555,13 +542,30 @@ class Funnel extends Component {
                     >
                       {taskproblem.leader}/{taskproblem.sponsor}{' '}
                     </div>
+                  </Row>
 
-                    <div>
-                      Title:{taskproblem.title} <br />
+                  <Row style={{ marginLeft: 3, marginBottom: 1 }}>
+                    <div
+                      style={{
+                        fontWeight: 'bold',
+                        maxWidth: '90%',
+                      }}
+                    >
+                      <div>
+                        Title:{taskproblem.title} <br />
+                      </div>
                     </div>
-
-                    <div>
-                      <div className="h5"> Coach: {taskproblem.coach}</div>
+                  </Row>
+                  <Row style={{ marginLeft: 3, marginBottom: 1 }}>
+                    <div
+                      style={{
+                        fontWeight: 'bold',
+                        maxWidth: '90%',
+                      }}
+                    >
+                      <div>
+                        <div className="h5"> Coach: {taskproblem.coach}</div>
+                      </div>
                     </div>
                   </Row>
                 </Paper>
@@ -589,7 +593,6 @@ class Funnel extends Component {
       projectnames,
       themes,
     } = this.state;
-
     return (
       <div>
         <Spin spinning={this.state.spinning} tip="Loading...">
@@ -620,7 +623,7 @@ class Funnel extends Component {
               <Row>
                 <Select onChange={this.filterFunnel} style={{ width: 180 }}>
                   <Option value="PLATFORM">PLATFORM</Option>
-                  <Option value="MOBILITY">ECOSYSTEM</Option>
+                  <Option value="ECOSYSTEM">ECOSYSTEM</Option>
                   <Option value="ALL">ALL</Option>
                 </Select>
               </Row>

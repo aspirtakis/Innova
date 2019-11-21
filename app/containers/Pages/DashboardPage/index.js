@@ -20,49 +20,120 @@ import StackedBySignBarChart from 'components/Pages/Charts/StackedBySignBarChart
 import Tasks from 'components/Pages/Dashboard/Tasks';
 
 import styles from './styles';
+const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
+const url2 =
+  'https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks';
+const apptoken =
+  'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89';
 
 class DashboardPage extends React.PureComponent {
-  state = { loading: true };
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      targetOn: true,
+      setOpen: false,
+      setOpenEdit: false,
+      selectedTask: '',
+      initiate: [],
+      scope: [],
+      problem: [],
+      solution: [],
+      bussiness: [],
+      mvp: [],
+      feasibility: [],
+      scalelaunch: [],
+      softlaunch: [],
+      projectnames: [],
+      spinning: false,
+      themes: [],
+    };
+  }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 300);
+    console.log('DID MOUNTY');
+    this.setState({ spinning: true });
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'be@openinnovationhub.nl',
+        password: 'a224935a',
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(resdata => {
+        this.setState({ sestoken: resdata.session_token });
+        this.getData();
+
+        setTimeout(() => {
+          this.setState({ loading: false });
+        }, 300);
+      })
+      .catch(response => console.log(response));
   }
+
+  getData = () => {
+    console.log('GET DATA');
+    fetch(url2, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        //   this.setStates(datas);
+      })
+      .catch(taskData => console.log(taskData));
+  };
 
   render() {
     const { loading } = this.state;
     const { classes } = this.props;
 
     return (
-      <PageBase title="Dashboard" minHeight={500} loading={loading}>
+      <PageBase minHeight={500} loading={loading}>
         {!loading && (
           <div>
-            <Grid container spacing={3} className={classes.container}>
-              <Grid item xs={12} sm={12} md={6}>
-                <SimpleBarChart title="Sales" />
-              </Grid>
-              <Grid item xs={12} sm={12} md={6}>
-                <StackedAreaChart title="Orders" />
-              </Grid>
-            </Grid>
             <Grid container spacing={3} className={classes.container}>
               <Grid item xs={12} sm={6} md={3}>
                 <InfoBox
                   icon="thumb_up"
                   backgroundColor={blue[400]}
                   iconColor={blue[500]}
-                  title="Likes"
-                  value="7051"
+                  title="Projects"
+                  value="10"
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
                 <InfoBox
-                  icon="shopping_cart"
+                  icon="users"
                   backgroundColor={green[400]}
                   iconColor={green[500]}
-                  title="Total Profit"
-                  value="4000K"
+                  title="Total People"
+                  value="34"
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -70,7 +141,7 @@ class DashboardPage extends React.PureComponent {
                   icon="face"
                   backgroundColor={orange[400]}
                   iconColor={orange[500]}
-                  title="New Members"
+                  title="Action Cards"
                   value="175"
                 />
               </Grid>
@@ -84,17 +155,13 @@ class DashboardPage extends React.PureComponent {
                 />
               </Grid>
             </Grid>
+
             <Grid container spacing={3} className={classes.container}>
-              <Grid item xs={12} sm={12} md={4}>
-                <Gallery title="Latest posts" />
+              <Grid item xs={12} sm={12} md={6}>
+                <SimpleBarChart title="Sales" />
               </Grid>
-              <Grid item xs={12} sm={12} md={4}>
-                <StackedBySignBarChart title="Visits" />
-                <Stepper />
-              </Grid>
-              <Grid item xs={12} sm={12} md={4}>
-                <SimpleLineChart title="Traffic" />
-                <Tasks title="Folders" />
+              <Grid item xs={12} sm={12} md={6}>
+                <StackedAreaChart title="Orders" />
               </Grid>
             </Grid>
           </div>
