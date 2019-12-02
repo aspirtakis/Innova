@@ -31,20 +31,20 @@ const themeDefault = createMuiTheme({
       backgroundColor: '#fff',
     },
     drawerPaper: {
-      backgroundColor: '#2c2e3e',
+      backgroundColor: '#fff',
     },
     drawerHeader: {
-      backgroundColor: '#282a3c',
+      backgroundColor: '#fff',
       color: '#fff',
     },
     drawerMenuList: {
-      backgroundColor: '#282a3c',
+      backgroundColor: 'rgb(153, 204, 0)',
     },
     selectedItem: {
       backgroundColor: 'transparent',
     },
     selectedItemText: {
-      color: '#716aca',
+      color: '#090',
     },
     text: '#757575',
     title: {

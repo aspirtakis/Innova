@@ -18,7 +18,7 @@ export const styles = {
     minHeight: 30,
   },
   containerTopCol: {
-    margin: 15,
+    marginLeft: 15,
   },
   containerTopColButt: {
     margin: 15,
@@ -78,6 +78,14 @@ export const styles = {
     color: 'white',
     backgroundColor: '#99cc00',
     textAlign: 'center',
+  },
+  ColTitles2: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: 'white',
+    textAlign: 'center',
+
   },
   containerEnd: {
     backgroundColor: '#fff',

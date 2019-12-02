@@ -32,7 +32,7 @@ class App extends React.Component {
     super(props, context);
 
     this.state = {
-      open: true,
+      open: false,
       location: props.location,
     };
   }

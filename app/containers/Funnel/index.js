@@ -4,16 +4,16 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import { Row, Col } from 'react-flexbox-grid';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Button from '@material-ui/core/Button';
-import { Select, Spin } from 'antd';
+import { Select, Spin, Button, Icon, Collapse } from 'antd';
 import makeSelectFunnel from './selectors';
 import FunnelForm from '../../components/addFunnelForm';
 import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
+import moment from 'moment';
 
+
+const { Panel } = Collapse;
 const { Option } = Select;
-
 const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
 const url2 =
   'https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks';
@@ -40,6 +40,8 @@ class Funnel extends Component {
       projectnames: [],
       spinning: false,
       themes: [],
+      expanded: '',
+      setExpanded: true,
     };
   }
 
@@ -156,6 +158,34 @@ class Funnel extends Component {
   filterThemeProject = project => {
     this.setState({ spinning: true });
     const url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=projectname=${project}`;
+    fetch(url5, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        this.setStates(datas);
+        this.setState({ spinning: false });
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  filterStatus = project => {
+    this.setState({ spinning: true });
+    const url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=status=${project}`;
     fetch(url5, {
       method: 'GET',
       headers: {
@@ -476,6 +506,7 @@ class Funnel extends Component {
         <Paper className="h5" style={styles.ColTitles}>
           {container.toUpperCase()}
         </Paper>
+
         {datas.map(taskproblem => (
           <div
             style={styles.card}
@@ -568,11 +599,40 @@ class Funnel extends Component {
                       </div>
                     </div>
                   </Row>
+                  <Row style={{ marginLeft: 3, marginBottom: 1 }}>
+                      <div
+                        style={{
+                          fontWeight: 'bold',
+                        maxWidth: '90%',
+                        }}
+                      >
+                        <div>
+                          <div className="h5">
+                          {' '}
+                          <p style={{color:"blue"}}>{moment(taskproblem.createDate).fromNow()}</p>
+                        </div>
+                        </div>
+                      </div>
+                    </Row>
                 </Paper>
               </Row>
             }
           </div>
         ))}
+        <div style={styles.ColTitles2}>
+          <Button onClick={this.handleOpen} style={{ minWidth: '100%' }}>
+            <Icon
+              type="plus-square"
+              style={{
+                minWidth: '100%',
+                marginBottom: 5,
+                fontSize: '18px',
+                color: '#08c',
+              }}
+              theme="outlined"
+            />
+          </Button>
+        </div>
       </div>
     </Col>
   );
@@ -617,6 +677,10 @@ class Funnel extends Component {
               Innovation Funnel
             </div>
           </div>
+
+          <Collapse  >
+          <Panel header="Filters" key="1">
+
           <Row style={styles.containerTop}>
             <Col style={styles.containerTopCol}>
               <Row style={{ maxHeigth: 10 }}>Funnel</Row>
@@ -658,13 +722,42 @@ class Funnel extends Component {
               </Row>
             </Col>
 
-            <Col style={styles.containerTopColButt}>
-              <Row style={{ maxHeigth: 5 }} />
-              <Button onClick={this.handleOpen} type="button">
-                Create Task
-              </Button>
+            <Col style={styles.containerTopCol}>
+              <Row style={{ maxHeigth: 5 }}> Status</Row>
+              <Row>
+                <Select onChange={this.filterStatus} style={{ width: 200 }}>
+                  <Option value="green">
+                    <div style={{ flex: 1, alignContent: 'center' }}>
+                      PROGRESSING{' '}
+                      <Icon style={{ color: 'green' }} type="login" />
+                    </div>{' '}
+                  </Option>
+                  <Option value="yellow">
+                    <div style={{ flex: 1 }}>
+                      IMPEDIMENT{' '}
+                      <Icon style={{ color: 'yellow' }} type="login" />
+                    </div>
+                  </Option>
+                  <Option value="orange">
+                    <div style={{ flex: 1 }}>
+                      PARKED <Icon style={{ color: 'orange' }} type="login" />
+                    </div>
+                  </Option>
+                  <Option value="red">
+                    <div style={{ flex: 1 }}>
+                      STOPPED <Icon style={{ color: 'red' }} type="login" />
+                    </div>
+                  </Option>
+                </Select>
+              </Row>
             </Col>
           </Row>
+          
+          </Panel>
+        </Collapse>
+
+
+
           <Row>
             <Col style={styles.containerInit} xs>
               <Paper style={styles.titles}>
