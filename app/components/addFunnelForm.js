@@ -1,7 +1,8 @@
 import React from 'react';
 import { Select, Form, Input, Icon, Modal, Button, Spin } from 'antd';
 import styled, { css } from 'styled-components';
-const { Option } = Select;
+
+const  Option  = Select.Option;
 const apptoken =
   '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
 // eslint-disable-next-line react/prefer-stateless-function
@@ -110,8 +111,8 @@ class ModalAddTask extends React.Component {
                       <Option value="PLATFORM">PLATFORM</Option>
                               <Option value="ECOSYSTEM">ECOSYSTEM</Option>
                               <Option value="PLATFORM">PLATFORM</Option>
-                              <Option value="ECOSYSTEM">OTHER</Option>
-                    </Select>,
+                              <Option value="OTHER">OTHER</Option>
+                    </Select>
                   )}
                 </Form.Item>
                 <Form.Item label="Theme">
@@ -122,7 +123,7 @@ class ModalAddTask extends React.Component {
                       <Option value="AGRI">AGRI</Option>
                               <Option value="MOBILITY">MOBILITY</Option>
                               <Option value="HEALTH">HEALTH</Option>
-                            </Select>,
+                            </Select>
                   )}
                 </Form.Item>
                         <Form.Item label="Project">
@@ -136,7 +137,7 @@ class ModalAddTask extends React.Component {
                       <Option value="SMART-CAR">SMART-CAR</Option>
                               <Option value="MOBILITY-AAS">MOBILITY AAS</Option>
                               <Option value="MEDIA-AGGREGATOR">MEDIA-AGGREGATOR</Option>
-                            </Select>,
+                            </Select>
                   )}
                 </Form.Item>
                         <Form.Item label="Task Title">
@@ -178,12 +179,12 @@ class ModalAddTask extends React.Component {
                     ],
                   })(
                             <Select key={1} style={{ width: 150 }} placeholder="Coach">
-                            >
+                            
                             <Option value="Kevin">Kevin</Option>
                             <Option value="Mike">Mike</Option>
                             <Option value="Mark">Mark</Option>
                             <Option value="Amber">Amber</Option>
-                    </Select>,
+                    </Select>
                   )}
                 </Form.Item>
 
@@ -215,7 +216,7 @@ class ModalAddTask extends React.Component {
                       <Option value="H1">H1</Option>
                       <Option value="H2">H2</Option>
                       <Option value="H3">H3</Option>
-                              </Select>,
+                              </Select>
                   )}
                 </Form.Item>
                 <Form.Item label="Teammembers">
@@ -226,7 +227,7 @@ class ModalAddTask extends React.Component {
                       <Option value="1ppl">1-ppl</Option>
                       <Option value="2ppl">2-ppl</Option>
                       <Option value="3ppl">3-ppl</Option>
-                              </Select>,
+                              </Select>
                             )}
                           </Form.Item>
                         <Form.Item label="FunnelPhase">
@@ -249,7 +250,7 @@ class ModalAddTask extends React.Component {
                       <Option value="mvp">MVP</Option>
                               <Option value="softlaunch">SOFTLAUNCH</Option>
                       <Option value="scalelaunch">SCALELAUNCH</Option>
-                            </Select>,
+                            </Select>
                           )}
                 </Form.Item>
                         <Form.Item label="Status">
@@ -295,7 +296,7 @@ class ModalAddTask extends React.Component {
                           />
                                 </div>
                       </Option>
-                            </Select>,
+                            </Select>
                           )}
                 </Form.Item>
               </Rect7>

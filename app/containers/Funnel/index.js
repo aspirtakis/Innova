@@ -12,8 +12,8 @@ import { styles } from './funnel_styles';
 import moment from 'moment';
 
 
-const { Panel } = Collapse;
-const { Option } = Select;
+const  Panel  = Collapse.Panel;
+const  Option  = Select.Option;
 const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
 const url2 =
   'https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks';

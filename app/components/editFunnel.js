@@ -3,7 +3,7 @@ import { Select, Form, Input, Icon, Modal, Button, Spin ,Collapse,Row,Col} from 
 import styled, { css } from 'styled-components';
 import moment from 'moment';
 
-const { Option } = Select;
+const  Option  = Select.Option;
 
 const { Panel } = Collapse;
 
