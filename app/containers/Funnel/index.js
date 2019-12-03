@@ -495,6 +495,24 @@ class Funnel extends Component {
       .catch(taskData => console.log(taskData));
   };
 
+
+
+  fixStatus =(status) => {
+if(status === 'green'){
+  return "PRGRESSING"
+}
+if(status === 'yellow'){
+  return "IMPEDIMENT"
+}
+if(status === 'orange'){
+  return "PARKED"
+}
+if(status === 'red'){
+  return "STOPPED"
+}
+
+  } 
+
   onColumn = (datas, container, styler) => (
     <Col xs style={styles.zebra1}>
       <div
@@ -538,8 +556,11 @@ class Funnel extends Component {
                   onDoubleClick={() => this.handleOpenEdit(taskproblem)}
                 >
                   <div style={styles.cardTitle} className="h4">
-                    {taskproblem.projectname}
+                    {taskproblem.theme}
                   </div>
+                  <div style={styles.cardTitle2} className="h4">
+                  {taskproblem.projectname}
+                </div>
                   <Row
                     style={{
                       marginLeft: 5,
@@ -551,14 +572,14 @@ class Funnel extends Component {
                       <div
                         style={{
                           minHeigh: 50,
-                          maxWidth: 50,
+                          maxWidth: 100,
                           fontWeight: 'bolder',
-                          color: 'white',
+                          color: taskproblem.status === 'yellow' ? "black" : 'white',
                           backgroundColor: taskproblem.status,
                           textAlign: 'center',
                         }}
                       >
-                        Status
+                        {this.fixStatus(taskproblem.status)}
                       </div>
                     </Col>
                     <Col xs>{taskproblem.horizon}</Col>
@@ -571,7 +592,7 @@ class Funnel extends Component {
                         maxWidth: '90%',
                       }}
                     >
-                      {taskproblem.leader}/{taskproblem.sponsor}{' '}
+                     PO: {taskproblem.leader} SP:{taskproblem.sponsor}{' '}
                     </div>
                   </Row>
 
@@ -582,9 +603,7 @@ class Funnel extends Component {
                         maxWidth: '90%',
                       }}
                     >
-                      <div>
-                        Title:{taskproblem.title} <br />
-                      </div>
+  
                     </div>
                   </Row>
                   <Row style={{ marginLeft: 3, marginBottom: 1 }}>

@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import moment from 'moment';
 
 const  Option  = Select.Option;
-
+const { TextArea } = Input;
 const { Panel } = Collapse;
 
 const apptoken =
@@ -83,6 +83,22 @@ class ModalEditTask extends React.Component {
       .catch(taskData => console.log(taskData));
   };
 
+  fixStatus =(status) => {
+    if(status === 'green'){
+      return "PRGRESSING"
+    }
+    if(status === 'yellow'){
+      return "IMPEDIMENT"
+    }
+    if(status === 'orange'){
+      return "PARKED"
+    }
+    if(status === 'red'){
+      return "STOPPED"
+    }
+    
+      } ;
+
   onDelete = values => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
@@ -155,14 +171,14 @@ class ModalEditTask extends React.Component {
         <div
         style={{
           minHeigh: 50,
-          maxWidth: 50,
+          maxWidth: 100,
           fontWeight: 'bolder',
-          color: 'white',
+          color: data.status === 'yellow' ? "black" : 'white',
           backgroundColor: data.status,
           textAlign: 'center',
         }}
       >
-        Status
+       {this.fixStatus(data.status)}
       </div>
         <h4>Funnel : {data.funnel} </h4>
         <h4>Theme : {data.theme} </h4>
@@ -313,24 +329,7 @@ class ModalEditTask extends React.Component {
                         )}
                       </Form.Item>
 
-                <Form.Item label='Description'>
-                  {getFieldDecorator('description', {
-                          initialValue: data.description,
-                          rules: [
-                      { required: true, message: 'Please input description' },
-                    ],
-                  })(
-                          <Input
-                      prefix={
-                              <Icon
-                          type="user"
-                          style={{ color: 'rgba(0,0,0,.25)' }}
-                        />
-                            }
-                      placeholder="Description"
-                          />,
-                        )}
-                </Form.Item>
+
 
                 <Form.Item label='Coach'>
                   {getFieldDecorator('coach', {
@@ -351,6 +350,25 @@ class ModalEditTask extends React.Component {
                             </Select>,
                   )}
                         </Form.Item>
+                        <Form.Item label='Description'>
+                        {getFieldDecorator('description', {
+                                initialValue: data.description,
+                                rules: [
+                            { required: true, message: 'Please input description' },
+                          ],
+                        })(
+                                <TextArea
+                                rows={3}
+                            prefix={
+                                    <Icon
+                                type="user"
+                                style={{ color: 'rgba(0,0,0,.25)' }}
+                              />
+                                  }
+                            placeholder="Description"
+                                />,
+                              )}
+                      </Form.Item>
 
                 <Form.Item label='Sponsor'>
                             {getFieldDecorator('leader', {

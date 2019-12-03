@@ -66,7 +66,15 @@ export const styles = {
   cardTitle: {
     fontSize: 10,
     minWidth: '100%',
-    backgroundColor: '#eafaea',
+    backgroundColor: '#b3e6b3',
+    textAlign: 'center',
+    minHeight: 15,
+    justifyContent: 'center',
+  },
+  cardTitle2: {
+    fontSize: 10,
+    minWidth: '100%',
+    backgroundColor: 'white',
     textAlign: 'center',
     minHeight: 15,
     justifyContent: 'center',
