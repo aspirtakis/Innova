@@ -120,9 +120,11 @@ class ModalAddTask extends React.Component {
                     rules: [{ required: true, message: 'Themes!' }],
                           })(
                     <Select key={7} style={{ width: 150 }}>
-                      <Option value="AGRI">AGRI</Option>
+                              <Option value="AGRI">AGRI</Option>
                               <Option value="MOBILITY">MOBILITY</Option>
                               <Option value="HEALTH">HEALTH</Option>
+                              <Option value="D-IDENTITY">D-IDENTITY</Option>
+                              <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
                             </Select>
                   )}
                 </Form.Item>
@@ -134,9 +136,11 @@ class ModalAddTask extends React.Component {
                               <Option value="MOBILE-CONNECT">MOBILE-CONNECT</Option>
                               <Option value="API-STORE">API-STORE</Option>
                               <Option value="CBAAS">CBAAS</Option>
-                      <Option value="SMART-CAR">SMART-CAR</Option>
+                              <Option value="SMART-CAR">SMART-CAR</Option>
                               <Option value="MOBILITY-AAS">MOBILITY AAS</Option>
                               <Option value="MEDIA-AGGREGATOR">MEDIA-AGGREGATOR</Option>
+                              <Option value="DAAF">DAAF</Option>
+                              <Option value="AUTONOME-KAS">AUTONOME-KAS</Option>
                             </Select>
                   )}
                 </Form.Item>
