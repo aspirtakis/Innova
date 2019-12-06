@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { memo, Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -6,18 +5,18 @@ import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 
 import { Select, Spin, Button, Icon, Collapse } from 'antd';
-import moment from 'moment';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import makeSelectFunnel from './selectors';
 import FunnelForm from '../../components/addFunnelForm';
 import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
-import './fun.css';
+import moment from 'moment';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
-const { Panel } = Collapse;
-const { Option } = Select;
+
+const  {Panel} = Collapse;
+const  {Option} = Select;
 const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
 const url2 =
   'https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks';
@@ -103,111 +102,6 @@ class Funnel extends Component {
       })
       .catch(taskData => console.log(taskData));
   };
-
-  onCard = (taskproblem, container) => (
-    <div
-      style={styles.card}
-      key={taskproblem.task_id}
-      container={container}
-      draggable
-      onDrag={event => this.onDrag(event, taskproblem)}
-      onDragOver={event => this.onDragOver(event)}
-    >
-      {
-        <Row
-          style={{
-            display: 'flex',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            justifyContent: 'center',
-          }}
-        >
-          <Paper
-            style={{
-              backgroundColor: 'white',
-              color: 'black',
-              fontSize: 10,
-              margin: 5,
-              minHeight: 100,
-              maxWidth: '90%',
-              minWidth: '90%',
-            }}
-            onDoubleClick={() => this.handleOpenEdit(taskproblem)}
-          >
-            <div style={styles.cardTitle} className="h4">
-              {taskproblem.theme}->{taskproblem.projectname}
-            </div>
-
-            <Row>
-              <Col sm={8}>
-                <div
-                  style={{
-                    minHeigh: 50,
-                    fontWeight: 'bolder',
-                    color: taskproblem.status === 'yellow' ? 'black' : 'white',
-                    backgroundColor: taskproblem.status,
-                    textAlign: 'center',
-                  }}
-                >
-                  {this.fixStatus(taskproblem.status)}
-                </div>
-              </Col>
-              <Col sm={4}>{taskproblem.horizon}</Col>
-            </Row>
-
-            <Row style={{ marginLeft: 3, marginBottom: 1 }}>
-              <div
-                style={{
-                  fontWeight: 'bold',
-                  maxWidth: '90%',
-                }}
-              >
-                PO: {taskproblem.leader} SP:{taskproblem.sponsor}{' '}
-              </div>
-            </Row>
-
-            <Row style={{ marginLeft: 3, marginBottom: 1 }}>
-              <div
-                style={{
-                  fontWeight: 'bold',
-                  maxWidth: '90%',
-                }}
-              />
-            </Row>
-            <Row style={{ marginLeft: 3, marginBottom: 1 }}>
-              <div
-                style={{
-                  fontWeight: 'bold',
-                  maxWidth: '90%',
-                }}
-              >
-                <div>
-                  <div> Coach: {taskproblem.coach}</div>
-                </div>
-              </div>
-            </Row>
-            <Row style={{ marginLeft: 3, marginBottom: 1 }}>
-              <div
-                style={{
-                  fontWeight: 'bold',
-                  maxWidth: '90%',
-                }}
-              >
-                <div>
-                  <div>
-                    {' '}
-                    <p style={{ color: 'blue' }}>
-                      {moment(taskproblem.createDate).fromNow()}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Row>
-          </Paper>
-        </Row>
-      }
-    </div>
-  );
 
   setStates = datas => {
     const officersIds = datas.map(function(officer) {
@@ -604,35 +498,154 @@ class Funnel extends Component {
       .catch(taskData => console.log(taskData));
   };
 
-  fixStatus = status => {
-    if (status === 'green') {
-      return 'PRGRESSING';
-    }
-    if (status === 'yellow') {
-      return 'IMPEDIMENT';
-    }
-    if (status === 'orange') {
-      return 'PARKED';
-    }
-    if (status === 'red') {
-      return 'STOPPED';
-    }
-  };
 
-  onColumn = (datas, container, xs) => (
-    <Col className="nopadding" xs={xs} sm={xs} style={{ minWidth: 80 }}>
+
+  fixStatus =(status) => {
+if(status === 'green'){
+  return "PRGRESSING"
+}
+if(status === 'yellow'){
+  return "IMPEDIMENT"
+}
+if(status === 'orange'){
+  return "PARKED"
+}
+if(status === 'red'){
+      return 'STOPPED';
+}
+
+  } 
+
+  onColumn = (datas, container, styler) => (
+    <Col>
       <div
         container={container}
         onDrop={event => this.onDrop(event)}
+        style={styles.zebra2}
         onDragOver={event => this.onDragOver(event)}
-        style={styles.zebra}
       >
         <Paper className="h5" style={styles.ColTitles}>
           {container.toUpperCase()}
         </Paper>
 
-        {datas.map(taskproblem => this.onCard(taskproblem, container))}
-        <button className="add-card-btn btn">Add a card</button>
+        {datas.map(taskproblem => (
+          <div
+            style={styles.card}
+            key={taskproblem.task_id}
+            container={container}
+            draggable
+            onDrag={event => this.onDrag(event, taskproblem)}
+            onDragOver={event => this.onDragOver(event)}
+          >
+            {
+              <Row
+                style={{
+                  display: 'flex',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <Paper
+                  style={{
+                    backgroundColor: 'white',
+                    color: 'black',
+                    fontSize: 10,
+                    margin: 5,
+                    minHeight: 100,
+                    maxWidth: '90%',
+                    minWidth: '90%',
+                  }}
+                  onDoubleClick={() => this.handleOpenEdit(taskproblem)}
+                >
+                  <div style={styles.cardTitle} className="h4">
+                    {taskproblem.theme}->{taskproblem.projectname}
+                  </div>
+
+                  <Row>
+                    <Col sm={8}>
+                      <div
+                        style={{
+                          minHeigh: 50,
+                          fontWeight: 'bolder',
+                          color: taskproblem.status === 'yellow' ? "black" : 'white',
+                          backgroundColor: taskproblem.status,
+                          textAlign: 'center',
+                        }}
+                      >
+                        {this.fixStatus(taskproblem.status)}
+                      </div>
+                    </Col>
+                    <Col sm={4}>{taskproblem.horizon}</Col>
+                  </Row>
+
+                  <Row style={{ marginLeft: 3, marginBottom: 1 }}>
+                    <div
+                      style={{
+                        fontWeight: 'bold',
+                        maxWidth: '90%',
+                      }}
+                    >
+                     PO: {taskproblem.leader} SP:{taskproblem.sponsor}{' '}
+                    </div>
+                  </Row>
+
+                  <Row style={{ marginLeft: 3, marginBottom: 1 }}>
+                    <div
+                      style={{
+                        fontWeight: 'bold',
+                        maxWidth: '90%',
+                      }}
+                    >
+  
+                    </div>
+                  </Row>
+                  <Row style={{ marginLeft: 3, marginBottom: 1 }}>
+                    <div
+                      style={{
+                        fontWeight: 'bold',
+                        maxWidth: '90%',
+                      }}
+                    >
+                      <div>
+                        <div > Coach: {taskproblem.coach}</div>
+                      </div>
+                    </div>
+                  </Row>
+                  <Row style={{ marginLeft: 3, marginBottom: 1 }}>
+                      <div
+                        style={{
+                          fontWeight: 'bold',
+                        maxWidth: '90%',
+                        }}
+                      >
+                        <div>
+                          <div >
+                          {' '}
+                          <p style={{color:"blue"}}>{moment(taskproblem.createDate).fromNow()}</p>
+                        </div>
+                        </div>
+                      </div>
+                    </Row>
+                </Paper>
+              </Row>
+            }
+          </div>
+        ))}
+        <div style={styles.ColTitles2}>
+          <Button onClick={this.handleOpen} style={{ minWidth: '100%' }}>
+            <Icon
+              type="plus-square"
+              style={{
+                minWidth: '100%',
+                marginBottom: 5,
+                fontSize: '18px',
+                color: '#08c',
+              }}
+              theme="outlined"
+            />
+          </Button>
+        </div>
       </div>
     </Col>
   );
@@ -672,136 +685,138 @@ class Funnel extends Component {
             footer={null}
             //  handleSubmit={this.handleSubmit}
           />
+
           <div style={styles.headerRow} className="title-bar">
-            <div style={styles.header} className="title-bar__title">
-              Innovation Funnel
-            </div>
+          <div style={styles.header} className="title-bar__title">
+            Innovation Funnel
           </div>
+        </div>
           <Collapse>
             <Panel header="Filters" key="1">
-              <Row style={styles.containerTop}>
-                <Col style={styles.containerTopCol}>
-                  <Row style={{ maxHeigth: 10 }}>Funnel</Row>
-                  <Row>
-                    <Select onChange={this.filterFunnel} style={{ width: 180 }}>
-                      <Option value="PLATFORM">PLATFORM</Option>
-                      <Option value="ECOSYSTEM">ECOSYSTEM</Option>
-                      <Option value="ALL">ALL</Option>
-                    </Select>
-                  </Row>
-                </Col>
-
-                <Col style={styles.containerTopCol}>
-                  <Row style={{ maxHeigth: 5 }}> Theme</Row>
-                  <Row>
-                    <Select onChange={this.filterTheme} style={{ width: 150 }}>
-                      {themes.map(row => (
-                        <Option key={row} value={row}>
-                          {row}
-                        </Option>
-                      ))}
-                    </Select>
-                  </Row>
-                </Col>
-
-                <Col style={styles.containerTopCol}>
-                  <Row style={{ maxHeigth: 5 }}> Project</Row>
-                  <Row>
-                    <Select
-                      onChange={this.filterThemeProject}
-                      style={{ width: 200 }}
-                    >
-                      {projectnames.map(row => (
-                        <Option key={row} value={row}>
-                          {row}
-                        </Option>
-                      ))}
-                    </Select>
-                  </Row>
-                </Col>
-
-                <Col style={styles.containerTopCol}>
-                  <Row style={{ maxHeigth: 5 }}> Status</Row>
-                  <Row>
-                    <Select onChange={this.filterStatus} style={{ width: 200 }}>
-                      <Option value="green">
-                        <div style={{ flex: 1, alignContent: 'center' }}>
-                          PROGRESSING{' '}
-                          <Icon style={{ color: 'green' }} type="login" />
-                        </div>{' '}
-                      </Option>
-                      <Option value="yellow">
-                        <div style={{ flex: 1 }}>
-                          IMPEDIMENT{' '}
-                          <Icon style={{ color: 'yellow' }} type="login" />
-                        </div>
-                      </Option>
-                      <Option value="orange">
-                        <div style={{ flex: 1 }}>
-                          PARKED{' '}
-                          <Icon style={{ color: 'orange' }} type="login" />
-                        </div>
-                      </Option>
-                      <Option value="red">
-                        <div style={{ flex: 1 }}>
-                          STOPPED <Icon style={{ color: 'red' }} type="login" />
-                        </div>
-                      </Option>
-                    </Select>
-                  </Row>
-                </Col>
+          <Row style={styles.containerTop}>
+            <Col style={styles.containerTopCol}>
+              <Row style={{ maxHeigth: 10 }}>Funnel</Row>
+              <Row>
+                <Select onChange={this.filterFunnel} style={{ width: 180 }}>
+                  <Option value="PLATFORM">PLATFORM</Option>
+                  <Option value="ECOSYSTEM">ECOSYSTEM</Option>
+                  <Option value="ALL">ALL</Option>
+                </Select>
               </Row>
-            </Panel>
+            </Col>
+
+            <Col style={styles.containerTopCol}>
+              <Row style={{ maxHeigth: 5 }}> Theme</Row>
+              <Row>
+                <Select onChange={this.filterTheme} style={{ width: 150 }}>
+                  {themes.map(row => (
+                    <Option key={row} value={row}>
+                      {row}
+                    </Option>
+                  ))}
+                </Select>
+              </Row>
+            </Col>
+
+            <Col style={styles.containerTopCol}>
+              <Row style={{ maxHeigth: 5 }}> Project</Row>
+              <Row>
+                <Select
+                  onChange={this.filterThemeProject}
+                  style={{ width: 200 }}
+                >
+                  {projectnames.map(row => (
+                    <Option key={row} value={row}>
+                      {row}
+                    </Option>
+                  ))}
+                </Select>
+              </Row>
+            </Col>
+
+            <Col style={styles.containerTopCol}>
+              <Row style={{ maxHeigth: 5 }}> Status</Row>
+              <Row>
+                <Select onChange={this.filterStatus} style={{ width: 200 }}>
+                  <Option value="green">
+                    <div style={{ flex: 1, alignContent: 'center' }}>
+                      PROGRESSING{' '}
+                      <Icon style={{ color: 'green' }} type="login" />
+                    </div>{' '}
+                  </Option>
+                  <Option value="yellow">
+                    <div style={{ flex: 1 }}>
+                      IMPEDIMENT{' '}
+                      <Icon style={{ color: 'yellow' }} type="login" />
+                    </div>
+                  </Option>
+                  <Option value="orange">
+                    <div style={{ flex: 1 }}>
+                      PARKED <Icon style={{ color: 'orange' }} type="login" />
+                    </div>
+                  </Option>
+                  <Option value="red">
+                    <div style={{ flex: 1 }}>
+                      STOPPED <Icon style={{ color: 'red' }} type="login" />
+                    </div>
+                  </Option>
+                </Select>
+              </Row>
+            </Col>
+          </Row>
+          
+          </Panel>
           </Collapse>
-          <Row>
-            <Col xs={3}>
+          <div >
+          <Row  style={styles.mainFunnel}>
+            <Col>
               <Paper style={styles.titles}>
                 <h2 style={styles.funnelHeaders} className="h2">
                   Explore
                 </h2>
               </Paper>
               <Row>
-                {this.onColumn(initiate, 'initiate', 6)}
-                {this.onColumn(scope, 'scope', 6)}
+                {this.onColumn(initiate, 'initiate')}
+                {this.onColumn(scope, 'scope')}
               </Row>
             </Col>
-
-            <Col xs={4}>
+            <Col> 
               <Paper style={styles.titles}>
                 <h2 style={styles.funnelHeaders} className="h2">
                   Experiment
                 </h2>
               </Paper>
               <Row>
-                {this.onColumn(problem, 'problem', 4)}
-                {this.onColumn(solution, 'solution', 4)}
-                {this.onColumn(bussiness, 'bussiness', 4)}
+                {this.onColumn(problem, 'problem')}
+                {this.onColumn(solution, 'solution')}
+                {this.onColumn(bussiness, 'bussiness')}
               </Row>
             </Col>
-            <Col>
+            <Col >
               <Paper style={styles.titles}>
                 <h2 style={styles.funnelHeaders} className="h2">
                   Execute
                 </h2>
               </Paper>
               <Row>
-                {this.onColumn(feasibility, 'feasibility', 6)}
-                {this.onColumn(mvp, 'mvp', 6)}
+                {this.onColumn(feasibility, 'feasibility')}
+                {this.onColumn(mvp, 'mvp')}
               </Row>
             </Col>
-            <Col>
+            <Col >
               <Paper style={styles.titles}>
                 <h2 style={styles.funnelHeaders} className="h2">
                   Scale Up
                 </h2>
               </Paper>
               <Row>
-                {this.onColumn(softlaunch, 'softlaunch', 6)}
-                {this.onColumn(scalelaunch, 'scalelaunch', 6)}
+                {this.onColumn(softlaunch, 'softlaunch')}
+                {this.onColumn(scalelaunch, 'scalelaunch')}
               </Row>
             </Col>
-          </Row>
-        </Spin>
+            </Row>
+          </div>
+          </Spin>
       </div>
     );
   }

@@ -24,12 +24,12 @@ const getStyles = theme => ({
     height: '100%',
   },
   content: {
-    width: '100%',
+     width: '100%',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: 24,
+    padding: 4,
     height: 'calc(100% - 56px)',
-    marginTop: 56,
+     marginTop: 56,
     [theme.breakpoints.up('sm')]: {
       height: 'calc(100% - 48px)',
       marginTop: 48,

@@ -175,7 +175,7 @@ class ModalEditTask extends React.Component {
   };
 
   render() {
-    const { visible, onOK, onCancel} = this.props;
+    const { visible, onOK, onCancel } = this.props;
     console.log(this.props.data);
     const data = this.state;
 
@@ -290,15 +290,15 @@ class ModalEditTask extends React.Component {
                       }
                       as="select"
                     >
-                        <option value="initiate">INITIATE</option>
-                        <option value="scope">SCOPE</option>
+                      <option value="initiate">INITIATE</option>
+                      <option value="scope">SCOPE</option>
                       <option value="problem">PROBLEM</option>
-                        <option value="solution">SOLUTIONs</option>
+                      <option value="solution">SOLUTIONS</option>
                       <option value="bussiness">BUSSINESS</option>
-                        <option value="feasibility">FEASIBILITY</option>
-                        <option value="mvp">MVP</option>
-                        <option value="softlaunch">SOFTLAUNCH</option>
-                        <option value="scalelaunch">SCALELAUNCH</option>
+                      <option value="feasibility">FEASIBILITY</option>
+                      <option value="mvp">MVP</option>
+                      <option value="softlaunch">SOFTLAUNCH</option>
+                      <option value="scalelaunch">SCALELAUNCH</option>
                     </Form.Control>
 
                     <Form.Label>Product Owner</Form.Label>

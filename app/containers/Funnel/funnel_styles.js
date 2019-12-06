@@ -8,7 +8,13 @@ export const styles = {
   },
 
   card: {
-    minWidth: 110,
+    minWidth: 100,
+  },
+  mainFunnel: {
+    overflowX: 'scroll',
+    maxHeight:50,
+    float: 'left',
+
   },
 
   containerInit: {
@@ -17,16 +23,9 @@ export const styles = {
   },
 
   containerTop: {
-    flex: 1,
+
     backgroundColor: 'white',
     minHeight: 30,
-  },
-  containerTopCol: {
-    marginLeft: 15,
-  },
-  containerTopColButt: {
-    margin: 15,
-    marginLeft: '20%',
   },
 
   funnelHeaders: {
@@ -51,17 +50,10 @@ export const styles = {
     position: 'absolute',
     maxWidth: 200,
   },
-  zebra1: {
-    minHeight: '80%',
-    maxWidth: '50%',
-    alignItems: 'center',
-    display:'flex',
-    justifyContent: 'center',
 
-  },
-  zebra2: {
+  zebra: {
     backgroundColor: '#f2f2f2',
-    minHeight: 620,
+    minHeight: '100%',
     minWidth: '100%',
 
   },
