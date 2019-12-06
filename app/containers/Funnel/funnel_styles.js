@@ -6,10 +6,14 @@ export const styles = {
   headerRow: {
     maxHeight: 40,
   },
+
+  card: {
+    minWidth: 110,
+  },
+
   containerInit: {
     backgroundColor: 'fff',
     minHeight: '100%',
-
   },
 
   containerTop: {
@@ -52,8 +56,6 @@ export const styles = {
     maxWidth: '50%',
     alignItems: 'center',
     display:'flex',
-    marginLeft: 'auto',
-    marginRight: 'auto',
     justifyContent: 'center',
 
   },

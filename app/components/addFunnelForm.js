@@ -108,7 +108,7 @@ class ModalAddTask extends React.Component {
                     rules: [{ required: true, message: 'funnel' }],
                           })(
                     <Select key={8} style={{ width: 150 }}>
-                      <Option value="PLATFORM">PLATFORM</Option>
+
                               <Option value="ECOSYSTEM">ECOSYSTEM</Option>
                               <Option value="PLATFORM">PLATFORM</Option>
                               <Option value="OTHER">OTHER</Option>
@@ -228,9 +228,9 @@ class ModalAddTask extends React.Component {
                     rules: [{ required: true, message: 'Horizon!' }],
                             })(
                     <Select key={3} placeholder="Sponsored" style={{ width: 150 }}>
-                      <Option value="1ppl">1-ppl</Option>
-                      <Option value="2ppl">2-ppl</Option>
-                      <Option value="3ppl">3-ppl</Option>
+                      <Option value="1ppl">1ppl</Option>
+                      <Option value="2ppl">2ppl</Option>
+                      <Option value="3ppl">3ppl</Option>
                               </Select>
                             )}
                           </Form.Item>

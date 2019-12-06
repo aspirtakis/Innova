@@ -48,17 +48,18 @@ class ModalEditTask extends React.Component {
     this.state = {
       spinning: false,
       title: data.title,
-      funnel: data.funnelPhase,
-      project: data.projectname,
+      funnel: data.funnel,
       description: data.description,
-      projectname: data.project,
+      projectname: data.projectname,
       horizon: data.horizon,
       theme: data.theme,
       status: data.status,
-      FunnelPhase: data.funnelPhase,
+      FunnelPhase: data.FunnelPhase,
       coach: data.coach,
       leader: data.leader,
       sponsor: data.sponsor,
+      task_id: data.task_id,
+      createDate: data.createDate,
     };
   }
 
@@ -67,17 +68,18 @@ class ModalEditTask extends React.Component {
     this.setState({
       spinning: false,
       title: data.title,
-      funnel: data.funnelPhase,
-      project: data.projectname,
+      funnel: data.funnel,
+      projectname: data.projectname,
       description: data.description,
-      projectname: data.project,
       horizon: data.horizon,
       theme: data.theme,
       status: data.status,
-      FunnelPhase: data.funnelPhase,
+      FunnelPhase: data.FunnelPhase,
       coach: data.coach,
       leader: data.leader,
       sponsor: data.sponsor,
+      task_id: data.task_id,
+      createDate: data.createDate,
     });
     console.log(data);
   }
@@ -99,11 +101,11 @@ class ModalEditTask extends React.Component {
       body: JSON.stringify({
         description: this.state.description,
         asssignedUser: '1',
-        projectname: this.state.project,
+        projectname: this.state.projectname,
         horizon: this.state.horizon,
         theme: this.state.theme,
         status: this.state.status,
-        FunnelPhase: this.state.funnelPhase,
+        FunnelPhase: this.state.FunnelPhase,
         title: this.state.taskname,
         funnel: this.state.funnel,
         coach: this.state.coach,
@@ -142,9 +144,9 @@ class ModalEditTask extends React.Component {
     }
   };
 
-  onDelete = values => {
+  onDelete = () => {
     this.setState({ spinning: true });
-    const taskid = this.props.data.task_id;
+    const taskid = this.state.task_id;
     const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks/${taskid}`;
 
     fetch(url4, {
@@ -173,8 +175,9 @@ class ModalEditTask extends React.Component {
   };
 
   render() {
-    const { visible, onOK, onCancel, data } = this.props;
-    console.log(data);
+    const { visible, onOK, onCancel} = this.props;
+    console.log(this.props.data);
+    const data = this.state;
 
     return (
       <Modal
@@ -204,16 +207,17 @@ class ModalEditTask extends React.Component {
                     >
                       {this.fixStatus(data.status)}
                     </div>
-                    <h4>Funnel : {data.funnel} </h4>
-                    <h4>Theme : {data.theme} </h4>
-
-                    <h4>Description : {data.description} </h4>
+                    <p>Funnel : {data.funnel} </p>
+                    <p>Theme : {data.theme} </p>
+                    <p>Description : {data.description} </p>
                   </Col>
                   <Col span={12}>
-                    <h4>Project : {data.projectname} </h4>
-                    <h4>Horizon : {data.horizon} </h4>
-                    <h4>Created Date : {data.createDate} </h4>
-                    <h4>Days on Board :{moment(data.createDate).fromNow()}</h4>
+                    <p>Project : {data.projectname} </p>
+                    <p>Horizon : {data.horizon} </p>
+                    <p>Coach : {data.coach} </p>
+                    <p>PO : {data.leader} </p>
+                    <p>Created Date : {data.createDate} </p>
+                    <p>Days on Board :{moment(data.createDate).fromNow()}</p>
                   </Col>
                 </Row>
               </div>
@@ -234,7 +238,7 @@ class ModalEditTask extends React.Component {
                       <option>ECOSYSTEM</option>
                       <option>OTHER</option>
                     </Form.Control>
-                    
+
                     <Form.Label>Theme</Form.Label>
                     <Form.Control
                       value={this.state.theme}
@@ -265,9 +269,63 @@ class ModalEditTask extends React.Component {
                       <option>DAAF</option>
                       <option>AUTONOMUS-KAS</option>
                     </Form.Control>
+
+                    <Form.Label>Status</Form.Label>
+                    <Form.Control
+                      value={this.state.status}
+                      onChange={e => this.setState({ status: e.target.value })}
+                      as="select"
+                    >
+                      <option value="green">PROGRESSING</option>
+                      <option value="yellow">IMPEDIMENT</option>
+                      <option value="red">STOPPED </option>
+                      <option value="orange">PARKED</option>
+                    </Form.Control>
+
+                    <Form.Label>FunnelPhase</Form.Label>
+                    <Form.Control
+                      value={this.state.FunnelPhase}
+                      onChange={e =>
+                        this.setState({ FunnelPhase: e.target.value })
+                      }
+                      as="select"
+                    >
+                        <option value="initiate">INITIATE</option>
+                        <option value="scope">SCOPE</option>
+                      <option value="problem">PROBLEM</option>
+                        <option value="solution">SOLUTIONs</option>
+                      <option value="bussiness">BUSSINESS</option>
+                        <option value="feasibility">FEASIBILITY</option>
+                        <option value="mvp">MVP</option>
+                        <option value="softlaunch">SOFTLAUNCH</option>
+                        <option value="scalelaunch">SCALELAUNCH</option>
+                    </Form.Control>
+
+                    <Form.Label>Product Owner</Form.Label>
+                    <Form.Control
+                      value={this.state.leader}
+                      onChange={e => this.setState({ leader: e.target.value })}
+                      type="text"
+                      placeholder="Card Title"
+                    />
                   </Form.Group>
 
-                  <Form.Group as={Col} controlId="Title">
+                  <Form.Group
+                    style={{ marginLeft: 15 }}
+                    as={Col}
+                    controlId="Title"
+                  >
+                    <Form.Label>Horizon</Form.Label>
+                    <Form.Control
+                      value={this.state.horizon}
+                      onChange={e => this.setState({ horizon: e.target.value })}
+                      as="select"
+                    >
+                      <option>H1</option>
+                      <option>H2</option>
+                      <option>H3</option>
+                    </Form.Control>
+
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                       value={this.state.title}
@@ -275,6 +333,7 @@ class ModalEditTask extends React.Component {
                       type="text"
                       placeholder="Card Title"
                     />
+
                     <Form.Label>Description</Form.Label>
                     <Form.Control
                       value={this.state.description}
@@ -284,6 +343,30 @@ class ModalEditTask extends React.Component {
                       as="textarea"
                       rows="3"
                     />
+
+                    <Form.Label>Coach</Form.Label>
+                    <Form.Control
+                      value={this.state.coach}
+                      onChange={e => this.setState({ coach: e.target.value })}
+                      as="select"
+                    >
+                      <option>Kevin</option>
+                      <option>Mike</option>
+                      <option>Mark </option>
+                      <option>Amber</option>
+                    </Form.Control>
+
+                    <Form.Label>Sponsored</Form.Label>
+                    <Form.Control
+                      value={this.state.sponsor}
+                      onChange={e => this.setState({ sponsor: e.target.value })}
+                      as="select"
+                    >
+                      <option>1ppl</option>
+                      <option>2ppl</option>
+                      <option>3ppl </option>
+                      <option>4ppl</option>
+                    </Form.Control>
                   </Form.Group>
                 </Form.Row>
 
@@ -293,7 +376,7 @@ class ModalEditTask extends React.Component {
                 <Button onClick={onCancel} variant="primary" type="submit">
                   Cancel
                 </Button>
-                <Button variant="primary" type="submit">
+                <Button onClick={this.onDelete} variant="primary" type="submit">
                   Delete
                 </Button>
               </Form>

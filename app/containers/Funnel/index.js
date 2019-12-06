@@ -3,17 +3,20 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
-import { Row, Col } from 'react-flexbox-grid';
+
 import { Select, Spin, Button, Icon, Collapse } from 'antd';
 import makeSelectFunnel from './selectors';
 import FunnelForm from '../../components/addFunnelForm';
 import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
 import moment from 'moment';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 
-const  Panel  = Collapse.Panel;
-const  Option  = Select.Option;
+const  {Panel} = Collapse;
+const  {Option} = Select;
 const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
 const url2 =
   'https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks';
@@ -508,13 +511,13 @@ if(status === 'orange'){
   return "PARKED"
 }
 if(status === 'red'){
-  return "STOPPED"
+      return 'STOPPED';
 }
 
   } 
 
   onColumn = (datas, container, styler) => (
-    <Col xs style={styles.zebra1}>
+    <Col style={styles.zebra1}>
       <div
         container={container}
         onDrop={event => this.onDrop(event)}
@@ -556,23 +559,14 @@ if(status === 'red'){
                   onDoubleClick={() => this.handleOpenEdit(taskproblem)}
                 >
                   <div style={styles.cardTitle} className="h4">
-                    {taskproblem.theme}
+                    {taskproblem.theme}->{taskproblem.projectname}
                   </div>
-                  <div style={styles.cardTitle2} className="h4">
-                  {taskproblem.projectname}
-                </div>
-                  <Row
-                    style={{
-                      marginLeft: 5,
-                      marginBottom: 5,
-                    }}
-                    xs={12}
-                  >
-                    <Col>
+
+                  <Row>
+                    <Col sm={8}>
                       <div
                         style={{
                           minHeigh: 50,
-                          maxWidth: 100,
                           fontWeight: 'bolder',
                           color: taskproblem.status === 'yellow' ? "black" : 'white',
                           backgroundColor: taskproblem.status,
@@ -582,7 +576,7 @@ if(status === 'red'){
                         {this.fixStatus(taskproblem.status)}
                       </div>
                     </Col>
-                    <Col xs>{taskproblem.horizon}</Col>
+                    <Col sm={4}>{taskproblem.horizon}</Col>
                   </Row>
 
                   <Row style={{ marginLeft: 3, marginBottom: 1 }}>
@@ -614,7 +608,7 @@ if(status === 'red'){
                       }}
                     >
                       <div>
-                        <div className="h5"> Coach: {taskproblem.coach}</div>
+                        <div > Coach: {taskproblem.coach}</div>
                       </div>
                     </div>
                   </Row>
@@ -626,7 +620,7 @@ if(status === 'red'){
                         }}
                       >
                         <div>
-                          <div className="h5">
+                          <div >
                           {' '}
                           <p style={{color:"blue"}}>{moment(taskproblem.createDate).fromNow()}</p>
                         </div>
@@ -778,7 +772,7 @@ if(status === 'red'){
 
 
           <Row>
-            <Col style={styles.containerInit} xs>
+            <Col style={styles.containerInit} >
               <Paper style={styles.titles}>
                 <h2 style={styles.funnelHeaders} className="h2">
                   Explore
@@ -789,7 +783,7 @@ if(status === 'red'){
                 {this.onColumn(scope, 'scope')}
               </Row>
             </Col>
-            <Col style={styles.containerExperiment} xs>
+            <Col style={styles.containerExperiment} >
               <Paper style={styles.titles}>
                 <h2 style={styles.funnelHeaders} className="h2">
                   Experiment
@@ -801,7 +795,7 @@ if(status === 'red'){
                 {this.onColumn(bussiness, 'bussiness')}
               </Row>
             </Col>
-            <Col style={styles.containerInit} xs>
+            <Col style={styles.containerInit} >
               <Paper style={styles.titles}>
                 <h2 style={styles.funnelHeaders} className="h2">
                   Execute
@@ -812,7 +806,7 @@ if(status === 'red'){
                 {this.onColumn(mvp, 'mvp')}
               </Row>
             </Col>
-            <Col style={styles.containerInit} xs>
+            <Col style={styles.containerInit} >
               <Paper style={styles.titles}>
                 <h2 style={styles.funnelHeaders} className="h2">
                   Scale Up
