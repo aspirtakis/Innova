@@ -81,7 +81,7 @@ class ModalEditTask extends React.Component {
       task_id: data.task_id,
       createDate: data.createDate,
     });
-    console.log(data);
+
   }
 
   onUpdate = values => {

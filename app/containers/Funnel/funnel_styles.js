@@ -31,7 +31,9 @@ export const styles = {
   funnelHeaders: {
     color: 'white',
     fontSize: 20,
+    backgroundColor: '#009900',
   },
+
   titles: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -50,12 +52,10 @@ export const styles = {
     position: 'absolute',
     maxWidth: 200,
   },
-
   zebra: {
     backgroundColor: '#f2f2f2',
-    minHeight: '100%',
+    minHeight: 800,
     minWidth: '100%',
-
   },
   cardTitle: {
     fontSize: 10,
