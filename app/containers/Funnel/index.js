@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Select, Spin, Button, Icon, Collapse } from 'antd';
-import moment from 'moment';
+import { DragDropContext } from 'react-beautiful-dnd';
+import styled from 'styled-components';
+import { Select, Icon, Collapse } from 'antd';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import makeSelectFunnel from './selectors';
@@ -14,100 +14,62 @@ import FunnelForm from '../../components/addFunnelForm';
 import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
 import './fun.css';
-
-import styled from 'styled-components';
-
 import Column from './column';
+
 const columnsdata = [
   {
     id: 'initiate',
-    title: 'initiate',
+    title: 'Initiate',
   },
   {
     id: 'scope',
-    title: 'scope',
+    title: 'Scope',
   },
   {
     id: 'problem',
-    title: 'problem',
+    title: 'Problem',
   },
   {
     id: 'solution',
-    title: 'solution',
+    title: 'Solution',
   },
   {
     id: 'bussiness',
-    title: 'bussiness',
+    title: 'Bussiness',
   },
   {
     id: 'mvp',
-    title: 'mvp',
+    title: 'Mvp',
   },
   {
     id: 'feasibility',
-    title: 'feasibility',
+    title: 'Feasibility',
   },
   {
     id: 'scalelaunch',
-    title: 'scalelaunch',
+    title: 'Scalelaunch',
   },
   {
     id: 'softlaunch',
-    title: 'softlaunch',
+    title: 'Softlaunch',
   },
 ];
 const Container = styled.div`
   display: flex;
 `;
 
-const initialData = {
-  tasks: {
-    'task-1': { id: 'task-1', content: 'Take out the garbage' },
-    'task-2': { id: 'task-2', content: 'Watch my favorite show' },
-    'task-3': { id: 'task-3', content: 'Charge my phone' },
-    'task-4': { id: 'task-4', content: 'Cook dinner' },
-  },
-  columns: {
-    'column-1': {
-      id: 'column-1',
-      title: 'To do',
-      taskIds: ['task-1', 'task-2', 'task-3', 'task-4'],
-    },
-    'column-2': {
-      id: 'column-2',
-      title: 'In progress',
-      taskIds: [],
-    },
-    'column-3': {
-      id: 'column-3',
-      title: 'Done',
-      taskIds: [],
-    },
-  },
-  // Facilitate reordering of the columns
-  columnOrder: ['column-1', 'column-2', 'column-3'],
-};
-
 const { Panel } = Collapse;
 const { Option } = Select;
+
 const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
 const url2 =
   'https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks';
 const apptoken =
   'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89';
 
-const getItems = count =>
-  Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k}`,
-    content: `item ${k}`,
-  }));
-
-const grid = 8;
-
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
-  console.log(removed);
   result.splice(endIndex, 0, removed);
   return result;
 };
@@ -134,13 +96,10 @@ class Funnel extends Component {
       themes: [],
       expanded: '',
       setExpanded: true,
-      items: getItems(10),
-      columns: initialData,
     };
   }
 
   componentDidMount() {
-    console.log('DID MOUNTY');
     this.setState({ spinning: true });
     fetch(url, {
       method: 'POST',
@@ -169,7 +128,6 @@ class Funnel extends Component {
   }
 
   getData = () => {
-    console.log('GET DATA');
     fetch(url2, {
       method: 'GET',
       headers: {
@@ -193,111 +151,6 @@ class Funnel extends Component {
       })
       .catch(taskData => console.log(taskData));
   };
-
-  onCard = (taskproblem, container) => (
-    <div
-      style={styles.card}
-      key={taskproblem.task_id}
-      container={container}
-      draggable
-      onDrag={event => this.onDrag(event, taskproblem)}
-      onDragOver={event => this.onDragOver(event)}
-    >
-      {
-        <Row
-          style={{
-            display: 'flex',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            justifyContent: 'center',
-          }}
-        >
-          <Paper
-            style={{
-              backgroundColor: 'white',
-              color: 'black',
-              fontSize: 10,
-              margin: 5,
-              minHeight: 100,
-              maxWidth: '90%',
-              minWidth: '90%',
-            }}
-            onDoubleClick={() => this.handleOpenEdit(taskproblem)}
-          >
-            <div style={styles.cardTitle} className="h4">
-              {taskproblem.theme}->{taskproblem.projectname}
-            </div>
-
-            <Row>
-              <Col sm={8}>
-                <div
-                  style={{
-                    minHeigh: 50,
-                    fontWeight: 'bolder',
-                    color: taskproblem.status === 'yellow' ? 'black' : 'white',
-                    backgroundColor: taskproblem.status,
-                    textAlign: 'center',
-                  }}
-                >
-                  {this.fixStatus(taskproblem.status)}
-                </div>
-              </Col>
-              <Col sm={4}>{taskproblem.horizon}</Col>
-            </Row>
-
-            <Row style={{ marginLeft: 3, marginBottom: 1 }}>
-              <div
-                style={{
-                  fontWeight: 'bold',
-                  maxWidth: '90%',
-                }}
-              >
-                PO: {taskproblem.leader} SP:{taskproblem.sponsor}{' '}
-              </div>
-            </Row>
-
-            <Row style={{ marginLeft: 3, marginBottom: 1 }}>
-              <div
-                style={{
-                  fontWeight: 'bold',
-                  maxWidth: '90%',
-                }}
-              />
-            </Row>
-            <Row style={{ marginLeft: 3, marginBottom: 1 }}>
-              <div
-                style={{
-                  fontWeight: 'bold',
-                  maxWidth: '90%',
-                }}
-              >
-                <div>
-                  <div> Coach: {taskproblem.coach}</div>
-                </div>
-              </div>
-            </Row>
-            <Row style={{ marginLeft: 3, marginBottom: 1 }}>
-              <div
-                style={{
-                  fontWeight: 'bold',
-                  maxWidth: '90%',
-                }}
-              >
-                <div>
-                  <div>
-                    {' '}
-                    <p style={{ color: 'blue' }}>
-                      {moment(taskproblem.createDate).fromNow()}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Row>
-          </Paper>
-        </Row>
-      }
-    </div>
-  );
 
   setStates = datas => {
     const officersIds = datas.map(function(officer) {
@@ -611,7 +464,7 @@ class Funnel extends Component {
 
   fixStatus = status => {
     if (status === 'green') {
-      return 'PRGRESSING';
+      return 'PROGRESSING';
     }
     if (status === 'yellow') {
       return 'IMPEDIMENT';
@@ -622,6 +475,7 @@ class Funnel extends Component {
     if (status === 'red') {
       return 'STOPPED';
     }
+    return 'NO SET';
   };
 
   onDragEnd = result => {
@@ -637,9 +491,6 @@ class Funnel extends Component {
     ) {
       return;
     }
-    console.log('DEST', destination);
-    console.log('SRC', source);
-    console.log('dragId', draggableId);
 
     const {
       initiate,
@@ -658,7 +509,8 @@ class Funnel extends Component {
     const targetContainer = destination.droppableId;
     const targ = !!(draggedFrom && destination.droppableId);
 
-    const mak = this.state[draggedFrom].find(
+    const newLocal = this.state;
+    const mak = newLocal[draggedFrom].find(
       task => task.task_id === draggableId,
     );
     this.setState({ draggedTask: mak });
@@ -667,9 +519,9 @@ class Funnel extends Component {
     const finish = destination.droppableId;
 
     if (start === finish) {
-      console.log('FIREDSAAME');
+      const bart = this.state;
       const modules = reorder(
-        this.state[start],
+        bart[start],
         result.source.index,
         result.destination.index,
       );
@@ -689,7 +541,6 @@ class Funnel extends Component {
           problem: problem.filter(tasks => tasks.task_id !== draggableId),
         });
       }
-      console.log('dragedTask', this.state.draggedTask);
 
       if (draggedFrom === 'scope' && targ) {
         this.setState({
@@ -804,22 +655,7 @@ class Funnel extends Component {
   };
 
   render() {
-
-    const {
-      initiate,
-      selectedTask,
-      scope,
-      problem,
-      solution,
-      bussiness,
-      feasibility,
-      softlaunch,
-      scalelaunch,
-      mvp,
-      sestoken,
-      projectnames,
-      themes,
-    } = this.state;
+    const { selectedTask, sestoken } = this.state;
     return (
       <div>
         <FunnelForm
@@ -836,14 +672,121 @@ class Funnel extends Component {
           onOK={this.handleOk}
           data={selectedTask}
           footer={null}
-          //  handleSubmit={this.handleSubmit}
         />
         {this.filterBar()}
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Container>
-            {columnsdata.map(col => (
-              <Column key={col.id} column={col} tasks={this.state[col.id]} />
-            ))}
+            <Col style={styles.coreColumn}>
+              <Row>
+                <Paper style={styles.titles}>
+                  <h2 style={styles.funnelHeaders} className="h2">
+                    Explore
+                  </h2>
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[0].id}
+                  column={columnsdata[0]}
+                  tasks={this.state[columnsdata[0].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[1].id}
+                  column={columnsdata[1]}
+                  tasks={this.state[columnsdata[1].id]}
+                />
+              </Row>
+            </Col>
+            <Col style={styles.coreColumnExp}>
+              <Row>
+                <Paper style={styles.titles}>
+                  <h2 style={styles.funnelHeaders} className="h2">
+                    Experiment
+                  </h2>
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[2].id}
+                  column={columnsdata[2]}
+                  tasks={this.state[columnsdata[2].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[3].id}
+                  column={columnsdata[3]}
+                  tasks={this.state[columnsdata[3].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[4].id}
+                  column={columnsdata[4]}
+                  tasks={this.state[columnsdata[4].id]}
+                />
+              </Row>
+            </Col>
+            <Col style={styles.coreColumn}>
+              <Row>
+                <Paper style={styles.titles}>
+                  <h2 style={styles.funnelHeaders} className="h2">
+                    Execute
+                  </h2>
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[5].id}
+                  column={columnsdata[5]}
+                  tasks={this.state[columnsdata[5].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[6].id}
+                  column={columnsdata[6]}
+                  tasks={this.state[columnsdata[6].id]}
+                />
+              </Row>
+            </Col>
+            <Col style={styles.coreColumn}>
+              <Row>
+                <Paper style={styles.titles}>
+                  <h2 style={styles.funnelHeaders} className="h2">
+                    Scale Up
+                  </h2>
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[8].id}
+                  column={columnsdata[8]}
+                  tasks={this.state[columnsdata[8].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[7].id}
+                  column={columnsdata[7]}
+                  tasks={this.state[columnsdata[7].id]}
+                />
+              </Row>
+            </Col>
           </Container>
         </DragDropContext>
       </div>

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Select, Form, Input, Icon, Modal, Button, Spin } from 'antd';
 import styled, { css } from 'styled-components';
+import '../containers/Funnel/fun.css';
 
-const  Option  = Select.Option;
+const { Option } = Select;
 const apptoken =
   '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
-// eslint-disable-next-line react/prefer-stateless-function
+
 
 const Container = styled.div`
   display: flex;
@@ -59,6 +60,7 @@ class ModalAddTask extends React.Component {
             coach: values.coach,
             leader: values.leader,
             sponsor: values.sponsor,
+            spnsr: values.spnsr,
           },
         ],
       }),
@@ -100,197 +102,218 @@ class ModalAddTask extends React.Component {
         footer={null}
       >
         <Spin spinning={this.state.spinning} tip="Updating...">
-          <Form onSubmit={this.handleSubmit} className="login-form">
-                <Container>
-              <Rect6>
+          <Form onSubmit={this.handleSubmit}>
+            <Container>
+              <Rect6 className="nopadding">
                 <Form.Item label="Funnel">
-                          {getFieldDecorator('funnel', {
+                  {getFieldDecorator('funnel', {
                     rules: [{ required: true, message: 'funnel' }],
-                          })(
-                    <Select key={8} style={{ width: 150 }}>
-
-                              <Option value="ECOSYSTEM">ECOSYSTEM</Option>
-                              <Option value="PLATFORM">PLATFORM</Option>
-                              <Option value="OTHER">OTHER</Option>
-                    </Select>
-                  )}
-                </Form.Item>
-                <Form.Item label="Theme">
-                          {getFieldDecorator('theme', {
-                    rules: [{ required: true, message: 'Themes!' }],
-                          })(
-                    <Select key={7} style={{ width: 150 }}>
-                              <Option value="AGRI">AGRI</Option>
-                              <Option value="MOBILITY">MOBILITY</Option>
-                              <Option value="HEALTH">HEALTH</Option>
-                              <Option value="D-IDENTITY">D-IDENTITY</Option>
-                              <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
-                            </Select>
-                  )}
-                </Form.Item>
-                        <Form.Item label="Project">
-                          {getFieldDecorator('project', {
-                            rules: [{ required: true, message: 'Project!' }],
                   })(
-                            <Select key={6} style={{ width: 200 }}>
-                              <Option value="MOBILE-CONNECT">MOBILE-CONNECT</Option>
-                              <Option value="API-STORE">API-STORE</Option>
-                              <Option value="CBAAS">CBAAS</Option>
-                              <Option value="SMART-CAR">SMART-CAR</Option>
-                              <Option value="MOBILITY-AAS">MOBILITY AAS</Option>
-                              <Option value="MEDIA-AGGREGATOR">MEDIA-AGGREGATOR</Option>
-                              <Option value="DAAF">DAAF</Option>
-                              <Option value="AUTONOME-KAS">AUTONOME-KAS</Option>
-                            </Select>
+                    <Select key={8} style={{ width: 150 }}>
+                      <Option value="ECOSYSTEM">ECOSYSTEM</Option>
+                      <Option value="PLATFORM">PLATFORM</Option>
+                      <Option value="OTHER">OTHER</Option>
+                    </Select>,
                   )}
                 </Form.Item>
-                        <Form.Item label="Task Title">
-                          {getFieldDecorator('taskname', {
-                            rules: [{ required: true, message: 'input Title!' }],
-                          })(
+
+                <Form.Item label="Theme">
+                  {getFieldDecorator('theme', {
+                    rules: [{ required: true, message: 'Themes!' }],
+                  })(
+                    <Select key={7} style={{ width: 150 }}>
+                      <Option value="AGRI">AGRI</Option>
+                      <Option value="MOBILITY">MOBILITY</Option>
+                      <Option value="HEALTH">HEALTH</Option>
+                      <Option value="D-IDENTITY">D-IDENTITY</Option>
+                      <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
+                      <Option value="CON-CONSUMER">CON-CONSUMER</Option>
+                      <Option value="TV-AVERTISMEN">TV-AVERTISMENT</Option>
+                    </Select>,
+                  )}
+                </Form.Item>
+
+                <Form.Item label="Project">
+                  {getFieldDecorator('project', {
+                    rules: [{ required: true, message: 'Project!' }],
+                  })(
+                    <Select key={6} style={{ width: 200 }}>
+                      <Option value="MOBILE-CONNECT">MOBILE-CONNECT</Option>
+                      <Option value="API-STORE">API-STORE</Option>
+                      <Option value="NOMI">NOMI</Option>
+                      <Option value="TARGET-ADVERTISING">
+                        TARGET-ADVERTISING
+                      </Option>
+                      <Option value="CBAAS">CBAAS</Option>
+                      <Option value="SMART-CAR">SMART-CAR</Option>
+                      <Option value="MOBILITY-AAS">MOBILITY AAS</Option>
+                      <Option value="MEDIA-AGGREGATOR">MEDIA-AGGREGATOR</Option>
+                      <Option value="DAAF">DAAF</Option>
+                      <Option value="AUTONOME-KAS">AUTONOME-KAS</Option>
+                    </Select>,
+                  )}
+                </Form.Item>
+
+                <Form.Item label="Task Title">
+                  {getFieldDecorator('taskname', {
+                    rules: [{ required: true, message: 'input Title!' }],
+                  })(
                     <Input
                       prefix={
-                        <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
-                      }
-                              placeholder="Card Title"
-                            />,
-                          )}
-                </Form.Item>
-                <Form.Item label="Description">
-                  {getFieldDecorator('description', {
-                            rules: [
-                              { required: true, message: 'Please input description' },
-                            ],
-                  })(
-                    <Input
-                              prefix={
-                                <Icon
+                        <Icon
                           type="user"
                           style={{ color: 'rgba(0,0,0,.25)' }}
                         />
                       }
-                              placeholder="Description"
-                            />,
+                      placeholder="Card Title"
+                    />,
                   )}
                 </Form.Item>
-                        <Form.Item label="Coach">
-                          {getFieldDecorator('coach', {
-                            rules: [
-                              {
+
+                <Form.Item label="Sponsor">
+                  {getFieldDecorator('spnsr', {
+                    rules: [{ required: true, message: 'input Title!' }],
+                  })(
+                    <Input
+                      prefix={
+                        <Icon
+                          type="user"
+                          style={{ color: 'rgba(0,0,0,.25)' }}
+                        />
+                      }
+                      placeholder="Sponsor"
+                    />,
+                  )}
+                </Form.Item>
+
+                <Form.Item label="Description">
+                  {getFieldDecorator('description', {
+                    rules: [
+                      { required: true, message: 'Please input description' },
+                    ],
+                  })(
+                    <Input
+                      prefix={
+                        <Icon
+                          type="user"
+                          style={{ color: 'rgba(0,0,0,.25)' }}
+                        />
+                      }
+                      placeholder="Description"
+                    />,
+                  )}
+                </Form.Item>
+              </Rect6>
+
+              <Rect7 className="nopadding">
+                <Form.Item label="Sponsor">
+                  {getFieldDecorator('leader', {
+                    rules: [
+                      {
                         required: true,
                         message: 'Please input your username!',
                       },
                     ],
                   })(
-                            <Select key={1} style={{ width: 150 }} placeholder="Coach">
-                            
-                            <Option value="Kevin">Kevin</Option>
-                            <Option value="Mike">Mike</Option>
-                            <Option value="Mark">Mark</Option>
-                            <Option value="Amber">Amber</Option>
-                    </Select>
-                  )}
-                </Form.Item>
-
-                    </Rect6>
-
-              <Rect7>
-                <Form.Item label="Sponsor">
-                            {getFieldDecorator('leader', {
-                    rules: [
-                                {
-                        required: true,
-                        message: 'Please input your username!',
-                      },
-                    ],
-                            })(
                     <Input
                       prefix={
-                        <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
+                        <Icon
+                          type="user"
+                          style={{ color: 'rgba(0,0,0,.25)' }}
+                        />
                       }
                       placeholder="Sponsor"
-                              />,
-                            )}
-                          </Form.Item>
-                          <Form.Item label="Horizon">
-                            {getFieldDecorator('horizon', {
+                    />,
+                  )}
+                </Form.Item>
+                <Form.Item label="Horizon">
+                  {getFieldDecorator('horizon', {
                     rules: [{ required: true, message: 'Horizon!' }],
-                            })(
-                    <Select key={2} placeholder="Horizon" style={{ width: 150 }}>
+                  })(
+                    <Select
+                      key={2}
+                      placeholder="Horizon"
+                      style={{ width: 150 }}
+                    >
                       <Option value="H1">H1</Option>
                       <Option value="H2">H2</Option>
                       <Option value="H3">H3</Option>
-                              </Select>
+                    </Select>,
                   )}
                 </Form.Item>
                 <Form.Item label="Teammembers">
                   {getFieldDecorator('sponsor', {
                     rules: [{ required: true, message: 'Horizon!' }],
-                            })(
-                    <Select key={3} placeholder="Sponsored" style={{ width: 150 }}>
-                      <Option value="1ppl">1ppl</Option>
-                      <Option value="2ppl">2ppl</Option>
-                      <Option value="3ppl">3ppl</Option>
-                              </Select>
-                            )}
-                          </Form.Item>
-                        <Form.Item label="FunnelPhase">
-                          {getFieldDecorator('funnelPhase', {
-                            rules: [
-                      { required: true, message: 'Please input your username!' },
-                    ],
                   })(
-                            <Select
-                      key={4}
-                              placeholder="FunnelPhase"
+                    <Select
+                      key={3}
+                      placeholder="Team Members"
                       style={{ width: 150 }}
-                            >
-                              <Option value="initiate">INITIATE</Option>
+                    >
+                      <Option value="1ppl">1</Option>
+                      <Option value="2ppl">2</Option>
+                      <Option value="3ppl">3</Option>
+                      <Option value="3ppl">4</Option>
+                    </Select>,
+                  )}
+                </Form.Item>
+
+                <Form.Item label="FunnelPhase">
+                  {getFieldDecorator('funnelPhase', {})(
+                    <Select
+                      key={4}
+                      placeholder="FunnelPhase"
+                      style={{ width: 150 }}
+                    >
+                      <Option value="initiate">INITIATE</Option>
                       <Option value="scope">SCOPE</Option>
                       <Option value="problem">PROBLEM</Option>
                       <Option value="solution">SOLUTIONs</Option>
                       <Option value="bussiness">BUSSINESS</Option>
-                              <Option value="feasibility">FEASIBILITY</Option>
+                      <Option value="feasibility">FEASIBILITY</Option>
                       <Option value="mvp">MVP</Option>
-                              <Option value="softlaunch">SOFTLAUNCH</Option>
+                      <Option value="softlaunch">SOFTLAUNCH</Option>
                       <Option value="scalelaunch">SCALELAUNCH</Option>
-                            </Select>
-                          )}
+                    </Select>,
+                  )}
                 </Form.Item>
-                        <Form.Item label="Status">
+                <Form.Item label="Status">
                   {getFieldDecorator('status', {
                     rules: [
-                              {
+                      {
                         required: true,
                         message: 'Please input your username!',
                       },
-                            ],
+                    ],
                   })(
-                            <Select key={5} placeholder="Status" style={{ width: 150 }}>
+                    <Select key={5} placeholder="Status" style={{ width: 150 }}>
                       <Option value="green">
-                                <div style={{ flex: 1, alignContent: 'center' }}>
+                        <div style={{ flex: 1, alignContent: 'center' }}>
                           PROGRESSING{' '}
-                          <Icon style={{ marginLeft: 3,color: 'green' }} type="login" />
-                                </div>{' '}
+                          <Icon
+                            style={{ marginLeft: 3, color: 'green' }}
+                            type="login"
+                          />
+                        </div>{' '}
                       </Option>
-                              <Option value="yellow">
+                      <Option value="yellow">
                         <div style={{ flex: 1 }}>
                           IMPEDIMENT{' '}
-                                  <Icon
+                          <Icon
                             style={{ marginLeft: 3, color: 'yellow' }}
                             type="login"
                           />
                         </div>
                       </Option>
                       <Option value="orange">
-                                <div style={{ flex: 1 }}>
+                        <div style={{ flex: 1 }}>
                           PARKED{' '}
                           <Icon
                             style={{ marginLeft: 3, color: 'orange' }}
                             type="login"
                           />
                         </div>
-                              </Option>
+                      </Option>
                       <Option value="red">
                         <div style={{ flex: 1 }}>
                           STOPPED{' '}
@@ -298,18 +321,36 @@ class ModalAddTask extends React.Component {
                             style={{ marginLeft: 3, color: 'red' }}
                             type="login"
                           />
-                                </div>
+                        </div>
                       </Option>
-                            </Select>
-                          )}
+                    </Select>,
+                  )}
+                </Form.Item>
+
+                <Form.Item label="Coach">
+                  {getFieldDecorator('coach', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please input your username!',
+                      },
+                    ],
+                  })(
+                    <Select key={1} style={{ width: 150 }} placeholder="Coach">
+                      <Option value="Kevin">Kevin</Option>
+                      <Option value="Mike">Mike</Option>
+                      <Option value="Mark">Mark</Option>
+                      <Option value="Amber">Amber</Option>
+                    </Select>,
+                  )}
                 </Form.Item>
               </Rect7>
-                </Container>
-                <Button type="primary" htmlType="submit">
+            </Container>
+            <Button type="primary" htmlType="submit">
               Add task
             </Button>
           </Form>
-          </Spin>
+        </Spin>
       </Modal>
     );
   }

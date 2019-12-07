@@ -1,20 +1,80 @@
 export const styles = {
+  cardTitle: {
+    fontSize: 12,
+    // minWidth: '100%',
+    backgroundColor: '#b3e6b3',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: 'black',
+    minHeight: 20,
+    maxHeight: 20,
+    justifyContent: 'center',
+  },
 
- header: {
+  cardTitle2: {
+    fontSize: 11,
+    // minWidth: '100%',
+    backgroundColor: '#C7F3C6',
+    textAlign: 'center',
+    color: 'black',
+    minHeight: 20,
+    maxHeight: 20,
+    justifyContent: 'center',
+  },
+  titles: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: '#009900',
+    textAlign: 'center',
+    minWidth: '100%',
+  },
+  coreColumn: {
+    margin: 3,
+    minWidth: 314,
+    maxWidth: 314,
+    backgroundColor: 'white',
+    maxHeight: 800,
+    minHeight: 800,
+  },
+
+  coreColumnExp: {
+    margin: 3,
+    minWidth: 469,
+    maxWidth: 469,
+    backgroundColor: 'white',
+    maxHeight: 800,
+    minHeight: 800,
+  },
+
+  ColTitles: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: '#99cc00',
+    textAlign: 'center',
+    minHeight: 20,
+  },
+
+  funnelHeaders: {
+    color: 'white',
+    marginTop: 5,
+    fontSize: 20,
+    backgroundColor: '#009900',
+    fontWeight: 'bold',
+  },
+
+  header: {
     fontSize: 20,
   },
   headerRow: {
     maxHeight: 40,
   },
 
-  card: {
-    minWidth: 100,
-  },
   mainFunnel: {
     overflowX: 'scroll',
-    maxHeight:50,
+    maxHeight: 50,
     float: 'left',
-
   },
 
   containerInit: {
@@ -23,25 +83,10 @@ export const styles = {
   },
 
   containerTop: {
-
     backgroundColor: 'white',
     minHeight: 30,
   },
 
-  funnelHeaders: {
-    color: 'white',
-    fontSize: 20,
-    backgroundColor: '#009900',
-  },
-
-  titles: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'white',
-    backgroundColor: '#009900',
-    textAlign: 'center',
-    minWidth: 150,
-  },
   modal: {
     position: 'absolute',
     width: 400,
@@ -57,37 +102,13 @@ export const styles = {
     minHeight: 800,
     minWidth: '100%',
   },
-  cardTitle: {
-    fontSize: 10,
-    minWidth: '100%',
-    backgroundColor: '#b3e6b3',
-    textAlign: 'center',
-    minHeight: 15,
-    justifyContent: 'center',
-  },
-  cardTitle2: {
-    fontSize: 10,
-    minWidth: '100%',
-    backgroundColor: 'white',
-    textAlign: 'center',
-    minHeight: 15,
-    justifyContent: 'center',
-  },
 
-  ColTitles: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: 'white',
-    backgroundColor: '#99cc00',
-    textAlign: 'center',
-  },
   ColTitles2: {
     fontSize: 14,
     fontWeight: 'bold',
     color: 'white',
     backgroundColor: 'white',
     textAlign: 'center',
-
   },
   containerEnd: {
     backgroundColor: '#fff',

@@ -60,6 +60,7 @@ class ModalEditTask extends React.Component {
       sponsor: data.sponsor,
       task_id: data.task_id,
       createDate: data.createDate,
+      spnsr: data.spnsr,
     };
   }
 
@@ -80,11 +81,11 @@ class ModalEditTask extends React.Component {
       sponsor: data.sponsor,
       task_id: data.task_id,
       createDate: data.createDate,
+      spnsr: data.spnsr,
     });
-
   }
 
-  onUpdate = values => {
+  onUpdate = () => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
     const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks/${taskid}`;
@@ -111,6 +112,7 @@ class ModalEditTask extends React.Component {
         coach: this.state.coach,
         leader: this.state.leader,
         sponsor: this.state.sponsor,
+        spnsr: this.state.spnsr,
       }),
     })
       .then(response => {
@@ -122,7 +124,6 @@ class ModalEditTask extends React.Component {
       .then(response => response.json())
       .then(taskData => {
         this.props.onCancel();
-
         this.setState({ spinning: false });
         this.props.onOK();
       })
@@ -131,7 +132,7 @@ class ModalEditTask extends React.Component {
 
   fixStatus = status => {
     if (status === 'green') {
-      return 'PRGRESSING';
+      return 'PROGRESSING';
     }
     if (status === 'yellow') {
       return 'IMPEDIMENT';
@@ -174,6 +175,25 @@ class ModalEditTask extends React.Component {
       .catch(taskData => console.log(taskData));
   };
 
+  fixheader = data => (
+    <Row>
+      <Col>{data.title}</Col>
+      <Col>
+        <div
+          style={{
+            minHeigh: 50,
+            maxWidth: 115,
+            fontWeight: 'bolder',
+            color: data.status === 'yellow' ? 'black' : 'white',
+            backgroundColor: data.status,
+          }}
+        >
+          {this.fixStatus(data.status)}
+        </div>
+      </Col>
+    </Row>
+  );
+
   render() {
     const { visible, onOK, onCancel } = this.props;
     console.log(this.props.data);
@@ -191,33 +211,24 @@ class ModalEditTask extends React.Component {
       >
         <Spin spinning={this.state.spinning} tip="Updating...">
           <Collapse defaultActiveKey={['1']}>
-            <Panel header="prev" key="1">
+            <Panel header={this.fixheader(data)} key="1">
               <div>
                 <Row>
                   <Col span={12}>
-                    <div
-                      style={{
-                        minHeigh: 50,
-                        maxWidth: 100,
-                        fontWeight: 'bolder',
-                        color: data.status === 'yellow' ? 'black' : 'white',
-                        backgroundColor: data.status,
-                        textAlign: 'center',
-                      }}
-                    >
-                      {this.fixStatus(data.status)}
-                    </div>
-                    <p>Funnel : {data.funnel} </p>
+                    <p>Department : {data.funnel} </p>
                     <p>Theme : {data.theme} </p>
-                    <p>Description : {data.description} </p>
+                    <p>Project : {data.projectname} </p>
+                    <p>Description :</p>
+                    <p style={{ maxWidth: 220 }}> {data.description} </p>
                   </Col>
                   <Col span={12}>
-                    <p>Project : {data.projectname} </p>
                     <p>Horizon : {data.horizon} </p>
                     <p>Coach : {data.coach} </p>
-                    <p>PO : {data.leader} </p>
+                    <p>P.Owner : {data.leader} </p>
+                    <p>Sponsor : {data.spnsr} </p>
+                    <p>Team Members : {data.sponsor} </p>
                     <p>Created Date : {data.createDate} </p>
-                    <p>Days on Board :{moment(data.createDate).fromNow()}</p>
+                    <p>Added :{moment(data.createDate).fromNow()}</p>
                   </Col>
                 </Row>
               </div>
@@ -226,7 +237,7 @@ class ModalEditTask extends React.Component {
               <Form>
                 <Form.Row>
                   <Form.Group as={Col} controlId="ControlFunnel">
-                    <Form.Label>Funnel Phase</Form.Label>
+                    <Form.Label>Department</Form.Label>
                     <Form.Control
                       value={this.state.FunnelPhase}
                       onChange={e =>
@@ -250,6 +261,8 @@ class ModalEditTask extends React.Component {
                       <option>HEALTH</option>
                       <option>D-IDENTITY</option>
                       <option>BLOCKCHAIN</option>
+                      <option>CON-CONSUMER</option>
+                      <option>TV-AVERTISMENT</option>
                     </Form.Control>
 
                     <Form.Label>Project</Form.Label>
@@ -261,6 +274,8 @@ class ModalEditTask extends React.Component {
                       as="select"
                     >
                       <option>MOBILE-CONNECT</option>
+                      <option>NOMI</option>
+                      <option>TARGET-ADVERTISING</option>
                       <option>API-STORE</option>
                       <option>CBAAS</option>
                       <option>SMART-CAR</option>
@@ -334,6 +349,14 @@ class ModalEditTask extends React.Component {
                       placeholder="Card Title"
                     />
 
+                    <Form.Label>Sponsor</Form.Label>
+                    <Form.Control
+                      value={this.state.spnsr}
+                      onChange={e => this.setState({ spnsr: e.target.value })}
+                      type="text"
+                      placeholder="Sponsor"
+                    />
+
                     <Form.Label>Description</Form.Label>
                     <Form.Control
                       value={this.state.description}
@@ -356,16 +379,16 @@ class ModalEditTask extends React.Component {
                       <option>Amber</option>
                     </Form.Control>
 
-                    <Form.Label>Sponsored</Form.Label>
+                    <Form.Label>Team Members</Form.Label>
                     <Form.Control
                       value={this.state.sponsor}
                       onChange={e => this.setState({ sponsor: e.target.value })}
                       as="select"
                     >
-                      <option>1ppl</option>
-                      <option>2ppl</option>
-                      <option>3ppl </option>
-                      <option>4ppl</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3 </option>
+                      <option>4</option>
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
@@ -376,7 +399,7 @@ class ModalEditTask extends React.Component {
                 <Button onClick={onCancel} variant="primary" type="submit">
                   Cancel
                 </Button>
-                <Button onClick={this.onDelete} variant="primary" type="submit">
+                <Button style={{marginLeft:100}} onClick={this.onDelete} variant="danger" type="submit">
                   Delete
                 </Button>
               </Form>
