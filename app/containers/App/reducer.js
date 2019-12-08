@@ -26,10 +26,10 @@ openedViews.push(selectedMenuItem);
 // The initial state of the App
 export const initialState = {
   user: {
-    name: 'John Smith',
-    email: 'demo@test.com',
+    name: '',
+    email: '',
   },
-  userIsAuthenticated: true,
+  userIsAuthenticated: false,
   authenticationErrorMessage: '',
   registrationErrorMessage: '',
   menu: Menu,
@@ -38,7 +38,7 @@ export const initialState = {
   selectedOpenedMenuItem: selectedMenuItem,
   currentTheme: 'default', // atom, aurelia, quiet, sky, default
   showOpenViews: false,
-  showHeaderTabs: true,
+  showHeaderTabs: false,
   showSearch: false,
   openSettingDrawer: false,
 };

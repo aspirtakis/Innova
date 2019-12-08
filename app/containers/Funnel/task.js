@@ -7,27 +7,30 @@ import Row from 'react-bootstrap/Row';
 import './fun.css';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
-import { Avatar, Icon, Collapse } from 'antd';
+import { Avatar, Icon } from 'antd';
 import { styles } from './funnel_styles';
 
 const Container = styled.div`
   border: 1px solid lightgrey;
   border-radius: 2px;
   padding: 2px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 8px;
   transition: background-color 0.2s ease;
+  max-width: 135px;
   background-color: ${props =>
     props.isDragDisabled
       ? 'lightgrey'
       : props.isDragging
-      ? 'lightgreen'
+      ? '#009900'
       : 'white'};
 `;
 
 export default class Task extends React.Component {
   fixStatus = status => {
     if (status === 'green') {
-      return 'PRGRESSING';
+      return 'PROGRESSING';
     }
     if (status === 'yellow') {
       return 'IMPEDIMENT';
@@ -43,7 +46,6 @@ export default class Task extends React.Component {
   render() {
     const isDragDisabled = this.props.task.task_id === '1';
     const taskproblem = this.props.task;
-    console.log('CARD', this.props);
 
     return (
       <Draggable
@@ -61,9 +63,8 @@ export default class Task extends React.Component {
             isDragDisabled={isDragDisabled}
           >
             <Paper onDoubleClick={() => this.props.openEdit(taskproblem)}>
-            <div style={styles.cardTitle}>{taskproblem.theme}</div>
+              <div style={styles.cardTitle}>{taskproblem.theme}</div>
               <div style={styles.cardTitle2}>{taskproblem.projectname}</div>
-       
               <Row>
                 <Col
                   style={{
@@ -123,17 +124,15 @@ export default class Task extends React.Component {
                 </div>
               </Row>
 
-
               <Row style={{ marginLeft: 0.5 }}>
-                <Col >
+                <Col>
                   <div
                     style={{
                       fontWeight: 'bold',
                       maxWidth: '90%',
                       padding: 1,
-                      color:'black',
+                      color: 'black',
                       fontSize: 12,
-  
                     }}
                   >
                     <Icon
@@ -163,16 +162,14 @@ export default class Task extends React.Component {
                 </Col>
               </Row>
 
-
-
               <Row style={{ marginLeft: 3 }}>
                 <div
                   style={{
                     fontWeight: 'bold',
                     maxWidth: '90%',
                     padding: 5,
-                    color:'black',
-                    fontSize:12,
+                    color: 'black',
+                    fontSize: 12,
                   }}
                 >
                   PO:{`${taskproblem.leader.substring(0, 10)}...`}
@@ -188,7 +185,7 @@ export default class Task extends React.Component {
                     maxWidth: '90%',
                     fontSize: 12,
                     marginRight: 13,
-                    color:'green',
+                    color: 'green',
                   }}
                 >
                   <Avatar
@@ -196,15 +193,12 @@ export default class Task extends React.Component {
                     src="https://retohercules.com/images/schedule-7.png"
                     style={{
                       margin: 5,
-                      marginRight:5,
+                      marginRight: 5,
                     }}
                   />
                   {moment(taskproblem.createDate).fromNow()}
                 </div>
               </Row>
-
-
-
             </Paper>
           </Container>
         )}

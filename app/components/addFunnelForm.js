@@ -128,7 +128,7 @@ class ModalAddTask extends React.Component {
                       <Option value="D-IDENTITY">D-IDENTITY</Option>
                       <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
                       <Option value="CON-CONSUMER">CON-CONSUMER</Option>
-                      <Option value="TV-AVERTISMEN">TV-AVERTISMENT</Option>
+                      <Option value="TV-ADVERTISMEN">TV-ADVERTISMENT</Option>
                     </Select>,
                   )}
                 </Form.Item>
@@ -141,8 +141,7 @@ class ModalAddTask extends React.Component {
                       <Option value="MOBILE-CONNECT">MOBILE-CONNECT</Option>
                       <Option value="API-STORE">API-STORE</Option>
                       <Option value="NOMI">NOMI</Option>
-                      <Option value="TARGET-ADVERTISING">
-                        TARGET-ADVERTISING
+                      <Option value="TARGET-ADVERTISING">TARGET-ADVERTISING
                       </Option>
                       <Option value="CBAAS">CBAAS</Option>
                       <Option value="SMART-CAR">SMART-CAR</Option>
@@ -150,6 +149,8 @@ class ModalAddTask extends React.Component {
                       <Option value="MEDIA-AGGREGATOR">MEDIA-AGGREGATOR</Option>
                       <Option value="DAAF">DAAF</Option>
                       <Option value="AUTONOME-KAS">AUTONOME-KAS</Option>
+                      <Option value="VITAAL">VITAAL</Option>
+                      <Option value="HOSPITAL-HOME">HOSPITAL-HOME</Option>
                     </Select>,
                   )}
                 </Form.Item>
@@ -268,7 +269,7 @@ class ModalAddTask extends React.Component {
                       <Option value="initiate">INITIATE</Option>
                       <Option value="scope">SCOPE</Option>
                       <Option value="problem">PROBLEM</Option>
-                      <Option value="solution">SOLUTIONs</Option>
+                      <Option value="solution">SOLUTION</Option>
                       <Option value="bussiness">BUSSINESS</Option>
                       <Option value="feasibility">FEASIBILITY</Option>
                       <Option value="mvp">MVP</Option>

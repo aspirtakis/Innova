@@ -44,6 +44,7 @@ class AuthPage extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
+    console.log(nextProps);
     if (
       nextProps.authenticationErrorMessage !==
       prevProps.authenticationErrorMessage

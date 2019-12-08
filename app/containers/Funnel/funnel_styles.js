@@ -28,6 +28,7 @@ export const styles = {
     backgroundColor: '#009900',
     textAlign: 'center',
     minWidth: '100%',
+    maxHeight: 32,
   },
   coreColumn: {
     margin: 3,
@@ -85,6 +86,7 @@ export const styles = {
   containerTop: {
     backgroundColor: 'white',
     minHeight: 30,
+    marginLeft: 10,
   },
 
   modal: {

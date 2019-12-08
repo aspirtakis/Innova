@@ -19,15 +19,16 @@ import {
   OPEN_DYNAMIC_VIEW,
 } from './constants';
 
+
 export function* fetchSignIn(action) {
   try {
     const { payload } = action;
     const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
     const apptoken =
       '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
-      console.log(payload);
+    console.log(payload);
     // here you can call your API in order to authenticate the user
-    let res =[];
+    const res = [];
 
     fetch(url, {
       method: 'POST',
@@ -48,32 +49,18 @@ export function* fetchSignIn(action) {
         return response;
       })
       .then(response => response.json())
-      .then(resdata => (
-                
-                        console.log(resdata))
-      )
-      
-      .catch(response => console.log(response));
-      console.log(res);
-    if (res === 'demo@test.com' && payload.password === 'demo') {
+      .then(resdata => {
+       const user = resdata;
+      })
 
+      .catch(response => console.log(response));
+    if (user && user.session_token) {
       yield put({
         type: AUTHENTICATED,
         user: {
-          name: 'John Smith',
-          email: action.payload.email,
-          token: action.payload.email,
-        },
-      });
-    } else if (
-      payload.email === 'demo2@test.com' &&
-      payload.password === 'demo2'
-    ) {
-      yield put({
-        type: AUTHENTICATED,
-        user: {
-          name: 'Jane Doe',
-          email: action.payload.email,
+          name: user.first_name,
+          email: user.email,
+          token: user.session_token,
         },
       });
     } else {
@@ -82,6 +69,7 @@ export function* fetchSignIn(action) {
         message: 'Wrong user or password, please try again.',
       });
     }
+
   } catch (e) {
     yield put({ type: AUTHENTICATION_FAILED, message: e.message });
   }

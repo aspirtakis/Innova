@@ -262,7 +262,7 @@ class ModalEditTask extends React.Component {
                       <option>D-IDENTITY</option>
                       <option>BLOCKCHAIN</option>
                       <option>CON-CONSUMER</option>
-                      <option>TV-AVERTISMENT</option>
+                      <option>TV-ADVERTISMENT</option>
                     </Form.Control>
 
                     <Form.Label>Project</Form.Label>
@@ -283,6 +283,8 @@ class ModalEditTask extends React.Component {
                       <option>MEDIA-AGGREGATOR</option>
                       <option>DAAF</option>
                       <option>AUTONOMUS-KAS</option>
+                      <option>HOSPITAL-HOME</option>
+                      <option>VITAAL</option>
                     </Form.Control>
 
                     <Form.Label>Status</Form.Label>

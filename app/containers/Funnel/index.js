@@ -100,6 +100,7 @@ class Funnel extends Component {
   }
 
   componentDidMount() {
+    console.log("MINT",this.props);
     this.setState({ spinning: true });
     fetch(url, {
       method: 'POST',
@@ -360,7 +361,7 @@ class Funnel extends Component {
       <Panel header="Filters" key="1">
         <Row style={styles.containerTop}>
           <Col style={styles.containerTopCol}>
-            <Row style={{ maxHeigth: 10 }}>Funnel</Row>
+            <Row style={{ maxHeigth: 10 }}>Department</Row>
             <Row>
               <Select onChange={this.filterFunnel} style={{ width: 180 }}>
                 <Option value="PLATFORM">PLATFORM</Option>
@@ -657,7 +658,7 @@ class Funnel extends Component {
   render() {
     const { selectedTask, sestoken } = this.state;
     return (
-      <div>
+      <div style={{ marginLeft: 10 }}>
         <FunnelForm
           sestoken={sestoken}
           visible={this.state.setOpen}
@@ -678,11 +679,11 @@ class Funnel extends Component {
           <Container>
             <Col style={styles.coreColumn}>
               <Row>
-                <Paper style={styles.titles}>
+                <div style={styles.titles}>
                   <h2 style={styles.funnelHeaders} className="h2">
                     Explore
                   </h2>
-                </Paper>
+                </div>
               </Row>
 
               <Row>
@@ -794,10 +795,11 @@ class Funnel extends Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  funnel: makeSelectFunnel(),
-});
-
+function mapStateToProps(state) {
+  return {
+    ...state,
+  };
+}
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
