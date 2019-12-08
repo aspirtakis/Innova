@@ -24,8 +24,8 @@ class AuthPage extends React.Component {
 
     this.state = {
       login: {
-        email: 'demo@test.com', // default values, leave it empty when implementing your logic
-        password: 'demo', // default values, leave it empty when implementing your logic
+        email: 'be@openinnovationhub.nl', // default values, leave it empty when implementing your logic
+        password: 'a224935a', // default values, leave it empty when implementing your logic
         rememberMe: false,
       },
       register: {

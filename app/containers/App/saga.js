@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-react-router/immutable';
 import { scrollOpenViews, scrollOpenViewAndMenu } from 'utils/menuHelper';
+import { backend } from '../../utils/config';
+import {request} from '../../utils/request';
+
 import {
   SIGN_IN,
   AUTHENTICATED,
@@ -19,49 +22,30 @@ import {
   OPEN_DYNAMIC_VIEW,
 } from './constants';
 
-
 export function* fetchSignIn(action) {
   try {
     const { payload } = action;
-    const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
-    const apptoken =
-      '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
-    console.log(payload);
-    // here you can call your API in order to authenticate the user
-    const res = [];
-
-    fetch(url, {
+    const options = {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-API-Key': backend.apptoken,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: payload.email,
         password: payload.password,
       }),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(resdata => {
-       const user = resdata;
-      })
+    };
+    const urlsession = backend.beUrl + backend.sessionUrl;
+    const response = yield request(urlsession, options);
+    const user = response;
+    console.log(user);
 
-      .catch(response => console.log(response));
-    if (user && user.session_token) {
+    if (user) {
       yield put({
         type: AUTHENTICATED,
-        user: {
-          name: user.first_name,
-          email: user.email,
-          token: user.session_token,
-        },
+        user,
       });
     } else {
       yield put({
@@ -69,7 +53,6 @@ export function* fetchSignIn(action) {
         message: 'Wrong user or password, please try again.',
       });
     }
-
   } catch (e) {
     yield put({ type: AUTHENTICATION_FAILED, message: e.message });
   }

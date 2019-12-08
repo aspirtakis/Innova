@@ -1,3 +1,11 @@
+import backend from './config';
+
+function handleErrors(response) {
+  if (!response.ok) {
+    console.log(response.status);
+  }
+  return response;
+}
 /**
  * Parses the JSON returned by a network request
  *
@@ -12,6 +20,33 @@ function parseJSON(response) {
   return response.json();
 }
 
+export function clearToken() {
+  localStorage.removeItem('id_token');
+}
+
+export function getToken() {
+  try {
+    const idToken = localStorage.getItem('id_token');
+    return new Map({ idToken });
+  } catch (err) {
+    clearToken();
+    return new Map();
+  }
+}
+
+export function makeHeaders() {
+  const token = getToken().get('idToken');
+  const ergoHeaders = {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'X-DreamFactory-API-Key': ergoBe.apptoken,
+      'Content-Type': 'application/json',
+      'X-DreamFactory-Session-Token': token,
+    },
+  };
+  return ergoHeaders;
+}
 /**
  * Checks if a network request came back fine, and throws an error if not
  *
@@ -37,8 +72,95 @@ function checkStatus(response) {
  *
  * @return {object}           The response data
  */
-export default function request(url, options) {
+
+export function request(url, options) {
   return fetch(url, options)
     .then(checkStatus)
-    .then(parseJSON);
+    .then(response => response.json())
+    .then(data => data);
+}
+
+export function imgAuth() {
+  const token = getToken().get('idToken');
+  const img = `?session_token=${token}&api_key=${backend.apptoken}`;
+  return img;
+}
+
+export function makeHeadersPost(data) {
+  const token = getToken().get('idToken');
+  const ergoHeaders = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'X-DreamFactory-API-Key': backend.apptoken,
+      'Content-Type': 'application/json',
+      'X-DreamFactory-Session-Token': token,
+    },
+    body: JSON.stringify(data),
+  };
+  return ergoHeaders;
+}
+
+export function makeHeadersPut(data) {
+  const token = getToken().get('idToken');
+  const ergoHeaders = {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'X-DreamFactory-API-Key': backend.apptoken,
+      'Content-Type': 'application/json',
+      'X-DreamFactory-Session-Token': token,
+    },
+    body: JSON.stringify(data),
+  };
+  return ergoHeaders;
+}
+
+export function makeHeadersPatch(data) {
+  const token = getToken().get('idToken');
+  const ergoHeaders = {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'X-DreamFactory-API-Key': backend.apptoken,
+      'Content-Type': 'application/json',
+      'X-DreamFactory-Session-Token': token,
+    },
+    body: JSON.stringify(data),
+  };
+  return ergoHeaders;
+}
+
+export function makeHeadersDelete() {
+  const token = getToken().get('idToken');
+  const ergoHeaders = {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'X-DreamFactory-API-Key': backend.apptoken,
+      'Content-Type': 'application/json',
+      'X-DreamFactory-Session-Token': token,
+    },
+  };
+  return ergoHeaders;
+}
+
+export function callDF(url) {
+  return fetch(url, makeHeaders())
+    .then(handleErrors)
+    .then(response => response.json())
+    .then(data => data);
+}
+
+export function putDF(url, datas) {
+  return fetch(url, makeHeadersPut(datas))
+    .then(handleErrors)
+    .then(response => response.json())
+    .then(data => data);
+}
+
+export function deleteDF(url) {
+  return fetch(url, makeHeadersDelete())
+    .then(handleErrors)
+    .then(response => response.json());
 }
