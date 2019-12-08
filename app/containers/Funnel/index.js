@@ -1,0 +1,817 @@
+/* eslint-disable react/button-has-type */
+import React, { memo, Component } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+import Paper from '@material-ui/core/Paper';
+import { DragDropContext } from 'react-beautiful-dnd';
+import styled from 'styled-components';
+import { Select, Icon, Collapse } from 'antd';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import makeSelectFunnel from './selectors';
+import FunnelForm from '../../components/addFunnelForm';
+import FunnelEditForm from '../../components/editFunnel';
+import { styles } from './funnel_styles';
+import './fun.css';
+import Column from './column';
+
+const columnsdata = [
+  {
+    id: 'initiate',
+    title: 'Initiate',
+  },
+  {
+    id: 'scope',
+    title: 'Scope',
+  },
+  {
+    id: 'problem',
+    title: 'Problem',
+  },
+  {
+    id: 'solution',
+    title: 'Solution',
+  },
+  {
+    id: 'bussiness',
+    title: 'Bussiness',
+  },
+  {
+    id: 'mvp',
+    title: 'Mvp',
+  },
+  {
+    id: 'feasibility',
+    title: 'Feasibility',
+  },
+  {
+    id: 'scalelaunch',
+    title: 'Scalelaunch',
+  },
+  {
+    id: 'softlaunch',
+    title: 'Softlaunch',
+  },
+];
+const Container = styled.div`
+  display: flex;
+`;
+
+const { Panel } = Collapse;
+const { Option } = Select;
+
+const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
+const url2 =
+  'https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks';
+const apptoken =
+  'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89';
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+  return result;
+};
+
+class Funnel extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      targetOn: true,
+      setOpen: false,
+      setOpenEdit: false,
+      selectedTask: '',
+      initiate: [],
+      scope: [],
+      problem: [],
+      solution: [],
+      bussiness: [],
+      mvp: [],
+      feasibility: [],
+      scalelaunch: [],
+      softlaunch: [],
+      projectnames: [],
+      spinning: false,
+      themes: [],
+      expanded: '',
+      setExpanded: true,
+    };
+  }
+
+  componentDidMount() {
+    console.log("MINT",this.props);
+    this.setState({ spinning: true });
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'be@openinnovationhub.nl',
+        password: 'a224935a',
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(resdata => {
+        this.setState({ sestoken: resdata.session_token });
+        this.getData();
+      })
+      .catch(response => console.log(response));
+  }
+
+  getData = () => {
+    fetch(url2, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        this.setStates(datas);
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  setStates = datas => {
+    const officersIds = datas.map(function(officer) {
+      return officer.projectname;
+    });
+
+    const projectnames = officersIds.reduce(
+      (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
+      [],
+    );
+
+    const officersIds2 = datas.map(function(officer2) {
+      return officer2.theme;
+    });
+
+    const themes = officersIds2.reduce(
+      (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
+      [],
+    );
+    const inita = datas.filter(word => word.FunnelPhase === 'initiate');
+    const prob = datas.filter(word => word.FunnelPhase === 'problem');
+    const scop = datas.filter(word => word.FunnelPhase === 'scope');
+    const sol = datas.filter(word => word.FunnelPhase === 'solution');
+    const buss = datas.filter(word => word.FunnelPhase === 'bussiness');
+    const mvp = datas.filter(word => word.FunnelPhase === 'mvp');
+    const feas = datas.filter(word => word.FunnelPhase === 'feasibility');
+    const scale = datas.filter(word => word.FunnelPhase === 'scalelaunch');
+    const soft = datas.filter(word => word.FunnelPhase === 'softlaunch');
+
+    this.setState({
+      initiate: inita.sort((a, b) => a.order - b.order),
+      scope: scop.sort((a, b) => a.order - b.order),
+      problem: prob.sort((a, b) => a.order - b.order),
+      solution: sol.sort((a, b) => a.order - b.order),
+      bussiness: buss.sort((a, b) => a.order - b.order),
+      mvp: mvp.sort((a, b) => a.order - b.order),
+      feasibility: feas.sort((a, b) => a.order - b.order),
+      scalelaunch: scale.sort((a, b) => a.order - b.order),
+      softlaunch: soft.sort((a, b) => a.order - b.order),
+      projectnames,
+      themes,
+    });
+    this.setState({ spinning: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ setOpen: true });
+  };
+
+  handleOpenEdit = data => {
+    this.setState({ selectedTask: data });
+    this.setState({ setOpenEdit: true });
+  };
+
+  filterThemeProject = project => {
+    this.setState({ spinning: true });
+    const url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=projectname=${project}`;
+    fetch(url5, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        this.setStates(datas);
+        this.setState({ spinning: false });
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  filterStatus = project => {
+    this.setState({ spinning: true });
+    const url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=status=${project}`;
+    fetch(url5, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        this.setStates(datas);
+        this.setState({ spinning: false });
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  filterFunnel = theme => {
+    this.setState({ spinning: true });
+    const filter = theme;
+    let url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=funnel=${filter}`;
+    if (theme === 'ALL') {
+      url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks`;
+    }
+    fetch(url5, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        this.setStates(datas);
+        this.setState({ spinning: false });
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  filterTheme = theme => {
+    this.setState({ spinning: true });
+    const filter = theme;
+    let url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=theme=${filter}`;
+    if (theme === 'ALL') {
+      url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks`;
+    }
+    fetch(url5, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        this.setStates(datas);
+        this.setState({ spinning: false });
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  handleOk = () => {
+    this.setState({ spinning: true });
+    this.setState({ setOpen: false });
+    this.setState({ setOpenEdit: false });
+    fetch(url2, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        const datas = taskData.resource;
+        this.setStates(datas);
+
+        this.setState({ spinning: false });
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  filterBar = () => (
+    <Collapse>
+      <Panel header="Filters" key="1">
+        <Row style={styles.containerTop}>
+          <Col style={styles.containerTopCol}>
+            <Row style={{ maxHeigth: 10 }}>Department</Row>
+            <Row>
+              <Select onChange={this.filterFunnel} style={{ width: 180 }}>
+                <Option value="PLATFORM">PLATFORM</Option>
+                <Option value="ECOSYSTEM">ECOSYSTEM</Option>
+                <Option value="ALL">ALL</Option>
+              </Select>
+            </Row>
+          </Col>
+
+          <Col style={styles.containerTopCol}>
+            <Row style={{ maxHeigth: 5 }}> Theme</Row>
+            <Row>
+              <Select onChange={this.filterTheme} style={{ width: 150 }}>
+                {this.state.themes.map(row => (
+                  <Option key={row} value={row}>
+                    {row}
+                  </Option>
+                ))}
+              </Select>
+            </Row>
+          </Col>
+
+          <Col style={styles.containerTopCol}>
+            <Row style={{ maxHeigth: 5 }}> Project</Row>
+            <Row>
+              <Select onChange={this.filterThemeProject} style={{ width: 200 }}>
+                {this.state.projectnames.map(row => (
+                  <Option key={row} value={row}>
+                    {row}
+                  </Option>
+                ))}
+              </Select>
+            </Row>
+          </Col>
+
+          <Col style={styles.containerTopCol}>
+            <Row style={{ maxHeigth: 5 }}> Status</Row>
+            <Row>
+              <Select onChange={this.filterStatus} style={{ width: 200 }}>
+                <Option value="green">
+                  <div style={{ flex: 1, alignContent: 'center' }}>
+                    PROGRESSING <Icon style={{ color: 'green' }} type="login" />
+                  </div>{' '}
+                </Option>
+                <Option value="yellow">
+                  <div style={{ flex: 1 }}>
+                    IMPEDIMENT <Icon style={{ color: 'yellow' }} type="login" />
+                  </div>
+                </Option>
+                <Option value="orange">
+                  <div style={{ flex: 1 }}>
+                    PARKED <Icon style={{ color: 'orange' }} type="login" />
+                  </div>
+                </Option>
+                <Option value="red">
+                  <div style={{ flex: 1 }}>
+                    STOPPED <Icon style={{ color: 'red' }} type="login" />
+                  </div>
+                </Option>
+              </Select>
+            </Row>
+          </Col>
+        </Row>
+      </Panel>
+    </Collapse>
+  );
+
+  handleClose = () => {
+    this.setState({ setOpen: false });
+    this.setState({ setOpenEdit: false });
+  };
+
+  onSave = (task, scope, order) => {
+    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks/${task}`;
+    fetch(url4, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        funnelPhase: scope,
+        order,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+        console.log(taskData);
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  fixStatus = status => {
+    if (status === 'green') {
+      return 'PROGRESSING';
+    }
+    if (status === 'yellow') {
+      return 'IMPEDIMENT';
+    }
+    if (status === 'orange') {
+      return 'PARKED';
+    }
+    if (status === 'red') {
+      return 'STOPPED';
+    }
+    return 'NO SET';
+  };
+
+  onDragEnd = result => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const {
+      initiate,
+      scope,
+      problem,
+      solution,
+      bussiness,
+      scalelaunch,
+      softlaunch,
+      mvp,
+      feasibility,
+    } = this.state;
+
+    this.onSave(draggableId, destination.droppableId, destination.index);
+    const draggedFrom = source.droppableId;
+    const targetContainer = destination.droppableId;
+    const targ = !!(draggedFrom && destination.droppableId);
+
+    const newLocal = this.state;
+    const mak = newLocal[draggedFrom].find(
+      task => task.task_id === draggableId,
+    );
+    this.setState({ draggedTask: mak });
+
+    const start = source.droppableId;
+    const finish = destination.droppableId;
+
+    if (start === finish) {
+      const bart = this.state;
+      const modules = reorder(
+        bart[start],
+        result.source.index,
+        result.destination.index,
+      );
+      this.setState({
+        [start]: modules,
+      });
+    }
+    if (start !== finish) {
+      if (draggedFrom === 'initiate' && targ) {
+        this.setState({
+          initiate: initiate.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+
+      if (draggedFrom === 'problem' && targ) {
+        this.setState({
+          problem: problem.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+
+      if (draggedFrom === 'scope' && targ) {
+        this.setState({
+          scope: scope.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+      if (draggedFrom === 'initiate' && targ) {
+        this.setState({
+          initiate: initiate.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+      if (draggedFrom === 'problem' && targ) {
+        this.setState({
+          problem: problem.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+      if (draggedFrom === 'solution' && targ) {
+        this.setState({
+          solution: solution.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+      if (draggedFrom === 'bussiness' && targ) {
+        this.setState({
+          bussiness: bussiness.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+      if (draggedFrom === 'mvp' && targ) {
+        this.setState({
+          mvp: mvp.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+      if (draggedFrom === 'feasibility' && targ) {
+        this.setState({
+          feasibility: feasibility.filter(
+            tasks => tasks.task_id !== draggableId,
+          ),
+        });
+      }
+      if (draggedFrom === 'softlaunch' && targ) {
+        this.setState({
+          softlaunch: softlaunch.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+      if (draggedFrom === 'scalelaunch' && targ) {
+        this.setState({
+          scalelaunch: scalelaunch.filter(
+            tasks => tasks.task_id !== draggableId,
+          ),
+        });
+      }
+
+      const { draggedTask } = this.state;
+
+      // /ADD STATE
+      if (targetContainer === 'initiate') {
+        this.setState({
+          initiate: [...initiate, draggedTask],
+          draggedTask: {},
+        });
+      }
+      if (targetContainer === 'scope') {
+        this.setState({
+          scope: [...scope, draggedTask],
+          draggedTask: {},
+        });
+      }
+      if (targetContainer === 'problem') {
+        this.setState({
+          problem: [...problem, draggedTask],
+          draggedTask: {},
+        });
+      }
+      if (targetContainer === 'bussiness') {
+        this.setState({
+          bussiness: [...bussiness, draggedTask],
+          draggedTask: {},
+        });
+      }
+      if (targetContainer === 'solution') {
+        this.setState({
+          solution: [...solution, draggedTask],
+          draggedTask: {},
+        });
+      }
+      if (targetContainer === 'feasibility') {
+        this.setState({
+          feasibility: [...feasibility, draggedTask],
+          draggedTask: {},
+        });
+      }
+      if (targetContainer === 'scalelaunch') {
+        this.setState({
+          scalelaunch: [...scalelaunch, draggedTask],
+          draggedTask: {},
+        });
+      }
+      if (targetContainer === 'softlaunch') {
+        this.setState({
+          softlaunch: [...softlaunch, draggedTask],
+          draggedTask: {},
+        });
+      }
+      if (targetContainer === 'mvp') {
+        this.setState({
+          mvp: [...mvp, draggedTask],
+          draggedTask: {},
+        });
+      }
+
+      // this.getData();
+    }
+  };
+
+  render() {
+    const { selectedTask, sestoken } = this.state;
+    return (
+      <div style={{ marginLeft: 10 }}>
+        <FunnelForm
+          sestoken={sestoken}
+          visible={this.state.setOpen}
+          onCancel={this.handleClose}
+          onOK={this.handleOk}
+          handleSubmit={this.handleSubmit}
+        />
+        <FunnelEditForm
+          sestoken={sestoken}
+          visible={this.state.setOpenEdit}
+          onCancel={this.handleClose}
+          onOK={this.handleOk}
+          data={selectedTask}
+          footer={null}
+        />
+        {this.filterBar()}
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Container>
+            <Col style={styles.coreColumn}>
+              <Row>
+                <div style={styles.titles}>
+                  <h2 style={styles.funnelHeaders} className="h2">
+                    Explore
+                  </h2>
+                </div>
+              </Row>
+
+              <Row>
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[0].id}
+                  column={columnsdata[0]}
+                  tasks={this.state[columnsdata[0].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[1].id}
+                  column={columnsdata[1]}
+                  tasks={this.state[columnsdata[1].id]}
+                />
+              </Row>
+            </Col>
+            <Col style={styles.coreColumnExp}>
+              <Row>
+                <Paper style={styles.titles}>
+                  <h2 style={styles.funnelHeaders} className="h2">
+                    Experiment
+                  </h2>
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[2].id}
+                  column={columnsdata[2]}
+                  tasks={this.state[columnsdata[2].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[3].id}
+                  column={columnsdata[3]}
+                  tasks={this.state[columnsdata[3].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[4].id}
+                  column={columnsdata[4]}
+                  tasks={this.state[columnsdata[4].id]}
+                />
+              </Row>
+            </Col>
+            <Col style={styles.coreColumn}>
+              <Row>
+                <Paper style={styles.titles}>
+                  <h2 style={styles.funnelHeaders} className="h2">
+                    Execute
+                  </h2>
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[5].id}
+                  column={columnsdata[5]}
+                  tasks={this.state[columnsdata[5].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[6].id}
+                  column={columnsdata[6]}
+                  tasks={this.state[columnsdata[6].id]}
+                />
+              </Row>
+            </Col>
+            <Col style={styles.coreColumn}>
+              <Row>
+                <Paper style={styles.titles}>
+                  <h2 style={styles.funnelHeaders} className="h2">
+                    Scale Up
+                  </h2>
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[8].id}
+                  column={columnsdata[8]}
+                  tasks={this.state[columnsdata[8].id]}
+                />
+                <Column
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[7].id}
+                  column={columnsdata[7]}
+                  tasks={this.state[columnsdata[7].id]}
+                />
+              </Row>
+            </Col>
+          </Container>
+        </DragDropContext>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    ...state,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(Funnel);
