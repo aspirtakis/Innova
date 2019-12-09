@@ -285,6 +285,7 @@ class ModalEditTask extends React.Component {
                       <option>AUTONOMUS-KAS</option>
                       <option>HOSPITAL-HOME</option>
                       <option>VITAAL</option>
+                      <option >TELCO-AAS</option>
                     </Form.Control>
 
                     <Form.Label>Status</Form.Label>

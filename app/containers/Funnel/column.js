@@ -30,7 +30,6 @@ const TaskList = styled.div`
 
 export default class Column extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <Container>
         <div style={styles.ColTitles}>

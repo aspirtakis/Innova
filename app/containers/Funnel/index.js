@@ -656,6 +656,7 @@ class Funnel extends Component {
   };
 
   render() {
+    console.log("{PROPS",this.props);
     const { selectedTask, sestoken } = this.state;
     return (
       <div style={{ marginLeft: 10 }}>

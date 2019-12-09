@@ -105,7 +105,7 @@ class ModalAddTask extends React.Component {
           <Form onSubmit={this.handleSubmit}>
             <Container>
               <Rect6 className="nopadding">
-                <Form.Item label="Funnel">
+                <Form.Item label="Department">
                   {getFieldDecorator('funnel', {
                     rules: [{ required: true, message: 'funnel' }],
                   })(
@@ -129,6 +129,7 @@ class ModalAddTask extends React.Component {
                       <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
                       <Option value="CON-CONSUMER">CON-CONSUMER</Option>
                       <Option value="TV-ADVERTISMEN">TV-ADVERTISMENT</Option>
+                      <Option value="TELCO-AAS">TELCO-AAS</Option>
                     </Select>,
                   )}
                 </Form.Item>
@@ -207,7 +208,7 @@ class ModalAddTask extends React.Component {
               </Rect6>
 
               <Rect7 className="nopadding">
-                <Form.Item label="Sponsor">
+                <Form.Item label="Product Owner">
                   {getFieldDecorator('leader', {
                     rules: [
                       {
@@ -223,7 +224,7 @@ class ModalAddTask extends React.Component {
                           style={{ color: 'rgba(0,0,0,.25)' }}
                         />
                       }
-                      placeholder="Sponsor"
+                      placeholder="Product Owner"
                     />,
                   )}
                 </Form.Item>
@@ -251,10 +252,10 @@ class ModalAddTask extends React.Component {
                       placeholder="Team Members"
                       style={{ width: 150 }}
                     >
-                      <Option value="1ppl">1</Option>
-                      <Option value="2ppl">2</Option>
-                      <Option value="3ppl">3</Option>
-                      <Option value="3ppl">4</Option>
+                      <Option value="1">1</Option>
+                      <Option value="2">2</Option>
+                      <Option value="3">3</Option>
+                      <Option value="4">4</Option>
                     </Select>,
                   )}
                 </Form.Item>
