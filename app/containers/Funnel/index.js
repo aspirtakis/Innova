@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import { DragDropContext } from 'react-beautiful-dnd';
 import styled from 'styled-components';
-import { Select, Icon, Collapse } from 'antd';
+import { Select, Icon, Collapse, Spin } from 'antd';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import makeSelectFunnel from './selectors';
@@ -15,6 +15,7 @@ import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
 import './fun.css';
 import Column from './column';
+import {backend} from '../../utils/config';
 
 const columnsdata = [
   {
@@ -61,11 +62,10 @@ const Container = styled.div`
 const { Panel } = Collapse;
 const { Option } = Select;
 
-const url = 'https://aws.openinnovationhub.nl./api/v2/user/session';
-const url2 =
-  'https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks';
-const apptoken =
-  'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89';
+const url = backend.beUrl+backend.sessionUrl;
+const tasksUrl = backend.beUrl + backend.tasks;
+
+const apptoken = backend.apptoken;
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -79,6 +79,7 @@ class Funnel extends Component {
     super(props);
     this.state = {
       targetOn: true,
+      sestoken:'',
       setOpen: false,
       setOpenEdit: false,
       selectedTask: '',
@@ -100,36 +101,28 @@ class Funnel extends Component {
   }
 
   componentDidMount() {
-    console.log("MINT",this.props);
     this.setState({ spinning: true });
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'X-DreamFactory-API-Key': apptoken,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: 'be@openinnovationhub.nl',
-        password: 'a224935a',
-      }),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(resdata => {
-        this.setState({ sestoken: resdata.session_token });
-        this.getData();
-      })
-      .catch(response => console.log(response));
+    console.log("MINT",this.props);
+    console.log("BE",backend);
+    if(this.props.user && this.props.user.session_token.length > 0 ){
+      this.setState({ sestoken: this.props.user.session_token });
+      this.getData();
+      this.setState({ spinning: true });
+    }
+    this.setState({ spinning: false });
   }
 
+  // static getDerivedStateFromProps(nextProps, prevProps) {
+  //   console.log("NEXT",nextProps);
+  //   if(nextProps.user && nextProps.user.session_token){
+  //     this.setState({ sestoken: this.nextProps.user.session_token });
+  //     this.getData();
+  //     this.setState({ spinning: false });
+  //   }
+  // }
+
   getData = () => {
-    fetch(url2, {
+    fetch(tasksUrl, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -206,10 +199,11 @@ class Funnel extends Component {
     this.setState({ setOpenEdit: true });
   };
 
-  filterThemeProject = project => {
+
+  filter = (type, project) => {
     this.setState({ spinning: true });
-    const url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=projectname=${project}`;
-    fetch(url5, {
+    const projectUrl = tasksUrl+'?filter='+type+'='+project;
+    fetch(projectUrl, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -234,42 +228,14 @@ class Funnel extends Component {
       .catch(taskData => console.log(taskData));
   };
 
-  filterStatus = project => {
-    this.setState({ spinning: true });
-    const url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=status=${project}`;
-    fetch(url5, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.state.sestoken,
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(taskData => {
-        const datas = taskData.resource;
-        this.setStates(datas);
-        this.setState({ spinning: false });
-      })
-      .catch(taskData => console.log(taskData));
-  };
 
-  filterFunnel = theme => {
+  filterDepartment = funnel => {
     this.setState({ spinning: true });
-    const filter = theme;
-    let url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=funnel=${filter}`;
-    if (theme === 'ALL') {
-      url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks`;
+    let funnelUrl = tasksUrl+'?filter=funnel=' + funnel;
+    if (funnel === 'ALL') {
+      funnelUrl = tasksUrl;
     }
-    fetch(url5, {
+    fetch(funnelUrl, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -294,66 +260,14 @@ class Funnel extends Component {
       .catch(taskData => console.log(taskData));
   };
 
-  filterTheme = theme => {
-    this.setState({ spinning: true });
-    const filter = theme;
-    let url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks?filter=theme=${filter}`;
-    if (theme === 'ALL') {
-      url5 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks`;
-    }
-    fetch(url5, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.state.sestoken,
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(taskData => {
-        const datas = taskData.resource;
-        this.setStates(datas);
-        this.setState({ spinning: false });
-      })
-      .catch(taskData => console.log(taskData));
-  };
+
+
 
   handleOk = () => {
     this.setState({ spinning: true });
     this.setState({ setOpen: false });
     this.setState({ setOpenEdit: false });
-    fetch(url2, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.state.sestoken,
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(taskData => {
-        const datas = taskData.resource;
-        this.setStates(datas);
-
-        this.setState({ spinning: false });
-      })
-      .catch(taskData => console.log(taskData));
+    this.getData();
   };
 
   filterBar = () => (
@@ -363,7 +277,7 @@ class Funnel extends Component {
           <Col style={styles.containerTopCol}>
             <Row style={{ maxHeigth: 10 }}>Department</Row>
             <Row>
-              <Select onChange={this.filterFunnel} style={{ width: 180 }}>
+              <Select onChange={ this.filterDepartment} style={{ width: 180 }}>
                 <Option value="PLATFORM">PLATFORM</Option>
                 <Option value="ECOSYSTEM">ECOSYSTEM</Option>
                 <Option value="ALL">ALL</Option>
@@ -374,7 +288,7 @@ class Funnel extends Component {
           <Col style={styles.containerTopCol}>
             <Row style={{ maxHeigth: 5 }}> Theme</Row>
             <Row>
-              <Select onChange={this.filterTheme} style={{ width: 150 }}>
+              <Select onChange={(e) => this.filter('theme',e)} style={{ width: 150 }}>
                 {this.state.themes.map(row => (
                   <Option key={row} value={row}>
                     {row}
@@ -387,7 +301,7 @@ class Funnel extends Component {
           <Col style={styles.containerTopCol}>
             <Row style={{ maxHeigth: 5 }}> Project</Row>
             <Row>
-              <Select onChange={this.filterThemeProject} style={{ width: 200 }}>
+              <Select onChange={(e) => this.filter('projectname',e)} style={{ width: 200 }}>
                 {this.state.projectnames.map(row => (
                   <Option key={row} value={row}>
                     {row}
@@ -400,7 +314,7 @@ class Funnel extends Component {
           <Col style={styles.containerTopCol}>
             <Row style={{ maxHeigth: 5 }}> Status</Row>
             <Row>
-              <Select onChange={this.filterStatus} style={{ width: 200 }}>
+              <Select onChange={(e) => this.filter("status",e)} style={{ width: 200 }}>
                 <Option value="green">
                   <div style={{ flex: 1, alignContent: 'center' }}>
                     PROGRESSING <Icon style={{ color: 'green' }} type="login" />
@@ -435,7 +349,7 @@ class Funnel extends Component {
   };
 
   onSave = (task, scope, order) => {
-    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks/${task}`;
+    const url4 = tasksUrl+'/'+task;
     fetch(url4, {
       method: 'PATCH',
       headers: {
@@ -655,11 +569,14 @@ class Funnel extends Component {
     }
   };
 
+
+
   render() {
     console.log("{PROPS",this.props);
     const { selectedTask, sestoken } = this.state;
     return (
       <div style={{ marginLeft: 10 }}>
+      <div>
         <FunnelForm
           sestoken={sestoken}
           visible={this.state.setOpen}
@@ -791,6 +708,8 @@ class Funnel extends Component {
             </Col>
           </Container>
         </DragDropContext>
+     </div>
+     
       </div>
     );
   }
@@ -798,7 +717,7 @@ class Funnel extends Component {
 
 function mapStateToProps(state) {
   return {
-    ...state,
+    user:state.global.user,
   };
 }
 function mapDispatchToProps(dispatch) {

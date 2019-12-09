@@ -14,32 +14,13 @@ import styled, { css } from 'styled-components';
 import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { backend } from '../utils/config';
 
-const { Option } = Select;
-const { TextArea } = Input;
 const { Panel } = Collapse;
 
-const apptoken =
-  '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
+const apptoken = backend.apptoken;
+const tasksUrl = backend.beUrl + backend.tasks;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Rect6 = styled.div`
-  flex: 0.5 1 0%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Rect7 = styled.div`
-  flex: 0.5 1 0%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const formItemLayout = {};
 // eslint-disable-next-line react/prefer-stateless-function
 class ModalEditTask extends React.Component {
   constructor(props) {
@@ -88,7 +69,7 @@ class ModalEditTask extends React.Component {
   onUpdate = () => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
-    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks/${taskid}`;
+    const url4 = tasksUrl+'/'+taskid;
 
     fetch(url4, {
       method: 'PATCH',
@@ -148,7 +129,7 @@ class ModalEditTask extends React.Component {
   onDelete = () => {
     this.setState({ spinning: true });
     const taskid = this.state.task_id;
-    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks/${taskid}`;
+    const url4 = tasksUrl+'/'+taskid;
 
     fetch(url4, {
       method: 'DELETE',

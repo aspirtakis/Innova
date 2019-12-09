@@ -29,7 +29,7 @@ export const initialState = {
     name: '',
     email: '',
   },
-  userIsAuthenticated: true,
+  userIsAuthenticated: false,
   authenticationErrorMessage: '',
   registrationErrorMessage: '',
   menu: Menu,
