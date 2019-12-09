@@ -2,11 +2,12 @@ import React from 'react';
 import { Select, Form, Input, Icon, Modal, Button, Spin } from 'antd';
 import styled, { css } from 'styled-components';
 import '../containers/Funnel/fun.css';
+import {backend} from '../utils/config';
+
+const tasksUrl = backend.beUrl + backend.tasks;
+const apptoken = backend.apptoken;
 
 const { Option } = Select;
-const apptoken =
-  '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
-
 
 const Container = styled.div`
   display: flex;
@@ -33,10 +34,24 @@ class ModalAddTask extends React.Component {
     };
   }
 
-  onSave = values => {
+
+
+
+  handleSubmit = e => {
     this.setState({ spinning: true });
-    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks`;
-    fetch(url4, {
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        this.addNewTask(values);
+      }
+    });
+  };
+
+
+
+  addNewTask = values => {
+    this.setState({ spinning: true });
+    fetch(tasksUrl, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -77,16 +92,6 @@ class ModalAddTask extends React.Component {
         this.setState({ spinning: false });
       })
       .catch(taskData => console.log(taskData));
-  };
-
-  handleSubmit = e => {
-    this.setState({ spinning: true });
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.onSave(values);
-      }
-    });
   };
 
   render() {
