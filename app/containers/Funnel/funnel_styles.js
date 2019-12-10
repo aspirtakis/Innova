@@ -31,21 +31,19 @@ export const styles = {
     maxHeight: 32,
   },
   coreColumn: {
-    margin: 3,
-    minWidth: 314,
-    maxWidth: 314,
+    margin: 10,
+    minWidth: 320,
     backgroundColor: 'white',
     maxHeight: 800,
-    minHeight: 800,
+    minHeight: '100%',
   },
 
   coreColumnExp: {
-    margin: 3,
-    minWidth: 469,
-    maxWidth: 469,
+    margin: 10,
+    minWidth: 485,
     backgroundColor: 'white',
     maxHeight: 800,
-    minHeight: 800,
+    minHeight: '100%',
   },
 
   ColTitles: {

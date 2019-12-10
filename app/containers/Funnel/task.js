@@ -12,13 +12,12 @@ import { styles } from './funnel_styles';
 
 const Container = styled.div`
   border: 1px solid lightgrey;
-  border-radius: 2px;
-  padding: 2px;
+  border-radius: 4px;
+  padding:5px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 8px;
   transition: background-color 0.2s ease;
-  max-width: 135px;
   background-color: ${props =>
     props.isDragDisabled
       ? 'lightgrey'
@@ -62,9 +61,9 @@ export default class Task extends React.Component {
             isDragging={snapshot.isDragging}
             isDragDisabled={isDragDisabled}
           >
-            <Paper onDoubleClick={() => this.props.openEdit(taskproblem)}>
-              <div style={styles.cardTitle}>{taskproblem.theme}</div>
-              <div style={styles.cardTitle2}>{taskproblem.projectname}</div>
+            <Paper onClick={() => this.props.openEdit(taskproblem)}>
+   
+            <div style={styles.cardTitle}>{taskproblem.projectname}</div>
               <Row>
                 <Col
                   style={{
@@ -110,6 +109,7 @@ export default class Task extends React.Component {
                 </Col>
               </Row>
 
+
               <Row style={{ marginLeft: 3 }}>
                 <div
                   style={{
@@ -120,7 +120,7 @@ export default class Task extends React.Component {
                     color: 'black',
                   }}
                 >
-                  {`${taskproblem.title.substring(0, 12)}...`}
+    
                 </div>
               </Row>
 
@@ -172,7 +172,7 @@ export default class Task extends React.Component {
                     fontSize: 12,
                   }}
                 >
-                  PO:{`${taskproblem.leader.substring(0, 10)}...`}
+                  PO:{`${taskproblem.leader.substring(0, 18)}...`}
                 </div>
               </Row>
 

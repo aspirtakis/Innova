@@ -576,7 +576,7 @@ class Funnel extends Component {
     const { selectedTask, sestoken } = this.state;
     return (
       <div style={{ marginLeft: 10 }}>
-      <div>
+
         <FunnelForm
           sestoken={sestoken}
           visible={this.state.setOpen}
@@ -595,7 +595,7 @@ class Funnel extends Component {
         {this.filterBar()}
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Container>
-            <Col style={styles.coreColumn}>
+            <Col  style={styles.coreColumn}>
               <Row>
                 <div style={styles.titles}>
                   <h2 style={styles.funnelHeaders} className="h2">
@@ -604,8 +604,9 @@ class Funnel extends Component {
                 </div>
               </Row>
 
-              <Row>
+              <Row style={{flexWrap:"nowrap"}}>
                 <Column
+                  xs={6}
                   openEdit={this.handleOpenEdit}
                   addNewTask={this.handleOpen}
                   key={columnsdata[0].id}
@@ -613,6 +614,7 @@ class Funnel extends Component {
                   tasks={this.state[columnsdata[0].id]}
                 />
                 <Column
+                  xs={6}
                   openEdit={this.handleOpenEdit}
                   addNewTask={this.handleOpen}
                   key={columnsdata[1].id}
@@ -621,7 +623,7 @@ class Funnel extends Component {
                 />
               </Row>
             </Col>
-            <Col style={styles.coreColumnExp}>
+            <Col xs={4} style={styles.coreColumnExp}>
               <Row>
                 <Paper style={styles.titles}>
                   <h2 style={styles.funnelHeaders} className="h2">
@@ -629,8 +631,7 @@ class Funnel extends Component {
                   </h2>
                 </Paper>
               </Row>
-
-              <Row>
+              <Row style={{flexWrap:"nowrap"}}>
                 <Column
                   openEdit={this.handleOpenEdit}
                   addNewTask={this.handleOpen}
@@ -654,7 +655,7 @@ class Funnel extends Component {
                 />
               </Row>
             </Col>
-            <Col style={styles.coreColumn}>
+            <Col  style={styles.coreColumn}>
               <Row>
                 <Paper style={styles.titles}>
                   <h2 style={styles.funnelHeaders} className="h2">
@@ -663,7 +664,7 @@ class Funnel extends Component {
                 </Paper>
               </Row>
 
-              <Row>
+              <Row style={{flexWrap:"nowrap"}}>
                 <Column
                   openEdit={this.handleOpenEdit}
                   addNewTask={this.handleOpen}
@@ -680,7 +681,7 @@ class Funnel extends Component {
                 />
               </Row>
             </Col>
-            <Col style={styles.coreColumn}>
+            <Col  style={styles.coreColumn}>
               <Row>
                 <Paper style={styles.titles}>
                   <h2 style={styles.funnelHeaders} className="h2">
@@ -689,7 +690,7 @@ class Funnel extends Component {
                 </Paper>
               </Row>
 
-              <Row>
+              <Row style={{flexWrap:"nowrap"}}>
                 <Column
                   openEdit={this.handleOpenEdit}
                   addNewTask={this.handleOpen}
@@ -708,8 +709,6 @@ class Funnel extends Component {
             </Col>
           </Container>
         </DragDropContext>
-     </div>
-     
       </div>
     );
   }
