@@ -13,6 +13,6 @@ const backendDev = {
 };
 
 
-const backend = backendDev;
+const backend = backendProd;
 
 export { backend };

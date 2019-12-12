@@ -18,14 +18,10 @@ import Typography from '@material-ui/core/Typography';
 
 import styles from '../styles';
 
-const data = [
-  { name: 'API-STORE', ppl: 3, actions: 8 },
-  { name: 'MOBUILE-CONNECT', ppl: 3, actions: 5 },
-  { name: 'CBAAS', ppl: 6, actions: 12 },
-  { name: 'BLOCKCHAIN', ppl: 9, actions: 18 },
-];
 
-const SimpleBarChart = ({ classes, title }) => (
+const SimpleBarChart = ({
+ classes, title , data, color 
+}) => (
   <Paper
     style={{ width: '100%', height: 400, padding: '30px 30px 30px 0px' }}
     square
@@ -43,15 +39,16 @@ const SimpleBarChart = ({ classes, title }) => (
         width={600}
         height={300}
         data={data}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        margin={{
+ top: 5, right: 30, left: 20, bottom: 5 
+}}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="2 2" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Legend />
-        <Bar dataKey="ppl" fill="#8884d8" />
-        <Bar dataKey="actions" fill="#82ca9d" />
+
+        <Bar dataKey="value" fill={color} />
       </BarChart>
     </ResponsiveContainer>
   </Paper>

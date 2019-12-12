@@ -126,16 +126,15 @@ class ModalAddTask extends React.Component {
                   {getFieldDecorator('theme', {
                     rules: [{ required: true, message: 'Themes!' }],
                   })(
-                    <Select key={7} style={{ width: 150 }}>
-                      <Option value="AGRI">AGRI</Option>
-                      <Option value="MOBILITY">MOBILITY</Option>
-                      <Option value="HEALTH">HEALTH</Option>
-                      <Option value="D-IDENTITY">D-IDENTITY</Option>
-                      <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
-                      <Option value="CON-CONSUMER">CON-CONSUMER</Option>
-                      <Option value="TV-ADVERTISMEN">TV-ADVERTISMENT</Option>
-                      <Option value="TELCO-AAS">TELCO-AAS</Option>
-                    </Select>,
+                    <Input
+                    prefix={
+                      <Icon
+                        type="user"
+                        style={{ color: 'rgba(0,0,0,.25)' }}
+                      />
+                    }
+                    placeholder="Theme"
+                  />
                   )}
                 </Form.Item>
 
@@ -143,21 +142,15 @@ class ModalAddTask extends React.Component {
                   {getFieldDecorator('project', {
                     rules: [{ required: true, message: 'Project!' }],
                   })(
-                    <Select key={6} style={{ width: 200 }}>
-                      <Option value="MOBILE-CONNECT">MOBILE-CONNECT</Option>
-                      <Option value="API-STORE">API-STORE</Option>
-                      <Option value="NOMI">NOMI</Option>
-                      <Option value="TARGET-ADVERTISING">TARGET-ADVERTISING
-                      </Option>
-                      <Option value="CBAAS">CBAAS</Option>
-                      <Option value="SMART-CAR">SMART-CAR</Option>
-                      <Option value="MOBILITY-AAS">MOBILITY AAS</Option>
-                      <Option value="MEDIA-AGGREGATOR">MEDIA-AGGREGATOR</Option>
-                      <Option value="DAAF">DAAF</Option>
-                      <Option value="AUTONOME-KAS">AUTONOME-KAS</Option>
-                      <Option value="VITAAL">VITAAL</Option>
-                      <Option value="HOSPITAL-HOME">HOSPITAL-HOME</Option>
-                    </Select>,
+                    <Input
+                    prefix={
+                      <Icon
+                        type="user"
+                        style={{ color: 'rgba(0,0,0,.25)' }}
+                      />
+                    }
+                    placeholder="Project"
+                  />
                   )}
                 </Form.Item>
 
@@ -173,7 +166,7 @@ class ModalAddTask extends React.Component {
                         />
                       }
                       placeholder="Card Title"
-                    />,
+                    />
                   )}
                 </Form.Item>
 

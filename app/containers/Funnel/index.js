@@ -361,6 +361,7 @@ class Funnel extends Component {
       },
       body: JSON.stringify({
         funnelPhase: scope,
+        updateDate: new Date(),
         order,
       }),
     })
@@ -373,6 +374,7 @@ class Funnel extends Component {
       .then(response => response.json())
       .then(taskData => {
         console.log(taskData);
+            this.getData();
       })
       .catch(taskData => console.log(taskData));
   };
@@ -565,8 +567,8 @@ class Funnel extends Component {
         });
       }
 
-      // this.getData();
     }
+
   };
 
 
@@ -668,16 +670,16 @@ class Funnel extends Component {
                 <Column
                   openEdit={this.handleOpenEdit}
                   addNewTask={this.handleOpen}
-                  key={columnsdata[5].id}
-                  column={columnsdata[5]}
-                  tasks={this.state[columnsdata[5].id]}
+                  key={columnsdata[6].id}
+                  column={columnsdata[6]}
+                  tasks={this.state[columnsdata[6].id]}
                 />
                 <Column
                   openEdit={this.handleOpenEdit}
                   addNewTask={this.handleOpen}
-                  key={columnsdata[6].id}
-                  column={columnsdata[6]}
-                  tasks={this.state[columnsdata[6].id]}
+                  key={columnsdata[5].id}
+                  column={columnsdata[5]}
+                  tasks={this.state[columnsdata[5].id]}
                 />
               </Row>
             </Col>

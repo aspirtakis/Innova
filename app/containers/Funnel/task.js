@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import './fun.css';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
+
 import { Avatar, Icon } from 'antd';
 import { styles } from './funnel_styles';
 
@@ -196,7 +197,7 @@ export default class Task extends React.Component {
                       marginRight: 5,
                     }}
                   />
-                  {moment(taskproblem.createDate).fromNow()}
+                  {moment(taskproblem.updateDate).fromNow()}
                 </div>
               </Row>
             </Paper>
