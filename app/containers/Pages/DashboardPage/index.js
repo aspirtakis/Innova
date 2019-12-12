@@ -122,19 +122,16 @@ class DashboardPage extends React.PureComponent {
 
 
   setStates = datas => {
-    const officersIds = datas.map(function(officer) {
+    const projects = datas.map(function(officer) {
       return officer.projectname;
     });
-
-    const projectnames = officersIds.reduce(
+    const projectnames = projects.reduce(
       (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
       [],
     );
-
     const Departs= datas.map(function(officer) {
       return officer.funnel;
     });
-
     const Departments = Departs.reduce(
       (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
       [],
@@ -143,17 +140,14 @@ class DashboardPage extends React.PureComponent {
     const Horizons = datas.map(function(officer) {
       return officer.horizon;
     });
-
     const Statuses = datas.map(function(officer) {
       return officer.status;
     });
 
 
-
     const officersIds2 = datas.map(function(officer2) {
       return officer2.theme;
     });
-
     const themes = officersIds2.reduce(
       (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
       [],
@@ -174,17 +168,16 @@ class DashboardPage extends React.PureComponent {
     const ProjectsALL = datas.filter(word => word.funnel === 'OTHER');
 
     
-
-
     console.log('Initiate',inita.length);
     console.log('Projects',projectnames.length);
     console.log('Themes',themes.length);
-    console.log('Cards',datas.length)
-
-    console.log('Horizonss',this.count(Horizons))
-    console.log('Status',this.count(Statuses))
+    console.log('Cards',datas.length);
+    console.log('Horizonss',this.count(Horizons));
+    console.log('Status',this.count(Statuses));
     const cHorizons = this.count(Horizons);
     const cStatus = this.count(Statuses);
+
+
 
     const dataDeparts = [
       { name: 'PLATFORM', value: ProjectsPLATFORM ? ProjectsPLATFORM.length :null},
@@ -213,7 +206,7 @@ class DashboardPage extends React.PureComponent {
       { name: 'Scope', value: scop.length },
       { name: 'Solution', value: sol.length },
       { name: 'Bussiness', value: buss.length },
-      { name: 'Mpv', value: mvp.length },
+      { name: 'Mvp', value: mvp.length },
       { name: 'Bussiness', value: feas.length },
       { name: 'Scale Launch', value: scale.length },
       { name: 'Soft Launch', value: soft.length },
