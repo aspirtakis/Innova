@@ -1,6 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 
+import PropTypes from 'prop-types';
+import React, { memo, Component } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import deepPurple from '@material-ui/core/colors/deepPurple';
@@ -20,7 +23,7 @@ import StackedAreaChart from 'components/Pages/Charts/StackedAreaChart';
 import StackedBySignBarChart from 'components/Pages/Charts/StackedBySignBarChart';
 import Tasks from 'components/Pages/Dashboard/Tasks';
 import {backend} from '../../../utils/config';
-
+import {Spin } from 'antd';
 import styles from './styles';
 
 
@@ -33,7 +36,6 @@ class DashboardPage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       targetOn: true,
       setOpen: false,
       setOpenEdit: false,
@@ -48,52 +50,28 @@ class DashboardPage extends React.PureComponent {
       scalelaunch: [],
       softlaunch: [],
       projectnames: [],
-      spinning: false,
+      spinning: true,
       themes: [],
     };
   }
 
-  componentDidMount() {
-    console.log('DID MOUNTY');
-    this.setState({ spinning: true });
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'X-DreamFactory-API-Key': apptoken,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: 'be@openinnovationhub.nl',
-        password: 'a224935a',
-      }),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(resdata => {
-        this.setState({ sestoken: resdata.session_token });
-        this.getData();
 
-        setTimeout(() => {
-          this.setState({ loading: false });
-        }, 300);
-      })
-      .catch(response => console.log(response));
+  componentDidMount() {
+    console.log("DASHMOUNT",this.props);
+    if(this.props.user && this.props.user.session_token ){
+      this.setState({ sestoken: this.props.user.session_token });
+      this.getData();
+    }
   }
 
+
   getData = () => {
-    console.log('GET DATA');
     fetch(tasksUrl, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.state.sestoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -120,7 +98,6 @@ class DashboardPage extends React.PureComponent {
     return count;
 }
 
-
   setStates = datas => {
     const projects = datas.map(function(officer) {
       return officer.projectname;
@@ -143,7 +120,6 @@ class DashboardPage extends React.PureComponent {
     const Statuses = datas.map(function(officer) {
       return officer.status;
     });
-
 
     const officersIds2 = datas.map(function(officer2) {
       return officer2.theme;
@@ -224,16 +200,18 @@ class DashboardPage extends React.PureComponent {
       dataStatus:dataStatus,
       dataDeparts:dataDeparts,
     });
+    this.setState({spinning:false});
 
   };
 
   render() {
-    const { loading } = this.state;
+    const { spinning } =this.state;
     const { classes } = this.props;
 
     return (
-      <PageBase minHeight={500} loading={loading}>
-        {!loading && (
+      <PageBase minHeight={500} loading={spinning}>
+        {spinning && <Spin></Spin>}
+        {!spinning && (
           <div>
             <Grid container spacing={3} className={classes.container}>
               <Grid item xs={12} sm={6} md={3}>
@@ -242,7 +220,7 @@ class DashboardPage extends React.PureComponent {
                   backgroundColor={blue[400]}
                   iconColor={blue[500]}
                   title="Projects"
-                  value={this.state.countProjects}
+                  value={this.state.countProjects.toString()}
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -251,7 +229,7 @@ class DashboardPage extends React.PureComponent {
                   backgroundColor={green[400]}
                   iconColor={green[500]}
                   title="Themes"
-                  value={this.state.countThemes}
+                  value={this.state.countThemes.toString()}
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -260,7 +238,7 @@ class DashboardPage extends React.PureComponent {
                   backgroundColor={orange[400]}
                   iconColor={orange[500]}
                   title="Action Cards"
-                  value={this.state.countCards}
+                  value={this.state.countCards.toString()}
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
@@ -269,7 +247,7 @@ class DashboardPage extends React.PureComponent {
                   backgroundColor={deepPurple[400]}
                   iconColor={deepPurple[500]}
                   title="Departments"
-                  value={this.state.countDepartments}
+                  value={this.state.countDepartments.toString()}
                 />
               </Grid>
             </Grid>
@@ -288,13 +266,12 @@ class DashboardPage extends React.PureComponent {
               <SimpleBarChart color="blue" data={this.state.dataStatus} title="Statuses" />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
-            <PiesChart color="green" data={this.state.dataStatus} title="Statuses" />
+      NEWS
           </Grid>
           <Grid item xs={12} sm={3} md={3}>
           <SimpleBarChart color="orange" data={this.state.dataDeparts} title="Department Projects" />
         </Grid>
           </Grid>
-
           </div>
         )}
       </PageBase>
@@ -305,11 +282,33 @@ class DashboardPage extends React.PureComponent {
 DashboardPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+function mapStateToProps(state) {
+  return {
+    user:state.global.user,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
 
-export default withStyles(
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+const mak = withStyles(
   theme => ({
     ...layoutStyles(theme),
     ...styles(theme),
   }),
   { withTheme: true },
+);
+
+export default compose(
+  mak,
+  withConnect,
+  memo,
 )(DashboardPage);
+
