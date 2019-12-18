@@ -10,6 +10,8 @@ import {
   SELECT_MENU_ITEM,
   OPEN_SETTING_DRAWER,
   CLOSE_SETTING_DRAWER,
+  OPEN_ARCHIVE_DRAWER,
+  CLOSE_ARCHIVE_DRAWER,
   CHANGE_THEME,
   SHOW_HIDE_OPEN_VIEWS,
   SHOW_HIDE_HEADER_TABS,
@@ -96,6 +98,20 @@ export function closeSettingsDrawer() {
     type: CLOSE_SETTING_DRAWER,
   };
 }
+
+export function openArchiveDrawer() {
+  return {
+    type: OPEN_ARCHIVE_DRAWER,
+  };
+}
+
+export function closeArchiveDrawer() {
+  return {
+    type: CLOSE_ARCHIVE_DRAWER,
+  };
+}
+
+
 
 export function changeTheme(theme) {
   return {

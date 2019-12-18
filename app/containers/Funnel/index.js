@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import { DragDropContext } from 'react-beautiful-dnd';
 import styled from 'styled-components';
-import { Select, Icon, Collapse, Spin } from 'antd';
+import {Drawer, Select, Icon, Collapse, Spin } from 'antd';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import makeSelectFunnel from './selectors';
@@ -16,8 +16,10 @@ import { styles } from './funnel_styles';
 import './fun.css';
 import Column from './column';
 import {backend} from '../../utils/config';
+import  Archive  from './archive';
 
 const columnsdata = [
+
   {
     id: 'initiate',
     title: 'Initiate',
@@ -54,6 +56,15 @@ const columnsdata = [
     id: 'softlaunch',
     title: 'Softlaunch',
   },
+  {
+    id: 'backlog',
+    title: 'Backlog',
+  },
+  {
+    id: 'archive',
+    title: 'Archive',
+  },
+  
 ];
 const Container = styled.div`
   display: flex;
@@ -83,6 +94,8 @@ class Funnel extends Component {
       setOpen: false,
       setOpenEdit: false,
       selectedTask: '',
+      backlog: [],
+      archive: [],
       initiate: [],
       scope: [],
       problem: [],
@@ -164,6 +177,9 @@ class Funnel extends Component {
       (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
       [],
     );
+
+    const arch = datas.filter(word => word.FunnelPhase === 'archive');
+    const backl = datas.filter(word => word.FunnelPhase === 'backlog');
     const inita = datas.filter(word => word.FunnelPhase === 'initiate');
     const prob = datas.filter(word => word.FunnelPhase === 'problem');
     const scop = datas.filter(word => word.FunnelPhase === 'scope');
@@ -175,6 +191,8 @@ class Funnel extends Component {
     const soft = datas.filter(word => word.FunnelPhase === 'softlaunch');
 
     this.setState({
+      archive: arch.sort((a, b) => a.order - b.order),
+      backlog: backl.sort((a, b) => a.order - b.order),
       initiate: inita.sort((a, b) => a.order - b.order),
       scope: scop.sort((a, b) => a.order - b.order),
       problem: prob.sort((a, b) => a.order - b.order),
@@ -259,8 +277,6 @@ class Funnel extends Component {
       })
       .catch(taskData => console.log(taskData));
   };
-
-
 
 
   handleOk = () => {
@@ -373,8 +389,8 @@ class Funnel extends Component {
       })
       .then(response => response.json())
       .then(taskData => {
-        console.log(taskData);
-            this.getData();
+       // console.log(taskData);
+         //   this.getData();
       })
       .catch(taskData => console.log(taskData));
   };
@@ -397,7 +413,6 @@ class Funnel extends Component {
 
   onDragEnd = result => {
     const { destination, source, draggableId } = result;
-
     if (!destination) {
       return;
     }
@@ -411,6 +426,8 @@ class Funnel extends Component {
 
     const {
       initiate,
+      archive,
+      backlog,
       scope,
       problem,
       solution,
@@ -446,16 +463,21 @@ class Funnel extends Component {
         [start]: modules,
       });
     }
+
     if (start !== finish) {
+      if (draggedFrom === 'backlog' && targ) {
+        this.setState({
+          backlog: backlog.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
+      if (draggedFrom === 'archive' && targ) {
+        this.setState({
+          archive: archive.filter(tasks => tasks.task_id !== draggableId),
+        });
+      }
       if (draggedFrom === 'initiate' && targ) {
         this.setState({
           initiate: initiate.filter(tasks => tasks.task_id !== draggableId),
-        });
-      }
-
-      if (draggedFrom === 'problem' && targ) {
-        this.setState({
-          problem: problem.filter(tasks => tasks.task_id !== draggableId),
         });
       }
 
@@ -464,16 +486,13 @@ class Funnel extends Component {
           scope: scope.filter(tasks => tasks.task_id !== draggableId),
         });
       }
-      if (draggedFrom === 'initiate' && targ) {
-        this.setState({
-          initiate: initiate.filter(tasks => tasks.task_id !== draggableId),
-        });
-      }
+
       if (draggedFrom === 'problem' && targ) {
         this.setState({
           problem: problem.filter(tasks => tasks.task_id !== draggableId),
         });
       }
+
       if (draggedFrom === 'solution' && targ) {
         this.setState({
           solution: solution.filter(tasks => tasks.task_id !== draggableId),
@@ -510,8 +529,19 @@ class Funnel extends Component {
       }
 
       const { draggedTask } = this.state;
-
       // /ADD STATE
+      if (targetContainer === 'backlog') {
+        this.setState({
+          backlog: [...backlog, draggedTask],
+          draggedTask: {},
+        });
+      }
+      if (targetContainer === 'archive') {
+        this.setState({
+          archive: [...archive, draggedTask],
+          draggedTask: {},
+        });
+      }
       if (targetContainer === 'initiate') {
         this.setState({
           initiate: [...initiate, draggedTask],
@@ -566,15 +596,12 @@ class Funnel extends Component {
           draggedTask: {},
         });
       }
-
     }
-
   };
 
 
 
   render() {
-    console.log("{PROPS",this.props);
     const { selectedTask, sestoken } = this.state;
     return (
       <div style={{ marginLeft: 10 }}>
@@ -597,6 +624,34 @@ class Funnel extends Component {
         {this.filterBar()}
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Container>
+             <Col  style={styles.coreColumn}>
+              <Row>
+                <div style={styles.titles}>
+                  <h2 style={styles.funnelHeaders} className="h2">
+                    Operations
+                  </h2>
+                </div>
+              </Row>
+              <Row style={{flexWrap:"nowrap"}}>
+                <Column
+                  xs={6}
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[9].id}
+                  column={columnsdata[9]}
+                  tasks={this.state[columnsdata[9].id]}
+                />
+                <Column
+                  xs={6}
+                  openEdit={this.handleOpenEdit}
+                  addNewTask={this.handleOpen}
+                  key={columnsdata[10].id}
+                  column={columnsdata[10]}
+                  tasks={this.state[columnsdata[10].id]}
+                />
+              </Row>
+            </Col>
+
             <Col  style={styles.coreColumn}>
               <Row>
                 <div style={styles.titles}>

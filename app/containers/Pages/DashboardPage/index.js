@@ -187,8 +187,6 @@ class DashboardPage extends React.PureComponent {
       { name: 'Scale Launch', value: scale.length },
       { name: 'Soft Launch', value: soft.length },
     ];
-
-
     
     this.setState({
       countProjects:projectnames.length,

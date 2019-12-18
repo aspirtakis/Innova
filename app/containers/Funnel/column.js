@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import styled from 'styled-components';
@@ -5,7 +6,9 @@ import { Droppable } from 'react-beautiful-dnd';
 import Task from './task';
 import './fun.css';
 import { styles } from './funnel_styles';
-import { Select, Spin, Button, Icon, Collapse } from 'antd';
+import {
+ Select, Spin, Button, Icon, Collapse 
+} from 'antd';
 
 const Container = styled.div`
   margin: auto;
@@ -44,7 +47,7 @@ export default class Column extends React.Component {
           {(provided, snapshot) => (
             <TaskList
               ref={provided.innerRef}
-              innerRef={provided.innerRef}
+
               {...provided.droppableProps}
               isDraggingOver={snapshot.isDraggingOver}
             >
@@ -57,7 +60,6 @@ export default class Column extends React.Component {
                 />
               ))}
               {provided.placeholder}
-
               <button
                 style={{
                   display: 'flex',
@@ -73,7 +75,7 @@ export default class Column extends React.Component {
                 className="nav"
                 onClick={() => this.props.addNewTask()}
               >
-                <Icon style={{marginRight:10}} type="plus-circle" />
+                <Icon style={{ marginRight: 10 }} type="plus-circle" />
                 Add Task
               </button>
             </TaskList>
