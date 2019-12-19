@@ -288,6 +288,8 @@ class ModalEditTask extends React.Component {
                       as="select"
                     >
                       <option value="initiate">INITIATE</option>
+                      <option value="backlog">BACKLOG</option>
+                      <option value="archive">ARCHIVE</option>
                       <option value="scope">SCOPE</option>
                       <option value="problem">PROBLEM</option>
                       <option value="solution">SOLUTIONS</option>
@@ -364,10 +366,6 @@ class ModalEditTask extends React.Component {
                   </Form.Group>
                   
                 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}}  as={Col} controlId="ControlFunnel3">
-       
-
-     
-
                   <Form.Label style={{ marginTop: 5 }}>Value</Form.Label>
                   <Form.Control
                     value={this.state.value}

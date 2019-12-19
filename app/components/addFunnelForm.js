@@ -266,6 +266,8 @@ class ModalAddTask extends React.Component {
                       style={{ width: 150 }}
                     >
                       <Option value="initiate">INITIATE</Option>
+                      <Option value="backlog">BACKLOG</Option>
+                      <Option value="archive">ARCHIVE</Option>
                       <Option value="scope">SCOPE</Option>
                       <Option value="problem">PROBLEM</Option>
                       <Option value="solution">SOLUTION</Option>
