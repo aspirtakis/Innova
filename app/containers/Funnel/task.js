@@ -13,9 +13,8 @@ import { Avatar, Icon } from 'antd';
 import { styles } from './funnel_styles';
 
 const Container = styled.div`
-
   padding:1px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   transition: background-color 0.2s ease;
   background-color: ${props =>
     props.isDragDisabled
@@ -60,89 +59,93 @@ export default class Task extends React.Component {
             isDragging={snapshot.isDragging}
             isDragDisabled={isDragDisabled}
           >
-            <Paper onClick={() => this.props.openEdit(taskproblem)}>
-   
-            <div style={styles.cardTitle}>{taskproblem.projectname}</div>
-           
-   
+            <div  onClick={() => this.props.openEdit(taskproblem)} >
 
-              <Row style={{ marginLeft: 0.5 }}>
-                <Col>
-                  <div
-                    style={{
-                      fontWeight: 'bold',
-                      maxWidth: '90%',
-                      padding: 1,
-                      color: 'black',
-                      fontSize: 12,
-                    }}
-                  >
-                    <Icon
-                      style={{ fontSize: '20px', color: '#08c' }}
-                      type="usergroup-add"
-                    />
-                    {taskproblem.sponsor}
-                  </div>
-                </Col>
-
-                <Col>
-                  <div
-                    style={{
-                      fontWeight: 'bold',
-                      maxWidth: '90%',
-                      padding: 3,
-                      fontSize: 12,
-                      minWidth: 50,
-                    }}
-                  >
-                    <Icon
-                      style={{ fontSize: '20px', color: '#08c' }}
-                      type="user"
-                    />
-                    {taskproblem.coach}
-                  </div>
-                </Col>
-              </Row>
-              <Row style={{ marginLeft: 3 }}>
-                <div
-                  style={{
-                    fontWeight: 'bold',
-                    maxWidth: '90%',
-                    padding: 5,
-                    color: 'black',
-                    fontSize: 12,
-                  }}
-                >
-                  PO:{`${taskproblem.leader.substring(0, 18)}...`}
-                </div>
-              </Row>
-              <Row style={{ marginLeft: 3, marginBottom: 2 }}>
-                <div
-                  style={{
-                    justifyContent: 'center',
-                    fontWeight: 'bold',
-                    alignItems: 'center',
-                    maxWidth: '90%',
-                    fontSize: 12,
-                    marginRight: 13,
-                    color: 'green',
-                  }}
-                >
-                  <Avatar
-                    size={25}
-                    src="https://retohercules.com/images/schedule-7.png"
-                    style={{
-                      margin: 5,
-                      marginRight: 5,
-                    }}
-                  />
-                  {moment(taskproblem.updateDate).fromNow()}
-                </div>
-              </Row>
-            </Paper>
+          </div>
+  
           </Container>
         )}
       </Draggable>
     );
   }
 }
+
+
+
+// <div style={styles.cardTitle}>{taskproblem.projectname}</div>
+           
+   
+
+// <Row style={{ marginLeft: 0.5 }}>
+//   <Col>
+//     <div
+//       style={{
+//         fontWeight: 'bold',
+//         maxWidth: '90%',
+//         padding: 1,
+//         color: 'black',
+//         fontSize: 12,
+//       }}
+//     >
+//       <Icon
+//         style={{ fontSize: '20px', color: '#08c' }}
+//         type="usergroup-add"
+//       />
+//       {taskproblem.sponsor}
+//     </div>
+//   </Col>
+
+//   <Col>
+//     <div
+//       style={{
+//         fontWeight: 'bold',
+//         maxWidth: '90%',
+//         padding: 3,
+//         fontSize: 12,
+//         minWidth: 50,
+//       }}
+//     >
+//       <Icon
+//         style={{ fontSize: '20px', color: '#08c' }}
+//         type="user"
+//       />
+//       {taskproblem.coach}
+//     </div>
+//   </Col>
+// </Row>
+// <Row style={{ marginLeft: 3 }}>
+//   <div
+//     style={{
+//       fontWeight: 'bold',
+//       maxWidth: '90%',
+//       padding: 5,
+//       color: 'black',
+//       fontSize: 12,
+//     }}
+//   >
+//     PO:{`${taskproblem.leader.substring(0, 18)}...`}
+//   </div>
+// </Row>
+// <Row style={{ marginLeft: 3, marginBottom: 2 }}>
+//   <div
+//     style={{
+//       justifyContent: 'center',
+//       fontWeight: 'bold',
+//       alignItems: 'center',
+//       maxWidth: '90%',
+//       fontSize: 12,
+//       marginRight: 13,
+//       color: 'green',
+//     }}
+//   >
+//     <Avatar
+//       size={25}
+//       src="https://retohercules.com/images/schedule-7.png"
+//       style={{
+//         margin: 5,
+//         marginRight: 5,
+//       }}
+//     />
+//     {moment(taskproblem.updateDate).fromNow()}
+//   </div>
+// </Row>

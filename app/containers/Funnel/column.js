@@ -36,7 +36,7 @@ export default class Column extends React.Component {
     return (
       <Container>
         <div style={styles.ColTitles}>
-          {this.props.column.title.toUpperCase()}
+          <div class="title-bar__title">{this.props.column.title.toUpperCase()}</div>
         </div>
         <Droppable droppableId={this.props.column.id} type="TASK">
           {(provided, snapshot) => (

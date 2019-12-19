@@ -627,11 +627,11 @@ class Funnel extends Component {
              <Col  style={styles.coreColumn}>
               <Row>
                 <div style={styles.titles}>
-                  <h2 style={styles.funnelHeaders} className="h2">
-                    Operations
-                  </h2>
-                </div>
+                <div class="title-bar__title">Operations</div>
+              </div>
+       
               </Row>
+
               <Row style={{flexWrap:"nowrap"}}>
                 <Column
                   xs={6}
@@ -655,9 +655,7 @@ class Funnel extends Component {
             <Col  style={styles.coreColumn}>
               <Row>
                 <div style={styles.titles}>
-                  <h2 style={styles.funnelHeaders} className="h2">
-                    Explore
-                  </h2>
+                <div class="title-bar__title">Explore</div>
                 </div>
               </Row>
 
@@ -683,9 +681,7 @@ class Funnel extends Component {
             <Col xs={4} style={styles.coreColumnExp}>
               <Row>
                 <Paper style={styles.titles}>
-                  <h2 style={styles.funnelHeaders} className="h2">
-                    Experiment
-                  </h2>
+                <div class="title-bar__title">Experiment</div>
                 </Paper>
               </Row>
               <Row style={{flexWrap:"nowrap"}}>
@@ -715,9 +711,7 @@ class Funnel extends Component {
             <Col  style={styles.coreColumn}>
               <Row>
                 <Paper style={styles.titles}>
-                  <h2 style={styles.funnelHeaders} className="h2">
-                    Execute
-                  </h2>
+                <div class="title-bar__title">Execute</div>
                 </Paper>
               </Row>
 
@@ -741,9 +735,7 @@ class Funnel extends Component {
             <Col  style={styles.coreColumn}>
               <Row>
                 <Paper style={styles.titles}>
-                  <h2 style={styles.funnelHeaders} className="h2">
-                    Scale Up
-                  </h2>
+                <div class="title-bar__title">Scale Up</div>
                 </Paper>
               </Row>
 

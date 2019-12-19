@@ -29,7 +29,8 @@ export const styles = {
     backgroundColor: '#009900',
     textAlign: 'center',
     minWidth: '100%',
-    maxHeight: 40,
+    maxHeight: 35,
+    minHeight: 35,
   },
   coreColumn: {
     margin: 3,
