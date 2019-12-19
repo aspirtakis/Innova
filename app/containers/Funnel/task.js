@@ -8,15 +8,13 @@ import './fun.css';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
 
+
 import { Avatar, Icon } from 'antd';
 import { styles } from './funnel_styles';
 
 const Container = styled.div`
-  border: 1px solid lightgrey;
-  border-radius: 4px;
-  padding:5px;
-  margin-left: auto;
-  margin-right: auto;
+
+  padding:1px;
   margin-bottom: 8px;
   transition: background-color 0.2s ease;
   background-color: ${props =>
@@ -65,65 +63,8 @@ export default class Task extends React.Component {
             <Paper onClick={() => this.props.openEdit(taskproblem)}>
    
             <div style={styles.cardTitle}>{taskproblem.projectname}</div>
-              <Row>
-                <Col
-                  style={{
-                    paddingRight: 10,
-                  }}
-                  sm={8}
-                >
-                  <div
-                    style={{
-                      minWidth: 90,
-                      fontWeight: 'bolder',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      margin: 3,
-                      fontSize: 11,
-                      color:
-                        taskproblem.status === 'yellow' ? 'black' : 'white',
-                      backgroundColor: taskproblem.status,
-                      textAlign: 'center',
-                    }}
-                  >
-                    {this.fixStatus(taskproblem.status)}
-                  </div>
-                </Col>
-                <Col sm={4}>
-                  <div
-                    style={{
-                      paddingLeft: 5,
-                      color: 'white',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: 'gray',
-                      fontWeight: 'bolder',
-                      fontSize: 10,
-                      minHeight: 18,
-                      maxHeight: 18,
-                      marginTop: 3,
-                      minWidth: '100%',
-                    }}
-                  >
-                    {taskproblem.horizon}
-                  </div>
-                </Col>
-              </Row>
-
-
-              <Row style={{ marginLeft: 3 }}>
-                <div
-                  style={{
-                    fontWeight: 'bolder',
-                    maxWidth: '90%',
-                    padding: 3,
-                    fontSize: 14,
-                    color: 'black',
-                  }}
-                >
-    
-                </div>
-              </Row>
+           
+   
 
               <Row style={{ marginLeft: 0.5 }}>
                 <Col>
@@ -162,7 +103,6 @@ export default class Task extends React.Component {
                   </div>
                 </Col>
               </Row>
-
               <Row style={{ marginLeft: 3 }}>
                 <div
                   style={{
@@ -176,7 +116,6 @@ export default class Task extends React.Component {
                   PO:{`${taskproblem.leader.substring(0, 18)}...`}
                 </div>
               </Row>
-
               <Row style={{ marginLeft: 3, marginBottom: 2 }}>
                 <div
                   style={{

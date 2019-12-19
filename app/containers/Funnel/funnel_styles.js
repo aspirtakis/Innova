@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export const styles = {
   cardTitle: {
     fontSize: 12,
@@ -28,19 +29,19 @@ export const styles = {
     backgroundColor: '#009900',
     textAlign: 'center',
     minWidth: '100%',
-    maxHeight: 32,
+    maxHeight: 40,
   },
   coreColumn: {
-    margin: 10,
-    minWidth: 320,
+    margin: 3,
+    minWidth: 550,
     backgroundColor: 'white',
     maxHeight: 800,
     minHeight: '100%',
   },
 
   coreColumnExp: {
-    margin: 10,
-    minWidth: 485,
+    margin: 3,
+    minWidth: 700,
     backgroundColor: 'white',
     maxHeight: 800,
     minHeight: '100%',
@@ -52,7 +53,8 @@ export const styles = {
     color: 'white',
     backgroundColor: '#99cc00',
     textAlign: 'center',
-    minHeight: 20,
+    justifyContent: 'center',
+    minHeight: 30,
   },
 
   funnelHeaders: {

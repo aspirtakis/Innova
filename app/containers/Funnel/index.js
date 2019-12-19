@@ -16,7 +16,7 @@ import { styles } from './funnel_styles';
 import './fun.css';
 import Column from './column';
 import {backend} from '../../utils/config';
-import  Archive  from './archive';
+
 
 const columnsdata = [
 
@@ -390,7 +390,7 @@ class Funnel extends Component {
       .then(response => response.json())
       .then(taskData => {
        // console.log(taskData);
-         //   this.getData();
+            this.getData();
       })
       .catch(taskData => console.log(taskData));
   };

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/button-has-type */
 import React from 'react';
@@ -7,33 +8,27 @@ import Task from './task';
 import './fun.css';
 import { styles } from './funnel_styles';
 import {
- Select, Spin, Button, Icon, Collapse 
+  Select, Spin, Button, Icon, Collapse,
 } from 'antd';
 
 const Container = styled.div`
-  margin: auto;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 2px;
   border: 1px solid lightgrey;
   border-radius: 2px;
-  padding:2px;
   background-color: #f4f9f4;
   display: flex;
-  width:90%;
+  width:100%;
   min-height: 780px;
   flex-direction: column;
-  margin-top:5px;
 `;
 
 const TaskList = styled.div`
-  padding: 4px;
+  padding: 1px;
   transition: background-color 0.2s ease;
   background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')}
   flex-grow: 1;
   min-height: 100%;
   max-height:700px;
-  overflow-y: auto;
-
 `;
 
 export default class Column extends React.Component {
@@ -47,7 +42,6 @@ export default class Column extends React.Component {
           {(provided, snapshot) => (
             <TaskList
               ref={provided.innerRef}
-
               {...provided.droppableProps}
               isDraggingOver={snapshot.isDraggingOver}
             >
