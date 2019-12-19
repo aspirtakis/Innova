@@ -7,7 +7,6 @@ import Row from 'react-bootstrap/Row';
 import './fun.css';
 import Paper from '@material-ui/core/Paper';
 import moment from 'moment';
-import './card.css';
 
 
 import { Avatar, Icon } from 'antd';
@@ -57,54 +56,65 @@ export default class Task extends React.Component {
             isDragging={snapshot.isDragging}
             isDragDisabled={isDragDisabled}
           >
+          <Row style={{flexDirection:'row-reverse'}}>
+          <Col>
+          <div                
+style={{
+  heigth: 25,
+  borderStyle: 'solid',
+  borderWidth: '3px',
+  borderColor:taskproblem.status,
+  textAlign: 'center',
+  borderRadius:25,
+  
 
-          <div className="image-flip" ontouchstart="this.classNameList.toggle('hover');">
-              <div className="mainflip">
-                  <div className="frontside">
-                      <div className="card">
-                          <div className="card-body text-center">
-                              <p><img className=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></img></p>
-                              <h4 className="card-title">{taskproblem.projectname}</h4>
-                              <p className="card-text">{taskproblem.leader}</p>
-                              <p className="card-text">{taskproblem.coach}</p>
-                          </div>
-                      </div>
-                  </div>
+}}>
+  <div
+    style={{
+      heigth: 25,
+      fontWeight: 'bolder',
+      height: 25,
+      fontSize: 12,
+      color:
+        taskproblem.status === 'yellow' ? 'black' : taskproblem.status ,
+      textAlign: 'center',
+      borderRadius:25,
+      display: 'flex',
+      justifyContent: 'center',
+    
+    }}
+  >
+  <div style={{margin:3}}>
+  {this.fixStatus(taskproblem.status)}
+  </div>
+  
+    <div  class="circle">
+{taskproblem.horizon}
+</div>
+    </div>
+</div>  
 
 
-                  <div className="backside">
-                      <div className="card">
-                          <div className="card-body text-center mt-4">
-                              <h4 className="card-title">{taskproblem.title}</h4>
-                              <p className="card-text">{taskproblem.description}</p>
-                              <ul className="list-inline">
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-facebook"></i>
-                                      </a>
-                                  </li>
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-twitter"></i>
-                                      </a>
-                                  </li>
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-skype"></i>
-                                      </a>
-                                  </li>
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-google"></i>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+          </Col>
+          <Col>
 
+<div>
+<h4 class="h5">{taskproblem.projectname}</h4>
+</div>
+<div>
+<h4 class="h5">{taskproblem.leader}</h4>
+</div>
+<div>
+<h4 class="h5">{taskproblem.coach}</h4>
+</div>
+          
+          
+          </Col>
+          
+
+
+
+          </Row>
           </Container>
         )}
       </Draggable>

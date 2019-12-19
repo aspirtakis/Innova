@@ -145,6 +145,27 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  .circle {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    padding-top: 5px;
+    border-radius: 50%;
+    
+    /* Just making it pretty */
+    @shadow: rgba(0, 0, 0, .1);
+    @shadow-length: 4px;
+    -webkit-box-shadow: 0 @shadow-length 0 0 @shadow;
+            box-shadow: 0 @shadow-length 0 0 @shadow;
+    text-shadow: 0 @shadow-length 0 @shadow;
+    background: #38a9e4;
+    color: white;
+    font-family: Helvetica, Arial Black, sans;
+    font-size: 10px;
+    text-align: center;
+  }
+
   @media (min-width: 600px) {
     .main-container.subtabs {
       height: calc(100% - 128px);
