@@ -57,6 +57,7 @@ export default class Task extends React.Component {
             isDragging={snapshot.isDragging}
             isDragDisabled={isDragDisabled}
           >
+<div onClick={() => this.props.openEdit(taskproblem)}>
 
           <div className="image-flip" ontouchstart="this.classNameList.toggle('hover');">
               <div className="mainflip">
@@ -103,6 +104,7 @@ export default class Task extends React.Component {
                       </div>
                   </div>
               </div>
+          </div>
           </div>
 
           </Container>
