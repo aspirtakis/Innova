@@ -12,7 +12,7 @@ import {
 } from 'antd';
 
 const Container = styled.div`
-  margin: 2px;
+
   border: 1px solid lightgrey;
   border-radius: 2px;
   background-color: #f4f9f4;
@@ -20,6 +20,9 @@ const Container = styled.div`
   width:100%;
   min-height: 780px;
   flex-direction: column;
+
+
+  height: calc(100vh - 8.6rem);
 `;
 
 const TaskList = styled.div`
@@ -27,8 +30,10 @@ const TaskList = styled.div`
   transition: background-color 0.2s ease;
   background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')}
   flex-grow: 1;
-  min-height: 100%;
-  max-height:700px;
+  flex-direction: column;
+  max-height: calc(100vh - 11.8rem);
+  height: calc(100vh - 8.6rem);
+  overflow-y: auto;
 `;
 
 export default class Column extends React.Component {

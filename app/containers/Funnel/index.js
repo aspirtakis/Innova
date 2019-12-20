@@ -629,9 +629,7 @@ class Funnel extends Component {
                 <div style={styles.titles}>
                 <div class="title-bar__title">Operations</div>
               </div>
-       
               </Row>
-
               <Row style={{flexWrap:"nowrap"}}>
                 <Column
                   xs={6}
