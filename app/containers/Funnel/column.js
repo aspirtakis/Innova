@@ -20,17 +20,13 @@ const Container = styled.div`
   width:100%;
   min-height: 780px;
   flex-direction: column;
-
-
   height: calc(100vh - 8.6rem);
 `;
 
 const TaskList = styled.div`
   padding: 1px;
   transition: background-color 0.2s ease;
-  background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')}
-  flex-grow: 1;
-  flex-direction: column;
+  background-color: ${props => (props.isDraggingOver ? 'green' : 'white')}
   max-height: calc(100vh - 11.8rem);
   height: calc(100vh - 8.6rem);
   overflow-y: auto;
