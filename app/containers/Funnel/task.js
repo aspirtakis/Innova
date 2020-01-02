@@ -60,21 +60,102 @@ export default class Task extends React.Component {
           <div className="image-flip" ontouchstart="this.classNameList.toggle('hover');">
               <div className="mainflip">
                   <div className="frontside">
+
+                  <div style={styles.mainCard}>
                   <div style={styles.cardTitle}>{taskproblem.projectname}</div>
-                    <p>{this.fixStatus(taskproblem.status)}</p>
-                    <p>{taskproblem.horizon}</p>
-                    <p>Members:{taskproblem.sponsor}</p>
-                    <p>Coach:{taskproblem.coach}</p>
-                    <p>PO:{taskproblem.leader}</p>
+                
+                  <div style={styles.cardStatus}>
+                  <Col  sm={8}>
+                  <div  style={{
+                   color:taskproblem.status === 'yellow' ? 'black' : 'white', 
+                   borderRadius:'20%',
+                   backgroundColor:taskproblem.status}} >
+                  {this.fixStatus(taskproblem.status)}
+                  </div>
+   
+                  </Col>
+                  <Col sm={4}>
+                  <div  style={{
+                    color:'white', 
+                    fontSize: 10,
+                    padding:1,
+                    borderRadius:'35%',
+                    backgroundColor:'gray'}} >
+                    {taskproblem.horizon}
+                   </div>
+                  </Col>
+                      
+         
+                  </div>
+                  <div style={styles.cardR}>PO:{taskproblem.leader}</div>
+                  <div style={styles.cardR}>Coach:{taskproblem.coach}</div>
+                  <div style={styles.cardFooter}>
+                  <div>
+            
+                       <Avatar
+                         size={25}
+                         src="https://cdn1.iconfinder.com/data/icons/ui-colored-3-of-3/100/UI_3__23-512.png"
+                         style={{
+                           margin: 5,
+                           marginRight: 5,
+                         }}
+                       >
+           
+                       </Avatar>
+                       {taskproblem.sponsor}
+                  </div>
+
+                  <div>
+                  <Avatar
+                  size={25}
+                  src="https://retohercules.com/images/schedule-7.png"
+                  style={{
+                    margin: 5,
+                    marginRight: 5,
+                  }}
+                >
+                </Avatar>
+                {taskproblem.sponsor}
+                  </div>
+
+                  <div>
+                  <Avatar
+                  size={25}
+                  src="https://retohercules.com/images/schedule-7.png"
+                  style={{
+                    margin: 5,
+                    marginRight: 5,
+                  }}
+                >
+                </Avatar>
+                {taskproblem.sponsor}
+                  </div>
+        
+                  <div>
+                  <Avatar
+                  size={25}
+                  src="https://retohercules.com/images/schedule-7.png"
+                  style={{
+                    margin: 5,
+                    marginRight: 5,
+                  }}
+                >
+                </Avatar>
+                {taskproblem.sponsor}
+                  </div>
+
+                  </div>
+                  </div>
                   </div>
                 
                   <div className="backside">
+                  <div style={styles.backCard}>
+                  <div style={styles.cardTitle}>{taskproblem.funnel}</div>
+                  <div style={styles.cardR}>{taskproblem.title}</div>
 
-                  <p>{taskproblem.description}</p>
-                  <p>{taskproblem.funnel}</p>
-                  <p>Sponsor:{taskproblem.spnsr}</p>
-                  {moment(taskproblem.updateDate).fromNow()}
-
+                  <div style={styles.cardFooter}> {moment(taskproblem.updateDate).fromNow()}</div>
+                  </div>
+              
                   </div>
               </div>
           </div>

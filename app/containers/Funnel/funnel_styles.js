@@ -1,16 +1,72 @@
 /* eslint-disable import/prefer-default-export */
 export const styles = {
-  cardTitle: {
+  mainCard: {
+    padding: 3,
+    marginBottom: 10,
+  },
+  backCard: {
+    backgroundColor: '#F0F1F0',
+    padding: 3,
+  },
+
+
+  cardPO: {
     fontSize: 12,
     minHeight: 30,
+    minWidth: '100%',
+    textAlign: 'center',
+    color: 'black',
+    margin: 'auto',
+    padding: 3,
+  },
+
+  cardFooter: {
+    display: 'flex',
+    flexDirection: 'row',
+    fontSize: 12,
+    color: 'black',
+    textAlign: 'start',
+    padding: 3,
+  },
+
+  cardR: {
+    fontSize: 12,
+    minHeight: 30,
+    minWidth: '100%',
+    textAlign: 'start',
+    color: 'black',
+    margin: 'auto',
+    padding: 3,
+  },
+
+  cardStatus: {
+    marginTop: 5,
+    minHeight: 30,
+    display: 'flex',
+    flexDirection: 'row',
+    textAlign: 'center',
+    flexWrap: 'nowrap',
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: 'black',
+    padding: 'auto',
+  },
+
+  cardTitle: {
+    fontSize: 12,
+    minHeight: 20,
     minWidth: '100%',
     backgroundColor: '#b3e6b3',
     textAlign: 'center',
     fontWeight: 'bold',
     color: 'black',
     margin: 'auto',
-    padding: 10,
+    padding: 3,
   },
+
+
+
+
 
   cardTitle2: {
     fontSize: 11,
