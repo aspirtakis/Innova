@@ -14,7 +14,6 @@ export const styles = {
 
   cardTitle2: {
     fontSize: 11,
-    // minWidth: '100%',
     backgroundColor: '#C7F3C6',
     textAlign: 'center',
     color: 'black',
@@ -34,7 +33,7 @@ export const styles = {
   },
   coreColumn: {
     margin: 3,
-    minWidth: 532,
+    minWidth: 410,
     backgroundColor: 'white',
     maxHeight: 800,
     minHeight: '100%',
@@ -42,7 +41,7 @@ export const styles = {
 
   coreColumnExp: {
     margin: 3,
-    minWidth: 798,
+    minWidth: 610,
     backgroundColor: 'white',
     maxHeight: 800,
     minHeight: '100%',

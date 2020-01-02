@@ -58,55 +58,121 @@ export default class Task extends React.Component {
             isDragDisabled={isDragDisabled}
           >
 <div onClick={() => this.props.openEdit(taskproblem)}>
-
           <div className="image-flip" ontouchstart="this.classNameList.toggle('hover');">
               <div className="mainflip">
+
                   <div className="frontside">
-                      <div className="card">
-                          <div className="card-body text-center">
-                              <p><img className=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></img></p>
-                              <h4 className="card-title">{taskproblem.projectname}</h4>
-                              <p className="card-text">{taskproblem.leader}</p>
-                              <p className="card-text">{taskproblem.coach}</p>
-                          </div>
+                  <div style={styles.cardTitle}>{taskproblem.projectname}</div>
+                  
+                  
+                  <div
+                  style={{
+                    heigth: 25,
+                    fontWeight: 'bolder',
+                    height: 25,
+                    fontSize: 12,
+                    color:
+                      taskproblem.status === 'yellow' ? 'black' : taskproblem.status ,
+                    textAlign: 'center',
+                    borderRadius:25,
+                    display: 'flex',
+                    justifyContent: 'end',
+                  
+                  }}
+                >
+                <div style={{margin:3}}>
+                {this.fixStatus(taskproblem.status)}
+                </div>
+                
+                  <div  class="circle">
+              {taskproblem.horizon}
+              </div>
+                  </div>
+                  <Row style={{ marginLeft: 0.5 }}>
+                    <Col>
+                      <div
+                        style={{
+                          fontWeight: 'bold',
+                          maxWidth: '90%',
+                          padding: 1,
+                          color: 'black',
+                          fontSize: 12,
+                        }}
+                      >
+                        <Icon
+                          style={{ fontSize: '20px', color: '#08c' }}
+                          type="usergroup-add"
+                        />
+                        {taskproblem.sponsor}
                       </div>
+                    </Col>
+                    <Col>
+                      <div
+                        style={{
+                          fontWeight: 'bold',
+                          maxWidth: '90%',
+                          padding: 3,
+                          fontSize: 12,
+                          minWidth: 50,
+                        }}
+                      >
+                        <Icon
+                          style={{ fontSize: '20px', color: '#08c' }}
+                          type="user"
+                        />
+                        {taskproblem.coach}
+                      </div>
+                    </Col>
+                  </Row>
+
+                  <Row style={{ marginLeft: 3 }}>
+                    <div
+                      style={{
+                        fontWeight: 'bold',
+                        maxWidth: '90%',
+                        padding: 5,
+                        color: 'black',
+                        fontSize: 12,
+                      }}
+                    >
+                      PO:{taskproblem.leader}
+                    </div>
+                  </Row>
+                  
+
                   </div>
 
-
                   <div className="backside">
-                      <div className="card">
-                          <div className="card-body text-center mt-4">
-                              <h4 className="card-title">{taskproblem.title}</h4>
-                              <p className="card-text">{taskproblem.description}</p>
-                              <ul className="list-inline">
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-facebook"></i>
-                                      </a>
-                                  </li>
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-twitter"></i>
-                                      </a>
-                                  </li>
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-skype"></i>
-                                      </a>
-                                  </li>
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-google"></i>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
+
+                  <Row style={{ marginLeft: 3, marginBottom: 2 }}>
+                  <div
+                    style={{
+                      justifyContent: 'center',
+                      fontWeight: 'bold',
+                      alignItems: 'center',
+                      maxWidth: '90%',
+                      fontSize: 12,
+                      marginRight: 13,
+                      color: 'green',
+                    }}
+                  >
+                    <Avatar
+                      size={25}
+                      src="https://retohercules.com/images/schedule-7.png"
+                      style={{
+                        margin: 5,
+                        marginRight: 5,
+                      }}
+                    />
+                    {moment(taskproblem.updateDate).fromNow()}
+                  </div>
+                </Row>
+
+
                   </div>
               </div>
           </div>
           </div>
-
           </Container>
         )}
       </Draggable>
@@ -116,80 +182,3 @@ export default class Task extends React.Component {
 
 
 
-// <div style={styles.cardTitle}>{taskproblem.projectname}</div>
-           
-   
-
-// <Row style={{ marginLeft: 0.5 }}>
-//   <Col>
-//     <div
-//       style={{
-//         fontWeight: 'bold',
-//         maxWidth: '90%',
-//         padding: 1,
-//         color: 'black',
-//         fontSize: 12,
-//       }}
-//     >
-//       <Icon
-//         style={{ fontSize: '20px', color: '#08c' }}
-//         type="usergroup-add"
-//       />
-//       {taskproblem.sponsor}
-//     </div>
-//   </Col>
-
-//   <Col>
-//     <div
-//       style={{
-//         fontWeight: 'bold',
-//         maxWidth: '90%',
-//         padding: 3,
-//         fontSize: 12,
-//         minWidth: 50,
-//       }}
-//     >
-//       <Icon
-//         style={{ fontSize: '20px', color: '#08c' }}
-//         type="user"
-//       />
-//       {taskproblem.coach}
-//     </div>
-//   </Col>
-// </Row>
-// <Row style={{ marginLeft: 3 }}>
-//   <div
-//     style={{
-//       fontWeight: 'bold',
-//       maxWidth: '90%',
-//       padding: 5,
-//       color: 'black',
-//       fontSize: 12,
-//     }}
-//   >
-//     PO:{`${taskproblem.leader.substring(0, 18)}...`}
-//   </div>
-// </Row>
-// <Row style={{ marginLeft: 3, marginBottom: 2 }}>
-//   <div
-//     style={{
-//       justifyContent: 'center',
-//       fontWeight: 'bold',
-//       alignItems: 'center',
-//       maxWidth: '90%',
-//       fontSize: 12,
-//       marginRight: 13,
-//       color: 'green',
-//     }}
-//   >
-//     <Avatar
-//       size={25}
-//       src="https://retohercules.com/images/schedule-7.png"
-//       style={{
-//         margin: 5,
-//         marginRight: 5,
-//       }}
-//     />
-//     {moment(taskproblem.updateDate).fromNow()}
-//   </div>
-// </Row>
