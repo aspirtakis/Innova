@@ -7,8 +7,8 @@ export const styles = {
     textAlign: 'center',
     fontWeight: 'bold',
     color: 'black',
-    minHeight: 20,
-    maxHeight: 20,
+    minHeight: 25,
+    maxHeight: 25,
     justifyContent: 'center',
   },
 

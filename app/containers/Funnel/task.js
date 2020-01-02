@@ -62,85 +62,126 @@ export default class Task extends React.Component {
               <div className="mainflip">
 
                   <div className="frontside">
-                  <div style={styles.cardTitle}>{taskproblem.projectname}</div>
-                  
-                  
+
+
+   
+            <div style={styles.cardTitle}>{taskproblem.projectname}</div>
+              <Row>
+                <Col
+                  sm={8}
+                >
                   <div
+                    style={{
+                      minWidth: '40%',
+                      maxWidth: '80%',
+                      fontWeight: 'bolder',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: 3,
+                      fontSize: 11,
+                      minHeight:20,
+                      color:
+                        taskproblem.status === 'yellow' ? 'black' : 'white',
+                      backgroundColor: taskproblem.status,
+                      textAlign: 'center',
+                    }}
+                  >
+                    {this.fixStatus(taskproblem.status)}
+                  </div>
+                </Col>
+                <div sm={4} 
+                style={{
+                  paddingLeft: 5,
+                  flexDirection: 'column',
+                  color: 'white',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'gray',
+                  fontWeight: 'bolder',
+                  fontSize: 10,
+                  marginTop: 3,
+                  minHeight:20,
+                  minWidth:25,
+                  borderRadius: '50%',
+                }}>
+
+                    <div style={{marginTop:3}}>{taskproblem.horizon}</div>
+         
+                </div>
+              </Row>
+
+
+              <Row style={{ marginLeft: 3 }}>
+                <div
                   style={{
-                    heigth: 25,
                     fontWeight: 'bolder',
-                    height: 25,
-                    fontSize: 12,
-                    color:
-                      taskproblem.status === 'yellow' ? 'black' : taskproblem.status ,
-                    textAlign: 'center',
-                    borderRadius:25,
-                    display: 'flex',
-                    justifyContent: 'end',
-                  
+                    maxWidth: '90%',
+                    padding: 3,
+                    fontSize: 14,
+                    color: 'black',
                   }}
                 >
-                <div style={{margin:3}}>
-                {this.fixStatus(taskproblem.status)}
+    
                 </div>
-                
-                  <div  class="circle">
-              {taskproblem.horizon}
-              </div>
-                  </div>
-                  <Row style={{ marginLeft: 0.5 }}>
-                    <Col>
-                      <div
-                        style={{
-                          fontWeight: 'bold',
-                          maxWidth: '90%',
-                          padding: 1,
-                          color: 'black',
-                          fontSize: 12,
-                        }}
-                      >
-                        <Icon
-                          style={{ fontSize: '20px', color: '#08c' }}
-                          type="usergroup-add"
-                        />
-                        {taskproblem.sponsor}
-                      </div>
-                    </Col>
-                    <Col>
-                      <div
-                        style={{
-                          fontWeight: 'bold',
-                          maxWidth: '90%',
-                          padding: 3,
-                          fontSize: 12,
-                          minWidth: 50,
-                        }}
-                      >
-                        <Icon
-                          style={{ fontSize: '20px', color: '#08c' }}
-                          type="user"
-                        />
-                        {taskproblem.coach}
-                      </div>
-                    </Col>
-                  </Row>
+              </Row>
 
-                  <Row style={{ marginLeft: 3 }}>
-                    <div
-                      style={{
-                        fontWeight: 'bold',
-                        maxWidth: '90%',
-                        padding: 5,
-                        color: 'black',
-                        fontSize: 12,
-                      }}
-                    >
-                      PO:{taskproblem.leader}
-                    </div>
-                  </Row>
+              <Row style={{ marginLeft: 0.5 }}>
+                <Col>
+                  <div
+                    style={{
+                      fontWeight: 'bold',
+                      maxWidth: '90%',
+                      padding: 1,
+                      color: 'black',
+                      fontSize: 12,
+                    }}
+                  >
+                    <Icon
+                      style={{ fontSize: '20px', color: '#08c' }}
+                      type="usergroup-add"
+                    />
+                    {taskproblem.sponsor}
+                  </div>
+                </Col>
+
+                <Col>
+                  <div
+                    style={{
+                      fontWeight: 'bold',
+                      maxWidth: '90%',
+                      padding: 3,
+                      fontSize: 12,
+                      minWidth: 50,
+                    }}
+                  >
+                    <Icon
+                      style={{ fontSize: '20px', color: '#08c' }}
+                      type="user"
+                    />
+                    {taskproblem.coach}
+                  </div>
+                </Col>
+              </Row>
+
+              <Row style={{ marginLeft: 3 }}>
+                <div
+                  style={{
+                    fontWeight: 'bold',
+                    maxWidth: '90%',
+                    padding: 5,
+                    color: 'black',
+                    fontSize: 12,
+                  }}
+                >
+                  PO:{taskproblem.leader}
+                </div>
+              </Row>
+
+
+
                   
-
                   </div>
+                
 
                   <div className="backside">
 
