@@ -2,14 +2,14 @@
 export const styles = {
   cardTitle: {
     fontSize: 12,
-    // minWidth: '100%',
+    minHeight: 30,
+    minWidth: '100%',
     backgroundColor: '#b3e6b3',
     textAlign: 'center',
     fontWeight: 'bold',
     color: 'black',
-    minHeight: 25,
-    maxHeight: 25,
-    justifyContent: 'center',
+    margin: 'auto',
+    padding: 10,
   },
 
   cardTitle2: {
@@ -120,7 +120,6 @@ export const styles = {
 
   colInit: {
     minHeight: 500,
-
     border: '2px solid black',
   },
   containerExperiment: {

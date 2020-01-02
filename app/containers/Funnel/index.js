@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import { DragDropContext } from 'react-beautiful-dnd';
 import styled from 'styled-components';
-import {Drawer, Select, Icon, Collapse, Spin } from 'antd';
+import {Drawer, Select, Icon, Collapse, Spin,Switch } from 'antd';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import makeSelectFunnel from './selectors';
@@ -16,6 +16,7 @@ import { styles } from './funnel_styles';
 import './fun.css';
 import Column from './column';
 import {backend} from '../../utils/config';
+import { Button } from '@material-ui/core';
 
 
 const columnsdata = [
@@ -110,6 +111,8 @@ class Funnel extends Component {
       themes: [],
       expanded: '',
       setExpanded: true,
+      activeOperations:false,
+      checked:false,
     };
   }
 
@@ -278,7 +281,6 @@ class Funnel extends Component {
       .catch(taskData => console.log(taskData));
   };
 
-
   handleOk = () => {
     this.setState({ spinning: true });
     this.setState({ setOpen: false });
@@ -286,12 +288,20 @@ class Funnel extends Component {
     this.getData();
   };
 
+  showOperations = (checked) => {
+    this.setState({checked:checked});
+  };
+
   filterBar = () => (
     <Collapse>
       <Panel header="Filters" key="1">
         <Row style={styles.containerTop}>
-          <Col style={styles.containerTopCol}>
-            <Row style={{ maxHeigth: 10 }}>Department</Row>
+          <Col style={{maxWidth:100}}>
+          <Row style={{ maxHeigth: 10 }}>BackLog</Row>
+          <Switch checked={this.state.checked} defaultChecked={false} onChange={this.showOperations}></Switch>
+          </Col>
+          <Col >
+          <Row style={{ maxHeigth: 10 }}>Department</Row>
             <Row>
               <Select onChange={ this.filterDepartment} style={{ width: 180 }}>
                 <Option value="PLATFORM">PLATFORM</Option>
@@ -300,8 +310,7 @@ class Funnel extends Component {
               </Select>
             </Row>
           </Col>
-
-          <Col style={styles.containerTopCol}>
+          <Col >
             <Row style={{ maxHeigth: 5 }}> Theme</Row>
             <Row>
               <Select onChange={(e) => this.filter('theme',e)} style={{ width: 150 }}>
@@ -313,7 +322,6 @@ class Funnel extends Component {
               </Select>
             </Row>
           </Col>
-
           <Col style={styles.containerTopCol}>
             <Row style={{ maxHeigth: 5 }}> Project</Row>
             <Row>
@@ -326,7 +334,6 @@ class Funnel extends Component {
               </Select>
             </Row>
           </Col>
-
           <Col style={styles.containerTopCol}>
             <Row style={{ maxHeigth: 5 }}> Status</Row>
             <Row>
@@ -600,9 +607,8 @@ class Funnel extends Component {
   };
 
 
-
   render() {
-    const { selectedTask, sestoken } = this.state;
+    const { selectedTask, sestoken, checked } = this.state;
     return (
       <div style={{ marginLeft: 10 }}>
 
@@ -624,7 +630,7 @@ class Funnel extends Component {
         {this.filterBar()}
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Container>
-             <Col  style={styles.coreColumn}>
+  { checked && <Col  style={styles.coreColumn}>
               <Row>
                 <div style={styles.titles}>
                 <div class="title-bar__title">Operations</div>
@@ -648,7 +654,7 @@ class Funnel extends Component {
                   tasks={this.state[columnsdata[10].id]}
                 />
               </Row>
-            </Col>
+            </Col>}
             <Col  style={styles.coreColumn}>
               <Row>
                 <div style={styles.titles}>

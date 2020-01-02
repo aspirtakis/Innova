@@ -4,6 +4,11 @@
     background: #eee !important;
 }
 
+.center {
+    text-align: center;
+
+  }
+
 .btn-primary:hover,
 .btn-primary:focus {
     background-color: #108d6f;
@@ -70,13 +75,17 @@ section .section-title {
     -webkit-transform: rotateY(0deg);
     -ms-transform: rotateY(0deg);
     z-index: 2;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
 }
 
 .backside {
     position: absolute;
     top: 0;
     left: 0;
+    min-height: 200px;
+    max-height: 200px;
+    min-width: 200px;
+    max-width: 200px;
     background: white;
     -webkit-transform: rotateY(-180deg);
     -moz-transform: rotateY(-180deg);
