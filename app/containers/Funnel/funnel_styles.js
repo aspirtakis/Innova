@@ -26,6 +26,7 @@ export const styles = {
     fontSize: 12,
     color: 'black',
     textAlign: 'start',
+    backgroundColor: '#F0F1F0',
     padding: 3,
   },
 
@@ -53,8 +54,8 @@ export const styles = {
   },
 
   cardTitle: {
-    fontSize: 12,
-    minHeight: 20,
+    fontSize: 14,
+    minHeight: 30,
     minWidth: '100%',
     backgroundColor: '#b3e6b3',
     textAlign: 'center',

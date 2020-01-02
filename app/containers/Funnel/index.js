@@ -655,6 +655,8 @@ class Funnel extends Component {
                 />
               </Row>
             </Col>}
+
+            
             <Col  style={styles.coreColumn}>
               <Row>
                 <div style={styles.titles}>

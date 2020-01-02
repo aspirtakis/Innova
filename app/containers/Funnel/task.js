@@ -72,7 +72,6 @@ export default class Task extends React.Component {
                    backgroundColor:taskproblem.status}} >
                   {this.fixStatus(taskproblem.status)}
                   </div>
-   
                   </Col>
                   <Col sm={4}>
                   <div  style={{
@@ -84,30 +83,26 @@ export default class Task extends React.Component {
                     {taskproblem.horizon}
                    </div>
                   </Col>
-                      
-         
                   </div>
                   <div style={styles.cardR}>PO:{taskproblem.leader}</div>
                   <div style={styles.cardR}>Coach:{taskproblem.coach}</div>
                   <div style={styles.cardFooter}>
                   <div>
-            
                        <Avatar
-                         size={25}
+                         size={20}
                          src="https://cdn1.iconfinder.com/data/icons/ui-colored-3-of-3/100/UI_3__23-512.png"
                          style={{
                            margin: 5,
                            marginRight: 5,
                          }}
                        >
-           
                        </Avatar>
                        {taskproblem.sponsor}
                   </div>
 
                   <div>
                   <Avatar
-                  size={25}
+                  size={20}
                   src="https://retohercules.com/images/schedule-7.png"
                   style={{
                     margin: 5,
@@ -120,7 +115,7 @@ export default class Task extends React.Component {
 
                   <div>
                   <Avatar
-                  size={25}
+                  size={20}
                   src="https://retohercules.com/images/schedule-7.png"
                   style={{
                     margin: 5,
@@ -133,7 +128,7 @@ export default class Task extends React.Component {
         
                   <div>
                   <Avatar
-                  size={25}
+                  size={20}
                   src="https://retohercules.com/images/schedule-7.png"
                   style={{
                     margin: 5,
@@ -143,19 +138,15 @@ export default class Task extends React.Component {
                 </Avatar>
                 {taskproblem.sponsor}
                   </div>
-
                   </div>
                   </div>
                   </div>
-                
                   <div className="backside">
                   <div style={styles.backCard}>
                   <div style={styles.cardTitle}>{taskproblem.funnel}</div>
                   <div style={styles.cardR}>{taskproblem.title}</div>
-
                   <div style={styles.cardFooter}> {moment(taskproblem.updateDate).fromNow()}</div>
                   </div>
-              
                   </div>
               </div>
           </div>
