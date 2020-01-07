@@ -2,19 +2,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import './fun.css';
-import moment from 'moment';
+// import moment from 'moment';
 import './card2.css';
 
 
-import { Avatar, Icon } from 'antd';
 import { styles } from './funnel_styles';
 
 const Container = styled.div`
   transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isDragDisabled
+  background-color: ${props => (props.isDragDisabled
         ? 'lightgrey'
         : props.isDragging
             ? '#009900'
@@ -59,7 +56,6 @@ export default class Task extends React.Component {
                           <div className="card">
                               <div style={{ backgroundColor: '#ECEFEC' }} className="card__header">
                                   <h1 style={styles.cardTitle} className="h2 h2--strong">{taskproblem.projectname}</h1>
-
                               </div>
                               <div className="card__body">
                                   <div style={styles.cardStatus} className="row">
