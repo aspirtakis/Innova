@@ -2,194 +2,111 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import './fun.css';
-import Paper from '@material-ui/core/Paper';
-import moment from 'moment';
-import './card.css';
+// import moment from 'moment';
+import './card2.css';
 
 
-import { Avatar, Icon } from 'antd';
 import { styles } from './funnel_styles';
 
 const Container = styled.div`
   transition: background-color 0.2s ease;
-  background-color: ${props =>
-    props.isDragDisabled
-      ? 'lightgrey'
-      : props.isDragging
-      ? '#009900'
-      : 'white'};
+  background-color: ${props => (props.isDragDisabled
+        ? 'lightgrey'
+        : props.isDragging
+            ? '#009900'
+            : 'white')};
 `;
 
 export default class Task extends React.Component {
-  fixStatus = status => {
-    if (status === 'green') {
-      return 'PROGRESSING';
-    }
-    if (status === 'yellow') {
-      return 'IMPEDIMENT';
-    }
-    if (status === 'orange') {
-      return 'PARKED';
-    }
-    if (status === 'red') {
-      return 'STOPPED';
-    }
+  fixStatus = (status) => {
+      if (status === 'green') {
+          return 'PROGRESSING';
+      }
+      if (status === 'yellow') {
+          return 'IMPEDIMENT';
+      }
+      if (status === 'orange') {
+          return 'PARKED';
+      }
+      if (status === 'red') {
+          return 'STOPPED';
+      }
   };
 
   render() {
-    const isDragDisabled = this.props.task.task_id === '1';
-    const taskproblem = this.props.task;
+      const isDragDisabled = this.props.task.task_id === '1';
+      const taskproblem = this.props.task;
 
-    return (
-      <Draggable
-        draggableId={this.props.task.task_id}
-        index={this.props.index}
-        isDragDisabled={isDragDisabled}
-      >
-        {(provided, snapshot) => (
-          <Container
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            isDragging={snapshot.isDragging}
-            isDragDisabled={isDragDisabled}
+      return (
+          <Draggable
+              draggableId={this.props.task.task_id}
+              index={this.props.index}
+              isDragDisabled={isDragDisabled}
           >
-<div onClick={() => this.props.openEdit(taskproblem)}>
+              {(provided, snapshot) => (
+                  <Container
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}
+                      isDragging={snapshot.isDragging}
+                      isDragDisabled={isDragDisabled}
+                  >
+                      <div onClick={() => this.props.openEdit(taskproblem)}>
+                          <div className="card">
+                              <div style={{ backgroundColor: '#ECEFEC' }} className="card__header">
+                                  <h1 style={styles.cardTitle} className="h2 h2--strong">{taskproblem.projectname}</h1>
+                              </div>
+                              <div className="card__body">
+                                  <div style={styles.cardStatus} className="row">
+                                      <div className="col col--8">
+                                          <div
+                                              className="one-edge-shadow corners2"
+                                              style={{
+                                                  color: taskproblem.status === 'yellow' ? 'black' : 'white',
+                                                  backgroundColor: taskproblem.status,
+                                              }}
+                                          >
+                                              {this.fixStatus(taskproblem.status)}
+                                          </div>
+                                      </div>
+                                      <div className="col col--4 ">
+                                          <div
+                                              className="corners2"
+                                              style={{
+                                                  color: 'white',
+                                                  fontSize: 11,
 
-          <div className="image-flip" ontouchstart="this.classNameList.toggle('hover');">
-              <div className="mainflip">
-                  <div className="frontside">
-                      <div className="card">
-                          <div className="card-body text-center">
-                              <p><img className=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></img></p>
-                              <h4 className="card-title">{taskproblem.projectname}</h4>
-                              <p className="card-text">{taskproblem.leader}</p>
-                              <p className="card-text">{taskproblem.coach}</p>
+                                                  backgroundColor: 'gray',
+                                              }}
+                                          >
+                                              {taskproblem.horizon}
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div className="card__body">
+                                  <dl style={{ fontSize: 11 }} className="dl">
+                                      <div className="row">
+                                          <div className="col col--7">
+                                              <dt>PO</dt>
+                                              <dd>{taskproblem.leader}</dd>
+                                          </div>
+                                          <div className="col col--5">
+                                              <dt>Coach</dt>
+                                              <dd>{taskproblem.coach}</dd>
+                                          </div>
+
+                                      </div>
+                                  </dl>
+                              </div>
+
+
                           </div>
                       </div>
-                  </div>
-
-
-                  <div className="backside">
-                      <div className="card">
-                          <div className="card-body text-center mt-4">
-                              <h4 className="card-title">{taskproblem.title}</h4>
-                              <p className="card-text">{taskproblem.description}</p>
-                              <ul className="list-inline">
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-facebook"></i>
-                                      </a>
-                                  </li>
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-twitter"></i>
-                                      </a>
-                                  </li>
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-skype"></i>
-                                      </a>
-                                  </li>
-                                  <li className="list-inline-item">
-                                      <a className="social-icon text-xs-center" target="_blank" href="#">
-                                          <i className="fa fa-google"></i>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          </div>
-
-          </Container>
-        )}
-      </Draggable>
-    );
+                  </Container>
+              )}
+          </Draggable>
+      );
   }
 }
-
-
-
-// <div style={styles.cardTitle}>{taskproblem.projectname}</div>
-           
-   
-
-// <Row style={{ marginLeft: 0.5 }}>
-//   <Col>
-//     <div
-//       style={{
-//         fontWeight: 'bold',
-//         maxWidth: '90%',
-//         padding: 1,
-//         color: 'black',
-//         fontSize: 12,
-//       }}
-//     >
-//       <Icon
-//         style={{ fontSize: '20px', color: '#08c' }}
-//         type="usergroup-add"
-//       />
-//       {taskproblem.sponsor}
-//     </div>
-//   </Col>
-
-//   <Col>
-//     <div
-//       style={{
-//         fontWeight: 'bold',
-//         maxWidth: '90%',
-//         padding: 3,
-//         fontSize: 12,
-//         minWidth: 50,
-//       }}
-//     >
-//       <Icon
-//         style={{ fontSize: '20px', color: '#08c' }}
-//         type="user"
-//       />
-//       {taskproblem.coach}
-//     </div>
-//   </Col>
-// </Row>
-// <Row style={{ marginLeft: 3 }}>
-//   <div
-//     style={{
-//       fontWeight: 'bold',
-//       maxWidth: '90%',
-//       padding: 5,
-//       color: 'black',
-//       fontSize: 12,
-//     }}
-//   >
-//     PO:{`${taskproblem.leader.substring(0, 18)}...`}
-//   </div>
-// </Row>
-// <Row style={{ marginLeft: 3, marginBottom: 2 }}>
-//   <div
-//     style={{
-//       justifyContent: 'center',
-//       fontWeight: 'bold',
-//       alignItems: 'center',
-//       maxWidth: '90%',
-//       fontSize: 12,
-//       marginRight: 13,
-//       color: 'green',
-//     }}
-//   >
-//     <Avatar
-//       size={25}
-//       src="https://retohercules.com/images/schedule-7.png"
-//       style={{
-//         margin: 5,
-//         marginRight: 5,
-//       }}
-//     />
-//     {moment(taskproblem.updateDate).fromNow()}
-//   </div>
-// </Row>
