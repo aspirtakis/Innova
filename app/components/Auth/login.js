@@ -108,12 +108,7 @@ const Login = ({
       </Button>
     </div>
 
-    <Typography paragraph className={classes.instructions}>
-      Try login with
-    </Typography>
-    <Typography paragraph className={classes.instructions}>
-      email: demo@test.com | password: demo
-    </Typography>
+
   </div>
 );
 

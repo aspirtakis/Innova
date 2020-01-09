@@ -2,11 +2,12 @@ import React from 'react';
 import { Select, Form, Input, Icon, Modal, Button, Spin } from 'antd';
 import styled, { css } from 'styled-components';
 import '../containers/Funnel/fun.css';
+import {backend} from '../utils/config';
+
+const tasksUrl = backend.beUrl + backend.tasks;
+const apptoken = backend.apptoken;
 
 const { Option } = Select;
-const apptoken =
-  '36fda24fe5588fa4285ac6c6c2fdfbdb6b6bc9834699774c9bf777f706d05a88';
-
 
 const Container = styled.div`
   display: flex;
@@ -33,10 +34,24 @@ class ModalAddTask extends React.Component {
     };
   }
 
-  onSave = values => {
+
+
+
+  handleSubmit = e => {
     this.setState({ spinning: true });
-    const url4 = `https://aws.openinnovationhub.nl./api/v2/funnel/_table/funnel.tasks`;
-    fetch(url4, {
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        this.addNewTask(values);
+      }
+    });
+  };
+
+
+
+  addNewTask = values => {
+    this.setState({ spinning: true });
+    fetch(tasksUrl, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -79,16 +94,6 @@ class ModalAddTask extends React.Component {
       .catch(taskData => console.log(taskData));
   };
 
-  handleSubmit = e => {
-    this.setState({ spinning: true });
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.onSave(values);
-      }
-    });
-  };
-
   render() {
     const { visible, onOK, onCancel } = this.props;
     const { getFieldDecorator } = this.props.form;
@@ -105,7 +110,7 @@ class ModalAddTask extends React.Component {
           <Form onSubmit={this.handleSubmit}>
             <Container>
               <Rect6 className="nopadding">
-                <Form.Item label="Funnel">
+                <Form.Item label="Department">
                   {getFieldDecorator('funnel', {
                     rules: [{ required: true, message: 'funnel' }],
                   })(
@@ -121,15 +126,15 @@ class ModalAddTask extends React.Component {
                   {getFieldDecorator('theme', {
                     rules: [{ required: true, message: 'Themes!' }],
                   })(
-                    <Select key={7} style={{ width: 150 }}>
-                      <Option value="AGRI">AGRI</Option>
-                      <Option value="MOBILITY">MOBILITY</Option>
-                      <Option value="HEALTH">HEALTH</Option>
-                      <Option value="D-IDENTITY">D-IDENTITY</Option>
-                      <Option value="BLOCKCHAIN">BLOCKCHAIN</Option>
-                      <Option value="CON-CONSUMER">CON-CONSUMER</Option>
-                      <Option value="TV-ADVERTISMEN">TV-ADVERTISMENT</Option>
-                    </Select>,
+                    <Input
+                    prefix={
+                      <Icon
+                        type="user"
+                        style={{ color: 'rgba(0,0,0,.25)' }}
+                      />
+                    }
+                    placeholder="Theme"
+                  />
                   )}
                 </Form.Item>
 
@@ -137,21 +142,15 @@ class ModalAddTask extends React.Component {
                   {getFieldDecorator('project', {
                     rules: [{ required: true, message: 'Project!' }],
                   })(
-                    <Select key={6} style={{ width: 200 }}>
-                      <Option value="MOBILE-CONNECT">MOBILE-CONNECT</Option>
-                      <Option value="API-STORE">API-STORE</Option>
-                      <Option value="NOMI">NOMI</Option>
-                      <Option value="TARGET-ADVERTISING">TARGET-ADVERTISING
-                      </Option>
-                      <Option value="CBAAS">CBAAS</Option>
-                      <Option value="SMART-CAR">SMART-CAR</Option>
-                      <Option value="MOBILITY-AAS">MOBILITY AAS</Option>
-                      <Option value="MEDIA-AGGREGATOR">MEDIA-AGGREGATOR</Option>
-                      <Option value="DAAF">DAAF</Option>
-                      <Option value="AUTONOME-KAS">AUTONOME-KAS</Option>
-                      <Option value="VITAAL">VITAAL</Option>
-                      <Option value="HOSPITAL-HOME">HOSPITAL-HOME</Option>
-                    </Select>,
+                    <Input
+                    prefix={
+                      <Icon
+                        type="user"
+                        style={{ color: 'rgba(0,0,0,.25)' }}
+                      />
+                    }
+                    placeholder="Project"
+                  />
                   )}
                 </Form.Item>
 
@@ -167,7 +166,7 @@ class ModalAddTask extends React.Component {
                         />
                       }
                       placeholder="Card Title"
-                    />,
+                    />
                   )}
                 </Form.Item>
 
@@ -207,7 +206,7 @@ class ModalAddTask extends React.Component {
               </Rect6>
 
               <Rect7 className="nopadding">
-                <Form.Item label="Sponsor">
+                <Form.Item label="Product Owner">
                   {getFieldDecorator('leader', {
                     rules: [
                       {
@@ -223,7 +222,7 @@ class ModalAddTask extends React.Component {
                           style={{ color: 'rgba(0,0,0,.25)' }}
                         />
                       }
-                      placeholder="Sponsor"
+                      placeholder="Product Owner"
                     />,
                   )}
                 </Form.Item>
@@ -251,10 +250,10 @@ class ModalAddTask extends React.Component {
                       placeholder="Team Members"
                       style={{ width: 150 }}
                     >
-                      <Option value="1ppl">1</Option>
-                      <Option value="2ppl">2</Option>
-                      <Option value="3ppl">3</Option>
-                      <Option value="3ppl">4</Option>
+                      <Option value="1">1</Option>
+                      <Option value="2">2</Option>
+                      <Option value="3">3</Option>
+                      <Option value="4">4</Option>
                     </Select>,
                   )}
                 </Form.Item>
@@ -267,6 +266,8 @@ class ModalAddTask extends React.Component {
                       style={{ width: 150 }}
                     >
                       <Option value="initiate">INITIATE</Option>
+                      <Option value="backlog">BACKLOG</Option>
+                      <Option value="archive">ARCHIVE</Option>
                       <Option value="scope">SCOPE</Option>
                       <Option value="problem">PROBLEM</Option>
                       <Option value="solution">SOLUTION</Option>

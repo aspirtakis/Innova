@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import styled from 'styled-components';
@@ -5,42 +7,42 @@ import { Droppable } from 'react-beautiful-dnd';
 import Task from './task';
 import './fun.css';
 import { styles } from './funnel_styles';
-import { Select, Spin, Button, Icon, Collapse } from 'antd';
+import {
+  Select, Spin, Button, Icon, Collapse,
+} from 'antd';
 
 const Container = styled.div`
-  margin: 3px;
+
   border: 1px solid lightgrey;
   border-radius: 2px;
-  width: 150px;
   background-color: #f4f9f4;
   display: flex;
+  width:100%;
+  min-height: 780px;
   flex-direction: column;
+  height: calc(100vh - 8.6rem);
 `;
 
 const TaskList = styled.div`
-  padding: 4px;
+  padding: 1px;
   transition: background-color 0.2s ease;
-  background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')}
-  flex-grow: 1;
-  min-height: 700px;
-  max-height:700px;
+  background-color: ${props => (props.isDraggingOver ? 'green' : 'white')}
+  max-height: calc(100vh - 11.8rem);
+  height: calc(100vh - 8.6rem);
   overflow-y: auto;
-  min-width:140px;
 `;
 
 export default class Column extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <Container>
         <div style={styles.ColTitles}>
-          {this.props.column.title.toUpperCase()}
+          <div class="title-bar__title">{this.props.column.title.toUpperCase()}</div>
         </div>
         <Droppable droppableId={this.props.column.id} type="TASK">
           {(provided, snapshot) => (
             <TaskList
               ref={provided.innerRef}
-              innerRef={provided.innerRef}
               {...provided.droppableProps}
               isDraggingOver={snapshot.isDraggingOver}
             >
@@ -53,7 +55,6 @@ export default class Column extends React.Component {
                 />
               ))}
               {provided.placeholder}
-
               <button
                 style={{
                   display: 'flex',
@@ -69,7 +70,7 @@ export default class Column extends React.Component {
                 className="nav"
                 onClick={() => this.props.addNewTask()}
               >
-                <Icon style={{marginRight:10}} type="plus-circle" />
+                <Icon style={{ marginRight: 10 }} type="plus-circle" />
                 Add Task
               </button>
             </TaskList>
