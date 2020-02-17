@@ -5,7 +5,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
 import Task from './task';
-import './fun.css';
+
 import { styles } from './funnel_styles';
 import {
   Select, Spin, Button, Icon, Collapse,
@@ -34,10 +34,12 @@ const TaskList = styled.div`
 
 export default class Column extends React.Component {
   render() {
+    const {userRole} = this.props;
+
     return (
       <Container>
         <div style={styles.ColTitles}>
-          <div class="title-bar__title">{this.props.column.title.toUpperCase()}</div>
+          <div className="title-bar__title">{this.props.column.title.toUpperCase()}</div>
         </div>
         <Droppable droppableId={this.props.column.id} type="TASK">
           {(provided, snapshot) => (
@@ -55,6 +57,7 @@ export default class Column extends React.Component {
                 />
               ))}
               {provided.placeholder}
+  {userRole === 'DashboardCoach'  &&
               <button
                 style={{
                   display: 'flex',
@@ -73,6 +76,7 @@ export default class Column extends React.Component {
                 <Icon style={{ marginRight: 10 }} type="plus-circle" />
                 Add Task
               </button>
+            }
             </TaskList>
           )}
         </Droppable>

@@ -2,9 +2,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
-import './fun.css';
-// import moment from 'moment';
-import './card2.css';
+import moment from 'moment';
+
 
 
 import { styles } from './funnel_styles';
@@ -96,10 +95,20 @@ export default class Task extends React.Component {
                                               <dt>Coach</dt>
                                               <dd>{taskproblem.coach}</dd>
                                           </div>
+                 
 
                                       </div>
+                                      {taskproblem.nexStageGate &&
+                                      <div  style={{ paddingLeft:5 }} className="row">
+                                    
+                                    <dt>SGDate: </dt>
+                                    <dd>{moment(taskproblem.nexStageGate).format("MM/DD/YYYY")}</dd>
+                                </div>
+                                      }
                                   </dl>
                               </div>
+
+                
 
 
                           </div>

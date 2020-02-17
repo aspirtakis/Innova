@@ -1,17 +1,13 @@
 {
-  "name": "react-boilerplate",
-  "version": "4.0.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
-  },
+  "name": "innovation-funnel",
+  "version": "1.0.1",
+  "description": "Innovation Hub Dashboard",
   "engines": {
     "npm": ">=5",
     "node": ">=8.15.1"
   },
-  "author": "Max Stoiber",
-  "license": "MIT",
+  "author": "Aspirtakis Agamemnon",
+  "license": "KPN",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
@@ -87,6 +83,7 @@
     "react-infinite-scroller": "^1.2.4",
     "react-intl": "2.8.0",
     "react-moment": "^0.9.6",
+    "react-quill": "^1.3.3",
     "react-redux": "7.0.2",
     "react-router-dom": "5.0.0",
     "react-swipeable-views": "^0.13.3",

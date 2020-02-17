@@ -1,13 +1,12 @@
 /* eslint-disable react/button-has-type */
 import React, { memo, Component } from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import { DragDropContext } from 'react-beautiful-dnd';
-import styled from 'styled-components';
+
 import {
-    Drawer, Select, Icon, Collapse, Spin, Switch,
+    Select, Icon, Collapse, Spin, Switch,
 } from 'antd';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -15,14 +14,12 @@ import makeSelectFunnel from './selectors';
 import FunnelForm from '../../components/addFunnelForm';
 import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
-import './fun.css';
 import Column from './column';
 import { backend } from '../../utils/config';
-import { Button } from '@material-ui/core';
+
 
 
 const columnsdata = [
-
     {
         id: 'initiate',
         title: 'Initiate',
@@ -40,8 +37,8 @@ const columnsdata = [
         title: 'Solution',
     },
     {
-        id: 'bussiness',
-        title: 'Bussiness',
+        id: 'business',
+        title: 'business',
     },
     {
         id: 'mvp',
@@ -67,11 +64,15 @@ const columnsdata = [
         id: 'archive',
         title: 'Archive',
     },
+    {
+        id: 'integration',
+        title: 'integration',
+    },
 
 ];
-const Container = styled.div`
-  display: flex;
-`;
+// const Container = styled.div`
+//   display: flex;
+// `;
 
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -99,11 +100,12 @@ class Funnel extends Component {
             selectedTask: '',
             backlog: [],
             archive: [],
+            integration: [],
             initiate: [],
             scope: [],
             problem: [],
             solution: [],
-            bussiness: [],
+            business: [],
             mvp: [],
             feasibility: [],
             scalelaunch: [],
@@ -115,6 +117,7 @@ class Funnel extends Component {
             setExpanded: true,
             activeOperations: false,
             checked: false,
+            checkedToday: false,
         };
     }
 
@@ -127,6 +130,7 @@ class Funnel extends Component {
             this.setState({ sestoken: this.props.user.session_token });
             this.getData();
             this.setState({ spinning: true });
+            this.setState({permissions:this.props.user.role})
         }
         this.setState({ spinning: false });
     }
@@ -167,14 +171,11 @@ class Funnel extends Component {
 
   setStates = (datas) => {
       const officersIds = datas.map(officer => officer.projectname);
-
       const projectnames = officersIds.reduce(
           (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
           [],
       );
-
       const officersIds2 = datas.map(officer2 => officer2.theme);
-
       const themes = officersIds2.reduce(
           (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
           [],
@@ -186,11 +187,12 @@ class Funnel extends Component {
       const prob = datas.filter(word => word.FunnelPhase === 'problem');
       const scop = datas.filter(word => word.FunnelPhase === 'scope');
       const sol = datas.filter(word => word.FunnelPhase === 'solution');
-      const buss = datas.filter(word => word.FunnelPhase === 'bussiness');
+      const buss = datas.filter(word => word.FunnelPhase === 'business');
       const mvp = datas.filter(word => word.FunnelPhase === 'mvp');
       const feas = datas.filter(word => word.FunnelPhase === 'feasibility');
       const scale = datas.filter(word => word.FunnelPhase === 'scalelaunch');
       const soft = datas.filter(word => word.FunnelPhase === 'softlaunch');
+      const integration = datas.filter(word => word.FunnelPhase === 'integration');
 
       this.setState({
           archive: arch.sort((a, b) => a.order - b.order),
@@ -199,11 +201,12 @@ class Funnel extends Component {
           scope: scop.sort((a, b) => a.order - b.order),
           problem: prob.sort((a, b) => a.order - b.order),
           solution: sol.sort((a, b) => a.order - b.order),
-          bussiness: buss.sort((a, b) => a.order - b.order),
+          business: buss.sort((a, b) => a.order - b.order),
           mvp: mvp.sort((a, b) => a.order - b.order),
           feasibility: feas.sort((a, b) => a.order - b.order),
           scalelaunch: scale.sort((a, b) => a.order - b.order),
           softlaunch: soft.sort((a, b) => a.order - b.order),
+          integration: integration.sort((a, b) => a.order - b.order),
           projectnames,
           themes,
       });
@@ -279,6 +282,37 @@ class Funnel extends Component {
           })
           .catch(taskData => console.log(taskData));
   };
+  filterToday = () => {
+      const date = new Date();
+    this.setState({ spinning: true });
+    let funnelUrl = `${tasksUrl}?filter=nexStageGate=${date}`;
+    if (funnel === 'ALL') {
+        funnelUrl = tasksUrl;
+    }
+    fetch(funnelUrl, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'X-DreamFactory-API-Key': apptoken,
+            'X-DreamFactory-Session-Token': this.state.sestoken,
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response;
+        })
+        .then(response => response.json())
+        .then((taskData) => {
+            const datas = taskData.resource;
+            this.setStates(datas);
+            this.setState({ spinning: false });
+        })
+        .catch(taskData => console.log(taskData));
+};
 
   handleOk = () => {
       this.setState({ spinning: true });
@@ -295,10 +329,20 @@ class Funnel extends Component {
       <Collapse>
           <Panel header="Filters" key="1">
               <Row style={styles.containerTop}>
-                  <Col style={{ maxWidth: 100 }}>
-                      <Row style={{ maxHeigth: 10 }}>BackLog</Row>
-                      <Switch checked={this.state.checked} defaultChecked={false} onChange={this.showOperations} />
+                   {(this.props.user.role === "DashboardPO" || this.props.user.role === "DashboardCoach") && <Col style={{ maxWidth: 100 }}>
+                        <Row style={{ maxHeigth: 10 }}>BackLog</Row>
+                        <Switch checked={this.state.checked} defaultChecked={false} onChange={this.showOperations} />
+                    </Col>}
+                    <Col>
+                      <Row style={{ maxHeigth: 10 }}>StageGate</Row>
+                      <Row>
+                          <Select onChange={this.filterToday} style={{ width: 180 }}>
+                              <Option value="TODAY">TODAY</Option>
+                 
+                          </Select>
+                      </Row>
                   </Col>
+              
                   <Col>
                       <Row style={{ maxHeigth: 10 }}>Department</Row>
                       <Row>
@@ -309,6 +353,7 @@ class Funnel extends Component {
                           </Select>
                       </Row>
                   </Col>
+       
                   <Col>
                       <Row style={{ maxHeigth: 5 }}> Theme</Row>
                       <Row>
@@ -438,15 +483,15 @@ class Funnel extends Component {
       ) {
           return;
       }
-
       const {
           initiate,
+          integration,
           archive,
           backlog,
           scope,
           problem,
           solution,
-          bussiness,
+          business,
           scalelaunch,
           softlaunch,
           mvp,
@@ -457,7 +502,6 @@ class Funnel extends Component {
       const draggedFrom = source.droppableId;
       const targetContainer = destination.droppableId;
       const targ = !!(draggedFrom && destination.droppableId);
-
       const newLocal = this.state;
       const mak = newLocal[draggedFrom].find(
           task => task.task_id === draggableId,
@@ -508,14 +552,14 @@ class Funnel extends Component {
               });
           }
 
-          if (draggedFrom === 'solution' && targ) {
+          if (draggedFrom == 'solution' && targ) {
               this.setState({
                   solution: solution.filter(tasks => tasks.task_id !== draggableId),
               });
           }
-          if (draggedFrom === 'bussiness' && targ) {
+          if (draggedFrom === 'business' && targ) {
               this.setState({
-                  bussiness: bussiness.filter(tasks => tasks.task_id !== draggableId),
+                  business: business.filter(tasks => tasks.task_id !== draggableId),
               });
           }
           if (draggedFrom === 'mvp' && targ) {
@@ -542,6 +586,13 @@ class Funnel extends Component {
                   ),
               });
           }
+          if (draggedFrom === 'integration' && targ) {
+            this.setState({
+                integration: integration.filter(
+                    tasks => tasks.task_id !== draggableId,
+                ),
+            });
+        }
 
           const { draggedTask } = this.state;
           // /ADD STATE
@@ -575,9 +626,9 @@ class Funnel extends Component {
                   draggedTask: {},
               });
           }
-          if (targetContainer === 'bussiness') {
+          if (targetContainer === 'business') {
               this.setState({
-                  bussiness: [...bussiness, draggedTask],
+                  business: [...business, draggedTask],
                   draggedTask: {},
               });
           }
@@ -611,6 +662,12 @@ class Funnel extends Component {
                   draggedTask: {},
               });
           }
+          if (targetContainer === 'integration') {
+            this.setState({
+                integration: [...integration, draggedTask],
+                draggedTask: {},
+            });
+        }
       }
   };
 
@@ -619,14 +676,15 @@ class Funnel extends Component {
       const { selectedTask, sestoken, checked } = this.state;
       return (
           <div style={{ marginLeft: 10 }}>
-
               <FunnelForm
+                  userRole={this.props.user.role}
                   sestoken={sestoken}
                   visible={this.state.setOpen}
                   onCancel={this.handleClose}
                   onOK={this.handleOk}
                   handleSubmit={this.handleSubmit} />
               <FunnelEditForm
+                      userRole={this.props.user.role}
                   sestoken={sestoken}
                   visible={this.state.setOpenEdit}
                   onCancel={this.handleClose}
@@ -635,7 +693,7 @@ class Funnel extends Component {
                   footer={null} />
               {this.filterBar()}
               <DragDropContext onDragEnd={this.onDragEnd}>
-                  <Container>
+                  <div style={styles.coreContainer}>
                       { checked && (
                           <Col style={styles.coreColumn}>
                               <Row>
@@ -645,6 +703,7 @@ class Funnel extends Component {
                               </Row>
                               <Row style={{ flexWrap: 'nowrap' }}>
                                   <Column
+                                      userRole={this.props.user.role}
                                       xs={6}
                                       openEdit={this.handleOpenEdit}
                                       addNewTask={this.handleOpen}
@@ -652,6 +711,7 @@ class Funnel extends Component {
                                       column={columnsdata[9]}
                                       tasks={this.state[columnsdata[9].id]} />
                                   <Column
+                                      userRole={this.props.user.role}
                                       xs={6}
                                       openEdit={this.handleOpenEdit}
                                       addNewTask={this.handleOpen}
@@ -672,6 +732,7 @@ class Funnel extends Component {
 
                           <Row style={{ flexWrap: 'nowrap' }}>
                               <Column
+                                  userRole={this.props.user.role}
                                   xs={6}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
@@ -679,6 +740,7 @@ class Funnel extends Component {
                                   column={columnsdata[0]}
                                   tasks={this.state[columnsdata[0].id]} />
                               <Column
+                                  userRole={this.props.user.role}
                                   xs={6}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
@@ -690,28 +752,38 @@ class Funnel extends Component {
                       <Col xs={4} style={styles.coreColumnExp}>
                           <Row>
                               <Paper style={styles.titles}>
-                                  <div className="title-bar__title">Experiment</div>
+                                  <div className="title-bar__title">Validate</div>
                               </Paper>
                           </Row>
                           <Row style={{ flexWrap: 'nowrap' }}>
                               <Column
+                                      userRole={this.props.user.role}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[2].id}
                                   column={columnsdata[2]}
                                   tasks={this.state[columnsdata[2].id]} />
                               <Column
+                                      userRole={this.props.user.role}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[3].id}
                                   column={columnsdata[3]}
                                   tasks={this.state[columnsdata[3].id]} />
                               <Column
+                                      userRole={this.props.user.role}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[4].id}
                                   column={columnsdata[4]}
                                   tasks={this.state[columnsdata[4].id]} />
+                                                        <Column
+                                      userRole={this.props.user.role}
+                                  openEdit={this.handleOpenEdit}
+                                  addNewTask={this.handleOpen}
+                                  key={columnsdata[6].id}
+                                  column={columnsdata[6]}
+                                  tasks={this.state[columnsdata[6].id]} />
                           </Row>
                       </Col>
                       <Col style={styles.coreColumn}>
@@ -722,43 +794,51 @@ class Funnel extends Component {
                           </Row>
 
                           <Row style={{ flexWrap: 'nowrap' }}>
+        
                               <Column
-                                  openEdit={this.handleOpenEdit}
-                                  addNewTask={this.handleOpen}
-                                  key={columnsdata[6].id}
-                                  column={columnsdata[6]}
-                                  tasks={this.state[columnsdata[6].id]} />
-                              <Column
+                                      userRole={this.props.user.role}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[5].id}
                                   column={columnsdata[5]}
                                   tasks={this.state[columnsdata[5].id]} />
-                          </Row>
-                      </Col>
-                      <Col style={styles.coreColumn}>
-                          <Row>
-                              <Paper style={styles.titles}>
-                                  <div className="title-bar__title">Scale Up</div>
-                              </Paper>
-                          </Row>
-
-                          <Row style={{ flexWrap: 'nowrap' }}>
-                              <Column
+                                        <Column
+                                      userRole={this.props.user.role}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[8].id}
                                   column={columnsdata[8]}
                                   tasks={this.state[columnsdata[8].id]} />
-                              <Column
+                          </Row>
+                      </Col>
+                      <Col style={styles.coreColumn}>
+                          <Row>
+                              <Paper style={styles.titles}>
+                                  <div className="title-bar__title">Scale</div>
+                              </Paper>
+                          </Row>
+
+                          <Row style={{ flexWrap: 'nowrap' }}>
+                          <Column
+                                  userRole={this.props.user.role}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[7].id}
                                   column={columnsdata[7]}
                                   tasks={this.state[columnsdata[7].id]} />
+                          <Column
+                                  userRole={this.props.user.role}
+                                  openEdit={this.handleOpenEdit}
+                                  addNewTask={this.handleOpen}
+                                  key={columnsdata[11].id}
+                                  column={columnsdata[11]}
+                                  tasks={this.state[columnsdata[11].id]} />
+
+                                                
+
                           </Row>
                       </Col>
-                  </Container>
+                  </div>
               </DragDropContext>
           </div>
       );

@@ -12,6 +12,8 @@ const styles = () => ({
   },
   boxBtn: {
     float: 'right',
+    backgroundColor: '#07f',
+    color: 'white',
   },
   boxContainer: {
     minWidth: 320,
@@ -48,7 +50,7 @@ const styles = () => ({
   logoContainer: {
     textAlign: 'center',
     maxWidth: 360,
-    height: 80,
+    // height: 80,
     paddingTop: 20,
   },
   logoSmallContainer: {

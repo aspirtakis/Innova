@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-
+import { backend }  from '../../utils/config';
 import ForgotPassword from 'components/Auth/forgotPassword';
 import Login from 'components/Auth/login';
 import Register from 'components/Auth/register';
@@ -11,6 +11,7 @@ import {
   makeSelectUserIsAuthenticated,
   makeSelectAuthenticationErrorMessage,
 } from 'containers/App/selectors';
+
 import {
   signIn,
   clearAuthenticationMessage,
@@ -24,8 +25,8 @@ class AuthPage extends React.Component {
 
     this.state = {
       login: {
-        email: 'be@openinnovationhub.nl', // default values, leave it empty when implementing your logic
-        password: 'a224935a', // default values, leave it empty when implementing your logic
+        email: backend.defUser, // default values, leave it empty when implementing your logic
+        password: backend.defPass, // default values, leave it empty when implementing your logic
         rememberMe: false,
       },
       register: {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Select, Form, Input, Icon, Modal, Button, Spin } from 'antd';
 import styled, { css } from 'styled-components';
-import '../containers/Funnel/fun.css';
 import {backend} from '../utils/config';
 
 const tasksUrl = backend.beUrl + backend.tasks;

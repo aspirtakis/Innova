@@ -1,24 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 export const styles = {
-    mainCard: {
-        padding: 3,
-        marginBottom: 10,
-    },
-    backCard: {
-        backgroundColor: '#F0F1F0',
-        padding: 3,
+
+    coreContainer: {
+        display: 'flex'
     },
 
-
-    cardPO: {
-        fontSize: 12,
-        minHeight: 30,
-        minWidth: '100%',
-        textAlign: 'center',
-        color: 'black',
-        margin: 'auto',
-        padding: 3,
-    },
 
     cardFooter: {
         display: 'flex',
@@ -62,8 +48,6 @@ export const styles = {
 
 
     },
-
-
     cardTitle2: {
         fontSize: 11,
         backgroundColor: '#C7F3C6',
@@ -93,7 +77,7 @@ export const styles = {
 
     coreColumnExp: {
         margin: 3,
-        minWidth: 610,
+        minWidth: 800,
         backgroundColor: 'white',
         maxHeight: 800,
         minHeight: '100%',

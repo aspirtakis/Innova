@@ -3,15 +3,15 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const themeDefault = createMuiTheme({
   palette: {
     primary: {
-      500: '#716aca',
+      500: '#090',
     },
     action: {
-      active: '#525672',
+      active: '#09c',
     },
     text: {
-      primary: '#868aa8',
-      secondary: '#868aa8',
-      divider: '#292b3a',
+      primary: '#333',
+      secondary: '#666',
+      divider: '#ccc',
     },
   },
   typography: {
@@ -21,11 +21,11 @@ const themeDefault = createMuiTheme({
     },
   },
   listItemText: {
-    color: 'green',
+    color: '#090',
   },
   custom: {
     link: {
-      color: '#e10050',
+      color: '#09c',
     },
     appBar: {
       backgroundColor: '#fff',
@@ -51,6 +51,10 @@ const themeDefault = createMuiTheme({
       color: '#d6d7e1',
     },
   },
+
+
+
+
 });
 
 export default themeDefault;

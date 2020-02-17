@@ -1,0 +1,2040 @@
+{
+    "next": "2",
+    "previous": null,
+    "results": [
+        {
+            "id": "602bc1e9-816b-55f0-81cb-f4590112cc77",
+            "provider_id": "tgYSRUzICio",
+            "provider_url": "https://universiteitvannederland.nl/college/waarom-ben-jij-voor-de-overheid-niets-meer-dan-een-nummertje",
+            "title": "Waarom ben jij voor de overheid niets meer dan een nummertje?",
+            "type": "UniversiteitvanNederland",
+            "content_type": "video",
+            "description": "Handig hoor, al die big data waardoor jij met 1 druk op de knop weet hoeveel huur- of zorgtoeslag je krijgt. Maar wat als er een fout in dit immense systeem sluipt? Dan blijkt het verdomde moeilijk om aan te tonen dat je bijvoorbeeld écht geen kind hebt of écht niet gehuwd bent. Marlies van Eck (zelf werkzaam bij de Belastingdienst dus zij kan het weten) neemt je in dit college mee op pad door deze systemen.",
+            "images": [
+                {
+                    "url": "https://img.youtube.com/vi/tgYSRUzICio/maxresdefault.jpg",
+                    "width": 1280,
+                    "height": 720
+                }
+            ],
+            "provider": "UniversiteitvanNederland",
+            "location": null,
+            "rating": null,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": "The Netherlands",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "type_id": "College",
+                "duration": 1066000,
+                "tag_names": [
+                    "Rechtsgeleerdheid"
+                ],
+                "added_date": "2018-10-26T14:46:29+02:00",
+                "youtube_id": "tgYSRUzICio",
+                "theme_title": "Big Data",
+                "school_title": "Universiteit Leiden",
+                "teacher_name": "Dr. Marlies van Eck",
+                "video_duration": "PT17M46S",
+                "school_logo_url": "https://universiteitvannederland.nl/application/files/1615/2225/0651/Leiden.png",
+                "category_image_url": "https://nspireme.nl/img/uvn_categories/uvn_default.jpg",
+                "teacher_avatar_url": "https://universiteitvannederland.nl/application/files/cache/33c9a978a252ff0bab8e4d83cd6d1e40.jpeg"
+            },
+            "tagline": {
+                "id": 9,
+                "text": "Filmpje kijken",
+                "image": "watch"
+            },
+            "booking_url": "https://www.youtube.com/watch?v=tgYSRUzICio",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D602bc1e9-816b-55f0-81cb-f4590112cc77&st=Waarom+ben+jij+voor+de+overheid+niets+meer+dan+een+nummertje%3F&si=https%3A%2F%2Fimg.youtube.com%2Fvi%2FtgYSRUzICio%2Fmaxresdefault.jpg",
+            "short_url": "https://nspireme.nl/s/swVUij"
+        },
+        {
+            "id": "b8de295b-2d07-565c-b76c-92b875cd9311",
+            "provider_id": "974431",
+            "provider_url": "https://www.tiqets.com/nl/amsterdam-c75061/moco-museum-banksy-expositie-skip-the-line-p974431?partner=nspire",
+            "title": "Moco Museum - Banksy Expositie: Skip the line",
+            "type": "Kunstmusea",
+            "content_type": "culturalvenues",
+            "description": "Het Modern Contemporary (Moco) Museum Amsterdam is gevestigd in Villa Alsberg, een herenhuis uit 1904 dat midden op het Museumplein staat. Bekijk meer dan 50 originele Banksys en werken van andere pioniers uit de kunstwereld. Plus, er zijn ook nog wisselende, tijdelijke tentoonstellingen.",
+            "images": [
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/4caf4877c4f444029535ba22cf1c5fb6.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=1b6c46a56dfe6f7fdc46deadecc533fe",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/5dd0cb856e124a9492570be81c84fa3f.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=1834e08fbd7c8a5cde5d4deb1e4a166f",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/68bc337b21d8422cb894b49f6a55c5a2.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=081c260418751129cfd9b6069fc3e15a",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/72d449067f7342e5adad67a6e5eddd93.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=d6391d2a089ed788b0265eb7df123bce",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/7b0d5c8f65d24e7696e6fbd07d202c60.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=82f51b0bfc07cc2236263183542fc82a",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/85ed4e165436401d9ff59851f8a1feb8.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=a3bc035d79e38f306fb8b45ccf622917",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/917aa2bbc97c4f64b4f94c0c32a796af.JPG?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=81dd93f913e0b59eb5eee5709849f4c5",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/92b8ba46c14347a38a7a666954cba188.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=01a802a856d92ee3cf004687fa681747",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/a5c64987a36542feb141ac167820dd77.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=9057fc1473ba356d91199a8abf33ad21",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/bbe1bf9e72c84a7a98dccd00f2fc4e84.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=65c0a8655945f7431db859c0c829f733",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/f54824813e9b417a9c0493e397b7256c.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=164a9bddf27b414424b65d4e20b48e69",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/fe8571f8ed3f4eb796c6290fc2ad3172.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=5a6b1f496637734bc6e5045db7c2d00e",
+                    "width": 500,
+                    "height": 500
+                }
+            ],
+            "provider": "tiqets",
+            "location": {
+                "lat": 52.35871,
+                "lon": 4.881902
+            },
+            "rating": 100,
+            "contact": {
+                "city": "Amsterdam",
+                "email": null,
+                "phone": null,
+                "address": "20,Honthorststraat",
+                "country": "Nederland",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "sub_title": "Kunstwerken van Banksy en andere genieën",
+                "venue_name": "Moco Museum",
+                "whats_excluded": null,
+                "whats_included": [
+                    "Toegang tot de Banksy-tentoonstelling",
+                    "Toegang tot de tijdelijke tentoontellingen",
+                    "Audiogids (indien geselecteerd)"
+                ]
+            },
+            "tagline": {
+                "id": 1,
+                "text": "Kunst & Cultuur",
+                "image": "culture"
+            },
+            "booking_url": "https://www.tiqets.com/nl/amsterdam-c75061/moco-museum-banksy-expositie-skip-the-line-p974431/goto_checkout?partner=nspire",
+            "price_rating": null,
+            "price": "15.0",
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3Db8de295b-2d07-565c-b76c-92b875cd9311&st=Moco+Museum+-+Banksy+Expositie%3A+Skip+the+line&si=https%3A%2F%2Faws-tiqets-cdn.imgix.net%2Fimages%2Fcontent%2F4caf4877c4f444029535ba22cf1c5fb6.jpg%3Fauto%3Dformat%26fit%3Dcrop%26h%3D500%26ixlib%3Dpython-1.1.2%26q%3D70%26w%3D500%26s%3D1b6c46a56dfe6f7fdc46deadecc533fe",
+            "short_url": "https://nspireme.nl/s/4dkcgJ"
+        },
+        {
+            "id": "016c4e3a-f9c9-56aa-aa97-b2a145935ff9",
+            "provider_id": "Z698xZbpZ17FUja",
+            "provider_url": "http://ticketmaster-nl.tm7510.net/c/1335915/427748/7510?u=https%3A%2F%2Fwww.ticketmaster.nl%2Fevent%2Fdaniel-sloss-tickets%2F236709",
+            "title": "Daniel Sloss",
+            "type": "Music",
+            "content_type": "event",
+            "description": "Wil jij Daniel Sloss gaan zien? Op 06-11-2019 kun je er bij zijn in Melkweg Max. Denk je: “Ja! Let’s go.” Koop dan je tickets door op de paarse knop te drukken.",
+            "images": [
+                {
+                    "url": "https://s1.ticketm.net/dam/a/97a/16ae3abd-1504-4f7b-bff7-4858fea1f97a_913771_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360
+                }
+            ],
+            "provider": "ticket_master",
+            "location": {
+                "lat": 52.36483,
+                "lon": 4.88127
+            },
+            "rating": null,
+            "contact": {
+                "city": "Amsterdam",
+                "email": null,
+                "phone": null,
+                "address": "Lijnbaansgracht 234 A",
+                "country": "The Netherlands",
+                "website": "http://ticketmaster-nl.tm7510.net/c/1335915/427748/7510?u=https%3A%2F%2Fwww.ticketmaster.nl%2Fvenue%2Fmelkweg-max-amsterdam-tickets%2Fmelma%2F110",
+                "zipcode": "1017 PH"
+            },
+            "opening": null,
+            "extra": {
+                "end": null,
+                "start": "2019-11-06T18:00:00Z",
+                "max_price": "32.50",
+                "min_price": "32.50",
+                "venue_name": "Melkweg Max",
+                "event_status": "onsale",
+                "max_priceWithFees": "37.40",
+                "min_priceWithFees": "37.40",
+                "onsale_end_datetime": "2019-11-07T05:00:00Z",
+                "onsale_start_datetime": "2019-02-22T09:00:00Z"
+            },
+            "tagline": {
+                "id": 5,
+                "text": "Optreden bijwonen",
+                "image": "place"
+            },
+            "booking_url": "http://ticketmaster-nl.tm7510.net/c/1335915/427748/7510?u=https%3A%2F%2Fwww.ticketmaster.nl%2Fevent%2Fdaniel-sloss-tickets%2F236709",
+            "price_rating": null,
+            "price": "32.50",
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D016c4e3a-f9c9-56aa-aa97-b2a145935ff9&st=Daniel+Sloss&si=https%3A%2F%2Fs1.ticketm.net%2Fdam%2Fa%2F97a%2F16ae3abd-1504-4f7b-bff7-4858fea1f97a_913771_RETINA_PORTRAIT_16_9.jpg",
+            "short_url": "https://nspireme.nl/s/DXIpJb"
+        },
+        {
+            "id": "2cfd698f-4a03-55f1-8a85-a1bbb0505f5b",
+            "provider_id": "12828",
+            "provider_url": "http://www.diningcity.nl/nl/restaurant/12828",
+            "title": "Michiu",
+            "type": "Aziatisch",
+            "content_type": "restaurant",
+            "description": "Met die gedachte is <b>Michiu Restaurant en Lounge</b> geopend. Jarenlang werden de fijne kneepjes van het vak opgedaan in diverse gerenommeerde restaurants, veelal met een verfijnde Aziatische kaart. Nu werd het tijd om een langgekoesterde wens te gaan realiseren… <br><br>Een volgende stap moest een stap zijn met maximale culinaire vrijheid in de keuken, gecombineerd met oprecht gastheerschap. Dat alles in een moderne zaak met verzorgde uitstraling. Waar gerechten, drank en mensen volledig tot hun recht komen. <br><br>De kaart richt zich voornamelijk op Aziatische specialiteiten, hoewel ook inspiratie wordt gehaald op andere continenten. De kaart is compleet en biedt veel diversiteit. Om ook de toekomstige vaste gasten te blijven verrassen, is de kaart bovendien dynamisch. Wij laten u graag kennismaken met nieuwe smaken en trends. Zo is en blijft ieder bezoek aan Michiu bijzonder!",
+            "images": [
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/39497_michiu.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/39499_michiu.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/39501_michiu.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/39503_michiu.jpg",
+                    "width": 650,
+                    "height": 290
+                }
+            ],
+            "provider": "diningcity",
+            "location": {
+                "lat": 52.3441607,
+                "lon": 4.8952594
+            },
+            "rating": 85,
+            "contact": {
+                "city": "Amsterdam",
+                "email": "info@michiu.nl",
+                "phone": "020-6719221",
+                "address": "Maasstraat 102",
+                "country": "The Netherlands",
+                "website": "http://michiu.nl/",
+                "zipcode": "1078 HM"
+            },
+            "opening": [
+                {
+                    "day": 0,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "16:30"
+                        },
+                        {
+                            "from": "17:00",
+                            "till": "22:30"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 1,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "16:30"
+                        },
+                        {
+                            "from": "17:00",
+                            "till": "22:30"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 2,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "16:30"
+                        },
+                        {
+                            "from": "17:00",
+                            "till": "22:30"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 3,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "16:30"
+                        },
+                        {
+                            "from": "17:00",
+                            "till": "22:30"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 4,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "16:30"
+                        },
+                        {
+                            "from": "17:00",
+                            "till": "22:30"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 5,
+                    "hours": [
+                        {
+                            "from": "17:00",
+                            "till": "22:30"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 6,
+                    "hours": [
+                        {
+                            "from": "17:00",
+                            "till": "22:30"
+                        }
+                    ],
+                    "closed": false
+                }
+            ],
+            "extra": {
+                "cuisines": "Aziatisch",
+                "localized_notes": "",
+                "localized_oneliner": "Als je doet wat je leuk vindt, hoef je nooit meer te werken…"
+            },
+            "tagline": {
+                "id": 8,
+                "text": "Hapje eten",
+                "image": "food"
+            },
+            "booking_url": "http://www.diningcity.nl/nl/restaurant/12828",
+            "price_rating": 3,
+            "price": 40,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D2cfd698f-4a03-55f1-8a85-a1bbb0505f5b&st=Michiu&si=https%3A%2F%2Fd2v7cp6zd42ged.cloudfront.net%2Frestaurantwidepictures%2F39497_michiu.jpg",
+            "short_url": "https://nspireme.nl/s/4ALMQl"
+        },
+        {
+            "id": "c382c9ef-a35d-5895-84a8-8f3d35234c3d",
+            "provider_id": "25",
+            "provider_url": "http://www.diningcity.nl/nl/restaurant/25",
+            "title": "Pasta e Basta",
+            "type": "Italiaans",
+            "content_type": "restaurant",
+            "description": "<p><em>U kunt maximaal voor 8 personen reserveren! Voor groepen vanaf 8 personen kunt u telefonisch contact opnemen met het restaurant.&nbsp;</em></p>\r\n<p>&nbsp;</p>\r\n<p>Uit eten in Amsterdam? Dan is <strong>Pasta e Basta</strong> een ware belevenis.<br /><br />De medewerkers van Pasta e Basta zijn niet alleen goede gastheren- en vrouwen,&nbsp; maar ook fantastische (professionele) zangers en zangeressen. Elke avond maken zij zich klaar om u te bedienen van de heerlijkste Italiaanse gerechten en een sprankelende show. <br /><br />De chef- koks van Pasta e Basta brengen het Italiaanse eten terug naar de authentieke basis waarbij de beste olijfolie, biologische producten en scharrelvlees de basis vormen. Ook aan onze vegetarische gasten wordt gedacht. <br /><br />Bij Pasta e Basta ben je elke avond welkom om aan onze wijnbar te genieten van een heerlijk aperitief, smakelijke antipasti en verse pasta&rsquo;s.<br /><strong><br />Reserveren:</strong><br />Van zondag tot en met woensdag kunt u op alle tijden reserveren, maar van donderdag tot en met zaterdag werken wij met twee shifts: vanaf 18.00 en vanaf 21.15 uur<br /><br /><br /><br /></p>",
+            "images": [
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/1769_Restaurant_Pasta_e_Basta.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/19209_restaurant_pastaebasta.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/19211_restaurant_pastaebasta.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/36036_restaurant_pastaebasta.jpg",
+                    "width": 650,
+                    "height": 290
+                }
+            ],
+            "provider": "diningcity",
+            "location": {
+                "lat": 52.36482789999999,
+                "lon": 4.8898476
+            },
+            "rating": 83,
+            "contact": {
+                "city": "Amsterdam",
+                "email": "amsterdam@pastaebasta.nl",
+                "phone": "(020) 422 22 22",
+                "address": "Nieuwe Spiegelstraat 8",
+                "country": "The Netherlands",
+                "website": "",
+                "zipcode": "1017 DE"
+            },
+            "opening": [
+                {
+                    "day": 0,
+                    "hours": [
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 1,
+                    "hours": [
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 2,
+                    "hours": [
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 3,
+                    "hours": [
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 4,
+                    "hours": [
+                        {
+                            "from": "17:30",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 5,
+                    "hours": [
+                        {
+                            "from": "17:30",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 6,
+                    "hours": [
+                        {
+                            "from": "17:30",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                }
+            ],
+            "extra": {
+                "cuisines": "Italiaans",
+                "localized_notes": "",
+                "localized_oneliner": "Pasta e Basta, een ware belevenis!"
+            },
+            "tagline": {
+                "id": 8,
+                "text": "Hapje eten",
+                "image": "food"
+            },
+            "booking_url": "http://www.diningcity.nl/nl/restaurant/25",
+            "price_rating": 2,
+            "price": 25,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3Dc382c9ef-a35d-5895-84a8-8f3d35234c3d&st=Pasta+e+Basta&si=https%3A%2F%2Fd2v7cp6zd42ged.cloudfront.net%2Frestaurantwidepictures%2F1769_Restaurant_Pasta_e_Basta.jpg",
+            "short_url": "https://nspireme.nl/s/XaAn9e"
+        },
+        {
+            "id": "24175067-b922-520b-a783-92338a6496b1",
+            "provider_id": "9200000103872937",
+            "provider_url": "https://www.bol.com/nl/p/forever-27/9200000103872937",
+            "title": "Forever 27",
+            "type": "Kunst & Fotografie",
+            "content_type": "book",
+            "description": "Robert Johnson, Brian Jones, Jimi Hendrix, Janis Joplin, Jim Morrison, Kurt Cobain en Amy Winehouse: legendarische muzikanten die allemaal op hun 27e zijn overleden en tot de meest iconische leden van de Club van 27 worden gerekend. Hoe is deze mythische club ontstaan? Welke betekenis heeft het getal 27? En hebben muzikanten op 27-jarige leeftijd een grotere kans om te overlijden? Allerlei vragen die in Forever 27 worden beantwoord. Ook zijn in dit boek interviews te lezen met diverse mensen uit de muziekindustrie die dicht bij de leden van de Club van 27 hebben gestaan of daar sterk door zijn beïnvloed. Zo blikt Leon Hendrix terug op het leven van zijn broer Jimi, doet gitarist Marc Benno verslag van de laatste keer dat The Doors in de studio aan het werk waren en vertelt voormalig Nirvana-manager Danny Goldberg over zijn ervaringen met Kurt Cobain. Bijzondere, persoonlijke en openhartige interviews die \"de mens achter de muzikant' laten zien. \"Jimi wilde doorgaan. Hij was helemaal klaar met nummers als Foxy Lady en Purple Haze. Hij wilde zich verder ontwikkelen.\" (Leon Hendrix over Jimi Hendrix) \"Janis was erg getalenteerd en wilde succesvol zijn, maar ze had moeite om met de roem om te gaan.\" (Country Joe McDonald over Janis Joplin) \"Hoe briljant en hoe snel Brian ook was, het was nooit goed genoeg voor hem. Hij had de goedkeuring van anderen nodig. Hij had het applaus nodig om te overleven.\" (Andrew Loog Oldham over Brian Jones) Godfried Nevels (1973) is freelance journalist, schrijver en muziekrecensent. Eerder publiceerde hij de boeken De onbekende Canadees, Van moment naar muziek en Dutch in the USA. Ook schrijft hij onder meer voor Lust For Life Magazine en Mania Magazine.",
+            "images": [
+                {
+                    "url": "https://s.s-bol.com/imgbase0/imagebase3/large/FC/7/3/9/2/9200000103872937.jpg",
+                    "width": 545,
+                    "height": 840
+                }
+            ],
+            "provider": "bol",
+            "location": null,
+            "rating": 96,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": "The Netherlands",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "author": "Godfried Nevels",
+                "summary": "Nederlands | Druk: 1 | Paperback | 9789493001107 | 210 pagina's",
+                "sub_title": null,
+                "offer_data": {
+                    "bolCom": 1,
+                    "offers": [
+                        {
+                            "id": "9200000103872937",
+                            "price": 24.99,
+                            "seller": {
+                                "id": "0",
+                                "url": "www.bol.com",
+                                "topSeller": false,
+                                "sellerType": "bol.com",
+                                "displayName": "bol.com",
+                                "useWarrantyRepairConditions": false
+                            },
+                            "comment": "Op voorraad. Voor 23:59 besteld, morgen in huis",
+                            "bestOffer": true,
+                            "condition": "Nieuw",
+                            "releaseDate": "2019-01-25T01:00:00.000+01:00",
+                            "availabilityCode": "-1",
+                            "availabilityDescription": "Op voorraad. Voor 23:59 besteld, morgen in huis"
+                        }
+                    ],
+                    "professionalSellers": 0,
+                    "nonProfessionalSellers": 0
+                },
+                "binding_code": "Paperback",
+                "product_group": "Kunst & Fotografie",
+                "parent_categories": [
+                    {
+                        "parentCategories": [
+                            {
+                                "id": "8299",
+                                "name": "Boeken"
+                            },
+                            {
+                                "id": "2271",
+                                "name": "Kunst & Fotografie"
+                            },
+                            {
+                                "id": "40474",
+                                "name": "Muziek"
+                            },
+                            {
+                                "id": "41271",
+                                "name": "Componisten & Songwriters"
+                            }
+                        ]
+                    },
+                    {
+                        "parentCategories": [
+                            {
+                                "id": "8299",
+                                "name": "Boeken"
+                            },
+                            {
+                                "id": "2271",
+                                "name": "Kunst & Fotografie"
+                            },
+                            {
+                                "id": "40474",
+                                "name": "Muziek"
+                            },
+                            {
+                                "id": "41280",
+                                "name": "Muzikanten, zangers & Groepen"
+                            }
+                        ]
+                    },
+                    {
+                        "parentCategories": [
+                            {
+                                "id": "8299",
+                                "name": "Boeken"
+                            },
+                            {
+                                "id": "40342",
+                                "name": "Biografieën & Waargebeurd"
+                            },
+                            {
+                                "id": "40382",
+                                "name": "Kunst & Entertainment"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "tagline": {
+                "id": 6,
+                "text": "Lekker lezen",
+                "image": "read"
+            },
+            "booking_url": "https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?name=app&id=9200000103872937&siteid=57226",
+            "price_rating": null,
+            "price": 24.99,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D24175067-b922-520b-a783-92338a6496b1&st=Forever+27&si=https%3A%2F%2Fs.s-bol.com%2Fimgbase0%2Fimagebase3%2Flarge%2FFC%2F7%2F3%2F9%2F2%2F9200000103872937.jpg",
+            "short_url": "https://nspireme.nl/s/qBdI3x"
+        },
+        {
+            "id": "749c1766-ced8-58bc-a693-760ba6076bc0",
+            "provider_id": "Z698xZbpZ17FM4a",
+            "provider_url": "http://ticketmaster-nl.tm7510.net/c/1335915/427748/7510?u=https%3A%2F%2Fwww.ticketmaster.nl%2Fevent%2Fjohn-mayer-tickets%2F237549",
+            "title": "John Mayer",
+            "type": "Music",
+            "content_type": "event",
+            "description": "Wil jij John Mayer gaan zien? Op 09-10-2019 kun je er bij zijn in Ziggo Dome. Denk je: “Ja! Let’s go.” Koop dan je tickets door op de paarse knop te drukken.",
+            "images": [
+                {
+                    "url": "https://s1.ticketm.net/dam/a/17d/a0af7d02-760d-4adb-a13e-32bbbc00717d_983051_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360
+                }
+            ],
+            "provider": "ticket_master",
+            "location": {
+                "lat": 52.31778,
+                "lon": 4.93636
+            },
+            "rating": null,
+            "contact": {
+                "city": "Amsterdam",
+                "email": null,
+                "phone": null,
+                "address": "De Passage 100",
+                "country": "The Netherlands",
+                "website": "http://ticketmaster-nl.tm7510.net/c/1335915/427748/7510?u=https%3A%2F%2Fwww.ticketmaster.nl%2Fvenue%2Fziggo-dome-amsterdam-tickets%2Fziggo%2F107",
+                "zipcode": "1101 AX"
+            },
+            "opening": null,
+            "extra": {
+                "end": null,
+                "start": "2019-10-09T18:00:00Z",
+                "max_price": null,
+                "min_price": null,
+                "venue_name": "Ziggo Dome",
+                "event_status": "onsale",
+                "max_priceWithFees": null,
+                "min_priceWithFees": null,
+                "onsale_end_datetime": "2019-10-09T18:00:00Z",
+                "onsale_start_datetime": "2019-03-15T11:00:00Z"
+            },
+            "tagline": {
+                "id": 5,
+                "text": "Optreden bijwonen",
+                "image": "place"
+            },
+            "booking_url": "http://ticketmaster-nl.tm7510.net/c/1335915/427748/7510?u=https%3A%2F%2Fwww.ticketmaster.nl%2Fevent%2Fjohn-mayer-tickets%2F237549",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D749c1766-ced8-58bc-a693-760ba6076bc0&st=John+Mayer&si=https%3A%2F%2Fs1.ticketm.net%2Fdam%2Fa%2F17d%2Fa0af7d02-760d-4adb-a13e-32bbbc00717d_983051_RETINA_PORTRAIT_16_9.jpg",
+            "short_url": "https://nspireme.nl/s/iP7o2i"
+        },
+        {
+            "id": "a380da1b-f82e-5469-b7b3-1a69a51fc9b1",
+            "provider_id": "6FhXsMKqIDI",
+            "provider_url": "https://universiteitvannederland.nl/college/waarom-zal-er-altijd-oorlog-zijn",
+            "title": "Waarom zal er altijd oorlog zijn?",
+            "type": "UniversiteitvanNederland",
+            "content_type": "video",
+            "description": "Eeuwenlang was oorlog lekker overzichtelijk. Twee legers tegenover elkaar en vechten maar. Het doel? Territoriumwinst. Net Stratego. Maar de internationale politiek van vandaag kun je beter vergelijken met een potje Risk: je weet nooit wat er op het opdrachtkaartje van je tegenstander staat. En precies die onzekerheid zorgt ervoor dat oorlog waarschijnlijk nooit zal helemaal uitgebannen wordt, legt Bertjan Verbeek (Radboud Universiteit) je uit in dit college. Al is er wel wat aan te doen. Kijken dus, voor een lesje \"Risk-voor-gevorderden\".\r\n\r\nWil je meer weten?\r\nAls je enthousiast bent geworden, kun je bij Kennislink meer over dit onderwerp lezen. \r\n\r\nOorlog was in het verleden niet altijd onzeker. In het oude Griekenland hadden oorlogen juist een beperkt karakter. Lees meer over deze oorlogen met spelregels op Kennislink.",
+            "images": [
+                {
+                    "url": "https://img.youtube.com/vi/6FhXsMKqIDI/maxresdefault.jpg",
+                    "width": 1280,
+                    "height": 720
+                }
+            ],
+            "provider": "UniversiteitvanNederland",
+            "location": null,
+            "rating": null,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": "The Netherlands",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "type_id": "College",
+                "duration": 932000,
+                "tag_names": [
+                    "Politicologie"
+                ],
+                "added_date": "2016-02-08T20:30:52+01:00",
+                "youtube_id": "6FhXsMKqIDI",
+                "theme_title": "onbekend",
+                "school_title": "Radboud Universiteit Nijmegen",
+                "teacher_name": "prof. dr. Bertjan Verbeek",
+                "video_duration": "PT15M32S",
+                "school_logo_url": "https://universiteitvannederland.nl/application/files/5915/2225/0611/Radboud.png",
+                "category_image_url": "https://nspireme.nl/img/uvn_categories/uvn_default.jpg",
+                "teacher_avatar_url": "https://universiteitvannederland.nl/application/files/cache/c96190d39f8888b67e3dd0e6cf492892.jpg"
+            },
+            "tagline": {
+                "id": 9,
+                "text": "Filmpje kijken",
+                "image": "watch"
+            },
+            "booking_url": "https://www.youtube.com/watch?v=6FhXsMKqIDI",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3Da380da1b-f82e-5469-b7b3-1a69a51fc9b1&st=Waarom+zal+er+altijd+oorlog+zijn%3F&si=https%3A%2F%2Fimg.youtube.com%2Fvi%2F6FhXsMKqIDI%2Fmaxresdefault.jpg",
+            "short_url": "https://nspireme.nl/s/eOsU0G"
+        },
+        {
+            "id": "e48b5165-7dca-5012-871c-eec8edf23022",
+            "provider_id": "Ongesigneerd-23-Jouw-ontwerp",
+            "provider_url": "https://nspire.podnl.com/ep/Ongesigneerd-23-Jouw-ontwerp",
+            "title": "#23: Jouw ontwerp",
+            "type": "podcast_episode",
+            "content_type": "podcast_episode",
+            "description": "Op onze oproep aan luisteraars van Ongesigneerd om hun favoriete of meest gehate onopvallende ontwerp in te sturen, kwamen talloze ideeën binnen. Van kaasschaaf tot citroenstamper, van het stoplichtknopje tot de kentekenplaat. In deze aflevering bellen makers Tjitske Mussche en Laura Stek vanuit de studio met ontwerpers en deskundigen, op zoek naar antwoorden. De kaasschaaf is in ieder geval niet Nederlands...",
+            "images": [
+                {
+                    "url": "https://podcast.npo.nl/data/thumb/ongesigneerd.1400.057c0afe044d4192abe401a27f84d12e.jpg",
+                    "width": 500,
+                    "height": 500
+                }
+            ],
+            "provider": "podnl_episode",
+            "location": null,
+            "rating": null,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": null,
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "guid": "https://www.vpro.nl/speel~WO_VPRO_15154560~.html",
+                "last": true,
+                "slug": "Ongesigneerd-23-Jouw-ontwerp",
+                "order": 23,
+                "author": "NPO Radio 1 / VPRO",
+                "duration": 1800000,
+                "podcast_id": "34",
+                "release_date": "2019-02-15T10:00:00.000Z",
+                "podcast_title": "Ongesigneerd",
+                "podcast_description": "Ongesigneerd is een podcast over onopvallend design. Tjitske Mussche en Laura Stek verdiepen zich in het ontwerp van de wereld om ons heen en vinden fascinerende verhalen. Zelfs achter de grijze lantaarnpaal op de hoek zit een grootse theorie. \r\n\r\nOngesigneerd is gemaakt i.s.m. de VPRO en is tot stand gekomen met steun van het Mediafonds (seizoen 1 en 2) en het NPO-fonds (seizoen 3)."
+            },
+            "tagline": {
+                "id": 7,
+                "text": "Podcast luisteren",
+                "image": "sound"
+            },
+            "booking_url": "https://nspire.podnl.com/ep/Ongesigneerd-23-Jouw-ontwerp",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3De48b5165-7dca-5012-871c-eec8edf23022&st=%2323%3A+Jouw+ontwerp&si=https%3A%2F%2Fpodcast.npo.nl%2Fdata%2Fthumb%2Fongesigneerd.1400.057c0afe044d4192abe401a27f84d12e.jpg",
+            "short_url": "https://nspireme.nl/s/vHEMIb"
+        },
+        {
+            "id": "68099ed5-a90e-5283-a12e-897566e2d609",
+            "provider_id": "975279",
+            "provider_url": "https://www.tiqets.com/nl/nijmegen-c74919/oorlogsmuseum-overloon-p975279?partner=nspire",
+            "title": "Oorlogsmuseum Overloon",
+            "type": "Musea",
+            "content_type": "culturalvenues",
+            "description": "Maak je klaar voor de strijd en ga op een fascinerende reis door de geschiedenis bij het Oorlogsmuseum Overloon. Bekijk honderden authentieke militaire voertuigen, wapens, materieel en uniformen in een uitdagende reis door enkele historische gebeurtenissen tijdens de Tweede Wereldoorlog.",
+            "images": [
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/04816ea0ad654c71a04db983dbb8afd1.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=d5ca9bef3fbad09e4a6e1bb3da5ed6a8",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/1bc5bba889774210a3c6003f2a13218f.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=ee2eec6bb448bee15430bbfbaf5b533a",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/3c5bfcd8016744c78acfe3d037af8176.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=4531a02fdfc97720a298323f563c897f",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/566db372fff047b1875b792405c4c6d9.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=8764efedb1becdc3ad5a91023fa0e18a",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/6ae1fdc0b8344cc29ebc87ea0d10353c.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=40cac99b46b566dc1ed8bc365c8e1829",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/75666a1668e14dd4b95d5e83ed543e9e.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=3d54980315531146be68961c60859633",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/76b34852821848fa99197f7210926de7.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=aba5c8da58ad69a0b3b62ddde5c17178",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/8481acc585674e3f8d94b63da47c3cea.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=c30c5199fd36d5540eb05d4678a0176d",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/9558e3cea623493785a85a1a987dbe2a.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=b9174ab03f734eb3393178a9df8e34c0",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/a6d7f036f1f040a19c3f45d346555540.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=4a86ebf03830bf172854794c89acf084",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/bdfadef70468440c8d9fbd4ee1128b25.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=0889d7686e917f7a0649167ad21f8c08",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/e77269fcfc0e491f8eb10bed554740e2.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=49d17d5f2bd3b5492b7696f4060709da",
+                    "width": 500,
+                    "height": 500
+                }
+            ],
+            "provider": "tiqets",
+            "location": {
+                "lat": 51.570108,
+                "lon": 5.9583129999999755
+            },
+            "rating": 80,
+            "contact": {
+                "city": "Nijmegen",
+                "email": null,
+                "phone": null,
+                "address": "1,Museumpark",
+                "country": "Nederland",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "sub_title": "Wapentuig en boeiende geschiedenis op de plek van een historische veldslag",
+                "venue_name": "Oorlogsmuseum Overloon",
+                "whats_excluded": null,
+                "whats_included": null
+            },
+            "tagline": {
+                "id": 1,
+                "text": "Kunst & Cultuur",
+                "image": "culture"
+            },
+            "booking_url": "https://www.tiqets.com/nl/nijmegen-c74919/oorlogsmuseum-overloon-p975279/goto_checkout?partner=nspire",
+            "price_rating": null,
+            "price": "15.0",
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D68099ed5-a90e-5283-a12e-897566e2d609&st=Oorlogsmuseum+Overloon&si=https%3A%2F%2Faws-tiqets-cdn.imgix.net%2Fimages%2Fcontent%2F04816ea0ad654c71a04db983dbb8afd1.jpg%3Fauto%3Dformat%26fit%3Dcrop%26h%3D500%26ixlib%3Dpython-1.1.2%26q%3D70%26w%3D500%26s%3Dd5ca9bef3fbad09e4a6e1bb3da5ed6a8",
+            "short_url": "https://nspireme.nl/s/ZhWbpN"
+        },
+        {
+            "id": "c6b8a49c-db71-55ca-a2f0-21a37c225be7",
+            "provider_id": "Toendra-Trailer-Het-leven-een-gebruiksaanwijzing-voor-Toendra",
+            "provider_url": "https://nspire.podnl.com/ep/Toendra-Trailer-Het-leven-een-gebruiksaanwijzing-voor-Toendra",
+            "title": "Trailer Het leven, een gebruiksaanwijzing - voor Toendra",
+            "type": "podcast_episode",
+            "content_type": "podcast_episode",
+            "description": "De trailer van Het Leven, een gebruiksaanwijzing. De nieuwe 14-delige audioserie van de makers van Toendra en Plots. Binnen elke aflevering staat één vraag centraal die simpel en praktisch geformuleerd is, maar die op de een of andere manier wringt. Vragen als ‘Hoe te vergeten?’, ‘Hoe niets te doen?’ en ‘’Hoe een bittere pil te slikken?’. Het Leven, een gebruiksaanwijzing wordt vanaf 18 september wekelijks uitgezonden in RadioDoc.",
+            "images": [
+                {
+                    "url": "https://images.poms.omroep.nl/image/s1400%3C/s2000%3E/586792.jpg",
+                    "width": 500,
+                    "height": 500
+                }
+            ],
+            "provider": "podnl_episode",
+            "location": null,
+            "rating": null,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": null,
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "guid": "http://www.vpro.nl/speel.WO_VPRO_5043597.html",
+                "last": true,
+                "slug": "Toendra-Trailer-Het-leven-een-gebruiksaanwijzing-voor-Toendra",
+                "order": 31,
+                "author": "VPRO, NTR",
+                "duration": null,
+                "podcast_id": "55",
+                "release_date": "2016-09-07T22:00:00.000Z",
+                "podcast_title": "Toendra",
+                "podcast_description": "Serie met even onwaarschijnlijke als meeslepende documentaires. In 30 afleveringen volgen de makers steeds verschillende mensen in de meest pijnlijke, bijzondere en bizarre periodes uit hun leven. Van de makers van het bekroonde radioprogramma Plots."
+            },
+            "tagline": {
+                "id": 7,
+                "text": "Podcast luisteren",
+                "image": "sound"
+            },
+            "booking_url": "https://nspire.podnl.com/ep/Toendra-Trailer-Het-leven-een-gebruiksaanwijzing-voor-Toendra",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3Dc6b8a49c-db71-55ca-a2f0-21a37c225be7&st=Trailer+Het+leven%2C+een+gebruiksaanwijzing+-+voor+Toendra&si=https%3A%2F%2Fimages.poms.omroep.nl%2Fimage%2Fs1400%253C%2Fs2000%253E%2F586792.jpg",
+            "short_url": "https://nspireme.nl/s/8EqCIP"
+        },
+        {
+            "id": "35111482-dfed-5b26-b4f3-0ef37b3790bf",
+            "provider_id": "NANDOLEAKS-REAL-TALK-PODCAST-21-NANDOLEAKS-REAL-TALK-MET-ADJE-20",
+            "provider_url": "https://nspire.podnl.com/ep/NANDOLEAKS-REAL-TALK-PODCAST-21-NANDOLEAKS-REAL-TALK-MET-ADJE-20",
+            "title": "21: NANDOLEAKS: REAL TALK MET ADJE #20",
+            "type": "podcast_episode",
+            "content_type": "podcast_episode",
+            "description": "Het is weer tijd voor een brand new NandoLeaks: Real Talk! Deze keer met niemand minder dan een legend in de Nederlandse hiphop scene: Adje. In zijn gesprek met Fernando Halman vertelt hij over het opgroeien in de Bijlmer, zijn band met zijn broers Hef en Crooks en hoe hij fully voor de muziek kon gaan.NANDOLEAKS YOUTUBE: https://bit.ly/2p9ncye \nBIJLMER\nAdje groeide op in de Bijlmer en vertelt aan Fernando hoe dat voor hem was. Zijn persoonlijkheid en karakter zijn gevormd door het leven in de Bijlmerse straten. Vooral de aparte thuissituatie zorgde ervoor dat Adje veel op straat leefde. Zijn vader was doordeweeks thuis bij zijn moeder, maar in het weekend bij zijn andere vrouw in Rotterdam. “Sowieso is dat al een rare wereld om in te leven, maar als je dan de deur uitgaat wordt het nog veel gekker. Dan ben je in de binnenstraat tussen de junkies, killers en whatever er nog rondloopt in de Bijlmer.” \n\"CROOKS HEEFT HET ME OOK EEN KEER GEZEGD: 'OM TE FUNCTIONEREN, MOET IK JULLIE BEIDEN HEBBEN'.\"\nHEF EN CROOKS\nDe andere vrouw van zijn vader is de moeder van Adje’s broers Hef en Crooks. Hun vader nam Hef wel eens mee naar Amsterdam en liet hem dan bij Adje achter. De twee waren meteen close. Adje: “Ik herinner me dat ik me er echt op verheugde op het zien van me broertje, want ik was alleen thuis. Hef is in dat opzicht heel belangrijk voor me. Vooral in die fase.” \nAdje had contact met Hef totdat Hef drie jaar was. Van de een op de andere dag stopte het contact en zagen de twee broers elkaar zo’n tien jaar niet meer.  Een aantal jaar later kreeg hun vader nog een zoon: Crooks. Dat verslechterde het contact uiteindelijk nog meer. \n\n“Toen Crooks geboren werd toen was het contact helemaal klaar. […] Ik denk dat het toen genoeg was voor mijn moeder.” BESEFMOMENT \nAdje vertelt hoe hij zich op zijn zesentwintigste realiseerde dat hij alles al gedaan had in het leven. “Ik heb gewerkt op Schiphol, ik ben kapper geweest, ik heb verzekeringen en drugs verkocht, gefraudeerd. Al die dingen hebben me niet gelukkig gemaakt, omdat ik muziek wou maken.” Zijn zesentwintigste levensjaar was voor Adje het jaar nul waarin hij besefte dat hij te veel liep te kutten in het leven. Alles moest beter. “Toen kwam die realisatie van: je doet niet met je leven wat je ermee moet doen. […] Pas toen ik verhuisde uit Noord en ging wonen op IJburg, heb ik ook alle mensen en alles wat daar was achter me gelaten om opnieuw te starten.” “Boyz in de hood heeft een goed platform geboden voor ons alle drie, maar Hef en ik hebben er het meeste uitgehaald”,\n\"BOYS IN DE HOOD HEEFT EEN GOED PLATFORM GEBODEN VOOR ONS ALLE DRIE, MAAR HEF EN IK HEBBEN ER HET MEESTE UITGEHAALD.\"Het leven op straat was niets meer voor Adje, maar het zorgde er wel voor dat hij verder kon bouwen aan zijn carrière. Door de money die hij maakte kon hij eindelijk een studiootje bouwen en betalen voor zijn eigen clips. Zowel hij als Hef gebruikten de money van de streets om er iets positiefs mee te doen en vol voor de muziek te gaan. “Dat was wat nodig was voor ons om de muziek in te kunnen. We hadden niet het gevoel dat mensen iets voor ons zouden doen.” BOYZ IN DE HOOD VOL. 2?\nIn 2008 kwamen de drie broers met hun keiharde mixtape Boyz in de hood vol. 1. Of er nog hoop is voor een tweede mixtape van de boys? Adje wil niets liever dan iets terugdoen voor zijn broertje Crooks. “Boyz in de hood heeft een goed platform geboden voor ons alle drie, maar Hef en ik hebben er het meeste uitgehaald”, vertelt Adje. “Ik wil nu dat het anders is. Deel 1 was met drie broers, maar gefocust op Hef. Nu moet het gefocust op Crooks zijn.” \nAdje legt uit dat Crooks met zijn skills en lyrics in de top 5 van de rap scene hoort. Hij schuift de schuld bij zichzelf en Hef voor het feit dat dat nog niet gelukt is. “Dat komt denk ik doordat Hef en ik egoïstisch zijn geweest. Hef is gegaan voor zijn carrière en ik ben nog veel verder erger gegaan voor de mijne. […] Crooks heeft het me ook een keer gezegd: ‘Om te functioneren moet ik jullie beiden hebben’.” Gelukkig is er tussen de broers geen beef of spanning. Het is only a matter of time. \n",
+            "images": [
+                {
+                    "url": "https://images.theabcdn.com/i/32776856.jpg",
+                    "width": 500,
+                    "height": 500
+                }
+            ],
+            "provider": "podnl_episode",
+            "location": null,
+            "rating": null,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": null,
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "guid": "tag:audioboom.com,2019-07-03:/posts/7307165",
+                "last": true,
+                "slug": "NANDOLEAKS-REAL-TALK-PODCAST-21-NANDOLEAKS-REAL-TALK-MET-ADJE-20",
+                "order": 21,
+                "author": "NANDOLEAKS: REAL TALK PODCAST",
+                "duration": 4507000,
+                "podcast_id": "384",
+                "release_date": "2019-07-03T23:51:40.000Z",
+                "podcast_title": "NANDOLEAKS: REAL TALK PODCAST",
+                "podcast_description": "Iedereen heeft een verhaal, maar helaas is er niet altijd ruimte om het te vertellen. In de Nandoleaks-podcast Real Talk wordt deze ruimte wel gecreëerd: een ruimte waarin mensen volledig zichzelf kunnen zijn zonder dat er geoordeeld wordt. Welke ruimte dat is? Dat hangt af van de persoon en de situatie, want elk verhaal verdient de juiste plek om verteld te worden.\nZoals de naam al zegt: in Real Talk hoor je de echte verhalen. In dit openhartige gesprek draait het niet om succes, maar juist om de weg daarnaartoe. Drijfveren, struggles, hoogte- en dieptepunten: niets blijft onbesproken. Ondanks de soms heftige onderwerpen, staat één ding altijd voorop: positiviteit.\nReal Talk is een inspirerende podcast, waarin je een eerlijke kijk krijgt in het leven van een artiest. Tot nu toe gaven Kempi, Ismo, Mula B en Josylvio zich al bloot. En wees voorbereid, want dit is slechts het begin!"
+            },
+            "tagline": {
+                "id": 7,
+                "text": "Podcast luisteren",
+                "image": "sound"
+            },
+            "booking_url": "https://nspire.podnl.com/ep/NANDOLEAKS-REAL-TALK-PODCAST-21-NANDOLEAKS-REAL-TALK-MET-ADJE-20",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D35111482-dfed-5b26-b4f3-0ef37b3790bf&st=21%3A+NANDOLEAKS%3A+REAL+TALK+MET+ADJE+%2320&si=https%3A%2F%2Fimages.theabcdn.com%2Fi%2F32776856.jpg",
+            "short_url": "https://nspireme.nl/s/vxL4dU"
+        },
+        {
+            "id": "2ffadf6b-ec80-56d8-ad07-e998828f971d",
+            "provider_id": "1001004011277000",
+            "provider_url": "https://www.bol.com/nl/p/tonio/1001004011277000",
+            "title": "Tonio",
+            "type": "Literatuur & Romans",
+            "content_type": "book",
+            "description": "Op de Eerste Pinksterdag van 2010 komt Tonio van der Heijden, het enig kind van A.F.Th. van der Heijden en Mirjam Rotenstreich, bij een verkeersongeval om het leven. Het is vroeg in de ochtend als hij, ter hoogte van het Vondelpark in het centrum van Amsterdam, wordt geschept door een auto. Hij wordt in kritieke toestand naar het Academisch Medisch Centrum vervoerd, waar hij diezelfde dag aan zijn verwondingen overlijdt. Tonio zal niet ouder worden dan 21 jaar. A.F.Th. van der Heijden doet het enige waar hij op dat moment toe in staat is: in zijn herinnering graven, aantekeningen maken, schrijven. Daarbij voortgedreven door twee dwingende vragen: wat gebeurde er met Tonio in de laatste uren en dagen voorafgaand aan de ramp, en hoe kon dit ongeluk plaatsvinden? Een zoektocht naar het wat en het hoe, die leidt langs verschillende ooggetuigen, vrienden, politiemensen, artsen en het mysterieuze meisje Jenny, dat in de laatste weken van Tonio’s leven een cruciale rol blijkt te hebben vervuld. Tonio vormt de neerslag van die zoektocht. Een nauwgezette reconstructie van een jongensleven en een radeloze queeste naar zin en betekenis. ‘Ik heb zijn naam nooit vaker geroepen dan in de krap vier maanden die verstreken zijn sinds Zwarte Pinksterdag.’",
+            "images": [
+                {
+                    "url": "https://s.s-bol.com/imgbase0/imagebase3/large/FC/0/0/0/7/1001004011277000.jpg",
+                    "width": 545,
+                    "height": 840
+                }
+            ],
+            "provider": "bol",
+            "location": null,
+            "rating": 90,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": "The Netherlands",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "author": "A.F.Th. van der Heijden",
+                "summary": "Nederlands | Druk: 1 | Hardcover | 9789023465720 | 632 pagina's",
+                "sub_title": null,
+                "offer_data": {
+                    "bolCom": 0,
+                    "offers": [
+                        {
+                            "id": "1001033317878613",
+                            "price": 14.25,
+                            "seller": {
+                                "id": "931825",
+                                "logo": "https://s.s-bol.com/nl/cms/images/sellerlogos/sellerlogo_931825.png",
+                                "topSeller": false,
+                                "sellerType": "Kleinzakelijke verkoper",
+                                "displayName": "boekenbalie.nl",
+                                "sellerRating": {
+                                    "ratingMethod": "THREE_MONTHS",
+                                    "sellerRating": "9.0",
+                                    "serviceRating": "9.6",
+                                    "shippingRating": "9.2",
+                                    "deliveryTimeRating": "9.2",
+                                    "productInformationRating": "9.2"
+                                },
+                                "registrationDate": "2014-05-13T02:00:00.000+02:00",
+                                "sellerInformation": "Boekenbalie is gespecialiseerd in Zeldzame nieuwe en tweedehands boeken.\n\nBoekenbalie is geopend van maandag tot en met vrijdag van 09.00 uur tot 17.00 uur.\nIn het weekend zijn wij gesloten en zullen er geen bestellingen verzonden worden.\n \nLevertijd: \nBestellingen op werkdagen voor 15.00 uur besteld is dezelfde dag verzonden en zoveel als mogelijk de volgende dag bezorgd. De bezorging is uiteraard mede afhankelijk van de diverse bezorgdiensten.\nDe bestelling worden verpakt in stevig karton. Of, wanneer het een klein boek is, in een stevige bubbeltjes envelop.\n\nDe kwaliteit van tweedehands boeken wordt zorgvuldig beoordeeld.\nHet kan gebeuren dat we bij het beoordelen van een tweedehands boek iets over het hoofd hebben gezien waardoor het boek niet naar verwachting is. Graag horen wij dit van u zodat ook wij constant aan product en service verbetering kunnen doen.\nNeem dus voor vragen, klachten, complimenten en suggesties gerust contact met ons op.\n\nContact: \nU kunt van maandag tot en met vrijdag van 09.00 uur tot 17.00 uur contact met ons opnemen. wij zullen uiteraard altijd de telefoon opnemen, zijn we in gesprek kunt u het altijd later nog eens proberen.\nWij doen ons uiterste best om e-mails dezelfde dag nog te behandelen.\nE-mails gestuurd in het weekend worden op maandag in behandeling genomen.",
+                                "approvalPercentage": "98.7",
+                                "recentReviewCounts": {
+                                    "totalReviewCount": 700,
+                                    "neutralReviewCount": 33,
+                                    "negativeReviewCount": 9,
+                                    "positiveReviewCount": 658
+                                },
+                                "useWarrantyRepairConditions": false
+                            },
+                            "comment": "Naam, sticker, stempel of persoonlijke boodschap voorin. Conditie: Goed. Editie: 1. Jaar: 2011. Taal: Nederlands.",
+                            "bestOffer": true,
+                            "condition": "Goed",
+                            "availabilityCode": "-1",
+                            "availabilityDescription": "3 - 7 dagen"
+                        }
+                    ],
+                    "professionalSellers": 0,
+                    "nonProfessionalSellers": 1
+                },
+                "binding_code": "Hardcover",
+                "product_group": "Literatuur & Romans",
+                "parent_categories": [
+                    {
+                        "parentCategories": [
+                            {
+                                "id": "8299",
+                                "name": "Boeken"
+                            },
+                            {
+                                "id": "24410",
+                                "name": "Literatuur & Romans"
+                            }
+                        ]
+                    },
+                    {
+                        "parentCategories": [
+                            {
+                                "id": "8299",
+                                "name": "Boeken"
+                            },
+                            {
+                                "id": "24410",
+                                "name": "Literatuur & Romans"
+                            },
+                            {
+                                "id": "40492",
+                                "name": "Literaire romans"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "tagline": {
+                "id": 6,
+                "text": "Lekker lezen",
+                "image": "read"
+            },
+            "booking_url": "https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?name=app&id=1001004011277000&siteid=57226",
+            "price_rating": null,
+            "price": 14.25,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D2ffadf6b-ec80-56d8-ad07-e998828f971d&st=Tonio&si=https%3A%2F%2Fs.s-bol.com%2Fimgbase0%2Fimagebase3%2Flarge%2FFC%2F0%2F0%2F0%2F7%2F1001004011277000.jpg",
+            "short_url": "https://nspireme.nl/s/ARiSim"
+        },
+        {
+            "id": "c59bf812-0cc1-5d6f-a84a-b6fb08d697ba",
+            "provider_id": "975769",
+            "provider_url": "https://www.tiqets.com/nl/maastricht-c74931/grotten-noord-maastricht-underground-p975769?partner=nspire",
+            "title": "Grotten Noord Maastricht Underground",
+            "type": "Attracties & Activiteiten",
+            "content_type": "culturalvenues",
+            "description": "Maak een duik in het diepe in de Grotten Noord van Maastricht, en ontdek een immens ondergronds labyrint. Hier, in het pikkedonker en zonder bereik op je telefoon vind je de verborgen Nederlandse geschiedenis. Daarnaast kom je ook nog eens achter een aantal geheimen uit de Tweede Wereldoorlog.",
+            "images": [
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/0cdd546277eb43c9a41e9c0c75c3dae4.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=c59bbd39171490bb631e64e3770fd81c",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/0f432de8b7b1440b8d114e65f7278c2e.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=2608d1fa276c4258fce1ba4bbac81f3a",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/26453d6758b9437e9695ca14b26112eb.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=9a6657ae5c23e9e2221eb2062b575028",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/57396d4aca7a49ba84330eaea6122590.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=892d5ff82d2965c8a17fb97bf1870cc5",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/6b8aaa1c18814dedb30ada52316578f6.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=272e18c79e001e6d5104695547ac163d",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/c2fd87503bd247739c3367ac013428e5.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=67a21d01d43c2e84a1a708067d35122c",
+                    "width": 500,
+                    "height": 500
+                }
+            ],
+            "provider": "tiqets",
+            "location": {
+                "lat": 50.8352519,
+                "lon": 5.68541110000001
+            },
+            "rating": 100,
+            "contact": {
+                "city": "Maastricht",
+                "email": null,
+                "phone": null,
+                "address": "Luikerweg 71",
+                "country": "Nederland",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "sub_title": "Een donker grottenstelsel vol geschiedenis recht onder Maastricht",
+                "venue_name": "Grotten Noord Maastricht",
+                "whats_excluded": [
+                    "Andere tours of activiteiten in Underground Maastricht"
+                ],
+                "whats_included": [
+                    "Begeleide tour door de Grotten Noord"
+                ]
+            },
+            "tagline": {
+                "id": 1,
+                "text": "Kunst & Cultuur",
+                "image": "culture"
+            },
+            "booking_url": "https://www.tiqets.com/nl/maastricht-c74931/grotten-noord-maastricht-underground-p975769/goto_checkout?partner=nspire",
+            "price_rating": null,
+            "price": "7.2",
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3Dc59bf812-0cc1-5d6f-a84a-b6fb08d697ba&st=Grotten+Noord+Maastricht+Underground&si=https%3A%2F%2Faws-tiqets-cdn.imgix.net%2Fimages%2Fcontent%2F0cdd546277eb43c9a41e9c0c75c3dae4.jpg%3Fauto%3Dformat%26fit%3Dcrop%26h%3D500%26ixlib%3Dpython-1.1.2%26q%3D70%26w%3D500%26s%3Dc59bbd39171490bb631e64e3770fd81c",
+            "short_url": "https://nspireme.nl/s/EmKOTM"
+        },
+        {
+            "id": "a66a127a-a3b7-55f0-92d0-912738816863",
+            "provider_id": "9200000076110612",
+            "provider_url": "https://www.bol.com/nl/p/duizend-schitterende-zonnen/9200000076110612",
+            "title": "Duizend Schitterende Zonnen",
+            "type": "Literatuur & Romans",
+            "content_type": "book",
+            "description": "\"Dit is een epos dat je ontroert, dat je boos maakt en dat je doet huiveren. Hosseini is een vakman.' – NRC Handelsblad \"Een pageturner van formaat: leerzaam, schrijnend, hartverscheurend en realistisch.' – De Telegraaf",
+            "images": [
+                {
+                    "url": "https://s.s-bol.com/imgbase0/imagebase3/large/FC/2/1/6/0/9200000076110612.jpg",
+                    "width": 545,
+                    "height": 840
+                }
+            ],
+            "provider": "bol",
+            "location": null,
+            "rating": 98,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": "The Netherlands",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "author": "Khaled Hosseini",
+                "summary": "Nederlands | Druk: 41 | Paperback | 9789023479277 | 400 pagina's",
+                "sub_title": null,
+                "offer_data": {
+                    "bolCom": 1,
+                    "offers": [
+                        {
+                            "id": "9200000076110612",
+                            "price": 9.99,
+                            "seller": {
+                                "id": "0",
+                                "url": "www.bol.com",
+                                "topSeller": false,
+                                "sellerType": "bol.com",
+                                "displayName": "bol.com",
+                                "useWarrantyRepairConditions": false
+                            },
+                            "comment": "Op voorraad. Voor 23:00 uur besteld, morgen in huis",
+                            "bestOffer": true,
+                            "condition": "Nieuw",
+                            "releaseDate": "2017-06-15T02:00:00.000+02:00",
+                            "availabilityCode": "-1",
+                            "availabilityDescription": "Op voorraad. Voor 23:00 uur besteld, morgen in huis"
+                        }
+                    ],
+                    "professionalSellers": 0,
+                    "nonProfessionalSellers": 0
+                },
+                "binding_code": "Paperback",
+                "product_group": "Literatuur & Romans",
+                "parent_categories": [
+                    {
+                        "parentCategories": [
+                            {
+                                "id": "8299",
+                                "name": "Boeken"
+                            },
+                            {
+                                "id": "24410",
+                                "name": "Literatuur & Romans"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "tagline": {
+                "id": 6,
+                "text": "Lekker lezen",
+                "image": "read"
+            },
+            "booking_url": "https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?name=app&id=9200000076110612&siteid=57226",
+            "price_rating": null,
+            "price": 9.99,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3Da66a127a-a3b7-55f0-92d0-912738816863&st=Duizend+Schitterende+Zonnen&si=https%3A%2F%2Fs.s-bol.com%2Fimgbase0%2Fimagebase3%2Flarge%2FFC%2F2%2F1%2F6%2F0%2F9200000076110612.jpg",
+            "short_url": "https://nspireme.nl/s/XhStAw"
+        },
+        {
+            "id": "1884d5fc-5f65-5aa5-88e3-6f80765a6976",
+            "provider_id": "Ask-me-Anything-or-BNR-Financien-van-studenten",
+            "provider_url": "https://nspire.podnl.com/ep/Ask-me-Anything-or-BNR-Financien-van-studenten",
+            "title": "Financiën van studenten",
+            "type": "podcast_episode",
+            "content_type": "podcast_episode",
+            "description": "Te gast:  - Tom van den Brink, voorzitter Interstedelijk Studenten Overleg  - Jan van der Wel, onafhankelijk financieel planner Your Financials   - Puck Schmitz, BNR-stagiair en student",
+            "images": [
+                {
+                    "url": "https://bnr-external-prod.imgix.net/85f0cb1582d866b2e688852ed08cf3d1e6412797.jpg?auto=format&fm=jpg&q=45&cs=tinysrgb&w=1400&h=1400",
+                    "width": 500,
+                    "height": 500
+                }
+            ],
+            "provider": "podnl_episode",
+            "location": null,
+            "rating": null,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": null,
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "guid": "10378681",
+                "slug": "Ask-me-Anything-or-BNR-Financien-van-studenten",
+                "order": 151,
+                "author": "BNR Nieuwsradio",
+                "duration": 2694000,
+                "podcast_id": "188",
+                "release_date": "2019-05-21T08:34:31.000Z",
+                "podcast_title": "Ask me Anything | BNR",
+                "podcast_description": "Jörgen Raymann stelt jouw vragen aan de experts. App ze naar 06 13523903, of bel 020-4680000"
+            },
+            "tagline": {
+                "id": 7,
+                "text": "Podcast luisteren",
+                "image": "sound"
+            },
+            "booking_url": "https://nspire.podnl.com/ep/Ask-me-Anything-or-BNR-Financien-van-studenten",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D1884d5fc-5f65-5aa5-88e3-6f80765a6976&st=Financi%C3%ABn+van+studenten&si=https%3A%2F%2Fbnr-external-prod.imgix.net%2F85f0cb1582d866b2e688852ed08cf3d1e6412797.jpg%3Fauto%3Dformat%26fm%3Djpg%26q%3D45%26cs%3Dtinysrgb%26w%3D1400%26h%3D1400",
+            "short_url": "https://nspireme.nl/s/UetzKi"
+        },
+        {
+            "id": "40bc1159-449f-577e-bef6-ae097c461a4e",
+            "provider_id": "De-Willem-Podcast-Aflevering-57-Hoe-cocaine-de-onderwereld-op-zijn-kop-zette",
+            "provider_url": "https://nspire.podnl.com/ep/De-Willem-Podcast-Aflevering-57-Hoe-cocaine-de-onderwereld-op-zijn-kop-zette",
+            "title": "Aflevering 57: Hoe cocaïne de onderwereld op zijn kop zette",
+            "type": "podcast_episode",
+            "content_type": "podcast_episode",
+            "description": "De winstmarges op cocaïne zijn gigantisch en Nederland is een belangrijke draaischijf in deze mondiale miljoenenhandel. Misdaadjournalist Jan Meeus schreef er een spannend boek over: De Schiedamse cocaïnemaffia. Marian Husken en Harry Lensink spreken met de auteur over corruptie in de Rotterdamse haven, de duizenden kilo’s die daar binnenkomen, de moordende concurrentie en de moeizame war on drugs.&nbsp;",
+            "images": [
+                {
+                    "url": "https://content.production.cdn.art19.com/images/16/34/50/88/16345088-33ee-461f-b1f5-02f4aed74274/917e56b43c78402700ef3a5e6bb493b975137c450222fb4f68efb6aecfdd32ebc983d5b8ae99a4f2670e99034dbc97f234fedb1ee1d51900261b8136353fd799.jpeg",
+                    "width": 500,
+                    "height": 500
+                }
+            ],
+            "provider": "podnl_episode",
+            "location": null,
+            "rating": null,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": null,
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "guid": "gid://art19-episode-locator/V0/yYvSuxjV1RR6fwEZeq2fRD5-cyhADUefFOcJkZB5e64",
+                "slug": "De-Willem-Podcast-Aflevering-57-Hoe-cocaine-de-onderwereld-op-zijn-kop-zette",
+                "order": 58,
+                "author": "Harry Lensink, Marian Husken / NU.nl / Dag en Nacht Media",
+                "duration": 2831000,
+                "podcast_id": "277",
+                "release_date": "2019-05-24T14:05:25.000Z",
+                "podcast_title": "De Willem Podcast",
+                "podcast_description": "Harry Lensink en Marian Husken volgen al jaren het dossier Willem Holleeder. Holleeder staat nu terecht voor een aantal opzienbarende liquidaties in de Amsterdamse onderwereld. Marian zal het proces volgen vanuit de rechtbank en Harry spreekt eens per week met haar over de laatste ontwikkelingen. De Willem Podcast wordt geproduceerd door Dag en Nacht Media en mede mogelijk gemaakt door NU.nl."
+            },
+            "tagline": {
+                "id": 7,
+                "text": "Podcast luisteren",
+                "image": "sound"
+            },
+            "booking_url": "https://nspire.podnl.com/ep/De-Willem-Podcast-Aflevering-57-Hoe-cocaine-de-onderwereld-op-zijn-kop-zette",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D40bc1159-449f-577e-bef6-ae097c461a4e&st=Aflevering+57%3A+Hoe+coca%C3%AFne+de+onderwereld+op+zijn+kop+zette&si=https%3A%2F%2Fcontent.production.cdn.art19.com%2Fimages%2F16%2F34%2F50%2F88%2F16345088-33ee-461f-b1f5-02f4aed74274%2F917e56b43c78402700ef3a5e6bb493b975137c450222fb4f68efb6aecfdd32ebc983d5b8ae99a4f2670e99034dbc97f234fedb1ee1d51900261b8136353fd799.jpeg",
+            "short_url": "https://nspireme.nl/s/xWNhgb"
+        },
+        {
+            "id": "e055dd88-4dbe-57c5-ad38-30244efcb05e",
+            "provider_id": "52855",
+            "provider_url": "http://www.diningcity.nl/nl/restaurant/52855",
+            "title": "ARC. by Lute",
+            "type": "Internationaal",
+            "content_type": "restaurant",
+            "description": "<p>We proudly present<strong> ARC.</strong></p>\r\n<p>De nieuwe toegankelijke hotspot van Peter en Marieke Lute&nbsp;heeft haar deuren geopend in het gerenoveerde stadsarchief.&nbsp;</p>\r\n<p>In ARC. zoekt Peter Lute met zijn team,&nbsp;meer dan ooit de culinaire diepgang binnen zijn onvergelijkbare signatuur. Waar de Nederlandse keuken zich sinds de VOC-tijd keer op keer mengde met internationale invloeden, werken we in ARC. met lokale producten in internationale gerechten. Door technieken uit het Lute archief opnieuw te ontdekken, ontstaan innovatieve gerechten. Het is een heldere en frisse cuisine met af en toe de nodige verleiders. Lichte zuren en groentes worden afgewisseld met rijkere gerechten - romige sauzen waarvoor je bijna het glazuur van het bord schraapt om geen druppel te verspillen. De ingredi&euml;nten op het bord zijn &ndash; logischerwijs &ndash; enkel de beste.</p>\r\n<p>Het&nbsp;imposante pand in neorenaissance stijl ontworpen door Roelof Kuipers, is al sinds 1892 een blikvanger aan de rand van de Pijp. Studio Linse vertaalt in het huidige Amsterdam de historische energie naar een modern en warm design. Open en geheimzinnig tegelijk. ARC. is opgebouwd uit vier verbonden ruimtes: een bar, een smalle ruimte met hoge tafels, een restaurant en een atrium. Het maakt van ARC. een plek om te borrelen, om hapjes aan die borrel toe te voegen, een plek voor uitgebreide diners, en een plek waar oud en nieuw samenkomen. Ook buiten het zonnige seizoen dineren gasten al fresco op het terras door de strakke warmte lampen. Het terras en de bar blijven door de glazen pui met elkaar verbonden. De monumentale boom die een onmisbare plek midden in de tuin inneemt, vertelt op zijn eigen wijze een verhaal over de historie van Amsterdam.</p>",
+            "images": [
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/50587_arc-by-lute.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/50591_arc-by-lute.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/50595_arc-by-lute.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/50597_arc-by-lute.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/50599_arc-by-lute.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/50601_arc-by-lute.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/50603_arc-by-lute.jpg",
+                    "width": 650,
+                    "height": 290
+                },
+                {
+                    "url": "https://d2v7cp6zd42ged.cloudfront.net/restaurantwidepictures/51553_arc-by-lute.jpg",
+                    "width": 650,
+                    "height": 290
+                }
+            ],
+            "provider": "diningcity",
+            "location": {
+                "lat": 52.3533681,
+                "lon": 4.907164
+            },
+            "rating": 87,
+            "contact": {
+                "city": "Amsterdam",
+                "email": "info@arc.amsterdam",
+                "phone": "020 220 69 02\u202c",
+                "address": "Amsteldijk 67",
+                "country": "The Netherlands",
+                "website": "",
+                "zipcode": "1074 HZ"
+            },
+            "opening": [
+                {
+                    "day": 0,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "14:00"
+                        },
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 1,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "14:00"
+                        },
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 2,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "14:00"
+                        },
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 3,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "14:00"
+                        },
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 4,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "14:00"
+                        },
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 5,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "14:00"
+                        },
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                },
+                {
+                    "day": 6,
+                    "hours": [
+                        {
+                            "from": "12:00",
+                            "till": "14:00"
+                        },
+                        {
+                            "from": "18:00",
+                            "till": "21:00"
+                        }
+                    ],
+                    "closed": false
+                }
+            ],
+            "extra": {
+                "cuisines": "Internationaal",
+                "localized_notes": "",
+                "localized_oneliner": "We proudly present ARC. "
+            },
+            "tagline": {
+                "id": 8,
+                "text": "Hapje eten",
+                "image": "food"
+            },
+            "booking_url": "http://www.diningcity.nl/nl/restaurant/52855",
+            "price_rating": 3,
+            "price": 40,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3De055dd88-4dbe-57c5-ad38-30244efcb05e&st=ARC.+by+Lute&si=https%3A%2F%2Fd2v7cp6zd42ged.cloudfront.net%2Frestaurantwidepictures%2F50587_arc-by-lute.jpg",
+            "short_url": "https://nspireme.nl/s/cXBqgK"
+        },
+        {
+            "id": "2430dbf3-f30b-5c42-9ba2-1b190f9594a9",
+            "provider_id": "62194292804",
+            "provider_url": "https://www.eventbrite.nl/e/tickets-jobs-of-the-future-skills-for-the-new-reality-62194292804?aff=ebdikpkpn",
+            "title": "Jobs of the Future: Skills for the New Reality",
+            "type": "Seminar or Talk",
+            "content_type": "event",
+            "description": "<H2 CLASS=\"font_8\">Are you ready for the JOBs of the FUTURE?</H2>\n<H2>Is Android dreaming of stealing your job?</H2>\n<H2>What are the MUST HAVE skills for the coming decade?</H2>\n<P><BR>The job landscape is changing rapidly. By some predictions, <SPAN>800 million jobs might be lost to automation by 2030.</SPAN> Lots of subject knowledge become outdated in just a few years time. And most companies already feel the growing skill gap. Is future a threat or an opportunity? What skills do you need to deal with the new reality of the workplace in coming 5-10 years? And how can you develop those skills effectively? In this 2,5 hour workshop, we are going to talk about skills of the future and discuss what should be your the next steps in reskilling for the future.<BR><BR>You should join it if:<BR>- You are in<SPAN CLASS=\"text_exposed_show\">terested to discuss <STRONG>new paradigms of work</STRONG> and how technology changes context and requirements of most jobs.<BR><BR>- You want to discover<STRONG> how the AI already challenge some of the most popular professions out there</STRONG> and what is going to happen in coming years.<BR><BR>- You would like to learn what are <STRONG>must-have skills</STRONG> for the coming decade and how can you develop them.<BR><BR>In this workshop, we will look together for the answers for one of the biggest challenges of nowadays: preparing for the future of work.<BR><BR><STRONG>This workshop is offered by Natalija Counet.</STRONG><BR><SPAN><SPAN><SPAN><SPAN>Natalija Counet is a keynote speaker and consultant who focuses on working with the top learning challenges of the coming decade. She is the founder of 361degreesLAB, a company that facilitates learning experiences for the development of the skills of the future. She is also the initiator of the learning initiative Think Future Today which explores different perspectives, ethical dilemmas and challenges in the advancement of technology and AI. Her book \"Upskilling for the future\" is coming out in 2019.</SPAN></SPAN></SPAN></SPAN><BR>​</SPAN></P>\n<H2 CLASS=\"font_8\">Do you have the skills of the Future? Join to find out!</H2>\n<P><SPAN><BR></SPAN></P>",
+            "images": [
+                {
+                    "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F62625064%2F192192253820%2F1%2Foriginal.20190521-084953?h=200&w=450&auto=compress&rect=0%2C51%2C1920%2C960&s=6d8a94bd0ecd8d1eeede90b12c733a4b",
+                    "width": 400,
+                    "height": 200
+                }
+            ],
+            "provider": "eventbrite",
+            "location": {
+                "lat": "52.3841692",
+                "lon": "4.903128199999969"
+            },
+            "rating": null,
+            "contact": {
+                "city": "Amsterdam",
+                "email": null,
+                "phone": null,
+                "address": "Overhoeksplein 2",
+                "country": "The Netherlands",
+                "website": null,
+                "zipcode": "1013 KS"
+            },
+            "opening": null,
+            "extra": {
+                "end": "2019-09-05T19:00:00Z",
+                "start": "2019-09-05T16:30:00Z",
+                "tickets": [
+                    {
+                        "fee": {
+                            "value": 0,
+                            "display": "€0.00",
+                            "currency": "EUR",
+                            "major_value": "0.00"
+                        },
+                        "tax": {
+                            "value": 0,
+                            "display": "€0.00",
+                            "currency": "EUR",
+                            "major_value": "0.00"
+                        },
+                        "cost": {
+                            "value": 2250,
+                            "display": "€22.50",
+                            "currency": "EUR",
+                            "major_value": "22.50"
+                        },
+                        "free": false,
+                        "name": "Early Bird",
+                        "description": null
+                    },
+                    {
+                        "fee": {
+                            "value": 0,
+                            "display": "€0.00",
+                            "currency": "EUR",
+                            "major_value": "0.00"
+                        },
+                        "tax": {
+                            "value": 0,
+                            "display": "€0.00",
+                            "currency": "EUR",
+                            "major_value": "0.00"
+                        },
+                        "cost": {
+                            "value": 1850,
+                            "display": "€18.50",
+                            "currency": "EUR",
+                            "major_value": "18.50"
+                        },
+                        "free": false,
+                        "name": "Students",
+                        "description": null
+                    },
+                    {
+                        "fee": {
+                            "value": 0,
+                            "display": "€0.00",
+                            "currency": "EUR",
+                            "major_value": "0.00"
+                        },
+                        "tax": {
+                            "value": 0,
+                            "display": "€0.00",
+                            "currency": "EUR",
+                            "major_value": "0.00"
+                        },
+                        "cost": {
+                            "value": 2650,
+                            "display": "€26.50",
+                            "currency": "EUR",
+                            "major_value": "26.50"
+                        },
+                        "free": false,
+                        "name": "Last Tickets",
+                        "description": null
+                    }
+                ],
+                "venue_name": "A Lab",
+                "below_max_price": true
+            },
+            "tagline": {
+                "id": 2,
+                "text": "Iets leren",
+                "image": "education"
+            },
+            "booking_url": "https://www.eventbrite.nl/e/tickets-jobs-of-the-future-skills-for-the-new-reality-62194292804?aff=ebdikpkpn#tickets",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D2430dbf3-f30b-5c42-9ba2-1b190f9594a9&st=Jobs+of+the+Future%3A+Skills+for+the+New+Reality&si=https%3A%2F%2Fimg.evbuc.com%2Fhttps%253A%252F%252Fcdn.evbuc.com%252Fimages%252F62625064%252F192192253820%252F1%252Foriginal.20190521-084953%3Fh%3D200%26w%3D450%26auto%3Dcompress%26rect%3D0%252C51%252C1920%252C960%26s%3D6d8a94bd0ecd8d1eeede90b12c733a4b",
+            "short_url": "https://nspireme.nl/s/8XsGwP"
+        },
+        {
+            "id": "7848fa44-78a6-52cc-a362-b5968fadcadc",
+            "provider_id": "9200000100030240",
+            "provider_url": "https://www.bol.com/nl/p/tonio/9200000100030240",
+            "title": "Tonio",
+            "type": "Literatuur & Romans",
+            "content_type": "book",
+            "description": "Op de Eerste Pinksterdag van 2010 komt Tonio van der Heijden, het enig kind van A.F.Th. van der Heijden en Mirjam Rotenstreich, bij een verkeersongeval om het leven. Het is vroeg in de ochtend als hij, ter hoogte van het Vondelpark in het centrum van Amsterdam, wordt geschept door een auto. Hij wordt in kritieke toestand naar het Academisch Medisch Centrum vervoerd, waar hij diezelfde dag aan zijn verwondingen overlijdt. Tonio zal niet ouder worden dan 21 jaar. A.F.Th. van der Heijden doet het enige waar hij op dat moment toe in staat is: in zijn herinnering graven, aantekeningen maken, schrijven. Daarbij voortgedreven door twee dwingende vragen: wat gebeurde er met Tonio in de laatste uren en dagen voorafgaand aan de ramp, en hoe kon dit ongeluk plaatsvinden? Een zoektocht naar het wat en het hoe, die leidt langs verschillende ooggetuigen, vrienden, politiemensen, artsen en het mysterieuze meisje Jenny, dat in de laatste weken van Tonio s leven een cruciale rol blijkt te hebben vervuld. Tonio vormt de neerslag van die zoektocht. Een nauwgezette reconstructie van een jongensleven en een radeloze queeste naar zin en betekenis.",
+            "images": [
+                {
+                    "url": "https://s.s-bol.com/imgbase0/imagebase3/large/FC/0/4/2/0/9200000100030240.jpg",
+                    "width": 545,
+                    "height": 840
+                }
+            ],
+            "provider": "bol",
+            "location": null,
+            "rating": 90,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": "The Netherlands",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "author": "A.F.Th. van der Heijden",
+                "summary": "Nederlands | Druk: 28 | Paperback | 9789021416410 | 640 pagina's",
+                "sub_title": null,
+                "offer_data": {
+                    "bolCom": 1,
+                    "offers": [
+                        {
+                            "id": "9200000100030240",
+                            "price": 20,
+                            "seller": {
+                                "id": "0",
+                                "url": "www.bol.com",
+                                "topSeller": false,
+                                "sellerType": "bol.com",
+                                "displayName": "bol.com",
+                                "useWarrantyRepairConditions": false
+                            },
+                            "comment": "Op voorraad. Voor 23:00 uur besteld, morgen in huis",
+                            "bestOffer": true,
+                            "condition": "Nieuw",
+                            "releaseDate": "2018-10-11T02:00:00.000+02:00",
+                            "availabilityCode": "-1",
+                            "availabilityDescription": "Op voorraad. Voor 23:00 uur besteld, morgen in huis"
+                        }
+                    ],
+                    "professionalSellers": 0,
+                    "nonProfessionalSellers": 0
+                },
+                "binding_code": "Paperback",
+                "product_group": "Literatuur & Romans",
+                "parent_categories": [
+                    {
+                        "parentCategories": [
+                            {
+                                "id": "8299",
+                                "name": "Boeken"
+                            },
+                            {
+                                "id": "24410",
+                                "name": "Literatuur & Romans"
+                            },
+                            {
+                                "id": "24416",
+                                "name": "Literaire romans"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "tagline": {
+                "id": 6,
+                "text": "Lekker lezen",
+                "image": "read"
+            },
+            "booking_url": "https://afrekenen.bol.com/nl/winkelwagentje/direct-toevoegen?name=app&id=9200000100030240&siteid=57226",
+            "price_rating": null,
+            "price": 20,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D7848fa44-78a6-52cc-a362-b5968fadcadc&st=Tonio&si=https%3A%2F%2Fs.s-bol.com%2Fimgbase0%2Fimagebase3%2Flarge%2FFC%2F0%2F4%2F2%2F0%2F9200000100030240.jpg",
+            "short_url": "https://nspireme.nl/s/Yn767R"
+        },
+        {
+            "id": "01e1006d-174b-51ab-beb7-fccd6469773e",
+            "provider_id": "835557",
+            "provider_url": "https://blackbird.zoomin.tv/Players/.pla?pid=kpnvandaagnldp&aid=835557&v=3",
+            "title": "Perfectionist? This video will soothe your soul ",
+            "type": "Arts & Culture",
+            "content_type": "video",
+            "description": "These 3D animations will satisfy anyone who needs a little perfection in their life. ",
+            "images": [
+                {
+                    "url": "https://blackbird.zoomin.tv/Images/.jpg?aid=835557&width=640&height=360&v=3",
+                    "width": 640,
+                    "height": 360
+                }
+            ],
+            "provider": "zoomin",
+            "location": null,
+            "rating": null,
+            "contact": {
+                "city": null,
+                "email": null,
+                "phone": null,
+                "address": null,
+                "country": "The Netherlands",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "duration": 191000,
+                "added_date": "2018-10-15T11:03:56",
+                "category_image_url": "https://nspireme.nl/img/zoomin_categories/zoomin_default.png"
+            },
+            "tagline": {
+                "id": 9,
+                "text": "Filmpje kijken",
+                "image": "watch"
+            },
+            "booking_url": "https://blackbird.zoomin.tv/Players/.pla?pid=kpnvandaagnldp&aid=835557&v=3&autoplayit=true",
+            "price_rating": null,
+            "price": null,
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D01e1006d-174b-51ab-beb7-fccd6469773e&st=Perfectionist%3F+This+video+will+soothe+your+soul+&si=https%3A%2F%2Fblackbird.zoomin.tv%2FImages%2F.jpg%3Faid%3D835557%26width%3D640%26height%3D360%26v%3D3",
+            "short_url": "https://nspireme.nl/s/aruyxj"
+        },
+        {
+            "id": "c7634d66-e17a-5cc4-a1b4-3a56b5b61e7c",
+            "provider_id": "703796",
+            "provider_url": "https://www.tiqets.com/nl/amsterdam-c75061/rijksmuseum-skip-the-line-p703796?partner=nspire",
+            "title": "Rijksmuseum: skip the line",
+            "type": "Kunstmusea",
+            "content_type": "culturalvenues",
+            "description": "Het Rijksmuseum heeft een aantal van 's werelds meest beroemde schilderijen in de collectie (waaronder natuurlijk de *Nachtwacht* van Rembrandt). De nadruk van het museum ligt op de  Gouden Eeuw. De collectie in het prachtig gerestaureerde gebouw geeft meer dan 800 jaar aan indrukwekkende kunstgeschiedenis weer. Het 'Rijks' aan het Museumplein in Amsterdam is een absolute must-see!",
+            "images": [
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/0508e07002f14dc3ad6bec16ab6b2761.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=72b5b37a8c47711663b7a5f276312504",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/18affb360f2148d8a38dc078c5e8bc2c.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=c3aee5dfe0d1179e7123e64804967316",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/20444857c54c4fb2a2933191231741ec.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=7230f7e559f9b1c0c59dea34eb2d4bdd",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/5cab8e11f55745868c2bae68a5cc87f0.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=fe31b0f0e10b053ae3c85341a567b193",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/6ab70f5bbf504d35a1f1fd365e3e4be7.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=d7066549075d7418a83c32c307d64582",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/7b5d095c01134f1592f3b32311e3d2e5.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=fdad3f4b77dcd415e6c52de7e158a302",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/82af2f00dffa44528e1f7bbd932a4224.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=9c882ad7ae2b2d02bd35518015175038",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/8d6e8ea878114ae0a27f0756c89a878b.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=009df886ea0bb7ecc2baaad703581623",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/b08b1e51eabc470f83d9c21b58567f0f.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=896c45c5d9a86ad0ccc51348b6f7f77a",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/b843111efaed4b26892e924fc1041120.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=d580c7d593e62c0f8ae2dda1bc225a11",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/d7b72eb32c034edf91b5fed1c64f2065.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=6f6e9d0e3aa832abd1a0c25973d9f6da",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/e4dd3ee5f7644cfb815bf958b06188a6.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=e736d64f0dc84f480ffdcb77f61ecd80",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/f2e5869a62834f36a6c73c7c9e6f4991.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=6662035905b253c0eae9cb03006f9969",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/f35562fa695a43fc8776e8449488332e.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=cfd58bd08adc2ac205a9c664de99ec4e",
+                    "width": 500,
+                    "height": 500
+                },
+                {
+                    "url": "https://aws-tiqets-cdn.imgix.net/images/content/f57b080b905847a4beec78d74d966181.jpg?auto=format&fit=crop&h=500&ixlib=python-1.1.2&q=70&w=500&s=bd84ef5419443019ea24662e8d3729df",
+                    "width": 500,
+                    "height": 500
+                }
+            ],
+            "provider": "tiqets",
+            "location": {
+                "lat": 52.359998,
+                "lon": 4.885219
+            },
+            "rating": 100,
+            "contact": {
+                "city": "Amsterdam",
+                "email": null,
+                "phone": null,
+                "address": "Museumstraat 1",
+                "country": "Nederland",
+                "website": null,
+                "zipcode": null
+            },
+            "opening": null,
+            "extra": {
+                "sub_title": "Zie 's werelds grootste Rembrandt-collectie en 800 jaar vaderlandse geschiedenis",
+                "venue_name": "Rijksmuseum",
+                "whats_excluded": null,
+                "whats_included": [
+                    "Toegang tot de permanente collectie",
+                    "Garderobe"
+                ]
+            },
+            "tagline": {
+                "id": 1,
+                "text": "Kunst & Cultuur",
+                "image": "culture"
+            },
+            "booking_url": "https://www.tiqets.com/nl/amsterdam-c75061/rijksmuseum-skip-the-line-p703796/goto_checkout?partner=nspire",
+            "price_rating": null,
+            "price": "20.0",
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3Dc7634d66-e17a-5cc4-a1b4-3a56b5b61e7c&st=Rijksmuseum%3A+skip+the+line&si=https%3A%2F%2Faws-tiqets-cdn.imgix.net%2Fimages%2Fcontent%2F0508e07002f14dc3ad6bec16ab6b2761.jpg%3Fauto%3Dformat%26fit%3Dcrop%26h%3D500%26ixlib%3Dpython-1.1.2%26q%3D70%26w%3D500%26s%3D72b5b37a8c47711663b7a5f276312504",
+            "short_url": "https://nspireme.nl/s/tGxQTH"
+        },
+        {
+            "id": "62c9f5b9-2b3c-57a7-bfcc-0aacfe677958",
+            "provider_id": "Z698xZbpZ17FSQa",
+            "provider_url": "http://ticketmaster-nl.tm7510.net/c/1335915/427748/7510?u=https%3A%2F%2Fwww.ticketmaster.nl%2Fevent%2Fariana-grande-sweetener-world-tour-tickets%2F233689",
+            "title": "Ariana Grande - Sweetener World Tour",
+            "type": "Music",
+            "content_type": "event",
+            "description": "Wil jij Ariana Grande - Sweetener World Tour gaan zien? Op 24-08-2019 kun je er bij zijn in Ziggo Dome. Denk je: “Ja! Let’s go.” Koop dan je tickets door op de paarse knop te drukken.",
+            "images": [
+                {
+                    "url": "https://s1.ticketm.net/dam/a/0d1/898b070f-099c-4cb3-87c3-80ae75a490d1_927791_RETINA_PORTRAIT_16_9.jpg",
+                    "width": 640,
+                    "height": 360
+                }
+            ],
+            "provider": "ticket_master",
+            "location": {
+                "lat": 52.31778,
+                "lon": 4.93636
+            },
+            "rating": null,
+            "contact": {
+                "city": "Amsterdam",
+                "email": null,
+                "phone": null,
+                "address": "De Passage 100",
+                "country": "The Netherlands",
+                "website": "http://ticketmaster-nl.tm7510.net/c/1335915/427748/7510?u=https%3A%2F%2Fwww.ticketmaster.nl%2Fvenue%2Fziggo-dome-amsterdam-tickets%2Fziggo%2F107",
+                "zipcode": "1101 AX"
+            },
+            "opening": null,
+            "extra": {
+                "end": null,
+                "start": "2019-08-24T18:00:00Z",
+                "max_price": "89.00",
+                "min_price": "45.00",
+                "venue_name": "Ziggo Dome",
+                "event_status": "onsale",
+                "max_priceWithFees": "99.68",
+                "min_priceWithFees": "50.40",
+                "onsale_end_datetime": "2019-08-24T17:30:00Z",
+                "onsale_start_datetime": "2018-12-20T11:00:00Z"
+            },
+            "tagline": {
+                "id": 5,
+                "text": "Optreden bijwonen",
+                "image": "place"
+            },
+            "booking_url": "http://ticketmaster-nl.tm7510.net/c/1335915/427748/7510?u=https%3A%2F%2Fwww.ticketmaster.nl%2Fevent%2Fariana-grande-sweetener-world-tour-tickets%2F233689",
+            "price_rating": null,
+            "price": "45.00",
+            "strategy": "explore",
+            "is_old": false,
+            "share_url": "https://nspire.page.link/?apn=com.kpn.nspire&ibi=com.kpn.nspire&link=https%3A%2F%2Fnspireme.nl%2Fdetail%2F%3Fid%3D62c9f5b9-2b3c-57a7-bfcc-0aacfe677958&st=Ariana+Grande+-+Sweetener+World+Tour&si=https%3A%2F%2Fs1.ticketm.net%2Fdam%2Fa%2F0d1%2F898b070f-099c-4cb3-87c3-80ae75a490d1_927791_RETINA_PORTRAIT_16_9.jpg",
+            "short_url": "https://nspireme.nl/s/68IW1r"
+        }
+    ],
+    "meta": {
+        "status_code": 200,
+        "message": "Success!",
+        "detail": null
+    }
+}

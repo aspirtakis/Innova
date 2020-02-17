@@ -25,21 +25,21 @@ const Login = ({
   onRegister,
   onSignIn,
   password,
-  rememberMe,
+  rememberMe
 }) => (
   <div
     className={classNames(
       classes.boxContainer,
-      isMobile() ? classes.mobileContainer : {},
+      isMobile() ? classes.mobileContainer : {}
     )}
   >
     <div className={classes.boxWrapper}>
       <Paper className={classes.paper} elevation={3} square>
         <div className={classes.logoContainer}>
           <img
-            style={{ width: 295, height: 54 }}
-            src="https://s3.amazonaws.com/OIHubassets/logo.png"
-            alt="OIHub Admin Template"
+            style={{ width: 295 }}
+            src={require('../../images/logo.svg')}
+            alt="KPN Open Innovation Hub login"
           />
         </div>
         {errorMessage ? (
@@ -81,6 +81,7 @@ const Login = ({
             </div>
 
             <Button
+              size="large"
               color="primary"
               className={classes.boxBtn}
               onClick={onSignIn}
@@ -101,14 +102,12 @@ const Login = ({
       </Button>
       <Button
         onClick={onRegister}
-        color="secondary"
+        className={classes.flatButton}
         icon={<Icon className="material-icons">person_add</Icon>}
       >
         Register
       </Button>
     </div>
-
-
   </div>
 );
 
