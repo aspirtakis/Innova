@@ -20,8 +20,10 @@ import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { backend } from '../utils/config';
-import Anttable from '../components/Table'
+import Anttable from '../components/Table';
+import Remarks from '../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
+import EditableTable from './editableTable';
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
@@ -484,8 +486,11 @@ class ModalEditTask extends React.Component {
         <Anttable assumptions={this.state.assumptions} />
       </TabPane>
             <TabPane tab="Remarks" key="4">
-        <Anttable/>
+        <Remarks remarks={this.state.remarks}/>
       </TabPane>
+      <TabPane tab="Editable" key="5">
+      <EditableTable data={this.state.assumptions}/>
+     </TabPane>
     </Tabs>
   </div>
       </Modal>
