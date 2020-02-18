@@ -684,7 +684,8 @@ class Funnel extends Component {
                   onOK={this.handleOk}
                   handleSubmit={this.handleSubmit} />
               <FunnelEditForm
-                      userRole={this.props.user.role}
+                  user={this.props.user}
+                  userRole={this.props.user.role}
                   sestoken={sestoken}
                   visible={this.state.setOpenEdit}
                   onCancel={this.handleClose}

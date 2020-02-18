@@ -11,24 +11,28 @@ class Remarks extends React.Component {
   }
 
 
+
+
   render() {
-    const { remarks,cardClick, saveRemark } = this.props;
+    const { remarks,cardClick, saveRemark ,user,coach,deleteRemark} = this.props;
     console.log(this.props);
     return (
-     <Row>
+     <Row style={{  display: 'flex', minWidth:'100%', flexWrap:"wrap", marginLeft:10}} >
       {remarks.map((remark,i) =>
-        <Col key={i}>
+
         <Card
-        style={{ width: 200}}
+        key={i}
+        style={{ width: 200, margin:10}}
       >
         <Meta
           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
           title={remark.remarker}
+          description= {remark.remarker !== user.first_name && remark.description}
         />
-        {<h4>{remark.description}</h4>}
-       { <TextArea onChange={saveRemark} rows={4} defaultValue={remark.description} />}
+       
+       {remark.remarker === coach && remark.remarker === user.first_name && <TextArea onChange={(e) => saveRemark(e,remark)} rows={4} defaultValue={remark.description} />}
+       {remark.remarker === coach && remark.remarker === user.first_name &&  <Button onClick={(e) => deleteRemark(e,remark)} >Delete</Button> }
       </Card>
-        </Col>
       )}
       </Row>
     );

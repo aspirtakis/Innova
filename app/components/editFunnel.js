@@ -25,12 +25,14 @@ import Remarks from '../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
 import EditableTable from './editableTable';
 
+
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
 const { Panel } = Collapse;
 
 const apptoken = backend.apptoken;
 const tasksUrl = backend.beUrl + backend.tasks;
+const remarksUrl = backend.beUrl + backend.remarks;
 const dateFormat = 'YYYY/MM/DD';
 // eslint-disable-next-line react/prefer-stateless-function
 class ModalEditTask extends React.Component {
@@ -207,6 +209,41 @@ class ModalEditTask extends React.Component {
 console.log(status);
   };
 
+
+
+  deleteRemark = (e, remark) => {
+  const id = remark.id;
+    this.setState({ spinning: true });
+    const taskid = this.state.task_id;
+    const url4 = remarksUrl+'/'+id;
+ 
+    fetch(url4, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+       // this.props.onCancel();
+      //  this.setState({ spinning: false });
+    //    this.props.onOK();
+    const dataSource = [...this.state.remarks];
+    this.setState({remarks: dataSource.filter(item => item.id !== id) });
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
   onDelete = () => {
     this.setState({ spinning: true });
     const taskid = this.state.task_id;
@@ -257,13 +294,68 @@ console.log(status);
   );
 
 
-    saveRemark = data => {
-      console.log(data.target.value);
-      console.log(this.props.userRole);
+    saveRemark = (e, remark) => {
+      console.log(e.target.value);
+      console.log(this.props.user);
+      console.log(remark.id);
     };
 
+
+
+    addNewRemark = values => {
+        // this.setState({ spinning: true });
+        const { remarks } = this.state;
+         fetch(remarksUrl, {
+           method: 'POST',
+           headers: {
+             Accept: 'application/json',
+             'X-DreamFactory-API-Key': apptoken,
+             'X-DreamFactory-Session-Token': this.props.sestoken,
+             'Cache-Control': 'no-cache',
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify({
+             resource: [
+              {
+                description: "New Remark",
+                funnelPhase: this.state.FunnelPhase,
+                card_id: this.state.task_id,
+                remarker: this.props.user.first_name,
+              },
+             ],
+           }),
+         })
+           .then(response => {
+             if (!response.ok) {
+               throw Error(response.statusText);
+             }
+             return response;
+           })
+           .then(response => response.json())
+           .then(remarkData => {
+           //  this.props.onOK();
+             this.setState({ spinning: false });
+             console.log(remarkData);
+             const newRemark = {
+              id:remarkData.resource[0].id,
+              description: "New Remark",
+              card_id: this.state.task_id,
+              remarker: this.props.user.first_name,
+            };
+      
+            this.setState({
+              remarks: [...remarks, newRemark],
+            });
+           })
+           .catch(taskData => console.log(taskData));
+       };
+
+ 
+    
+
+
   render() {
-    const { visible, onOK, onCancel ,userRole} = this.props;
+    const { visible, onOK, onCancel ,userRole,user} = this.props;
     console.log(this.state.assumptions);
     const data = this.state;
 
@@ -350,7 +442,7 @@ console.log(status);
         this.setState({ description: e.target.value })
       }
       as="textarea"
-      rows="13"
+      rows="5"
     />
     </Form.Group>
 
@@ -460,15 +552,6 @@ console.log(status);
       <option>H3</option>
     </Form.Control>
 
-<div> <Form.Label style={{ marginTop: 5 }}>Notes Coach</Form.Label>
-<Form.Control
-  value={this.state.remarks}
-  onChange={e =>
-    this.setState({ remarks: e.target.value })
-  }
-  as="textarea"
-  rows="7"
-/> </div>
 </Form.Group>
 
 </Form.Row>
@@ -496,7 +579,10 @@ console.log(status);
         <Anttable assumptions={this.state.assumptions} />
       </TabPane>
             <TabPane tab="Remarks" key="4">
-        <Remarks saveRemark={this.saveRemark} remarks={this.state.remarks} cardClick={this.cardClick()}/>
+            <Button onClick={this.addNewRemark} type="primary" style={{ marginBottom: 16 }}>
+    Add
+  </Button>
+        <Remarks deleteRemark={this.deleteRemark}coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} cardClick={this.cardClick()}/>
       </TabPane>
       <TabPane tab="Editable" key="5">
       <EditableTable data={this.state.assumptions}/>
