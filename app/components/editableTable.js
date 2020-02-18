@@ -1,4 +1,4 @@
-import { Table, Input, Button, Popconfirm, Form } from 'antd';
+import { Badge, Table, Input, Button, Popconfirm, Form } from 'antd';
 import React from 'react';
 
 const EditableContext = React.createContext();
@@ -119,7 +119,20 @@ class EditableTable extends React.Component {
 
 
     this.state = {
-      dataSource: props.data,
+      dataSource: [
+        {
+          key: '0',
+          name: 'Edward King 0',
+          age: '32',
+          address: 'London, Park Lane no. 0',
+        },
+        {
+          key: '1',
+          name: 'Edward King 1',
+          age: '32',
+          address: 'London, Park Lane no. 1',
+        },
+      ],
       count: 2,
     };
   }

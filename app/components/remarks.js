@@ -1,36 +1,36 @@
-import {Row,Col, Card, Icon, Avatar } from 'antd';
+import {Button,Row,Col, Card, Icon, Avatar,Input } from 'antd';
 
 const { Meta } = Card;
 import React from 'react';
-
+const { TextArea } = Input;
 
 class Remarks extends React.Component {
   constructor(props) {
     super(props);
 
   }
+
+
   render() {
-    const { remarks } = this.props;
+    const { remarks,cardClick, saveRemark } = this.props;
+    console.log(this.props);
     return (
      <Row>
-      {remarks.map((remark) =>
+      {remarks.map((remark,i) =>
+        <Col key={i}>
         <Card
         style={{ width: 200}}
-        actions={[
-          <Icon type="edit" key="edit" />,
-        ]}
       >
         <Meta
           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title={remark.created}
           title={remark.remarker}
-          description={remark.description}
         />
+        {<h4>{remark.description}</h4>}
+       { <TextArea onChange={saveRemark} rows={4} defaultValue={remark.description} />}
       </Card>
-
+        </Col>
       )}
       </Row>
-
     );
   }
 }

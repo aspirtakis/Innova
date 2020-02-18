@@ -203,6 +203,10 @@ class ModalEditTask extends React.Component {
     }
   };
 
+  cardClick = status => {
+console.log(status);
+  };
+
   onDelete = () => {
     this.setState({ spinning: true });
     const taskid = this.state.task_id;
@@ -251,6 +255,12 @@ class ModalEditTask extends React.Component {
       </Col>
     </Row>
   );
+
+
+    saveRemark = data => {
+      console.log(data.target.value);
+      console.log(this.props.userRole);
+    };
 
   render() {
     const { visible, onOK, onCancel ,userRole} = this.props;
@@ -486,7 +496,7 @@ class ModalEditTask extends React.Component {
         <Anttable assumptions={this.state.assumptions} />
       </TabPane>
             <TabPane tab="Remarks" key="4">
-        <Remarks remarks={this.state.remarks}/>
+        <Remarks saveRemark={this.saveRemark} remarks={this.state.remarks} cardClick={this.cardClick()}/>
       </TabPane>
       <TabPane tab="Editable" key="5">
       <EditableTable data={this.state.assumptions}/>
