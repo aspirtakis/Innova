@@ -4,6 +4,8 @@ const backendProd = {
   sessionUrl: 'user/session',
   tasks: 'funnel/_table/funnel.tasks',
   remarks: 'funnel/_table/funnel.remarks',
+  assumptions:'funnel/_table/funnel.assumptions',
+  checklists:'funnel/_table/funnel.checklists',
   defUser:'',
   defPass:''
 };
@@ -14,6 +16,8 @@ const backendDev = {
   sessionUrl: 'user/session',
   tasks:'funnel_dev/_table/funnel.tasks',
   remarks:'funnel_dev/_table/funnel.remarks',
+  assumptions:'funnel_dev/_table/funnel.assumptions',
+  checklists:'funnel_dev/_table/funnel.checklists',
   defUser:'',
   defPass:''
 };
@@ -23,6 +27,8 @@ const backendAga = {
   sessionUrl: 'user/session',
   tasks:'funnel_dev/_table/funnel.tasks',
   remarks:'funnel_dev/_table/funnel.remarks',
+  assumptions:'funnel_dev/_table/funnel.assumptions',
+  checklists:'funnel_dev/_table/funnel.checklists',
   defUser:'agamemnon.aspirtakis@kpn.com',
   defPass:'a224935a'
 };

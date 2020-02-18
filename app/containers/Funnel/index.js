@@ -320,6 +320,10 @@ class Funnel extends Component {
       this.setState({ setOpenEdit: false });
       this.getData();
   };
+  reloadData = () => {
+    console.log("FIRE GET DATA");
+    this.getData();
+};
 
   showOperations = (checked) => {
       this.setState({ checked });
@@ -682,6 +686,7 @@ class Funnel extends Component {
                   visible={this.state.setOpen}
                   onCancel={this.handleClose}
                   onOK={this.handleOk}
+          
                   handleSubmit={this.handleSubmit} />
               <FunnelEditForm
                   user={this.props.user}
@@ -691,6 +696,7 @@ class Funnel extends Component {
                   onCancel={this.handleClose}
                   onOK={this.handleOk}
                   data={selectedTask}
+                  reload={this.reloadData}
                   footer={null} />
               {this.filterBar()}
               <DragDropContext onDragEnd={this.onDragEnd}>

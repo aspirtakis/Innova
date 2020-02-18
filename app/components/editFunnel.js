@@ -1,8 +1,5 @@
 import React from 'react';
 import {
-  Select,
-  Input,
-  Icon,
   Modal,
   Button,
   Spin,
@@ -13,14 +10,12 @@ DatePicker,
 Tabs 
 } from 'antd';
 
-
 const { TabPane } = Tabs;
-import styled, { css } from 'styled-components';
 import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { backend } from '../utils/config';
-import Anttable from '../components/Table';
+
 import Remarks from '../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
 import EditableTable from './editableTable';
@@ -33,6 +28,9 @@ const { Panel } = Collapse;
 const apptoken = backend.apptoken;
 const tasksUrl = backend.beUrl + backend.tasks;
 const remarksUrl = backend.beUrl + backend.remarks;
+const assumptionsUrl = backend.beUrl + backend.assumptions;
+
+const checklistsUrl = backend.beUrl + backend.checklists;
 const dateFormat = 'YYYY/MM/DD';
 // eslint-disable-next-line react/prefer-stateless-function
 class ModalEditTask extends React.Component {
@@ -62,7 +60,6 @@ class ModalEditTask extends React.Component {
       nexStageGate:data.nexStageGate,
     };
   }
-
   componentWillReceiveProps(next) {
     const { data } = next;
     this.setState({
@@ -90,10 +87,209 @@ class ModalEditTask extends React.Component {
     });
   }
 
-  onAddAssumption = () => {
-    this.setState({ spinning: true });
-    const taskid = this.props.data.task_id;
-    const url4 = tasksUrl+'/'+taskid;
+  // saveAssumption = row => {
+  //   const newData = [...this.state.assumptions];
+  //   const index = newData.findIndex(item => row.id === item.id);
+  //   const item = newData[index];
+  //   newData.splice(index, 1, {
+  //     ...item,
+  //     ...row,
+  //   });
+  //   this.setState({assumptions:newData});
+  // };
+
+  // handleDeleteAssumption = id => {
+  //   const assumptions = [...this.state.assumptions];
+  //   this.setState({ assumptions: dataSource.filter(item => item.id !== id) });
+  // };
+  
+
+
+  // handleAdd = () => {
+  //   const { count, dataSource } = this.state;
+  //   const newData = {
+  //     key: count,
+  //     name: `Edward King ${count}`,
+  //     age: 32,
+  //     address: `London, Park Lane no. ${count}`,
+  //   };
+  //   this.setState({
+  //     dataSource: [...dataSource, newData],
+  //     count: count + 1,
+  //   });
+  // };
+
+  addNewCheckList = (id) => {
+     fetch(checklistsUrl, {
+       method: 'POST',
+       headers: {
+         Accept: 'application/json',
+         'X-DreamFactory-API-Key': apptoken,
+         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'Cache-Control': 'no-cache',
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+         resource: [
+          {
+            title: "New Check",
+            assumptionid: id,
+            status:false,
+          },
+         ],
+       }),
+     })
+       .then(response => {
+         if (!response.ok) {
+           throw Error(response.statusText);
+         }
+         return response;
+       })
+       .then(response => response.json())
+       .then(assumptionData => {
+        //  console.log(assumptionData);
+        //  this.props.reload();
+         
+       })
+       .catch(taskData => console.log(taskData));
+  };
+
+
+  addNewAssumption = values => {
+    // this.setState({ spinning: true });
+    const { assumptions } = this.state;
+     fetch(assumptionsUrl, {
+       method: 'POST',
+       headers: {
+         Accept: 'application/json',
+         'X-DreamFactory-API-Key': apptoken,
+         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'Cache-Control': 'no-cache',
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+         resource: [
+          {
+            title: "New Assumption",
+            meta: "empty",
+            task_id: this.state.task_id,
+            category: null,
+          },
+         ],
+       }),
+     })
+       .then(response => {
+         if (!response.ok) {
+           throw Error(response.statusText);
+         }
+         return response;
+       })
+       .then(response => response.json())
+       .then(assumptionData => {
+       //  this.props.onOK();
+         this.setState({ spinning: false });
+         console.log(assumptionData);
+        
+         const newRemark = {
+          id:assumptionData.resource[0].id,
+          title: "New Assumption",
+          meta: "empty",
+          task_id: this.state.task_id,
+          category: null,
+        };
+  
+        this.setState({
+          assumptions: [...assumptions, newRemark],
+        });
+       })
+       .catch(taskData => console.log(taskData));
+  };
+  saveAssumption = row => {
+    const url = assumptionsUrl+'/'+row.id;
+    fetch(url, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: row.title,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+          const newData = [...this.state.assumptions];
+    const index = newData.findIndex(item => row.id === item.id);
+    const item = newData[index];
+    newData.splice(index, 1, {
+      ...item,
+      ...row,
+    });
+    this.setState({assumptions:newData});
+      })
+      .catch(taskData => console.log(taskData));
+  };
+  
+  addNewRemark = values => {
+    // this.setState({ spinning: true });
+    const { remarks } = this.state;
+     fetch(remarksUrl, {
+       method: 'POST',
+       headers: {
+         Accept: 'application/json',
+         'X-DreamFactory-API-Key': apptoken,
+         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'Cache-Control': 'no-cache',
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+         resource: [
+          {
+            description: "New Remark",
+            funnelPhase: this.state.FunnelPhase,
+            card_id: this.state.task_id,
+            remarker: this.props.user.first_name,
+          },
+         ],
+       }),
+     })
+       .then(response => {
+         if (!response.ok) {
+           throw Error(response.statusText);
+         }
+         return response;
+       })
+       .then(response => response.json())
+       .then(remarkData => {
+       //  this.props.onOK();
+         this.setState({ spinning: false });
+         console.log(remarkData);
+         const newRemark = {
+          id:remarkData.resource[0].id,
+          description: "New Remark",
+          card_id: this.state.task_id,
+          remarker: this.props.user.first_name,
+        };
+  
+        this.setState({
+          remarks: [...remarks, newRemark],
+        });
+       })
+       .catch(taskData => console.log(taskData));
+  };
+  saveRemark = (e, remark) => {
+
+    const id = remark.id
+    const url4 = remarksUrl+'/'+id;
 
     fetch(url4, {
       method: 'PATCH',
@@ -105,24 +301,7 @@ class ModalEditTask extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        description: this.state.description,
-        asssignedUser: '1',
-        projectname: this.state.projectname,
-        horizon: this.state.horizon,
-        theme: this.state.theme,
-        status: this.state.status,
-        FunnelPhase: this.state.FunnelPhase,
-        title: this.state.taskname,
-        funnel: this.state.funnel,
-        coach: this.state.coach,
-        leader: this.state.leader,
-        sponsor: this.state.sponsor,
-        spnsr: this.state.spnsr,
-        remarks:this.state.remarks,
-        value:this.state.value,
-        prjcost:this.state.prjcost,
-        assumptions:this.state.assumptions,
-        nexStageGate:this.state.nexStageGate,
+        description: e.target.value,
       }),
     })
       .then(response => {
@@ -133,11 +312,40 @@ class ModalEditTask extends React.Component {
       })
       .then(response => response.json())
       .then(taskData => {
-        this.props.onCancel();
-        this.setState({ spinning: false });
-        this.props.onOK();
       })
       .catch(taskData => console.log(taskData));
+  };
+  deleteRemark = (e, remark) => {
+    const id = remark.id;
+      this.setState({ spinning: true });
+      const taskid = this.state.task_id;
+      const url4 = remarksUrl+'/'+id;
+   
+      fetch(url4, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'X-DreamFactory-API-Key': apptoken,
+          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(taskData => {
+         // this.props.onCancel();
+        //  this.setState({ spinning: false });
+      //    this.props.onOK();
+      const dataSource = [...this.state.remarks];
+      this.setState({remarks: dataSource.filter(item => item.id !== id) });
+        })
+        .catch(taskData => console.log(taskData));
   };
 
   onUpdate = () => {
@@ -189,61 +397,6 @@ class ModalEditTask extends React.Component {
       })
       .catch(taskData => console.log(taskData));
   };
-
-  fixStatus = status => {
-    if (status === 'green') {
-      return 'PROGRESSING';
-    }
-    if (status === 'yellow') {
-      return 'IMPEDIMENT';
-    }
-    if (status === 'orange') {
-      return 'PARKED';
-    }
-    if (status === 'red') {
-      return 'STOPPED';
-    }
-  };
-
-  cardClick = status => {
-console.log(status);
-  };
-
-
-
-  deleteRemark = (e, remark) => {
-  const id = remark.id;
-    this.setState({ spinning: true });
-    const taskid = this.state.task_id;
-    const url4 = remarksUrl+'/'+id;
- 
-    fetch(url4, {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then(response => response.json())
-      .then(taskData => {
-       // this.props.onCancel();
-      //  this.setState({ spinning: false });
-    //    this.props.onOK();
-    const dataSource = [...this.state.remarks];
-    this.setState({remarks: dataSource.filter(item => item.id !== id) });
-      })
-      .catch(taskData => console.log(taskData));
-  };
-
   onDelete = () => {
     this.setState({ spinning: true });
     const taskid = this.state.task_id;
@@ -273,7 +426,20 @@ console.log(status);
       })
       .catch(taskData => console.log(taskData));
   };
-
+  fixStatus = status => {
+    if (status === 'green') {
+      return 'PROGRESSING';
+    }
+    if (status === 'yellow') {
+      return 'IMPEDIMENT';
+    }
+    if (status === 'orange') {
+      return 'PARKED';
+    }
+    if (status === 'red') {
+      return 'STOPPED';
+    }
+  };
   fixheader = data => (
     <Row>
       <Col>{data.title}</Col>
@@ -293,70 +459,8 @@ console.log(status);
     </Row>
   );
 
-
-    saveRemark = (e, remark) => {
-      console.log(e.target.value);
-      console.log(this.props.user);
-      console.log(remark.id);
-    };
-
-
-
-    addNewRemark = values => {
-        // this.setState({ spinning: true });
-        const { remarks } = this.state;
-         fetch(remarksUrl, {
-           method: 'POST',
-           headers: {
-             Accept: 'application/json',
-             'X-DreamFactory-API-Key': apptoken,
-             'X-DreamFactory-Session-Token': this.props.sestoken,
-             'Cache-Control': 'no-cache',
-             'Content-Type': 'application/json',
-           },
-           body: JSON.stringify({
-             resource: [
-              {
-                description: "New Remark",
-                funnelPhase: this.state.FunnelPhase,
-                card_id: this.state.task_id,
-                remarker: this.props.user.first_name,
-              },
-             ],
-           }),
-         })
-           .then(response => {
-             if (!response.ok) {
-               throw Error(response.statusText);
-             }
-             return response;
-           })
-           .then(response => response.json())
-           .then(remarkData => {
-           //  this.props.onOK();
-             this.setState({ spinning: false });
-             console.log(remarkData);
-             const newRemark = {
-              id:remarkData.resource[0].id,
-              description: "New Remark",
-              card_id: this.state.task_id,
-              remarker: this.props.user.first_name,
-            };
-      
-            this.setState({
-              remarks: [...remarks, newRemark],
-            });
-           })
-           .catch(taskData => console.log(taskData));
-       };
-
- 
-    
-
-
   render() {
-    const { visible, onOK, onCancel ,userRole,user} = this.props;
-    console.log(this.state.assumptions);
+    const { visible, onOK, onCancel, user} = this.props;
     const data = this.state;
 
     return (
@@ -364,13 +468,12 @@ console.log(status);
         title="Update funnel Card"
         centered
         visible={visible}
+        closable={false}
         onOk={onOK}
         onCancel={onCancel}
         footer={null}
-        style={{minWidth:'80%',minHeigh:'80%'}}
-
+        style={{minWidth:'60%'}}
       >
-
        <div className="card-container">
     <Tabs type="card">
       <TabPane tab="Overview" key="1">
@@ -387,7 +490,6 @@ console.log(status);
                     <p style={{ maxWidth: 220 }}> {data.description} </p>
                   </Col>
                   <Col span={12}>
-            
                     <p>Coach : {data.coach} </p>
                     <p>P.Owner : {data.leader} </p>
                     <p>Sponsor : {data.spnsr} </p>
@@ -503,8 +605,7 @@ console.log(status);
     </Form.Control>
 
   </Form.Group>
-  
-  <Form.Group style={{flexWrap:"nowrap", marginLeft:10}}  as={Col} controlId="ControlFunnel3">
+<Form.Group style={{flexWrap:"nowrap", marginLeft:10}}  as={Col} controlId="ControlFunnel3">
   <Form.Label style={{ marginTop: 5 }}>Value</Form.Label>
   <Form.Control
     value={this.state.value}
@@ -553,7 +654,6 @@ console.log(status);
     </Form.Control>
 
 </Form.Group>
-
 </Form.Row>
 <Button onClick={this.onUpdate} variant="primary" type="submit">
   Submit
@@ -565,28 +665,26 @@ console.log(status);
   Delete
 </Button>
 </Form>
-
       </TabPane>
       <TabPane tab="Assumptions" key="3">
-        <Row>
-        <Input style={{maxWidth:200 ,marginRight:5}} placeholder="assumption Name" />
-<Button onClick={this.addAssumption} type="primary" style={{ marginBottom: 16 }}>
-    Add
-  </Button>
-
-        </Row>
-
-        <Anttable assumptions={this.state.assumptions} />
+      <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
+      Add Assumption
+    </Button>
+      <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Save</Button>
+      <EditableTable 
+      saveAssumption={this.saveAssumption} 
+      deleteAssumption={this.handleDeleteAssumption}
+      assumptions={this.state.assumptions}
+      addChecklist={this.addNewCheckList}
+      />
       </TabPane>
             <TabPane tab="Remarks" key="4">
-            <Button onClick={this.addNewRemark} type="primary" style={{ marginBottom: 16 }}>
-    Add
-  </Button>
-        <Remarks deleteRemark={this.deleteRemark}coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} cardClick={this.cardClick()}/>
+            <Button onClick={this.addNewRemark} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>
+        Add
+      </Button>
+     <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Save</Button>
+        <Remarks deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
       </TabPane>
-      <TabPane tab="Editable" key="5">
-      <EditableTable data={this.state.assumptions}/>
-     </TabPane>
     </Tabs>
   </div>
       </Modal>

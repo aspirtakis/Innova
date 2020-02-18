@@ -33,11 +33,7 @@ class ModalAddTask extends React.Component {
     };
   }
 
-
-
-
-  handleSubmit = e => {
-    this.setState({ spinning: true });
+  handleSubmit = e => {this.setState({ spinning: true });
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -45,7 +41,6 @@ class ModalAddTask extends React.Component {
       }
     });
   };
-
 
 
   addNewTask = values => {
@@ -342,6 +337,7 @@ class ModalAddTask extends React.Component {
                       <Option value="Mike">Mike</Option>
                       <Option value="Mark">Mark</Option>
                       <Option value="Amber">Amber</Option>
+                      <Option value="Amber">Melvin</Option>
                     </Select>,
                   )}
                 </Form.Item>
