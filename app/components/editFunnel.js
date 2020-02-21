@@ -86,40 +86,84 @@ class ModalEditTask extends React.Component {
       
     });
   }
+  saveChecklist = (r,row) => {
+    const url = checklistsUrl+'/'+row.id;
+    console.log(row);
+    console.log(r);
+    fetch(url, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: row.title,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+    const newData = [...this.state.assumptions];
+    const index = newData.findIndex(item => r.id === item.id);
+    const item = newData[index];
+    let chkl = item.experiments;
+    const listitem = chkl.findIndex(litem => row.id === litem.id);
+    console.log(listitem);
+    const lit = chkl[listitem];
+    lit.title= row.title;
+    this.setState({assumptions:newData});
+      })
+      .catch(taskData => console.log(taskData));
+  };
 
-  // saveAssumption = row => {
-  //   const newData = [...this.state.assumptions];
-  //   const index = newData.findIndex(item => row.id === item.id);
-  //   const item = newData[index];
-  //   newData.splice(index, 1, {
-  //     ...item,
-  //     ...row,
-  //   });
-  //   this.setState({assumptions:newData});
-  // };
+  deleteChecklist = (r,checklist) => {
+      this.setState({ spinning: true });
+      const taskid = this.state.task_id;
+      const url4 = checklistsUrl+'/'+checklist;
 
-  // handleDeleteAssumption = id => {
-  //   const assumptions = [...this.state.assumptions];
-  //   this.setState({ assumptions: dataSource.filter(item => item.id !== id) });
-  // };
+      fetch(url4, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'X-DreamFactory-API-Key': apptoken,
+          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(taskData => {
+ 
+        const newData = [...this.state.assumptions];
+        const index = newData.findIndex(item => r.id === item.id);
+        let item = newData[index];
+        let chkl = item.experiments;
+        console.log(chkl);
+        const mak = chkl.filter(item1 => item1.id !== checklist);
+        console.log(chkl);
+        item.experiments=mak;
   
+  
+        this.setState({assumptions:newData});
 
-
-  // handleAdd = () => {
-  //   const { count, dataSource } = this.state;
-  //   const newData = {
-  //     key: count,
-  //     name: `Edward King ${count}`,
-  //     age: 32,
-  //     address: `London, Park Lane no. ${count}`,
-  //   };
-  //   this.setState({
-  //     dataSource: [...dataSource, newData],
-  //     count: count + 1,
-  //   });
-  // };
-
-  addNewCheckList = (id) => {
+        })
+        .catch(taskData => console.log(taskData));
+  };
+  addNewCheckList = (r) => {
      fetch(checklistsUrl, {
        method: 'POST',
        headers: {
@@ -132,8 +176,8 @@ class ModalEditTask extends React.Component {
        body: JSON.stringify({
          resource: [
           {
-            title: "New Check",
-            assumptionid: id,
+            title: "New CheckList",
+            assumptionid: r.id,
             status:false,
           },
          ],
@@ -147,13 +191,95 @@ class ModalEditTask extends React.Component {
        })
        .then(response => response.json())
        .then(assumptionData => {
-        //  console.log(assumptionData);
-        //  this.props.reload();
-         
+
+      const newData = [...this.state.assumptions];
+      const index = newData.findIndex(item => r.id === item.id);
+      let item = newData[index];
+      let chkl = item.experiments;
+
+      const newCheckList =     {
+        title: "New CheckList",
+        id:assumptionData.resource[0].id,
+         assumptionid: r.id,
+         status:false,
+        };
+
+      if(chkl) {
+          chkl.push(newCheckList);
+      }
+      if(!chkl){
+  
+        console.log(item);
+      item.experiments=[];
+        item.experiments.push(newCheckList);
+
+      }
+      
+  
+
+      // newData.splice(index, 1, {
+      //   ...item,
+      //   ...item,
+      // });
+      this.setState({assumptions:newData});
        })
        .catch(taskData => console.log(taskData));
   };
 
+
+  deleteAssumption = (r) => {
+    this.setState({ spinning: true });
+    const url4 = assumptionsUrl+'/'+r.id;
+    const checklistsU = checklistsUrl +"?filter=assumptionid="+r.id;
+
+
+    fetch(url4, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+      const newData = [...this.state.assumptions];
+      this.setState({assumptions:newData.filter(item => item.id !== r.id)});
+
+
+      fetch(checklistsU, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'X-DreamFactory-API-Key': apptoken,
+          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(taskData => {
+        })
+        .catch(taskData => console.log(taskData));
+
+
+      })
+      .catch(taskData => console.log(taskData));
+};
 
   addNewAssumption = values => {
     // this.setState({ spinning: true });
@@ -238,7 +364,6 @@ class ModalEditTask extends React.Component {
       })
       .catch(taskData => console.log(taskData));
   };
-  
   addNewRemark = values => {
     // this.setState({ spinning: true });
     const { remarks } = this.state;
@@ -287,10 +412,17 @@ class ModalEditTask extends React.Component {
        .catch(taskData => console.log(taskData));
   };
   saveRemark = (e, remark) => {
-
+    const newData = [...this.state.remarks];
+    const index = newData.findIndex(item => remark.id === item.id);
+    let item = newData[index];
+    item.description= e.target.value;
+    newData.splice(index, 1, {
+      ...item,
+      ...item,
+    });
+    this.setState({remarks:newData});
     const id = remark.id
     const url4 = remarksUrl+'/'+id;
-
     fetch(url4, {
       method: 'PATCH',
       headers: {
@@ -312,6 +444,7 @@ class ModalEditTask extends React.Component {
       })
       .then(response => response.json())
       .then(taskData => {
+
       })
       .catch(taskData => console.log(taskData));
   };
@@ -339,15 +472,11 @@ class ModalEditTask extends React.Component {
         })
         .then(response => response.json())
         .then(taskData => {
-         // this.props.onCancel();
-        //  this.setState({ spinning: false });
-      //    this.props.onOK();
       const dataSource = [...this.state.remarks];
       this.setState({remarks: dataSource.filter(item => item.id !== id) });
         })
         .catch(taskData => console.log(taskData));
   };
-
   onUpdate = () => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
@@ -376,10 +505,8 @@ class ModalEditTask extends React.Component {
         leader: this.state.leader,
         sponsor: this.state.sponsor,
         spnsr: this.state.spnsr,
-        remarks:this.state.remarks,
         value:this.state.value,
         prjcost:this.state.prjcost,
-        assumptions:this.state.assumptions,
         nexStageGate:this.state.nexStageGate,
       }),
     })
@@ -468,11 +595,11 @@ class ModalEditTask extends React.Component {
         title="Update funnel Card"
         centered
         visible={visible}
-        closable={false}
+
         onOk={onOK}
-        onCancel={onCancel}
+        onCancel={onOK}
         footer={null}
-        style={{minWidth:'60%'}}
+        style={{minWidth:'60%',height:'100%'}}
       >
        <div className="card-container">
     <Tabs type="card">
@@ -668,22 +795,26 @@ class ModalEditTask extends React.Component {
       </TabPane>
       <TabPane tab="Assumptions" key="3">
       <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
-      Add Assumption
+      Create New
     </Button>
-      <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Save</Button>
+      <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Close</Button>
       <EditableTable 
       saveAssumption={this.saveAssumption} 
-      deleteAssumption={this.handleDeleteAssumption}
+      
+      saveChecklist={this.saveChecklist} 
+      deleteChecklist={this.deleteChecklist}
+      deleteAssumption={this.deleteAssumption}
       assumptions={this.state.assumptions}
       addChecklist={this.addNewCheckList}
       />
       </TabPane>
             <TabPane tab="Remarks" key="4">
-            <Button onClick={this.addNewRemark} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>
-        Add
+            
+            <Button onClick={this.addNewRemark} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Create New
+        
       </Button>
-     <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Save</Button>
-        <Remarks deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
+     <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Close</Button>
+        <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
       </TabPane>
     </Tabs>
   </div>

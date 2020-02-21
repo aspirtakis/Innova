@@ -1,4 +1,4 @@
-import { Badge, Table, Input, Button, Popconfirm, Form,Dropdown,Menu,Icon } from 'antd';
+import { Badge, Table, Input, Button, Popconfirm, Form,Dropdown,Menu,Icon} from 'antd';
 import React from 'react';
 
 const menu = (
@@ -7,6 +7,7 @@ const menu = (
     <Menu.Item>In Progress</Menu.Item>
   </Menu>
 );
+
 
 const EditableContext = React.createContext();
 
@@ -101,57 +102,47 @@ class EditableTable extends React.Component {
       {
         title: 'Assumption',
         dataIndex: 'title',
-        width: '70%',
+        width: '60%',
         editable: true,
       },
       {
         title: 'Category',
         dataIndex: 'category',
       },
+      {
+        title: 'Actions',
+        dataIndex: 'operation',
+        key: 'operation',
+        render: (text,record) => (
+          <span className="table-operation">
+          <Popconfirm title="Sure to Aprrove?" onConfirm={() => this.props.deleteAssumption(record)}>
+          <Icon  style={{margin:5}} type="check" />
+       </Popconfirm>
 
-      // {
-      //   title: 'operation',
-      //   dataIndex: 'operation',
-      //   render: (text, record) =>
-      //     this.state.dataSource.length >= 1 ? (
-      //       <Popconfirm title="Sure to delete?" onConfirm={() => this.props.deleteAssumption(record.id)}>
-      //         <a>Delete</a>
-      //       </Popconfirm>
-      //     ) : null,
-      // },
+
+          <Popconfirm title="Sure to Reject" onConfirm={() => this.props.deleteAssumption(record)}>
+          <Icon  style={{margin:5}} type="close" />
+       </Popconfirm>
+
+           <Popconfirm title="Sure to delete?" onConfirm={() => this.props.deleteAssumption(record)}>
+           <Icon  style={{margin:5}} type="delete" />
+        </Popconfirm>
+
+          </span>
+        ),
+      },
     ];
-
-
   }
 
 
-
-
-  // handleAdd = () => {
-  //   const { count, dataSource } = this.state;
-  //   const newData = {
-  //     key: count,
-  //     name: `Edward King ${count}`,
-  //     age: 32,
-  //     address: `London, Park Lane no. ${count}`,
-  //   };
-  //   this.setState({
-  //     dataSource: [...dataSource, newData],
-  //     count: count + 1,
-  //   });
-  // };
-
 addCheck = (r) => {
-  this.props.addChecklist(r.id);
-
+  this.props.addChecklist(r);
 }
 
 
   expandedRowRender = (r) => {
-
-    const columns = [
-      { title: 'Title',  editable: true, dataIndex: 'title', key: 'title' },
-      { title: 'Id', dataIndex: 'id', key: 'id' },
+    const columns2 = [
+      { title: 'Title', width: '60%', editable: true, dataIndex: 'title', key: 'title',editable:true},
       {
         title: 'Status',
         key: 'state',
@@ -164,25 +155,54 @@ addCheck = (r) => {
       },
 
       {
-        title: 'Action',
+        title: 'Actions',
         dataIndex: 'operation',
         key: 'operation',
-        render: () => (
-          <span className="table-operation">
-            <a>Actions</a>
-            <Dropdown overlay={menu}>
-              <a>
-                More <Icon type="down" />
-              </a>
-            </Dropdown>
-          </span>
-        ),
+        // render: (text, record) => (
+        //   <span className="table-operation">
+        //   <Icon  style={{margin:10}} type="check" />
+        //   <Icon  style={{margin:10}} onClick={() => console.log(record)} type="delete" />
+        //   </span>
+        // ),
+      
+        render: (text, record) =>
+          <Popconfirm title="Sure to delete?" onConfirm={() => this.props.deleteChecklist(r,record.id)}>
+            <a>Delete</a>
+          </Popconfirm>
       },
     ];
 
+    const components = {
+      body: {
+        row: EditableFormRow,
+        cell: EditableCell,
+      },
+    };
+
+    const columns4 = columns2.map(col => {
+      if (!col.editable) {
+        return col;
+      }
+      return {
+        ...col,
+        onCell: record => ({
+          record,
+          editable: col.editable,
+          dataIndex: col.dataIndex,
+          title: col.title,
+          handleSave: (row) => this.props.saveChecklist(r,row),
+        }),
+      };
+    });
+
     return <div>
     <Button onClick={() => this.addCheck(r)}>Add Experiment</Button>
-    <Table columns={columns} dataSource={r.experiments} pagination={false} />
+    <Table            
+    components={components}
+    rowClassName={() => 'editable-row'}
+    bordered columns={columns4} 
+    dataSource={r.experiments} 
+    pagination={true} />
     </div>;
   };
 
@@ -212,7 +232,6 @@ addCheck = (r) => {
 
     return (
       <div>
-
         <Table
           components={components}
           rowClassName={() => 'editable-row'}

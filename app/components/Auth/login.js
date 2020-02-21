@@ -38,8 +38,8 @@ const Login = ({
         <div className={classes.logoContainer}>
           <img
             style={{ width: 295 }}
-            src={require('../../images/logo.svg')}
-            alt="KPN Open Innovation Hub login"
+            src={'https://dcassetcdn.com/design_img/8177/22993/22993_244281_8177_thumbnail.jpg'}
+            alt="PublicWays Innovation Hub login"
           />
         </div>
         {errorMessage ? (

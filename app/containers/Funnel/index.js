@@ -696,7 +696,7 @@ class Funnel extends Component {
                   onCancel={this.handleClose}
                   onOK={this.handleOk}
                   data={selectedTask}
-                  reload={this.reloadData}
+                  reload={this.getData}
                   footer={null} />
               {this.filterBar()}
               <DragDropContext onDragEnd={this.onDragEnd}>
