@@ -1,5 +1,6 @@
 import { Badge, Table, Input, Button, Popconfirm, Form,Dropdown,Menu,Icon} from 'antd';
 import React from 'react';
+import AssumptionStatus from './assumptionStatus';
 
 const menu = (
   <Menu>
@@ -22,6 +23,7 @@ const EditableFormRow = Form.create()(EditableRow);
 class EditableCell extends React.Component {
   state = {
     editing: false,
+    openAcceptance:false,
   };
 
   toggleEdit = () => {
@@ -98,11 +100,15 @@ class EditableCell extends React.Component {
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      openAcceptance:false,
+    };
     this.columns = [
       {
         title: 'Assumption',
         dataIndex: 'title',
-        width: '60%',
+        width: '50%',
         editable: true,
       },
       {
@@ -110,27 +116,39 @@ class EditableTable extends React.Component {
         dataIndex: 'category',
       },
       {
+        title: 'Status',
+        dataIndex: 'status',
+
+        render: (text,record) => (
+          <span className="table-operation">
+          {record.status === "Passed" &&  <Badge text={40} status="success" />}
+          {record.status === "Failed" &&  <Badge status="warning" />}
+          {record.status === "Processing" &&  <Badge count={5} status="processing" />}
+          {record.status}
+      
+          </span>
+        ),
+      },
+
+      {
         title: 'Actions',
         dataIndex: 'operation',
         key: 'operation',
         render: (text,record) => (
-          <span className="table-operation">
-          <Popconfirm title="Sure to Aprrove?" onConfirm={() => this.props.deleteAssumption(record)}>
+          <span className="table-operation">      
+          <AssumptionStatus record={record} result={record.result} onSave={() => this.setState({openAcceptance:false})} open={this.state.openAcceptance}></AssumptionStatus>
+          <Popconfirm title="Update Result ?" onConfirm={() => this.setState({openAcceptance:true})}>
           <Icon  style={{margin:5}} type="check" />
        </Popconfirm>
-
-
-          <Popconfirm title="Sure to Reject" onConfirm={() => this.props.deleteAssumption(record)}>
-          <Icon  style={{margin:5}} type="close" />
-       </Popconfirm>
-
-           <Popconfirm title="Sure to delete?" onConfirm={() => this.props.deleteAssumption(record)}>
+           <Popconfirm title="Delete Assumption?" onConfirm={() => this.props.deleteAssumption(record)}>
            <Icon  style={{margin:5}} type="delete" />
         </Popconfirm>
 
           </span>
         ),
       },
+
+
     ];
   }
 

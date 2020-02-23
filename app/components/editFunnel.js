@@ -15,23 +15,20 @@ import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { backend } from '../utils/config';
-
 import Remarks from '../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
 import EditableTable from './editableTable';
 
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
-
 const { Panel } = Collapse;
-
 const apptoken = backend.apptoken;
 const tasksUrl = backend.beUrl + backend.tasks;
 const remarksUrl = backend.beUrl + backend.remarks;
 const assumptionsUrl = backend.beUrl + backend.assumptions;
-
 const checklistsUrl = backend.beUrl + backend.checklists;
 const dateFormat = 'YYYY/MM/DD';
+
 // eslint-disable-next-line react/prefer-stateless-function
 class ModalEditTask extends React.Component {
   constructor(props) {
@@ -123,7 +120,6 @@ class ModalEditTask extends React.Component {
       })
       .catch(taskData => console.log(taskData));
   };
-
   deleteChecklist = (r,checklist) => {
       this.setState({ spinning: true });
       const taskid = this.state.task_id;
@@ -176,7 +172,7 @@ class ModalEditTask extends React.Component {
        body: JSON.stringify({
          resource: [
           {
-            title: "New CheckList",
+            title: "New Experiment",
             assumptionid: r.id,
             status:false,
           },
@@ -198,7 +194,7 @@ class ModalEditTask extends React.Component {
       let chkl = item.experiments;
 
       const newCheckList =     {
-        title: "New CheckList",
+        title: "New Experiment",
         id:assumptionData.resource[0].id,
          assumptionid: r.id,
          status:false,
@@ -225,7 +221,6 @@ class ModalEditTask extends React.Component {
        })
        .catch(taskData => console.log(taskData));
   };
-
 
   deleteAssumption = (r) => {
     this.setState({ spinning: true });
@@ -280,7 +275,6 @@ class ModalEditTask extends React.Component {
       })
       .catch(taskData => console.log(taskData));
 };
-
   addNewAssumption = values => {
     // this.setState({ spinning: true });
     const { assumptions } = this.state;
@@ -300,6 +294,7 @@ class ModalEditTask extends React.Component {
             meta: "empty",
             task_id: this.state.task_id,
             category: null,
+            status:"Processing",
           },
          ],
        }),
@@ -322,6 +317,7 @@ class ModalEditTask extends React.Component {
           meta: "empty",
           task_id: this.state.task_id,
           category: null,
+          status:"Processing",
         };
   
         this.setState({
@@ -364,6 +360,7 @@ class ModalEditTask extends React.Component {
       })
       .catch(taskData => console.log(taskData));
   };
+
   addNewRemark = values => {
     // this.setState({ spinning: true });
     const { remarks } = this.state;
@@ -477,6 +474,7 @@ class ModalEditTask extends React.Component {
         })
         .catch(taskData => console.log(taskData));
   };
+
   onUpdate = () => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
@@ -599,7 +597,7 @@ class ModalEditTask extends React.Component {
         onOk={onOK}
         onCancel={onOK}
         footer={null}
-        style={{minWidth:'60%',height:'100%'}}
+        style={{minWidth:'60%'}}
       >
        <div className="card-container">
     <Tabs type="card">

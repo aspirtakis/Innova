@@ -17,7 +17,6 @@ class Remarks extends React.Component {
   }
 
 
-
   render() {
     const {
       remarks, user, deleteRemark, saveRemark,
@@ -39,7 +38,7 @@ class Remarks extends React.Component {
                 && (
                 <div>
                   {!this.state.editable && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: true })} type="edit" /> }
-                  {this.state.editable && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => {  this.setState({ editable: false }); }} type="save" /> }
+                  {this.state.editable && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: false }); }} type="save" /> }
                   <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => deleteRemark(e, remark)} type="delete" />
                 </div>
                 )]}
@@ -57,7 +56,6 @@ class Remarks extends React.Component {
           )}
         />
       </Row>
-
     );
   }
 }
