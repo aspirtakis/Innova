@@ -1,6 +1,8 @@
-import { Badge, Table, Input, Button, Popconfirm, Form,Dropdown,Menu,Icon} from 'antd';
+import { Badge, Table, Input, Button, Popconfirm, Form,Dropdown,Menu,Icon,Select} from 'antd';
 import React from 'react';
 import AssumptionStatus from './assumptionStatus';
+
+const { Option } = Select;
 
 const menu = (
   <Menu>
@@ -23,7 +25,6 @@ const EditableFormRow = Form.create()(EditableRow);
 class EditableCell extends React.Component {
   state = {
     editing: false,
-    openAcceptance:false,
   };
 
   toggleEdit = () => {
@@ -31,6 +32,15 @@ class EditableCell extends React.Component {
     this.setState({ editing }, () => {
       if (editing) {
         this.input.focus();
+      }
+    });
+  };
+
+  toggleEditCombo = () => {
+    const editing = !this.state.editing;
+    this.setState({ editing }, () => {
+      if (editing) {
+       
       }
     });
   };
@@ -48,7 +58,7 @@ class EditableCell extends React.Component {
 
   renderCell = form => {
     this.form = form;
-    const { children, dataIndex, record, title } = this.props;
+    const { children, dataIndex, record, title, fieldType } = this.props;
     const { editing } = this.state;
     return editing ? (
       <Form.Item style={{ margin: 0 }}>
@@ -73,8 +83,35 @@ class EditableCell extends React.Component {
     );
   };
 
+  renderCombo = form => {
+    this.form = form;
+    const { children, dataIndex, record, title, fieldType } = this.props;
+    const { editing } = this.state;
+    return editing ? (
+      <Form.Item style={{ margin: 0 }}>
+  <Select defaultValue={record.category} style={{ width: 120 }} onChange={this.save}>
+      <Option value="jack">Jack</Option>
+      <Option value="lucy">Lucy</Option>
+      <Option value="disabled" disabled>
+        Disabled
+      </Option>
+      <Option value="Yiminghe">yiminghe</Option>
+    </Select>
+      </Form.Item>
+    ) : (
+      <div
+        className="editable-cell-value-wrap"
+        style={{ paddingRight: 24 }}
+        onClick={this.toggleEditCombo}
+      >
+        {children}
+      </div>
+    );
+  };
+
   render() {
     const {
+      fieldType,
       editable,
       dataIndex,
       title,
@@ -86,9 +123,15 @@ class EditableCell extends React.Component {
     } = this.props;
     return (
       <td {...restProps}>
-        {editable ? (
+        {editable ? <div>{ fieldType === 'TextField' && (
           <EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>
-        ) : (
+        ) }
+        { fieldType === 'ComboBox' && (
+          <EditableContext.Consumer>{this.renderCombo}</EditableContext.Consumer>
+        ) }
+        </div>
+        
+        : (
           children
         )}
       </td>
@@ -102,7 +145,7 @@ class EditableTable extends React.Component {
     super(props);
 
     this.state = {
-      openAcceptance:false,
+      visiblePopoverRecId:0,
     };
     this.columns = [
       {
@@ -110,15 +153,19 @@ class EditableTable extends React.Component {
         dataIndex: 'title',
         width: '50%',
         editable: true,
+        fieldType:"TextField",
       },
       {
         title: 'Category',
         dataIndex: 'category',
+        editable: true,
+        fieldType:"ComboBox",
       },
       {
         title: 'Status',
         dataIndex: 'status',
-
+        editable: true,
+        fieldType:"ComboBox",
         render: (text,record) => (
           <span className="table-operation">
           {record.status === "Passed" &&  <Badge text={40} status="success" />}
@@ -136,8 +183,17 @@ class EditableTable extends React.Component {
         key: 'operation',
         render: (text,record) => (
           <span className="table-operation">      
-          <AssumptionStatus record={record} result={record.result} onSave={() => this.setState({openAcceptance:false})} open={this.state.openAcceptance}></AssumptionStatus>
-          <Popconfirm title="Update Result ?" onConfirm={() => this.setState({openAcceptance:true})}>
+       
+          <AssumptionStatus 
+          record={record} 
+          result={record.result} 
+          onSave={() => this.setState({visiblePopoverRecId:null})} 
+          open={this.state.visiblePopoverRecId}>
+
+          </AssumptionStatus>
+       
+  
+          <Popconfirm title="Update Result ?" onConfirm={() => this.setState({visiblePopoverRecId:record.id})}>
           <Icon  style={{margin:5}} type="check" />
        </Popconfirm>
            <Popconfirm title="Delete Assumption?" onConfirm={() => this.props.deleteAssumption(record)}>
@@ -157,17 +213,27 @@ addCheck = (r) => {
   this.props.addChecklist(r);
 }
 
-
   expandedRowRender = (r) => {
     const columns2 = [
-      { title: 'Title', width: '60%', editable: true, dataIndex: 'title', key: 'title',editable:true},
+      { title: 'Title', 
+      width: '60%', 
+      editable: true, 
+      dataIndex: 'title', 
+      key: 'title',
+      editable:true,
+      fieldType:"TextField",
+      
+    },
       {
         title: 'Status',
-        key: 'state',
-        render: () => (
+        key: 'status',
+        dataIndex: 'status', 
+        editable: true, 
+        fieldType:"ComboBox",
+        render: (text, record) => (
           <span>
             <Badge status="success" />
-            Finished
+            {record.status}
           </span>
         ),
       },
@@ -176,13 +242,6 @@ addCheck = (r) => {
         title: 'Actions',
         dataIndex: 'operation',
         key: 'operation',
-        // render: (text, record) => (
-        //   <span className="table-operation">
-        //   <Icon  style={{margin:10}} type="check" />
-        //   <Icon  style={{margin:10}} onClick={() => console.log(record)} type="delete" />
-        //   </span>
-        // ),
-      
         render: (text, record) =>
           <Popconfirm title="Sure to delete?" onConfirm={() => this.props.deleteChecklist(r,record.id)}>
             <a>Delete</a>
@@ -208,6 +267,7 @@ addCheck = (r) => {
           editable: col.editable,
           dataIndex: col.dataIndex,
           title: col.title,
+          fieldType:col.fieldType,
           handleSave: (row) => this.props.saveChecklist(r,row),
         }),
       };
@@ -243,6 +303,7 @@ addCheck = (r) => {
           editable: col.editable,
           dataIndex: col.dataIndex,
           title: col.title,
+          fieldType:col.fieldType,
           handleSave: this.props.saveAssumption,
         }),
       };

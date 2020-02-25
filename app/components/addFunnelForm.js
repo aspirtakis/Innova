@@ -109,26 +109,25 @@ class ModalAddTask extends React.Component {
                     rules: [{ required: true, message: 'funnel' }],
                   })(
                     <Select key={8} style={{ width: 150 }}>
-                      <Option value="ECOSYSTEM">ECOSYSTEM</Option>
-                      <Option value="PLATFORM">PLATFORM</Option>
-                      <Option value="OTHER">OTHER</Option>
+                      <Option value="OIH">OIH</Option>
+                      <Option value="CM">CM</Option>
+                      <Option value="BM">BM</Option>
+                      <Option value="WS">WS</Option>
+                      <Option value="OPS">OPS</Option>
                     </Select>,
                   )}
                 </Form.Item>
 
                 <Form.Item label="Theme">
-                  {getFieldDecorator('theme', {
-                    rules: [{ required: true, message: 'Themes!' }],
+                {getFieldDecorator('theme', {
+                    rules: [{ required: true, message: 'theme' }],
                   })(
-                    <Input
-                    prefix={
-                      <Icon
-                        type="user"
-                        style={{ color: 'rgba(0,0,0,.25)' }}
-                      />
-                    }
-                    placeholder="Theme"
-                  />
+                    <Select key={8} style={{ width: 150 }}>
+                      <Option value="NextGenInfra">Next-Gen Infra</Option>
+                      <Option value="DataTech">Data Tech</Option>
+                      <Option value="Techco">TechCo</Option>
+                      <Option value="Other">Other</Option>
+                    </Select>)}
                   )}
                 </Form.Item>
 

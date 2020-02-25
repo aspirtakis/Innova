@@ -55,6 +55,7 @@ class ModalEditTask extends React.Component {
       prjcost:data.prjcost,
       assumptions:data.assumptions,
       nexStageGate:data.nexStageGate,
+      visiblePopoverRecId: null,
     };
   }
   componentWillReceiveProps(next) {
@@ -98,6 +99,7 @@ class ModalEditTask extends React.Component {
       },
       body: JSON.stringify({
         title: row.title,
+        status: row.status,
       }),
     })
       .then(response => {
@@ -113,13 +115,14 @@ class ModalEditTask extends React.Component {
     const item = newData[index];
     let chkl = item.experiments;
     const listitem = chkl.findIndex(litem => row.id === litem.id);
-    console.log(listitem);
     const lit = chkl[listitem];
     lit.title= row.title;
+    lit.status=row.status;
     this.setState({assumptions:newData});
       })
       .catch(taskData => console.log(taskData));
   };
+
   deleteChecklist = (r,checklist) => {
       this.setState({ spinning: true });
       const taskid = this.state.task_id;
@@ -174,7 +177,7 @@ class ModalEditTask extends React.Component {
           {
             title: "New Experiment",
             assumptionid: r.id,
-            status:false,
+            status:"Backlog",
           },
          ],
        }),
@@ -197,7 +200,7 @@ class ModalEditTask extends React.Component {
         title: "New Experiment",
         id:assumptionData.resource[0].id,
          assumptionid: r.id,
-         status:false,
+         status:"Backlog",
         };
 
       if(chkl) {
@@ -648,14 +651,13 @@ class ModalEditTask extends React.Component {
       }
       as="select"
     >
-      <option>PLATFORM</option>
-      <option>ECOSYSTEM</option>
-      <option>OTHER</option>
+                      <option value="OIH">OIH</option>
+                      <option value="CM">CM</option>
+                      <option value="BM">BM</option>
+                      <option value="WS">WS</option>
+                      <option value="OPS">OPS</option>
     </Form.Control>
-
-
     <Form.Label style={{ marginTop: 5 }}>Theme</Form.Label>
-
     <Form.Control
     value={this.state.theme}
     onChange={e => this.setState({ theme: e.target.value })}
@@ -798,7 +800,6 @@ class ModalEditTask extends React.Component {
       <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Close</Button>
       <EditableTable 
       saveAssumption={this.saveAssumption} 
-      
       saveChecklist={this.saveChecklist} 
       deleteChecklist={this.deleteChecklist}
       deleteAssumption={this.deleteAssumption}
@@ -807,9 +808,7 @@ class ModalEditTask extends React.Component {
       />
       </TabPane>
             <TabPane tab="Remarks" key="4">
-            
-            <Button onClick={this.addNewRemark} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Create New
-        
+            <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Create New
       </Button>
      <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Close</Button>
         <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
