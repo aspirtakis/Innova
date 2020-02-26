@@ -202,29 +202,19 @@ class ModalEditTask extends React.Component {
          assumptionid: r.id,
          status:"Backlog",
         };
-
       if(chkl) {
           chkl.push(newCheckList);
       }
       if(!chkl){
-  
         console.log(item);
       item.experiments=[];
         item.experiments.push(newCheckList);
 
       }
-      
-  
-
-      // newData.splice(index, 1, {
-      //   ...item,
-      //   ...item,
-      // });
       this.setState({assumptions:newData});
        })
        .catch(taskData => console.log(taskData));
   };
-
   deleteAssumption = (r) => {
     this.setState({ spinning: true });
     const url4 = assumptionsUrl+'/'+r.id;
@@ -296,7 +286,7 @@ class ModalEditTask extends React.Component {
             title: "New Assumption",
             meta: "empty",
             task_id: this.state.task_id,
-            category: null,
+            category: "Choose",
             status:"Processing",
           },
          ],
@@ -319,7 +309,7 @@ class ModalEditTask extends React.Component {
           title: "New Assumption",
           meta: "empty",
           task_id: this.state.task_id,
-          category: null,
+          category: "Choose",
           status:"Processing",
         };
   
@@ -329,8 +319,10 @@ class ModalEditTask extends React.Component {
        })
        .catch(taskData => console.log(taskData));
   };
-  saveAssumption = row => {
-    const url = assumptionsUrl+'/'+row.id;
+  saveAssumption = (r,result,status) => {
+    const url = assumptionsUrl+'/'+r.id;
+    console.log(result);
+    console.log(status);
     fetch(url, {
       method: 'PATCH',
       headers: {
@@ -341,7 +333,10 @@ class ModalEditTask extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title: row.title,
+        title: r.title,
+        category: r.category,
+        result:result ? result : r.result,
+        status: status ? status : r.status,
       }),
     })
       .then(response => {
@@ -353,17 +348,21 @@ class ModalEditTask extends React.Component {
       .then(response => response.json())
       .then(taskData => {
           const newData = [...this.state.assumptions];
-    const index = newData.findIndex(item => row.id === item.id);
+    const index = newData.findIndex(item => r.id === item.id);
     const item = newData[index];
+    item.result=result ? result : r.result;
+    item.status=status ? status : r.status;
+    item.category=r.category;
+    item.title=r.title;
+
     newData.splice(index, 1, {
       ...item,
-      ...row,
+      ...item,
     });
     this.setState({assumptions:newData});
       })
       .catch(taskData => console.log(taskData));
   };
-
   addNewRemark = values => {
     // this.setState({ spinning: true });
     const { remarks } = this.state;
@@ -477,7 +476,6 @@ class ModalEditTask extends React.Component {
         })
         .catch(taskData => console.log(taskData));
   };
-
   onUpdate = () => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
@@ -797,7 +795,6 @@ class ModalEditTask extends React.Component {
       <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
       Create New
     </Button>
-      <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Close</Button>
       <EditableTable 
       saveAssumption={this.saveAssumption} 
       saveChecklist={this.saveChecklist} 
@@ -810,7 +807,6 @@ class ModalEditTask extends React.Component {
             <TabPane tab="Remarks" key="4">
             <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Create New
       </Button>
-     <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Close</Button>
         <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
       </TabPane>
     </Tabs>

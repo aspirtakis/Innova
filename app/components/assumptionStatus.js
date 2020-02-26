@@ -16,7 +16,9 @@ class AssumptionStatus extends React.Component {
     super(props);
 
     this.state = {
-      accepted:null,
+      accepted:props.record.status === 'Accepted',
+      result:props.record.result,
+      status:props.record.status,
     };
   }
 
@@ -27,28 +29,26 @@ onSelectedStatus = (e) => {
     const {
       record, open, onSave, result,
     } = this.props;
-    console.log(this.props.record.id);
-    console.log(this.props.open);
     return (
       <Popover
         content={(
           <div>
             <Row style={{ marginBottom: 10 }}>
-              {record.status === 'Processing' ? <Badge count={5} status="processing"  />: null}
-              {record.status}
+
             </Row>
             <Row>
-              <Checkbox checked={this.state.accepted} onChange={() => this.setState({accepted:true})}> Accepted</Checkbox>
-              <Checkbox checked={!this.state.accepted} onChange={() => this.setState({accepted:false})} >Rejected</Checkbox>
+              <Checkbox checked={this.state.accepted} onChange={() => {this.setState({accepted:true}); this.setState({status:'Accepted'})}}> Accepted</Checkbox>
+              <Checkbox checked={!this.state.accepted} onChange={() => {this.setState({accepted:false}); this.setState({status:'Rejected'})}} >Rejected</Checkbox>
             </Row>
             <Row>
               <TextArea
                 rows={6}
                 defaultValue={result}
+                onChange={(e) => this.setState({result:e.target.value})}
               />
             </Row>
             <Row>
-              <a onClick={onSave}>Save</a>
+              <a onClick={() => onSave(this.state.result,this.state.status)}>Save</a>
             </Row>
           </div>
         )}

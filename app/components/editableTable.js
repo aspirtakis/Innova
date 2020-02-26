@@ -55,6 +55,18 @@ class EditableCell extends React.Component {
       handleSave({ ...record, ...values });
     });
   };
+  
+  saveCombo = category => {
+    const { record, handleSave } = this.props;
+      handleSave({ ...record, category, });
+      this.setState({editing:false})
+  };
+
+  saveComboCheck = status => {
+    const { record, handleSave } = this.props;
+      handleSave({ ...record, status, });
+      this.setState({editing:false})
+  };
 
   renderCell = form => {
     this.form = form;
@@ -89,13 +101,33 @@ class EditableCell extends React.Component {
     const { editing } = this.state;
     return editing ? (
       <Form.Item style={{ margin: 0 }}>
-  <Select defaultValue={record.category} style={{ width: 120 }} onChange={this.save}>
-      <Option value="jack">Jack</Option>
-      <Option value="lucy">Lucy</Option>
-      <Option value="disabled" disabled>
-        Disabled
-      </Option>
-      <Option value="Yiminghe">yiminghe</Option>
+  <Select defaultValue={record.category} style={{ width: 120 }} onChange={this.saveCombo}>
+      <Option value="Viability">Viability</Option>
+      <Option value="Feasibility">Feasibility</Option>
+      <Option value="Desirability" >Desirability</Option>
+    </Select>
+      </Form.Item>
+    ) : (
+      <div
+        className="editable-cell-value-wrap"
+        style={{ paddingRight: 24 }}
+        onClick={this.toggleEditCombo}
+      >
+        {children}
+      </div>
+    );
+  };
+
+  renderComboCheck = form => {
+    this.form = form;
+    const { children, dataIndex, record, title, fieldType } = this.props;
+    const { editing } = this.state;
+    return editing ? (
+      <Form.Item style={{ margin: 0 }}>
+  <Select defaultValue={record.status} style={{ width: 120 }} onChange={this.saveComboCheck}>
+      <Option value="Running">Running</Option>
+      <Option value="Failure">Failure</Option>
+      <Option value="Success" >Success</Option>
     </Select>
       </Form.Item>
     ) : (
@@ -128,6 +160,9 @@ class EditableCell extends React.Component {
         ) }
         { fieldType === 'ComboBox' && (
           <EditableContext.Consumer>{this.renderCombo}</EditableContext.Consumer>
+        ) }
+        { fieldType === 'ComboBoxCheck' && (
+          <EditableContext.Consumer>{this.renderComboCheck}</EditableContext.Consumer>
         ) }
         </div>
         
@@ -164,13 +199,13 @@ class EditableTable extends React.Component {
       {
         title: 'Status',
         dataIndex: 'status',
-        editable: true,
+        editable: false,
         fieldType:"ComboBox",
         render: (text,record) => (
           <span className="table-operation">
-          {record.status === "Passed" &&  <Badge text={40} status="success" />}
-          {record.status === "Failed" &&  <Badge status="warning" />}
-          {record.status === "Processing" &&  <Badge count={5} status="processing" />}
+          {record.status === "Accepted" &&  <Badge status="success" />}
+          {record.status === "Rejected" &&  <Badge status="error" />}
+ 
           {record.status}
       
           </span>
@@ -183,16 +218,18 @@ class EditableTable extends React.Component {
         key: 'operation',
         render: (text,record) => (
           <span className="table-operation">      
+
        
           <AssumptionStatus 
           record={record} 
           result={record.result} 
-          onSave={() => this.setState({visiblePopoverRecId:null})} 
+          onSave={(result,status) => {
+            this.props.saveAssumption(record,result,status);
+            this.setState({visiblePopoverRecId:null});
+          }} 
           open={this.state.visiblePopoverRecId}>
-
           </AssumptionStatus>
        
-  
           <Popconfirm title="Update Result ?" onConfirm={() => this.setState({visiblePopoverRecId:record.id})}>
           <Icon  style={{margin:5}} type="check" />
        </Popconfirm>
@@ -229,10 +266,13 @@ addCheck = (r) => {
         key: 'status',
         dataIndex: 'status', 
         editable: true, 
-        fieldType:"ComboBox",
+        fieldType:"ComboBoxCheck",
         render: (text, record) => (
+
           <span>
-            <Badge status="success" />
+            {record.status === 'Failure' && <Badge status="error" />}
+            {record.status === 'Running' && <Badge status="processing" />}
+            {record.status === 'Success' && <Badge status="success" />}
             {record.status}
           </span>
         ),

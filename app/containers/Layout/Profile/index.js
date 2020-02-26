@@ -39,8 +39,9 @@ class Profile extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    const { classes, drawerIsOpen } = this.props;
+    const { classes, drawerIsOpen ,user} = this.props;
     const open = Boolean(anchorEl);
+    console.log(user);
 
     return (
       <div>
@@ -50,7 +51,7 @@ class Profile extends React.Component {
             aria-haspopup="true"
             onClick={this.handleMenu}
           >
-            <Avatar className={classes.avatar}>JD</Avatar>
+            <Avatar className={classes.avatar}>WL</Avatar>
           </IconButton>
         </Tooltip>
         <Menu
@@ -67,8 +68,7 @@ class Profile extends React.Component {
           open={open}
           onClose={this.handleClose}
         >
-          <MenuItem>View Profile</MenuItem>
-          <MenuItem>Help</MenuItem>
+
           <Divider />
           <MenuItem onClick={this.signOut}>Sign out</MenuItem>
         </Menu>
@@ -82,6 +82,8 @@ Profile.propTypes = {
   drawerIsOpen: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
+
+
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
