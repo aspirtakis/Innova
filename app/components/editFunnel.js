@@ -28,6 +28,7 @@ const tasksUrl = backend.beUrl + backend.tasks;
 const remarksUrl = backend.beUrl + backend.remarks;
 const assumptionsUrl = backend.beUrl + backend.assumptions;
 const checklistsUrl = backend.beUrl + backend.checklists;
+const stageGatesUrl = backend.beUrl + backend.stageGates;
 const dateFormat = 'YYYY/MM/DD';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -128,7 +129,6 @@ class ModalEditTask extends React.Component {
       })
       .catch(taskData => console.log(taskData));
   };
-
   deleteChecklist = (r,checklist) => {
       this.setState({ spinning: true });
       const taskid = this.state.task_id;
@@ -412,6 +412,60 @@ class ModalEditTask extends React.Component {
   
         this.setState({
           remarks: [...remarks, newRemark],
+        });
+       })
+       .catch(taskData => console.log(taskData));
+  };
+
+
+  addNewMeeting = (type) => {
+    // this.setState({ spinning: true });
+    const { stageGates } = this.state;
+     fetch(stageGatesUrl, {
+       method: 'POST',
+       headers: {
+         Accept: 'application/json',
+         'X-DreamFactory-API-Key': apptoken,
+         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'Cache-Control': 'no-cache',
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+         resource: [
+          {
+            title: "New Remarka",
+            funnelPhase: this.state.FunnelPhase,
+            cardid: this.state.task_id,
+            editor: this.props.user.first_name,
+            type: type,
+            stage:0,
+          },
+         ],
+       }),
+     })
+       .then(response => {
+         if (!response.ok) {
+           throw Error(response.statusText);
+         }
+         return response;
+       })
+       .then(response => response.json())
+       .then(remarkData => {
+       //  this.props.onOK();
+         this.setState({ spinning: false });
+         console.log(remarkData);
+         const newRemark = {
+          id:remarkData.resource[0].id,
+          title: "New Remarka",
+            funnelPhase: this.state.FunnelPhase,
+            cardid: this.state.task_id,
+            editor: this.props.user.first_name,
+            type: type,
+            stage:0,
+        };
+  
+        this.setState({
+          stageGates: [...stageGates, newRemark],
         });
        })
        .catch(taskData => console.log(taskData));
@@ -828,7 +882,7 @@ class ModalEditTask extends React.Component {
 
       <TabPane tab="Meetings" key="5">
       <Button 
-      onClick={this.addNewRemark} 
+      onClick={this.addNewMeeting("StageGate")} 
       type="primary" 
       style={{  marginBottom: 16 }}>
       Create SG/
