@@ -23,17 +23,12 @@ const EditableFormRow = Form.create()(EditableRow);
 
 
 class EditableCell extends React.Component {
-  state = {
-    editing: false,
-  };
+  constructor(props) {
+    super(props);
 
-  toggleEdit = () => {
-    const editing = !this.state.editing;
-    this.setState({ editing }, () => {
-      if (editing) {
-        this.input.focus();
-      }
-    });
+    this.state = {
+    editing: false,
+    };
   };
 
   toggleEditCombo = () => {
@@ -44,6 +39,15 @@ class EditableCell extends React.Component {
       }
     });
   };
+
+  toggleEdit = () => {
+    const editing = !this.state.editing;
+    this.setState({ editing }, () => {
+      if (editing) {
+        this.input.focus();
+      }
+    });
+  }
 
   save = e => {
     const { record, handleSave } = this.props;
@@ -125,9 +129,9 @@ class EditableCell extends React.Component {
     return editing ? (
       <Form.Item style={{ margin: 0 }}>
   <Select defaultValue={record.status} style={{ width: 120 }} onChange={this.saveComboCheck}>
-      <Option value="Running">Running</Option>
-      <Option value="Failure">Failure</Option>
-      <Option value="Success" >Success</Option>
+      <Option value="Backlog">Backlog</Option>
+      <Option value="Doing">Doing</Option>
+      <Option value="Done" >Done</Option>
     </Select>
       </Form.Item>
     ) : (
@@ -205,6 +209,7 @@ class EditableTable extends React.Component {
           <span className="table-operation">
           {record.status === "Accepted" &&  <Badge status="success" />}
           {record.status === "Rejected" &&  <Badge status="error" />}
+          {record.status === "Processing" &&  <Badge status="processing" />}
  
           {record.status}
       
@@ -223,6 +228,7 @@ class EditableTable extends React.Component {
           <AssumptionStatus 
           record={record} 
           result={record.result} 
+          onCloseResult={() => this.setState({visiblePopoverRecId:null})}
           onSave={(result,status) => {
             this.props.saveAssumption(record,result,status);
             this.setState({visiblePopoverRecId:null});
@@ -230,9 +236,9 @@ class EditableTable extends React.Component {
           open={this.state.visiblePopoverRecId}>
           </AssumptionStatus>
        
-          <Popconfirm title="Update Result ?" onConfirm={() => this.setState({visiblePopoverRecId:record.id})}>
-          <Icon  style={{margin:5}} type="check" />
-       </Popconfirm>
+       
+          <Icon  style={{margin:5}} onClick={() => this.setState({visiblePopoverRecId:record.id})} type="check" />
+
            <Popconfirm title="Delete Assumption?" onConfirm={() => this.props.deleteAssumption(record)}>
            <Icon  style={{margin:5}} type="delete" />
         </Popconfirm>
@@ -270,9 +276,9 @@ addCheck = (r) => {
         render: (text, record) => (
 
           <span>
-            {record.status === 'Failure' && <Badge status="error" />}
-            {record.status === 'Running' && <Badge status="processing" />}
-            {record.status === 'Success' && <Badge status="success" />}
+            {record.status === 'Backlog' && <Badge status="error" />}
+            {record.status === 'Doing' && <Badge status="processing" />}
+            {record.status === 'Done' && <Badge status="success" />}
             {record.status}
           </span>
         ),

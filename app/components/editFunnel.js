@@ -18,6 +18,7 @@ import { backend } from '../utils/config';
 import Remarks from '../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
 import EditableTable from './editableTable';
+import StageGates from './stagegates';
 
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
@@ -56,8 +57,10 @@ class ModalEditTask extends React.Component {
       assumptions:data.assumptions,
       nexStageGate:data.nexStageGate,
       visiblePopoverRecId: null,
+      stageGates:data.stageGates,
     };
   }
+
   componentWillReceiveProps(next) {
     const { data } = next;
     this.setState({
@@ -80,10 +83,13 @@ class ModalEditTask extends React.Component {
       value:data.value,
       prjcost:data.prjcost,
       assumptions:data.assumptions,
-      nexStageGate:data.nexStageGate
+      nexStageGate:data.nexStageGate,
+      stageGates:data.stageGates
       
     });
   }
+
+
   saveChecklist = (r,row) => {
     const url = checklistsUrl+'/'+row.id;
     console.log(row);
@@ -378,7 +384,7 @@ class ModalEditTask extends React.Component {
        body: JSON.stringify({
          resource: [
           {
-            description: "New Remark",
+            description: "New Remarka",
             funnelPhase: this.state.FunnelPhase,
             card_id: this.state.task_id,
             remarker: this.props.user.first_name,
@@ -399,7 +405,7 @@ class ModalEditTask extends React.Component {
          console.log(remarkData);
          const newRemark = {
           id:remarkData.resource[0].id,
-          description: "New Remark",
+          description: "New Remar",
           card_id: this.state.task_id,
           remarker: this.props.user.first_name,
         };
@@ -598,7 +604,7 @@ class ModalEditTask extends React.Component {
         onOk={onOK}
         onCancel={onOK}
         footer={null}
-        style={{minWidth:'60%'}}
+        style={{minWidth:'70%'}}
       >
        <div className="card-container">
     <Tabs type="card">
@@ -656,12 +662,21 @@ class ModalEditTask extends React.Component {
                       <option value="OPS">OPS</option>
     </Form.Control>
     <Form.Label style={{ marginTop: 5 }}>Theme</Form.Label>
-    <Form.Control
-    value={this.state.theme}
-    onChange={e => this.setState({ theme: e.target.value })}
-    type="text"
-    placeholder="Theme"
-  />
+
+
+
+  <Form.Control
+  value={this.state.theme}
+  onChange={e => this.setState({ theme: e.target.value })}
+  as="select"
+>
+
+  <option value="NextGenInfra">Next-Gen Infra</option>
+  <option value="DataTech">Data Tech</option>
+  <option value="Techco">TechCo</option>
+  <option value="Other">Other</option>
+</Form.Control>
+
     <Form.Label style={{ marginTop: 5 }}>Description</Form.Label>
     <Form.Control
       value={this.state.description}
@@ -809,6 +824,22 @@ class ModalEditTask extends React.Component {
       </Button>
         <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
       </TabPane>
+
+
+      <TabPane tab="Meetings" key="5">
+      <Button 
+      onClick={this.addNewRemark} 
+      type="primary" 
+      style={{  marginBottom: 16 }}>
+      Create SG/
+      </Button>
+      <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Funding Momment
+</Button>
+  <StageGates onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.stageGates} />
+</TabPane>
+
+
+      
     </Tabs>
   </div>
       </Modal>

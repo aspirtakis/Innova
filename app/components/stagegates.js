@@ -8,7 +8,7 @@ import moment from 'moment';
 const { Meta } = Card;
 const { TextArea } = Input;
 
-class Remarks extends React.Component {
+class StageGates extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,4 +71,4 @@ class Remarks extends React.Component {
   }
 }
 
-export default Remarks;
+export default StageGates;
