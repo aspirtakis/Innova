@@ -20,8 +20,9 @@ class StageGates extends React.Component {
 
   render() {
     const {
-      remarks, user, deleteRemark, saveRemark,
+      stageGates, user, deleteRemark, saveRemark,
     } = this.props;
+
 
 
     return (
@@ -31,11 +32,11 @@ class StageGates extends React.Component {
       >
         <List
           itemLayout="horizontal"
-          dataSource={remarks}
+          dataSource={stageGates}
           renderItem={(remark) => (
             <List.Item
               style={{ minwidth: '100%' }}
-              actions={[remark.remarker === user.first_name
+              actions={[remark.editor === user.first_name
                 && (
                 <div>
                   {!this.state.editable && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: true })} type="edit" /> }
@@ -61,7 +62,7 @@ class StageGates extends React.Component {
 
                   </div>
                 )}
-                description={this.state.editable && remark.remarker === user.first_name ? <TextArea style={{ minWidth: 400 }} defaultValue={remark.description} onPressEnter={() => this.setState({ editable: false })} onChange={(e) => saveRemark(e, remark)} /> : remark.description}
+                description={this.state.editable && remark.editor === user.first_name ? <TextArea style={{ minWidth: 400 }} defaultValue={remark.description} onPressEnter={() => this.setState({ editable: false })} onChange={(e) => saveRemark(e, remark)} /> : remark.description}
               />
             </List.Item>
           )}

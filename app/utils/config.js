@@ -6,7 +6,7 @@ const backendProd = {
   remarks: 'funnel/_table/funnel.remarks',
   assumptions: 'funnel/_table/funnel.assumptions',
   checklists: 'funnel/_table/funnel.checklists',
-  stageGates: 'Funnel/_table/funnel.stagegates',
+  stageGates: 'funnel/_table/funnel.stagegates',
   defUser: '',
   defPass: '',
 };
@@ -19,7 +19,7 @@ const backendDev = {
   remarks: 'funnel_dev/_table/funnel.remarks',
   assumptions: 'funnel_dev/_table/funnel.assumptions',
   checklists: 'funnel_dev/_table/funnel.checklists',
-  stageGates: 'Funnel_dev/_table/funnel.stagegates',
+  stageGates: 'funnel_dev/_table/funnel.stagegates',
   defUser: '',
   defPass: '',
 };
@@ -31,7 +31,7 @@ const backendAga = {
   remarks: 'funnel_dev/_table/funnel.remarks',
   assumptions: 'funnel_dev/_table/funnel.assumptions',
   checklists: 'funnel_dev/_table/funnel.checklists',
-  stageGates: 'Funnel_dev/_table/funnel.stagegates',
+  stageGates: 'funnel_dev/_table/funnel.stagegates',
   defUser: 'agamemnon.aspirtakis@kpn.com',
   defPass: 'a224935a',
 };

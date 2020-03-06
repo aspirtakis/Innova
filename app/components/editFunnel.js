@@ -882,14 +882,14 @@ class ModalEditTask extends React.Component {
 
       <TabPane tab="Meetings" key="5">
       <Button 
-      onClick={this.addNewMeeting("StageGate")} 
+      onClick={() => this.addNewMeeting("StageGate")} 
       type="primary" 
-      style={{  marginBottom: 16 }}>
+      style={{  marginLeft: 16 }}>
       Create SG/
       </Button>
       <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Funding Momment
 </Button>
-  <StageGates onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.stageGates} />
+  <StageGates onOK={this.props.onOK} deleteRemark={this.deleteRemark} user={user} saveRemark={this.saveRemark} stageGates={this.state.stageGates} />
 </TabPane>
 
 
