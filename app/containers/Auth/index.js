@@ -44,8 +44,25 @@ class AuthPage extends React.Component {
     };
   }
 
+  componentDidMount(){
+    const { login } = this.state;
+    const { email, password, rememberMe } = login;
+    // validations goes here
+    const payload = {
+      email,
+      password,
+
+    };
+
+    this.props.dispatch(signIn(payload));
+
+  }
+
   static getDerivedStateFromProps(nextProps, prevProps) {
     console.log(nextProps);
+    console.log('firee');
+    // validations goes here
+
     if (
       nextProps.authenticationErrorMessage !==
       prevProps.authenticationErrorMessage
@@ -54,7 +71,6 @@ class AuthPage extends React.Component {
         errorMessage: nextProps.authenticationErrorMessage,
       };
     }
-
     return null;
   }
 
