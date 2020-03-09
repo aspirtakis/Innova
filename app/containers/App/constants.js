@@ -1,4 +1,5 @@
 export const SIGN_IN = 'app/SIGN_IN';
+export const SESSION_CHECK = 'app/SESSION_CHECK';
 export const SIGN_OUT = 'app/SIGN_OUT';
 export const AUTHENTICATED = 'app/AUTHENTICATED';
 export const AUTHENTICATION_FAILED = 'app/AUTHENTICATION_FAILED';

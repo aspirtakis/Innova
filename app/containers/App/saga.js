@@ -6,6 +6,7 @@ import { request } from '../../utils/request';
 
 import {
   SIGN_IN,
+  SESSION_CHECK,
   AUTHENTICATED,
   AUTHENTICATION_FAILED,
   REGISTER,
@@ -22,38 +23,31 @@ import {
   OPEN_DYNAMIC_VIEW,
 } from './constants';
 
-export function* fetchSession(action) {
+
+export function* fetchSession() {
   try {
-    const { payload } = action;
+    console.log('SASASDAS');
+    const tok = localStorage.getItem('token');
     const options = {
-      method: 'POST',
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': backend.apptoken,
         'Content-Type': 'application/json',
+        'X-DreamFactory-Session-Token': '',
       },
-      body: JSON.stringify({
-        email: payload.email,
-        password: payload.password,
-      }),
     };
     const urlsession = backend.beUrl + backend.sessionUrl;
-    const response = yield request(urlsession, options);
-    const user = response;
+    const user = yield request(urlsession, options);
 
     if (user) {
       yield put({
         type: AUTHENTICATED,
         user,
       });
-    } else {
-      yield put({
-        type: AUTHENTICATION_FAILED,
-        message: 'Wrong user or password, please try again.',
-      });
     }
   } catch (e) {
-    yield put({ type: AUTHENTICATION_FAILED, message: e.message });
+    yield put({ type: AUTHENTICATION_FAILED, message: "SessionExpired" });
   }
 }
 
@@ -82,7 +76,7 @@ export function* fetchSignIn(action) {
         type: AUTHENTICATED,
         user,
       });
-      localStorage.setItem('user', user);
+      localStorage.setItem('token', user.session_token);
     } else {
       yield put({
         type: AUTHENTICATION_FAILED,
@@ -97,6 +91,10 @@ export function* fetchSignIn(action) {
 export function* signIn() {
   yield takeLatest(SIGN_IN, fetchSignIn);
 }
+export function* sessionCheck() {
+  yield takeLatest(SESSION_CHECK, fetchSession);
+}
+
 
 export function* fetchRegister(action) {
   try {
@@ -211,6 +209,7 @@ export function* onOpenDynamicView() {
 // All sagas to be loaded
 export default [
   signIn,
+  sessionCheck,
   register,
   resetPassword,
   onSelectedMenuChanged,

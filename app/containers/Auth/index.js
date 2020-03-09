@@ -14,6 +14,7 @@ import {
 
 import {
   signIn,
+  sessionCheck,
   clearAuthenticationMessage,
   register,
   resetPassword,
@@ -45,17 +46,9 @@ class AuthPage extends React.Component {
   }
 
   componentDidMount(){
-    const { login } = this.state;
-    const { email, password, rememberMe } = login;
-    // validations goes here
-    const payload = {
-      email,
-      password,
 
-    };
-
-    this.props.dispatch(signIn(payload));
-
+    this.props.dispatch(sessionCheck());
+    console.log('fire32e');
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
