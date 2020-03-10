@@ -72,6 +72,7 @@ const appReducer = (state = initialState, action) => produce(state, (draft) => {
       draft.userIsAuthenticated = false;
       draft.user = {};
       draft.authenticationErrorMessage = '';
+      localStorage.clear();
       break;
     }
     // End of Authentication process

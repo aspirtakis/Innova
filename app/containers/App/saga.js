@@ -6,6 +6,7 @@ import { request } from '../../utils/request';
 
 import {
   SIGN_IN,
+  SIGN_OUT,
   SESSION_CHECK,
   AUTHENTICATED,
   AUTHENTICATION_FAILED,
@@ -34,20 +35,23 @@ export function* fetchSession() {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': backend.apptoken,
         'Content-Type': 'application/json',
-        'X-DreamFactory-Session-Token': '',
+        'X-DreamFactory-Session-Token': tok,
       },
     };
     const urlsession = backend.beUrl + backend.sessionUrl;
     const user = yield request(urlsession, options);
+    console.log(user);
 
-    if (user) {
+
+    if (user.session_token) {
       yield put({
         type: AUTHENTICATED,
         user,
       });
     }
   } catch (e) {
-    yield put({ type: AUTHENTICATION_FAILED, message: "SessionExpired" });
+    yield put({ type: SIGN_OUT, message: 'Session Expired' });
+    localStorage.clear();
   }
 }
 
