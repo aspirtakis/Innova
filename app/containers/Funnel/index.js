@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import {
-    Select, Icon, Collapse, Spin, Switch,
+    Select, Icon, Collapse, Spin, Switch, LocaleProvider,
 } from 'antd';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -16,6 +16,7 @@ import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
 import Column from './column';
 import { backend } from '../../utils/config';
+import { sessionCheck } from 'containers/App/actions';
 
 
 
@@ -94,7 +95,7 @@ class Funnel extends Component {
         super(props);
         this.state = {
             targetOn: true,
-            sestoken: '',
+            sestoken:  '',
             setOpen: false,
             setOpenEdit: false,
             selectedTask: '',
@@ -122,9 +123,7 @@ class Funnel extends Component {
     }
 
     componentDidMount() {
-        this.setState({ spinning: true });
-        console.log('MINT', this.props);
-        console.log('BE', backend);
+        this.setState({ spinning: true });;
         console.log(this.props.user);
         if (this.props.user && this.props.user.session_token.length > 0) {
             this.setState({ sestoken: this.props.user.session_token });
@@ -145,6 +144,7 @@ class Funnel extends Component {
     // }
 
   getData = () => {
+   this.props.dispatch(sessionCheck());
       fetch(tasksUrl, {
           method: 'GET',
           headers: {
@@ -180,7 +180,6 @@ class Funnel extends Component {
           (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
           [],
       );
-
       const arch = datas.filter(word => word.FunnelPhase === 'archive');
       const backl = datas.filter(word => word.FunnelPhase === 'backlog');
       const inita = datas.filter(word => word.FunnelPhase === 'initiate');
@@ -214,10 +213,12 @@ class Funnel extends Component {
   };
 
   handleOpen = () => {
+    this.props.dispatch(sessionCheck());
       this.setState({ setOpen: true });
   };
 
   handleOpenEdit = (data) => {
+    this.props.dispatch(sessionCheck());
       this.setState({ selectedTask: data });
       this.setState({ setOpenEdit: true });
   };
@@ -333,8 +334,8 @@ class Funnel extends Component {
       <Collapse>
           <Panel header="Filters" key="1">
               <Row style={styles.containerTop}>
-                   {(this.props.user.role === "DashboardPO" || this.props.user.role === "DashboardCoach") && <Col style={{ maxWidth: 100 }}>
-                        <Row style={{ maxHeigth: 10 }}>BackLog</Row>
+                   {!(this.props.user.role === "Tv" || this.props.user.role === "Viewer") && <Col style={{ maxWidth: 100 }}>
+                        <Row style={{ maxHeigth: 20 }}>BackLog</Row>
                         <Switch checked={this.state.checked} defaultChecked={false} onChange={this.showOperations} />
                     </Col>}
                     <Col>
@@ -351,9 +352,11 @@ class Funnel extends Component {
                       <Row style={{ maxHeigth: 10 }}>Department</Row>
                       <Row>
                           <Select onChange={this.filterDepartment} style={{ width: 180 }}>
-                              <Option value="PLATFORM">PLATFORM</Option>
-                              <Option value="ECOSYSTEM">ECOSYSTEM</Option>
-                              <Option value="ALL">ALL</Option>
+                          <Option value="OIH">OIH</Option>
+                      <Option value="CM">CM</Option>
+                      <Option value="BM">BM</Option>
+                      <Option value="WS">WS</Option>
+                      <Option value="OPS">OPS</Option>
                           </Select>
                       </Row>
                   </Col>
@@ -698,8 +701,10 @@ class Funnel extends Component {
                   data={selectedTask}
                   reload={this.getData}
                   footer={null} />
-              {this.filterBar()}
-              <DragDropContext onDragEnd={this.onDragEnd}>
+              {!(this.props.user.role === 'Tv' ) && this.filterBar()}
+              <DragDropContext 
+         
+              onDragEnd={this.onDragEnd}>
                   <div style={styles.coreContainer}>
                       { checked && (
                           <Col style={styles.coreColumn}>

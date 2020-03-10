@@ -690,7 +690,10 @@ class ModalEditTask extends React.Component {
           
               </div>
       </TabPane>
-      <TabPane tab="Update" key="2">
+
+
+
+     {(this.props.user.role === 'CardPO' || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
@@ -860,6 +863,8 @@ class ModalEditTask extends React.Component {
 </Button>
 </Form>
       </TabPane>
+
+}
       <TabPane tab="Assumptions" key="3">
       <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
       Create New

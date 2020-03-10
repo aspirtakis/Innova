@@ -25,7 +25,7 @@ import Tasks from 'components/Pages/Dashboard/Tasks';
 import {backend} from '../../../utils/config';
 import {Spin } from 'antd';
 import styles from './styles';
-
+import { sessionCheck } from 'containers/App/actions';
 
 
 const url = backend.beUrl+backend.sessionUrl;
@@ -66,6 +66,7 @@ class DashboardPage extends React.PureComponent {
 
 
   getData = () => {
+    this.props.dispatch(sessionCheck());
     fetch(tasksUrl, {
       method: 'GET',
       headers: {

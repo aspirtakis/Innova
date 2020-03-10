@@ -34,7 +34,7 @@ export default class Task extends React.Component {
   };
 
   render() {
-      const isDragDisabled = this.props.task.task_id === '1';
+      const isDragDisabled = this.props.task.task_id === '1' || this.props.userRole === 'Tv' || this.props.userRole === "Viewer";
       const taskproblem = this.props.task;
 
       return (

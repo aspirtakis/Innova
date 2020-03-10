@@ -50,6 +50,7 @@ export default class Column extends React.Component {
             >
               {this.props.tasks.map((task, index) => (
                 <Task
+                 userRole={userRole}
                   openEdit={this.props.openEdit}
                   key={task.task_id}
                   task={task}
@@ -57,7 +58,7 @@ export default class Column extends React.Component {
                 />
               ))}
               {provided.placeholder}
-  {userRole === 'DashboardCoach'  &&
+      {(userRole === 'DashboardCoach'  ||  userRole === 'Coach' || userRole === 'BO' || userRole === 'Manager' ) &&
               <button
                 style={{
                   display: 'flex',

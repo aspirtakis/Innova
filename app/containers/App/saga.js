@@ -49,7 +49,12 @@ export function* fetchSession() {
         user,
       });
     }
+
   } catch (e) {
+    yield put({
+      type: AUTHENTICATION_FAILED,
+      message: 'Session Expired',
+    });
     yield put({ type: SIGN_OUT, message: 'Session Expired' });
     localStorage.clear();
   }
@@ -75,7 +80,7 @@ export function* fetchSignIn(action) {
     const user = response;
     console.log(user);
 
-    if (user) {
+    if (user.session_token) {
       yield put({
         type: AUTHENTICATED,
         user,
@@ -84,7 +89,7 @@ export function* fetchSignIn(action) {
     } else {
       yield put({
         type: AUTHENTICATION_FAILED,
-        message: 'Wrong user or password, please try again.',
+        message: user.error.message,
       });
     }
   } catch (e) {
@@ -95,6 +100,8 @@ export function* fetchSignIn(action) {
 export function* signIn() {
   yield takeLatest(SIGN_IN, fetchSignIn);
 }
+
+
 export function* sessionCheck() {
   yield takeLatest(SESSION_CHECK, fetchSession);
 }
