@@ -884,11 +884,14 @@ class ModalEditTask extends React.Component {
       role={this.props.user.role}
       />
       </TabPane>}
+
+      { (this.props.user.role === 'Coach' || this.props.user.role === 'Manager' ) &&
             <TabPane tab="Remarks" key="4">
-            <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Create New
-      </Button>
+
+      { this.props.user.role === 'Coach'  && <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Create New
+      </Button>}
         <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
-      </TabPane>
+      </TabPane>}
        
 
 
