@@ -863,12 +863,17 @@ class ModalEditTask extends React.Component {
 </Button>
 </Form>
       </TabPane>
-
 }
-      <TabPane tab="Assumptions" key="3">
+
+
+{ this.props.user.role !== 'Tv' && 
+<TabPane tab="Assumptions" key="3">
+
+{ (this.props.user.role === 'Coach' || this.props.user.role === 'CardPO' || this.props.user.role === 'BO' ||  this.props.user.role === 'User' ) && 
       <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
       Create New
-    </Button>
+    </Button>}
+
       <EditableTable 
       saveAssumption={this.saveAssumption} 
       saveChecklist={this.saveChecklist} 
@@ -876,13 +881,15 @@ class ModalEditTask extends React.Component {
       deleteAssumption={this.deleteAssumption}
       assumptions={this.state.assumptions}
       addChecklist={this.addNewCheckList}
+      role={this.props.user.role}
       />
-      </TabPane>
+      </TabPane>}
             <TabPane tab="Remarks" key="4">
             <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Create New
       </Button>
         <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
       </TabPane>
+       
 
 
       <TabPane tab="Meetings" key="5">

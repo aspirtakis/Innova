@@ -191,7 +191,7 @@ class EditableTable extends React.Component {
         title: 'Assumption',
         dataIndex: 'title',
         width: '50%',
-        editable: true,
+        editable: props.role === "Coach" || props.role === 'CardPO' || props.role === 'User' || props.role === "BO",
         fieldType:"TextField",
       },
       {
@@ -236,12 +236,14 @@ class EditableTable extends React.Component {
           open={this.state.visiblePopoverRecId}>
           </AssumptionStatus>
        
-       
+          { (this.props.role === "Coach" || this.props.role === 'CardPO' || this.props.role === 'User' || this.props.role === 'BO' ) &&
           <Icon  style={{margin:5}} onClick={() => this.setState({visiblePopoverRecId:record.id})} type="check" />
-
+        }
+         { (this.props.role === "Coach" || this.props.role === 'CardPO' ) &&
            <Popconfirm title="Delete Assumption?" onConfirm={() => this.props.deleteAssumption(record)}>
            <Icon  style={{margin:5}} type="delete" />
         </Popconfirm>
+         }
 
           </span>
         ),
@@ -331,7 +333,7 @@ addCheck = (r) => {
   };
 
   render() {
-    const { assumptions } = this.props;
+    const { assumptions,role } = this.props;
     const components = {
       body: {
         row: EditableFormRow,
