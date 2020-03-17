@@ -365,11 +365,14 @@ class Funnel extends Component {
                       <Row style={{ maxHeigth: 5 }}> Theme</Row>
                       <Row>
                           <Select onChange={e => this.filter('theme', e)} style={{ width: 150 }}>
-                              {this.state.themes.map(row => (
-                                  <Option key={row} value={row}>
-                                      {row}
-                                  </Option>
-                              ))}
+                      
+                     
+                                <Option value="NextGenInfra">Next-Gen Infra</Option>
+                                <Option value="DataTech">Data Tech</Option>
+                                <Option value="Techco">TechCo</Option>
+                                <Option value="Other">Other</Option>
+                    
+                             
                           </Select>
                       </Row>
                   </Col>

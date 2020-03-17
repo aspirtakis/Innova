@@ -127,7 +127,7 @@ class ModalAddTask extends React.Component {
                       <Option value="DataTech">Data Tech</Option>
                       <Option value="Techco">TechCo</Option>
                       <Option value="Other">Other</Option>
-                    </Select>)}
+                    </Select>
                   )}
                 </Form.Item>
 
