@@ -91,6 +91,9 @@ class ModalEditTask extends React.Component {
   }
 
 
+
+
+
   saveChecklist = (r,row) => {
     const url = checklistsUrl+'/'+row.id;
     console.log(row);
@@ -416,8 +419,6 @@ class ModalEditTask extends React.Component {
        })
        .catch(taskData => console.log(taskData));
   };
-
-
   addNewMeeting = (type) => {
     // this.setState({ spinning: true });
     const { stageGates } = this.state;
@@ -433,8 +434,7 @@ class ModalEditTask extends React.Component {
        body: JSON.stringify({
          resource: [
           {
-            title: "New Remarka",
-            funnelPhase: this.state.FunnelPhase,
+            title: "New Meeting",
             cardid: this.state.task_id,
             editor: this.props.user.first_name,
             type: type,
@@ -456,12 +456,11 @@ class ModalEditTask extends React.Component {
          console.log(remarkData);
          const newRemark = {
           id:remarkData.resource[0].id,
-          title: "New Remarka",
-            funnelPhase: this.state.FunnelPhase,
-            cardid: this.state.task_id,
-            editor: this.props.user.first_name,
-            type: type,
-            stage:0,
+          title: "New Meeting",
+          cardid: this.state.task_id,
+          editor: this.props.user.first_name,
+          type: type,
+          stage:0,
         };
   
         this.setState({
@@ -470,6 +469,72 @@ class ModalEditTask extends React.Component {
        })
        .catch(taskData => console.log(taskData));
   };
+  deleteMeeting = (meeting) => {
+    const id = meeting.id;
+      this.setState({ spinning: true });
+      const url4 = stageGatesUrl+'/'+id;
+   
+      fetch(url4, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'X-DreamFactory-API-Key': apptoken,
+          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(taskData => {
+      const dataSource = [...this.state.stageGates];
+      this.setState({stageGates: dataSource.filter(item => item.id !== id) });
+        })
+        .catch(taskData => console.log(taskData));
+  };
+  saveMeeting = (e, remark) => {
+    const newData = [...this.state.stageGates];
+    const index = newData.findIndex(item => remark.id === item.id);
+    let item = newData[index];
+    item.title= e.target.value;
+    newData.splice(index, 1, {
+      ...item,
+      ...item,
+    });
+    this.setState({stageGates:newData});
+    const id = remark.id
+    const url4 = stageGatesUrl +'/'+id;
+    fetch(url4, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: e.target.value,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
   saveRemark = (e, remark) => {
     const newData = [...this.state.remarks];
     const index = newData.findIndex(item => remark.id === item.id);
@@ -536,6 +601,43 @@ class ModalEditTask extends React.Component {
         })
         .catch(taskData => console.log(taskData));
   };
+
+  onSTGUpdate = () => {
+    this.setState({ spinning: true });
+    const taskid = this.props.data.task_id;
+    const url4 = tasksUrl+'/'+taskid;
+
+    fetch(url4, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+
+        nexStageGate:this.state.nexStageGate,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+      //  this.props.onCancel();
+        this.setState({ spinning: false });
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+
+
+
   onUpdate = () => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
@@ -884,7 +986,6 @@ class ModalEditTask extends React.Component {
       role={this.props.user.role}
       />
       </TabPane>}
-
       { (this.props.user.role === 'Coach' || this.props.user.role === 'Manager' ) &&
             <TabPane tab="Remarks" key="4">
 
@@ -893,18 +994,26 @@ class ModalEditTask extends React.Component {
         <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
       </TabPane>}
        
-
-
       <TabPane tab="Meetings" key="5">
       <Button 
       onClick={() => this.addNewMeeting("StageGate")} 
       type="primary" 
-      style={{  marginLeft: 16 }}>
-      Create SG/
+      style={{  marginRight: 16,marginLeft: 16  }}>
+      Create SG
       </Button>
-      <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Funding Momment
+      <Button style={{  marginRight: 16  }} onClick={() => this.addNewMeeting("FundingMoment")} type="primary" style={{  marginBottom: 16 }}>Funding Momment
 </Button>
-  <StageGates onOK={this.props.onOK} deleteRemark={this.deleteRemark} user={user} saveRemark={this.saveRemark} stageGates={this.state.stageGates} />
+<span style={{  marginLeft: 30  }}>
+Next STG :<DatePicker 
+value={moment(this.state.nexStageGate, dateFormat)}
+format={dateFormat}
+onChange={(date, dateString) => {
+  this.setState({nexStageGate: moment(date).format()});
+  this.onSTGUpdate();
+} } />
+</span>
+
+  <StageGates onOK={this.props.onOK} deleteMeeting={this.deleteMeeting} user={user} saveMeeting={this.saveMeeting} stageGates={this.state.stageGates} nextGate={this.state.nexStageGate} />
 </TabPane>
 
 

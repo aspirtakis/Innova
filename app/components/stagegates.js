@@ -12,7 +12,7 @@ class StageGates extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editable: false,
+      editable: null,
       edit: true,
     };
   }
@@ -20,9 +20,8 @@ class StageGates extends React.Component {
 
   render() {
     const {
-      stageGates, user, deleteRemark, saveRemark,
+      stageGates, user, deleteMeeting, saveMeeting,
     } = this.props;
-
 
 
     return (
@@ -33,15 +32,15 @@ class StageGates extends React.Component {
         <List
           itemLayout="horizontal"
           dataSource={stageGates}
-          renderItem={(remark) => (
+          renderItem={(meeting) => (
             <List.Item
-              style={{ minwidth: '100%' }}
-              actions={[remark.editor === user.first_name
+              style={{ minWidth: 700, backgroundColor: meeting.type === 'FundingMoment' ? '#ccffcc' : '#cce6ff', margin:10 }}
+              actions={[meeting.editor === user.first_name
                 && (
                 <div>
-                  {!this.state.editable && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: true })} type="edit" /> }
-                  {this.state.editable && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: false }); }} type="save" /> }
-                  <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => deleteRemark(e, remark)} type="delete" />
+                  {this.state.editable !== meeting.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: meeting.id })} type="edit" /> }
+                  {this.state.editable === meeting.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: null}); }} type="save" /> }
+                  <Icon style={{ fontSize: '16px', padding: 5 }} onClick={() => deleteMeeting(meeting)} type="delete" />
                 </div>
                 )]}
             >
@@ -50,19 +49,21 @@ class StageGates extends React.Component {
                 title={(
                   <div>
                     <a>
-                      {remark.remarker}
-                      <br />
+                      Editor :
+                      {meeting.editor}
+                      Created:
+                      {' '}
+                      {moment(meeting.created).format('DD/MM/YYYY')}
+                      <div>{meeting.type}</div>
                       <div style={{ fontSize: 10 }}>
-                        Created:
+                        Updated:
                         {' '}
-                        {moment(remark.created).format('MM/DD/YYYY')}
+                        {moment(meeting.updated).format('DD/MM/YYYY')}
                       </div>
-
                     </a>
-
                   </div>
                 )}
-                description={this.state.editable && remark.editor === user.first_name ? <TextArea style={{ minWidth: 400 }} defaultValue={remark.description} onPressEnter={() => this.setState({ editable: false })} onChange={(e) => saveRemark(e, remark)} /> : remark.description}
+                description={this.state.editable === meeting.id && meeting.editor === user.first_name ? <TextArea style={{ minWidth: 400 }} defaultValue={meeting.title} onPressEnter={() => this.setState({ editable: null })} onChange={(e) => saveMeeting(e, meeting)} /> : meeting.title}
               />
             </List.Item>
           )}

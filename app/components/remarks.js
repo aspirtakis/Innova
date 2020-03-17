@@ -12,7 +12,7 @@ class Remarks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editable: false,
+      editable: null,
       edit: true,
     };
   }
@@ -38,8 +38,8 @@ class Remarks extends React.Component {
               actions={[remark.remarker === user.first_name
                 && (
                 <div>
-                  {!this.state.editable && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: true })} type="edit" /> }
-                  {this.state.editable && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: false }); }} type="save" /> }
+                  {this.state.editable !== remark.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: remark.id })} type="edit" /> }
+                  {this.state.editable  === remark.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: null }); }} type="save" /> }
                   <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => deleteRemark(e, remark)} type="delete" />
                 </div>
                 )]}
@@ -61,7 +61,7 @@ class Remarks extends React.Component {
 
                   </div>
                 )}
-                description={this.state.editable && remark.remarker === user.first_name ? <TextArea style={{ minWidth: 400 }} defaultValue={remark.description} onPressEnter={() => this.setState({ editable: false })} onChange={(e) => saveRemark(e, remark)} /> : remark.description}
+                description={this.state.editable === remark.id && remark.remarker === user.first_name ? <TextArea style={{ minWidth: 400 }} defaultValue={remark.description} onPressEnter={() => this.setState({ editable: false })} onChange={(e) => saveRemark(e, remark)} /> : remark.description}
               />
             </List.Item>
           )}
