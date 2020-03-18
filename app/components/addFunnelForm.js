@@ -30,18 +30,20 @@ class ModalAddTask extends React.Component {
     super(props);
     this.state = {
       spinning: false,
+      buttonEnabled: true,
     };
   }
 
-  handleSubmit = e => {this.setState({ spinning: true });
+  handleSubmit = e => {
+    this.setState({ spinning: true });
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         this.addNewTask(values);
       }
+      this.setState({ spinning: false });
     });
   };
-
 
   addNewTask = values => {
     this.setState({ spinning: true });
@@ -85,7 +87,7 @@ class ModalAddTask extends React.Component {
         this.props.onOK();
         this.setState({ spinning: false });
       })
-      .catch(taskData => console.log(taskData));
+      .catch(taskData => this.setState({ spinning: false }));
   };
 
   render() {
@@ -147,7 +149,7 @@ class ModalAddTask extends React.Component {
                   )}
                 </Form.Item>
 
-                <Form.Item label="Task Title">
+                <Form.Item label="Card Title">
                   {getFieldDecorator('taskname', {
                     rules: [{ required: true, message: 'input Title!' }],
                   })(

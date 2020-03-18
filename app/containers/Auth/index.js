@@ -48,12 +48,12 @@ class AuthPage extends React.Component {
   componentDidMount(){
 
     this.props.dispatch(sessionCheck());
-    console.log('fire32e');
+    //console.log('fire32e');
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
-    console.log(nextProps);
-    console.log('firee');
+    //console.log(nextProps);
+    //console.log('firee');
     // validations goes here
 
     if (

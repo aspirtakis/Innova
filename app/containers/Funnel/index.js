@@ -124,7 +124,7 @@ class Funnel extends Component {
 
     componentDidMount() {
         this.setState({ spinning: true });;
-        console.log(this.props.user);
+        //console.log(this.props.user);
         if (this.props.user && this.props.user.session_token.length > 0) {
             this.setState({ sestoken: this.props.user.session_token });
             this.getData();
@@ -135,7 +135,7 @@ class Funnel extends Component {
     }
 
     // static getDerivedStateFromProps(nextProps, prevProps) {
-    //   console.log("NEXT",nextProps);
+    //   //console.log("NEXT",nextProps);
     //   if(nextProps.user && nextProps.user.session_token){
     //     this.setState({ sestoken: this.nextProps.user.session_token });
     //     this.getData();
@@ -322,7 +322,7 @@ class Funnel extends Component {
       this.getData();
   };
   reloadData = () => {
-    console.log("FIRE GET DATA");
+    //console.log("FIRE GET DATA");
     this.getData();
 };
 
@@ -434,7 +434,7 @@ class Funnel extends Component {
       this.setState({ setOpenEdit: false });
   };
 
-  onSave = (task, scope, order) => {
+  onSave = (task, scope, order ) => {
       const url4 = `${tasksUrl}/${task}`;
       fetch(url4, {
           method: 'PATCH',
@@ -459,11 +459,43 @@ class Funnel extends Component {
           })
           .then(response => response.json())
           .then((taskData) => {
-              // console.log(taskData);
+              // //console.log(taskData);
               this.getData();
           })
           .catch(taskData => console.log(taskData));
   };
+
+
+  onSaveBirth = (task,date ) => {
+console.log("FIRESAVEBIRTH");
+    const url4 = `${tasksUrl}/${task}`;
+    fetch(url4, {
+        method: 'PATCH',
+        headers: {
+            Accept: 'application/json',
+            'X-DreamFactory-API-Key': apptoken,
+            'X-DreamFactory-Session-Token': this.state.sestoken,
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({    
+            updateDate: new Date(),
+            birthonproblem:date,
+        }),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response;
+        })
+        .then(response => response.json())
+        .then((taskData) => {
+            // //console.log(taskData);
+            this.getData();
+        })
+        .catch(taskData => console.log(taskData));
+};
 
   fixStatus = (status) => {
       if (status === 'green') {
@@ -480,9 +512,9 @@ class Funnel extends Component {
       }
       return 'NO SET';
   };
-
   onDragEnd = (result) => {
       const { destination, source, draggableId } = result;
+      console.log(result);
       if (!destination) {
           return;
       }
@@ -516,6 +548,8 @@ class Funnel extends Component {
       const mak = newLocal[draggedFrom].find(
           task => task.task_id === draggableId,
       );
+      console.log(mak);
+      const birth = !mak.birthonproblem && mak.FunnelPhase === 'problem' &&  this.onSaveBirth(draggableId, new Date);
       this.setState({ draggedTask: mak });
 
       const start = source.droppableId;
@@ -680,8 +714,6 @@ class Funnel extends Component {
         }
       }
   };
-
-
   render() {
       const { selectedTask, sestoken, checked } = this.state;
       return (

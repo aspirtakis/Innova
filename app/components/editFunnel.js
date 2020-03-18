@@ -96,8 +96,8 @@ class ModalEditTask extends React.Component {
 
   saveChecklist = (r,row) => {
     const url = checklistsUrl+'/'+row.id;
-    console.log(row);
-    console.log(r);
+    //console.log(row);
+    //console.log(r);
     fetch(url, {
       method: 'PATCH',
       headers: {
@@ -160,9 +160,9 @@ class ModalEditTask extends React.Component {
         const index = newData.findIndex(item => r.id === item.id);
         let item = newData[index];
         let chkl = item.experiments;
-        console.log(chkl);
+        //console.log(chkl);
         const mak = chkl.filter(item1 => item1.id !== checklist);
-        console.log(chkl);
+        //console.log(chkl);
         item.experiments=mak;
   
   
@@ -215,7 +215,7 @@ class ModalEditTask extends React.Component {
           chkl.push(newCheckList);
       }
       if(!chkl){
-        console.log(item);
+        //console.log(item);
       item.experiments=[];
         item.experiments.push(newCheckList);
 
@@ -311,7 +311,7 @@ class ModalEditTask extends React.Component {
        .then(assumptionData => {
        //  this.props.onOK();
          this.setState({ spinning: false });
-         console.log(assumptionData);
+         //console.log(assumptionData);
         
          const newRemark = {
           id:assumptionData.resource[0].id,
@@ -330,8 +330,8 @@ class ModalEditTask extends React.Component {
   };
   saveAssumption = (r,result,status) => {
     const url = assumptionsUrl+'/'+r.id;
-    console.log(result);
-    console.log(status);
+    //console.log(result);
+    //console.log(status);
     fetch(url, {
       method: 'PATCH',
       headers: {
@@ -405,7 +405,7 @@ class ModalEditTask extends React.Component {
        .then(remarkData => {
        //  this.props.onOK();
          this.setState({ spinning: false });
-         console.log(remarkData);
+         //console.log(remarkData);
          const newRemark = {
           id:remarkData.resource[0].id,
           description: "New Remar",
@@ -453,7 +453,7 @@ class ModalEditTask extends React.Component {
        .then(remarkData => {
        //  this.props.onOK();
          this.setState({ spinning: false });
-         console.log(remarkData);
+         //console.log(remarkData);
          const newRemark = {
           id:remarkData.resource[0].id,
           title: "New Meeting",
@@ -786,6 +786,9 @@ class ModalEditTask extends React.Component {
                     <p>Created Date : {data.createDate} </p>
                     <p>Added :{moment(data.createDate).fromNow()}</p>
                     <p>Updated :{moment(data.updateDate).fromNow()}</p>
+                    <p>Updated :{moment(data.birthonproblem).fromNow()}</p>
+            
+
         
                   </Col>
                 </Row>

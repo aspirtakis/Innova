@@ -3,7 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 import moment from 'moment';
-
+import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
+import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+import LocalParkingIcon from '@material-ui/icons/LocalParking'
 
 
 import { styles } from './funnel_styles';
@@ -33,9 +36,25 @@ export default class Task extends React.Component {
       }
   };
 
+  getTime = () => {
+// Code goes here
+//console.clear();
+// var now = moment(new Date()); //todays date
+// var end = moment(this.props.task.birthonproblem); // another date
+// var duration = moment.duration(now.diff(end));
+// var days = duration.asDays();
+// console.log(days)
+// var n = days.toFixed();
+
+const n = moment(this.props.task.birthonproblem).fromNow();
+return n;
+
+  }
+
   render() {
       const isDragDisabled = this.props.task.task_id === '1' || this.props.userRole === 'Tv' || this.props.userRole === "Viewer";
       const taskproblem = this.props.task;
+
 
       return (
           <Draggable
@@ -53,64 +72,31 @@ export default class Task extends React.Component {
                   >
                       <div onClick={() => this.props.openEdit(taskproblem)}>
                           <div className="card">
-                              <div style={{ backgroundColor: '#ECEFEC' }} className="card__header">
-                                  <h1 style={styles.cardTitle} className="h2 h2--strong">{taskproblem.projectname}</h1>
-                              </div>
+                         
                               <div className="card__body">
-                                  <div style={styles.cardStatus} className="row">
-                                      <div className="col col--8">
-                                          <div
-                                              className="one-edge-shadow corners2"
-                                              style={{
-                                                  color: taskproblem.status === 'yellow' ? 'black' : 'white',
-                                                  backgroundColor: taskproblem.status,
-                                              }}
-                                          >
-                                              {this.fixStatus(taskproblem.status)}
-                                          </div>
-                                      </div>
-                                      <div className="col col--4 ">
-                                          <div
-                                              className="corners2"
-                                              style={{
-                                                  color: 'white',
-                                                  fontSize: 11,
-
-                                                  backgroundColor: 'gray',
-                                              }}
-                                          >
-                                              {taskproblem.horizon}
-                                          </div>
-                                      </div>
+             
+                                  <div  className="row">
+                                  <h1 style={styles.cardTitle} >{taskproblem.projectname}</h1>
+                        
+                                 {taskproblem.status === 'green' && <SentimentVerySatisfiedIcon style= {{color: 'green'}}></SentimentVerySatisfiedIcon>}
+                                 {taskproblem.status === 'yellow' && <SentimentSatisfiedIcon ></SentimentSatisfiedIcon>}
+                                 {taskproblem.status === 'orange' && <SentimentSatisfiedIcon style= {{color: 'orange'}}></SentimentSatisfiedIcon>}
+                                 {taskproblem.status === 'red' && <SentimentVeryDissatisfiedIcon style= {{color: 'red'}} ></SentimentVeryDissatisfiedIcon>}
                                   </div>
+                                  <div  className="row">
+                                  <h2 style={styles.cardTitle} >{taskproblem.leader}</h2>
+                                  </div>
+                                  <div className="row">
+                                  {this.getTime()}
+                                   <dd>{taskproblem.coach}</dd>
+                                   {taskproblem.horizon}
+                           </div>
+
+
+
+
+
                               </div>
-                              <div className="card__body">
-                                  <dl style={{ fontSize: 11 }} className="dl">
-                                      <div className="row">
-                                          <div className="col col--7">
-                                              <dt>PO</dt>
-                                              <dd>{taskproblem.leader}</dd>
-                                          </div>
-                                          <div className="col col--5">
-                                              <dt>Coach</dt>
-                                              <dd>{taskproblem.coach}</dd>
-                                          </div>
-                 
-
-                                      </div>
-                                      {taskproblem.nexStageGate &&
-                                      <div  style={{ paddingLeft:5 }} className="row">
-                                    
-                                    <dt>SGDate: </dt>
-                                    <dd>{moment(taskproblem.nexStageGate).format("MM/DD/YYYY")}</dd>
-                                </div>
-                                      }
-                                  </dl>
-                              </div>
-
-                
-
-
                           </div>
                       </div>
                   </Container>

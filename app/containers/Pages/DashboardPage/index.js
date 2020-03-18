@@ -57,7 +57,7 @@ class DashboardPage extends React.PureComponent {
 
 
   componentDidMount() {
-    console.log("DASHMOUNT",this.props);
+    //console.log("DASHMOUNT",this.props);
     if(this.props.user && this.props.user.session_token ){
       this.setState({ sestoken: this.props.user.session_token });
       this.getData();
@@ -86,7 +86,7 @@ class DashboardPage extends React.PureComponent {
       .then(response => response.json())
       .then(taskData => {
         const datas = taskData.resource;
-        console.log(datas);
+        //console.log(datas);
         this.setStates(datas);
       })
       .catch(taskData => console.log(taskData));
@@ -145,12 +145,12 @@ class DashboardPage extends React.PureComponent {
     const ProjectsALL = datas.filter(word => word.funnel === 'OTHER');
 
     
-    console.log('Initiate',inita.length);
-    console.log('Projects',projectnames.length);
-    console.log('Themes',themes.length);
-    console.log('Cards',datas.length);
-    console.log('Horizonss',this.count(Horizons));
-    console.log('Status',this.count(Statuses));
+    //console.log('Initiate',inita.length);
+    //console.log('Projects',projectnames.length);
+    //console.log('Themes',themes.length);
+    //console.log('Cards',datas.length);
+    //console.log('Horizonss',this.count(Horizons));
+    //console.log('Status',this.count(Statuses));
     const cHorizons = this.count(Horizons);
     const cStatus = this.count(Statuses);
 

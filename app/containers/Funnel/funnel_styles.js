@@ -41,11 +41,10 @@ export const styles = {
 
   cardTitle: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: 'left',
     fontWeight: 'bold',
     margin: 'auto',
     paddingBottom: 3,
-
 
   },
   cardTitle2: {

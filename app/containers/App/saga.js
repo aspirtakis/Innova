@@ -27,7 +27,7 @@ import {
 
 export function* fetchSession() {
   try {
-    console.log('SASASDAS');
+    //console.log('SASASDAS');
     const tok = localStorage.getItem('token');
     const options = {
       method: 'GET',
@@ -40,7 +40,7 @@ export function* fetchSession() {
     };
     const urlsession = backend.beUrl + backend.sessionUrl;
     const user = yield request(urlsession, options);
-    console.log(user);
+    //console.log(user);
 
 
     if (user.session_token) {
@@ -78,7 +78,7 @@ export function* fetchSignIn(action) {
     const urlsession = backend.beUrl + backend.sessionUrl;
     const response = yield request(urlsession, options);
     const user = response;
-    console.log(user);
+    //console.log(user);
 
     if (user.session_token) {
       yield put({

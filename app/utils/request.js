@@ -2,7 +2,7 @@ import backend from './config';
 
 function handleErrors(response) {
   if (!response.ok) {
-    console.log(response.status);
+    //console.log(response.status);
   }
   return response;
 }
