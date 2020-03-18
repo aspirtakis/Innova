@@ -74,10 +74,8 @@ return n;
                           <div className="card">
                          
                               <div className="card__body">
-             
                                   <div  className="row">
                                   <h1 style={styles.cardTitle} >{taskproblem.projectname}</h1>
-                        
                                  {taskproblem.status === 'green' && <SentimentVerySatisfiedIcon style= {{color: 'green'}}></SentimentVerySatisfiedIcon>}
                                  {taskproblem.status === 'yellow' && <SentimentSatisfiedIcon ></SentimentSatisfiedIcon>}
                                  {taskproblem.status === 'orange' && <SentimentSatisfiedIcon style= {{color: 'orange'}}></SentimentSatisfiedIcon>}

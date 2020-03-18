@@ -802,13 +802,7 @@ class ModalEditTask extends React.Component {
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
-<Form.Label style={{ marginTop: 9 }}> NextStageGate</Form.Label> 
-                             <br/>
-                         <DatePicker 
-    value={moment(this.state.nexStageGate, dateFormat)}
-    format={dateFormat}
-    onChange={(date, dateString) => this.setState({nexStageGate: moment(date).format()})} />
-<br/>
+
     <Form.Label style={{ marginTop: 5 }}>Department</Form.Label>
     <Form.Control
       value={this.state.funnel}

@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import {
-    Select, Icon, Collapse, Spin, Switch, LocaleProvider,
+   Button, Select, Icon, Collapse, Spin, Switch, LocaleProvider,
 } from 'antd';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -339,6 +339,15 @@ class Funnel extends Component {
                         <Switch checked={this.state.checked} defaultChecked={false} onChange={this.showOperations} />
                     </Col>}
                     <Col>
+     
+                    <Row>
+                        <Button onClick={this.reloadData} style={{ marginTop:15}}>Reset
+                    
+                        </Button>
+                    </Row>
+                </Col>
+
+                    <Col>
                       <Row style={{ maxHeigth: 10 }}>StageGate</Row>
                       <Row>
                           <Select onChange={this.filterToday} style={{ width: 180 }}>
@@ -351,7 +360,7 @@ class Funnel extends Component {
                   <Col>
                       <Row style={{ maxHeigth: 10 }}>Department</Row>
                       <Row>
-                          <Select onChange={this.filterDepartment} style={{ width: 180 }}>
+                          <Select allowClear onChange={this.filterDepartment} style={{ width: 80 }}>
                           <Option value="OIH">OIH</Option>
                       <Option value="CM">CM</Option>
                       <Option value="BM">BM</Option>
