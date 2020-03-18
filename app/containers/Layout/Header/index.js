@@ -11,6 +11,7 @@ import {
   makeSelectSelectedMenuItem,
   makeSelectShowHeaderTabs,
   makeSelectShowSearch,
+  makeSelectUser,
 } from 'containers/App/selectors';
 import { selectMenuItem, showHideSearch } from 'containers/App/actions';
 import HeaderTabs from 'components/Layout/Header/HeaderTabs';
@@ -107,12 +108,14 @@ class Header extends React.Component {
   };
 
   render() {
+
     const {
       selectedMenuItem,
       drawerIsOpen,
       handleDrawerToggle,
       showHeaderTabs,
       showSearch,
+   
     } = this.props;
     const calculatedOpenViews = this.getCalculatedOpenViews();
     const calculatedSelectedMenuItem = this.getCalculatedSelectedMenuItem(
@@ -122,6 +125,7 @@ class Header extends React.Component {
     return (
       <div>
         <HeaderTabs
+          user={this.props.user}
           drawerIsOpen={drawerIsOpen}
           selectedMenuItemHasChildren={
             showHeaderTabs && calculatedSelectedMenuItem.children !== undefined
@@ -168,6 +172,8 @@ const mapStateToProps = createStructuredSelector({
   selectedMenuItem: makeSelectSelectedMenuItem(),
   showHeaderTabs: makeSelectShowHeaderTabs(),
   showSearch: makeSelectShowSearch(),
+  user:makeSelectUser(),
+
 });
 
 const mapDispatchToProps = dispatch => ({

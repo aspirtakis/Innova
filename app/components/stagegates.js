@@ -34,12 +34,12 @@ class StageGates extends React.Component {
           dataSource={stageGates}
           renderItem={(meeting) => (
             <List.Item
-              style={{ minWidth: 700, backgroundColor: meeting.type === 'FundingMoment' ? '#ccffcc' : '#cce6ff', margin:10 }}
+              style={{ minWidth: 700, backgroundColor: meeting.type === 'FundingMoment' ? '#ccffcc' : '#cce6ff', margin: 10 }}
               actions={[meeting.editor === user.first_name
                 && (
                 <div>
                   {this.state.editable !== meeting.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: meeting.id })} type="edit" /> }
-                  {this.state.editable === meeting.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: null}); }} type="save" /> }
+                  {this.state.editable === meeting.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: null }); }} type="save" /> }
                   <Icon style={{ fontSize: '16px', padding: 5 }} onClick={() => deleteMeeting(meeting)} type="delete" />
                 </div>
                 )]}
@@ -48,19 +48,19 @@ class StageGates extends React.Component {
                 avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                 title={(
                   <div>
-                    <a>
-                      Editor :
-                      {meeting.editor}
-                      Created:
+
+                    Editor :
+                    {meeting.editor}
+                    Created:
+                    {' '}
+                    {moment(meeting.created).format('DD/MM/YYYY')}
+                    <div>{meeting.type}</div>
+                    <div style={{ fontSize: 10 }}>
+                      Updated:
                       {' '}
-                      {moment(meeting.created).format('DD/MM/YYYY')}
-                      <div>{meeting.type}</div>
-                      <div style={{ fontSize: 10 }}>
-                        Updated:
-                        {' '}
-                        {moment(meeting.updated).format('DD/MM/YYYY')}
-                      </div>
-                    </a>
+                      {moment(meeting.updated).format('DD/MM/YYYY')}
+                    </div>
+
                   </div>
                 )}
                 description={this.state.editable === meeting.id && meeting.editor === user.first_name ? <TextArea style={{ minWidth: 400 }} defaultValue={meeting.title} onPressEnter={() => this.setState({ editable: null })} onChange={(e) => saveMeeting(e, meeting)} /> : meeting.title}

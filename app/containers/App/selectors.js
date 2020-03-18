@@ -10,6 +10,11 @@ const makeSelectUserIsAuthenticated = () =>
     selectGlobal,
     state => state.userIsAuthenticated,
   );
+  const makeSelectUser = () =>
+  createSelector(
+    selectGlobal,
+    state => state.user,
+  );
 const makeSelectAuthenticationErrorMessage = () =>
   createSelector(
     selectGlobal,
@@ -74,6 +79,7 @@ const makeSelectShowSearch = () =>
 
 export {
   makeSelectUserIsAuthenticated,
+  makeSelectUser,
   makeSelectAuthenticationErrorMessage,
   makeSelectLocation,
   makeSelectMenu,

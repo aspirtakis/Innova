@@ -1004,7 +1004,7 @@ class ModalEditTask extends React.Component {
       <Button style={{  marginRight: 16  }} onClick={() => this.addNewMeeting("FundingMoment")} type="primary" style={{  marginBottom: 16 }}>Funding Momment
 </Button>
 <span style={{  marginLeft: 30  }}>
-Next STG :<DatePicker 
+Next Meeting :<DatePicker 
 value={moment(this.state.nexStageGate, dateFormat)}
 format={dateFormat}
 onChange={(date, dateString) => {
