@@ -32,6 +32,9 @@ class Remarks extends React.Component {
         <List
           itemLayout="horizontal"
           dataSource={remarks}
+          pagination={{
+            pageSize: 4,
+          }}
           renderItem={(remark) => (
             <List.Item
               style={{ minwidth: '100%' }}

@@ -7,9 +7,14 @@ import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfie
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import LocalParkingIcon from '@material-ui/icons/LocalParking'
-
-
 import { styles } from './funnel_styles';
+
+import { FaBeer ,FaBullhorn,FaRoad,FaRegClock
+} from 'react-icons/fa';
+
+
+
+
 
 const Container = styled.div`
   transition: background-color 0.2s ease;
@@ -37,23 +42,31 @@ export default class Task extends React.Component {
   };
 
   getTime = () => {
-// Code goes here
-//console.clear();
-// var now = moment(new Date()); //todays date
-// var end = moment(this.props.task.birthonproblem); // another date
-// var duration = moment.duration(now.diff(end));
-// var days = duration.asDays();
-// console.log(days)
-// var n = days.toFixed();
 
-const n = moment(this.props.task.birthonproblem).fromNow();
+//console.clear();
+var now = moment(new Date()); //todays date
+var end = moment(this.props.task.birthonproblem); // another date
+var duration = moment.duration(now.diff(end));
+var days = duration.asDays();
+//console.log(days)
+//var n = days.toFixed();
+
+const n = moment(this.props.task.birthonproblem).fromNow(true);
 return n;
 
+  }
+
+ truncated = (source, size) => {
+    return source.length > size ? source.slice(0, size - 1) + "…" : source;
   }
 
   render() {
       const isDragDisabled = this.props.task.task_id === '1' || this.props.userRole === 'Tv' || this.props.userRole === "Viewer";
       const taskproblem = this.props.task;
+      var string = taskproblem.projectname;
+
+
+
 
 
       return (
@@ -71,28 +84,65 @@ return n;
                       isDragDisabled={isDragDisabled}
                   >
                       <div onClick={() => this.props.openEdit(taskproblem)}>
-                          <div className="card">
+                          <div style= {{margin: 2, border: '3px solid lightgray', borderRadius: 8}} className="card">
                          
-                              <div className="card__body">
-                                  <div  className="row">
-                                  <h1 style={styles.cardTitle} >{taskproblem.projectname}</h1>
-                                 {taskproblem.status === 'green' && <SentimentVerySatisfiedIcon style= {{color: 'green'}}></SentimentVerySatisfiedIcon>}
-                                 {taskproblem.status === 'yellow' && <SentimentSatisfiedIcon ></SentimentSatisfiedIcon>}
-                                 {taskproblem.status === 'orange' && <SentimentSatisfiedIcon style= {{color: 'orange'}}></SentimentSatisfiedIcon>}
-                                 {taskproblem.status === 'red' && <SentimentVeryDissatisfiedIcon style= {{color: 'red'}} ></SentimentVeryDissatisfiedIcon>}
-                                  </div>
-                                  <div  className="row">
-                                  <h2 style={styles.cardTitle} >{taskproblem.leader}</h2>
-                                  </div>
+                              <div className="card__body" style={{padding:6}}>
                                   <div className="row">
-                                  {this.getTime()}
-                                   <dd>{taskproblem.coach}</dd>
-                                   {taskproblem.horizon}
-                           </div>
+                                  <div className="col col--10">
+                                  <h1 style={styles.cardTitle} >{this.truncated(taskproblem.projectname,13)}</h1>
+                                  </div>
+                                  <div  className="col col--2" >
+                                  <div style={styles.cardStatus2} className="row">
+
+                                  {taskproblem.status === 'green' && <SentimentVerySatisfiedIcon style= {{color: 'green'}}></SentimentVerySatisfiedIcon>}
+                                  {taskproblem.status === 'yellow' && <SentimentSatisfiedIcon ></SentimentSatisfiedIcon>}
+                                  {taskproblem.status === 'orange' && <SentimentVeryDissatisfiedIcon style= {{marginRight:3 ,color: 'orange'}}></SentimentVeryDissatisfiedIcon>}
+                                  {taskproblem.status === 'red' && <SentimentVeryDissatisfiedIcon style= {{marginRight:3 ,color: 'red'}} ></SentimentVeryDissatisfiedIcon>}
+                                  </div>
+                                  </div>
+
+                                  <div className="col col--12">
+                                  <h1 style={styles.cardTitleleader} >{taskproblem.leader}</h1>
+                                 
+                                  </div>
+
+
+        
+                                  </div>
+                      
+                                  <div style={{ color:'gray', marginTop:15, flexWrap: 'nowrap'}} className="row">
+                            <div style={{minWidth:50 ,marginLeft:10}}  className="col col--4">
+                                  <div style={styles.cardTools} className="row">
+                                  <FaRegClock style={styles.cardToolsIcons}></FaRegClock>
+                                  <h1 style={styles.cardToolsText}>{this.getTime()}</h1>
+                             </div>
+
+                                  </div>
+
+                                  <div style={{minWidth:70 }} className="col col--4">
+     
+                                  <div className="row">
+                                  <FaBullhorn style={styles.cardToolsIcons}/>
+                                  <h1 style={styles.cardToolsText}>{taskproblem.coach}</h1>
+                  
+                          
+                             </div>
+                                  </div>
+
+                                  <div style={{maxWidth:42 }} className="col col--4">
+     
+                                  <div style={styles.cardTools} className="row">
+                                  <FaRoad style={styles.cardToolsIcons}></FaRoad>
+                                  <h1 style={styles.cardToolsText} >{taskproblem.horizon}</h1>
+                               
+                               
+                             </div>
+                                  </div>
+                                  </div>
 
 
 
-
+                                  
 
                               </div>
                           </div>

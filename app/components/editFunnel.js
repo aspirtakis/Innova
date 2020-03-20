@@ -36,6 +36,8 @@ class ModalEditTask extends React.Component {
   constructor(props) {
     super(props);
     const { data } = this.props;
+    const gates = data.stageGates;
+
     this.state = {
       spinning: false,
       title: data.title,
@@ -58,12 +60,13 @@ class ModalEditTask extends React.Component {
       assumptions:data.assumptions,
       nexStageGate:data.nexStageGate,
       visiblePopoverRecId: null,
-      stageGates:data.stageGates,
+      stageGates:gates,
     };
   }
 
   componentWillReceiveProps(next) {
     const { data } = next;
+    console.log(data);
     this.setState({
       spinning: false,
       title: data.title,
@@ -90,11 +93,8 @@ class ModalEditTask extends React.Component {
     });
   }
 
-
-
-
-
   saveChecklist = (r,row) => {
+    this.props.sessionCheck();
     const url = checklistsUrl+'/'+row.id;
     //console.log(row);
     //console.log(r);
@@ -133,6 +133,7 @@ class ModalEditTask extends React.Component {
       .catch(taskData => console.log(taskData));
   };
   deleteChecklist = (r,checklist) => {
+    this.props.sessionCheck();
       this.setState({ spinning: true });
       const taskid = this.state.task_id;
       const url4 = checklistsUrl+'/'+checklist;
@@ -160,9 +161,7 @@ class ModalEditTask extends React.Component {
         const index = newData.findIndex(item => r.id === item.id);
         let item = newData[index];
         let chkl = item.experiments;
-        //console.log(chkl);
         const mak = chkl.filter(item1 => item1.id !== checklist);
-        //console.log(chkl);
         item.experiments=mak;
   
   
@@ -172,6 +171,7 @@ class ModalEditTask extends React.Component {
         .catch(taskData => console.log(taskData));
   };
   addNewCheckList = (r) => {
+    this.props.sessionCheck();
      fetch(checklistsUrl, {
        method: 'POST',
        headers: {
@@ -225,6 +225,7 @@ class ModalEditTask extends React.Component {
        .catch(taskData => console.log(taskData));
   };
   deleteAssumption = (r) => {
+    this.props.sessionCheck();
     this.setState({ spinning: true });
     const url4 = assumptionsUrl+'/'+r.id;
     const checklistsU = checklistsUrl +"?filter=assumptionid="+r.id;
@@ -278,6 +279,7 @@ class ModalEditTask extends React.Component {
       .catch(taskData => console.log(taskData));
 };
   addNewAssumption = values => {
+    this.props.sessionCheck();
     // this.setState({ spinning: true });
     const { assumptions } = this.state;
      fetch(assumptionsUrl, {
@@ -329,6 +331,7 @@ class ModalEditTask extends React.Component {
        .catch(taskData => console.log(taskData));
   };
   saveAssumption = (r,result,status) => {
+    this.props.sessionCheck();
     const url = assumptionsUrl+'/'+r.id;
     //console.log(result);
     //console.log(status);
@@ -373,6 +376,7 @@ class ModalEditTask extends React.Component {
       .catch(taskData => console.log(taskData));
   };
   addNewRemark = values => {
+    this.props.sessionCheck();
     // this.setState({ spinning: true });
     const { remarks } = this.state;
      fetch(remarksUrl, {
@@ -420,6 +424,7 @@ class ModalEditTask extends React.Component {
        .catch(taskData => console.log(taskData));
   };
   addNewMeeting = (type) => {
+    this.props.sessionCheck();
     // this.setState({ spinning: true });
     const { stageGates } = this.state;
      fetch(stageGatesUrl, {
@@ -470,6 +475,7 @@ class ModalEditTask extends React.Component {
        .catch(taskData => console.log(taskData));
   };
   deleteMeeting = (meeting) => {
+    this.props.sessionCheck();
     const id = meeting.id;
       this.setState({ spinning: true });
       const url4 = stageGatesUrl+'/'+id;
@@ -495,7 +501,7 @@ class ModalEditTask extends React.Component {
       const dataSource = [...this.state.stageGates];
       this.setState({stageGates: dataSource.filter(item => item.id !== id) });
         })
-        .catch(taskData => console.log(taskData));
+        .catch(taskData => this.props.sessionCheck());
   };
   saveMeeting = (e, remark) => {
     const newData = [...this.state.stageGates];
@@ -635,9 +641,6 @@ class ModalEditTask extends React.Component {
       .catch(taskData => console.log(taskData));
   };
 
-
-
-
   onUpdate = () => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
@@ -746,6 +749,15 @@ class ModalEditTask extends React.Component {
       </Col>
     </Row>
   );
+
+sortthings = (data) => {
+//   var obj = [data];
+// obj.sort((a,b) => b.created < a.created);
+
+return data;
+
+} 
+
 
   render() {
     const { visible, onOK, onCancel, user} = this.props;

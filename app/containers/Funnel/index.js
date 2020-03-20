@@ -350,7 +350,7 @@ class Funnel extends Component {
                     <Col>
                       <Row style={{ maxHeigth: 10 }}>StageGate</Row>
                       <Row>
-                          <Select onChange={this.filterToday} style={{ width: 180 }}>
+                          <Select allowClear  onChange={this.filterToday} style={{ width: 180 }}>
                               <Option value="TODAY">TODAY</Option>
                  
                           </Select>
@@ -373,7 +373,7 @@ class Funnel extends Component {
                   <Col>
                       <Row style={{ maxHeigth: 5 }}> Theme</Row>
                       <Row>
-                          <Select onChange={e => this.filter('theme', e)} style={{ width: 150 }}>
+                          <Select allowClear  onChange={e => this.filter('theme', e)} style={{ width: 150 }}>
                       
                      
                                 <Option value="NextGenInfra">Next-Gen Infra</Option>
@@ -388,7 +388,7 @@ class Funnel extends Component {
                   <Col style={styles.containerTopCol}>
                       <Row style={{ maxHeigth: 5 }}> Project</Row>
                       <Row>
-                          <Select onChange={e => this.filter('projectname', e)} style={{ width: 200 }}>
+                          <Select allowClear  onChange={e => this.filter('projectname', e)} style={{ width: 200 }}>
                               {this.state.projectnames.map(row => (
                                   <Option key={row} value={row}>
                                       {row}
@@ -400,7 +400,7 @@ class Funnel extends Component {
                   <Col style={styles.containerTopCol}>
                       <Row style={{ maxHeigth: 5 }}> Status</Row>
                       <Row>
-                          <Select onChange={e => this.filter('status', e)} style={{ width: 200 }}>
+                          <Select allowClear  onChange={e => this.filter('status', e)} style={{ width: 150 }}>
                               <Option value="green">
                                   <div style={{ flex: 1, alignContent: 'center' }}>
                     PROGRESSING
@@ -737,6 +737,7 @@ console.log("FIRESAVEBIRTH");
                   handleSubmit={this.handleSubmit} />
               <FunnelEditForm
                   user={this.props.user}
+                  sessionCheck={() => this.props.dispatch(sessionCheck())}
                   userRole={this.props.user.role}
                   sestoken={sestoken}
                   visible={this.state.setOpenEdit}

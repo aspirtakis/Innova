@@ -39,12 +39,50 @@ export const styles = {
     padding: 'auto',
   },
 
-  cardTitle: {
+  cardStatus2: {
     fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginRight: 'auto',
+
+  },
+
+  cardTitle: {
+    fontSize: 16,
     textAlign: 'left',
     fontWeight: 'bold',
     margin: 'auto',
     paddingBottom: 3,
+
+  },
+  cardToolsText: {
+    color:'gray',
+    fontSize:10,
+    textAlign: 'left',
+    fontWeight: 'bold',
+    margin: 'auto',
+    paddingBottom: 3,
+
+  },
+
+  cardTitleleader: {
+    fontSize: 14,
+    textAlign: 'left',
+    fontWeight: 'normal',
+    margin: 'auto',
+    paddingBottom: 3,
+
+  },
+
+  cardTools: {
+
+    flexWrap: 'nowrap',
+
+  },
+
+  cardToolsIcons: {
+    fontSize:15,
+    margin:2,
 
   },
   cardTitle2: {

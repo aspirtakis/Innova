@@ -32,6 +32,9 @@ class StageGates extends React.Component {
         <List
           itemLayout="horizontal"
           dataSource={stageGates}
+          pagination={{
+            pageSize: 4,
+          }}
           renderItem={(meeting) => (
             <List.Item
               style={{ minWidth: 700, backgroundColor: meeting.type === 'FundingMoment' ? '#ccffcc' : '#cce6ff', margin: 10 }}
@@ -48,16 +51,22 @@ class StageGates extends React.Component {
                 avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                 title={(
                   <div>
+                    <Row>
+                      <Col style={{ maxWidth: 400}} span={19}>
+                        Editor: 
+                        {meeting.editor}
+                      </Col>
+                      <Col span={5}>
+                        <div style={{ maxWidth: 150,textAlign: 'Left'}}>{meeting.type}</div>
+                      </Col>
+                    </Row>
 
-                    Editor :
-                    {meeting.editor}
-                    Created:
-                    {' '}
-                    {moment(meeting.created).format('DD/MM/YYYY')}
-                    <div>{meeting.type}</div>
+
                     <div style={{ fontSize: 10 }}>
-                      Updated:
+                      Created:
+                      {moment(meeting.created).format('DD/MM/YYYY')}
                       {' '}
+                      - - Updated:
                       {moment(meeting.updated).format('DD/MM/YYYY')}
                     </div>
 
