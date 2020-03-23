@@ -11,7 +11,7 @@ import { styles } from './funnel_styles';
 
 import { FaBeer ,FaBullhorn,FaRoad,FaRegClock
 } from 'react-icons/fa';
-
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 
@@ -83,6 +83,8 @@ return n;
                       isDragging={snapshot.isDragging}
                       isDragDisabled={isDragDisabled}
                   >
+
+                  <Tooltip placement="top" title={taskproblem.projectname}>
                       <div onClick={() => this.props.openEdit(taskproblem)}>
                           <div style= {{margin: 2, border: '3px solid lightgray', borderRadius: 8}} className="card">
                          
@@ -148,6 +150,8 @@ return n;
                               </div>
                           </div>
                       </div>
+
+                      </Tooltip>
                   </Container>
               )}
           </Draggable>

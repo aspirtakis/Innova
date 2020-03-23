@@ -50,6 +50,6 @@ const backendAgaSTG = {
 
 
 
-const backend = backendAgaSTG;
+const backend = backendAga;
 
 export { backend };

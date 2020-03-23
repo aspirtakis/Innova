@@ -608,7 +608,7 @@ class ModalEditTask extends React.Component {
         .catch(taskData => console.log(taskData));
   };
 
-  onSTGUpdate = () => {
+  onSTGUpdate = (newDate) => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
     const url4 = tasksUrl+'/'+taskid;
@@ -624,7 +624,7 @@ class ModalEditTask extends React.Component {
       },
       body: JSON.stringify({
 
-        nexStageGate:this.state.nexStageGate,
+        nexStageGate:newDate,
       }),
     })
       .then(response => {
@@ -1017,8 +1017,8 @@ Next Meeting :<DatePicker
 value={moment(this.state.nexStageGate, dateFormat)}
 format={dateFormat}
 onChange={(date, dateString) => {
-  this.setState({nexStageGate: moment(date).format()});
-  this.onSTGUpdate();
+  this.setState({nexStageGate: moment(date).format(dateFormat)});
+  this.onSTGUpdate(moment(date).format(dateFormat));
 } } />
 </span>
 
