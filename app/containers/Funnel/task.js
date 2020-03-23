@@ -88,15 +88,16 @@ return n;
                          
                               <div className="card__body" style={{padding:6}}>
                                   <div className="row">
-                                  <div className="col col--10">
-                                  <h1 style={styles.cardTitle} >{this.truncated(taskproblem.projectname,13)}</h1>
+                                  <div  style={{ whiteSpace: 'nowrap' }}  className="col col--10">
+                                  <h1 style={styles.cardTitle} >{this.truncated(taskproblem.projectname,12)}</h1>
                                   </div>
                                   <div  className="col col--2" >
+
                                   <div style={styles.cardStatus2} className="row">
 
                                   {taskproblem.status === 'green' && <SentimentVerySatisfiedIcon style= {{color: 'green'}}></SentimentVerySatisfiedIcon>}
-                                  {taskproblem.status === 'yellow' && <SentimentSatisfiedIcon ></SentimentSatisfiedIcon>}
-                                  {taskproblem.status === 'orange' && <SentimentVeryDissatisfiedIcon style= {{marginRight:3 ,color: 'orange'}}></SentimentVeryDissatisfiedIcon>}
+                                  {taskproblem.status === 'yellow' && <SentimentSatisfiedIcon style= {{marginRight:3 ,color: 'orange'}}></SentimentSatisfiedIcon>}
+                                  {taskproblem.status === 'orange' && <SentimentVeryDissatisfiedIcon></SentimentVeryDissatisfiedIcon>}
                                   {taskproblem.status === 'red' && <SentimentVeryDissatisfiedIcon style= {{marginRight:3 ,color: 'red'}} ></SentimentVeryDissatisfiedIcon>}
                                   </div>
                                   </div>
