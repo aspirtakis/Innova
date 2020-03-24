@@ -886,7 +886,7 @@ return data;
       value={this.state.leader}
       onChange={e => this.setState({ leader: e.target.value })}
       type="text"
-      placeholder="Card Title"
+      placeholder="PO"
     />
 
     <Form.Label style={{ marginTop: 5 }}>Coach</Form.Label>
