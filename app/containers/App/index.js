@@ -6,6 +6,8 @@ import 'react-quill/dist/quill.snow.css'; // ES6
 import { withStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Header from 'containers/Layout/Header';
+import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Auth from 'containers/Auth';
 import { findMenuItem, isMobile, updateMenuDimensions } from 'utils/menuHelper';

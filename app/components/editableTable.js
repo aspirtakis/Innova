@@ -239,7 +239,7 @@ class EditableTable extends React.Component {
           { (this.props.role === "Coach" || this.props.role === 'CardPO' || this.props.role === 'User' || this.props.role === 'BO' ) &&
           <Icon  style={{margin:5}} onClick={() => this.setState({visiblePopoverRecId:record.id})} type="check" />
         }
-         { (this.props.role === "Coach" || this.props.role === 'CardPO' ) &&
+         { (this.props.role === "Coach" || this.props.role === 'CardPO' || this.props.role === 'User' ) &&
            <Popconfirm title="Delete Assumption?" onConfirm={() => this.props.deleteAssumption(record)}>
            <Icon  style={{margin:5}} type="delete" />
         </Popconfirm>

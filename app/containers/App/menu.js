@@ -5,6 +5,7 @@ import Icon from '@material-ui/core/Icon';
 // Components
 import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
+import STGCalendar from 'containers/SgCalendar/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 // Menu tree
@@ -19,9 +20,16 @@ const Menu = [
   {
     id: 'funnel ',
     text: 'Funnel',
-    icon: <Icon>assessment</Icon>,
+    icon: <Icon>Info</Icon>,
     url: '/Funnel',
     component: Funnel,
+  },
+  {
+    id: 'calendar',
+    text: 'STGCalendar',
+    icon: <Icon>Calendar</Icon>,
+    url: '/Calendar',
+    component: STGCalendar,
   },
 ];
 

@@ -108,9 +108,6 @@ return n;
                                   <h1 style={styles.cardTitleleader} >{taskproblem.leader}</h1>
                                  
                                   </div>
-
-
-        
                                   </div>
                       
                                   <div style={{ color:'gray', marginTop:15, flexWrap: 'nowrap'}} className="row">

@@ -29,7 +29,7 @@ const remarksUrl = backend.beUrl + backend.remarks;
 const assumptionsUrl = backend.beUrl + backend.assumptions;
 const checklistsUrl = backend.beUrl + backend.checklists;
 const stageGatesUrl = backend.beUrl + backend.stageGates;
-const dateFormat = 'YYYY/MM/DD';
+const dateFormat = 'DD/MM/YYYY';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ModalEditTask extends React.Component {
@@ -40,7 +40,6 @@ class ModalEditTask extends React.Component {
 
     this.state = {
       spinning: false,
-      title: data.title,
       funnel: data.funnel,
       description: data.description,
       projectname: data.projectname,
@@ -66,10 +65,9 @@ class ModalEditTask extends React.Component {
 
   componentWillReceiveProps(next) {
     const { data } = next;
-    console.log(data);
+  //  console.log(data);
     this.setState({
       spinning: false,
-      title: data.title,
       funnel: data.funnel,
       projectname: data.projectname,
       description: data.description,
@@ -94,7 +92,7 @@ class ModalEditTask extends React.Component {
   }
 
   saveChecklist = (r,row) => {
-    this.props.sessionCheck();
+    //this.props.sessionCheck();
     const url = checklistsUrl+'/'+row.id;
     //console.log(row);
     //console.log(r);
@@ -133,7 +131,7 @@ class ModalEditTask extends React.Component {
       .catch(taskData => console.log(taskData));
   };
   deleteChecklist = (r,checklist) => {
-    this.props.sessionCheck();
+    //this.props.sessionCheck();
       this.setState({ spinning: true });
       const taskid = this.state.task_id;
       const url4 = checklistsUrl+'/'+checklist;
@@ -171,7 +169,7 @@ class ModalEditTask extends React.Component {
         .catch(taskData => console.log(taskData));
   };
   addNewCheckList = (r) => {
-    this.props.sessionCheck();
+   // this.props.sessionCheck();
      fetch(checklistsUrl, {
        method: 'POST',
        headers: {
@@ -225,7 +223,7 @@ class ModalEditTask extends React.Component {
        .catch(taskData => console.log(taskData));
   };
   deleteAssumption = (r) => {
-    this.props.sessionCheck();
+   // this.props.sessionCheck();
     this.setState({ spinning: true });
     const url4 = assumptionsUrl+'/'+r.id;
     const checklistsU = checklistsUrl +"?filter=assumptionid="+r.id;
@@ -279,7 +277,7 @@ class ModalEditTask extends React.Component {
       .catch(taskData => console.log(taskData));
 };
   addNewAssumption = values => {
-    this.props.sessionCheck();
+   // this.props.sessionCheck();
     // this.setState({ spinning: true });
     const { assumptions } = this.state;
      fetch(assumptionsUrl, {
@@ -331,7 +329,7 @@ class ModalEditTask extends React.Component {
        .catch(taskData => console.log(taskData));
   };
   saveAssumption = (r,result,status) => {
-    this.props.sessionCheck();
+    //this.props.sessionCheck();
     const url = assumptionsUrl+'/'+r.id;
     //console.log(result);
     //console.log(status);
@@ -376,7 +374,7 @@ class ModalEditTask extends React.Component {
       .catch(taskData => console.log(taskData));
   };
   addNewRemark = values => {
-    this.props.sessionCheck();
+  // this.props.sessionCheck();
     // this.setState({ spinning: true });
     const { remarks } = this.state;
      fetch(remarksUrl, {
@@ -424,7 +422,7 @@ class ModalEditTask extends React.Component {
        .catch(taskData => console.log(taskData));
   };
   addNewMeeting = (type) => {
-    this.props.sessionCheck();
+   // this.props.sessionCheck();
     // this.setState({ spinning: true });
     const { stageGates } = this.state;
      fetch(stageGatesUrl, {
@@ -810,7 +808,7 @@ return data;
 
 
 
-     {(this.props.user.role === 'CardPO' || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
+     {(this.props.user.role === 'User' || this.props.user.role === 'CardPO' || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
@@ -882,15 +880,6 @@ return data;
       <option value="red">STOPPED </option>
       <option value="orange">PARKED</option>
     </Form.Control>
-
-  <Form.Label style={{ marginTop: 5 }}>Title</Form.Label>
-  <Form.Control
-    value={this.state.title}
-    onChange={e => this.setState({ title: e.target.value })}
-    type="text"
-    placeholder="Card Title"
-  />
-        
 
     <Form.Label style={{ marginTop: 5 }}>Product Owner</Form.Label>
     <Form.Control

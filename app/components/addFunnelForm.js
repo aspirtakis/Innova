@@ -66,7 +66,6 @@ class ModalAddTask extends React.Component {
             theme: values.theme,
             status: values.status,
             FunnelPhase: values.funnelPhase,
-            title: values.taskname,
             funnel: values.funnel,
             coach: values.coach,
             leader: values.leader,
@@ -149,21 +148,6 @@ class ModalAddTask extends React.Component {
                   )}
                 </Form.Item>
 
-                <Form.Item label="Card Title">
-                  {getFieldDecorator('taskname', {
-                    rules: [{ required: true, message: 'input Title!' }],
-                  })(
-                    <Input
-                      prefix={
-                        <Icon
-                          type="user"
-                          style={{ color: 'rgba(0,0,0,.25)' }}
-                        />
-                      }
-                      placeholder="Card Title"
-                    />
-                  )}
-                </Form.Item>
 
                 <Form.Item label="Sponsor">
                   {getFieldDecorator('spnsr', {
