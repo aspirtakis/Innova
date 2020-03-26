@@ -31,6 +31,7 @@ export const initialState = {
     name: '',
     email: '',
   },
+  users: [],
   userIsAuthenticated: false,
   authenticationErrorMessage: '',
   registrationErrorMessage: '',
@@ -53,6 +54,7 @@ const appReducer = (state = initialState, action) => produce(state, (draft) => {
     case AUTHENTICATED: {
       draft.userIsAuthenticated = true;
       draft.user = action.user;
+      draft.users = action.users;
       draft.authenticationErrorMessage = '';
       break;
     }

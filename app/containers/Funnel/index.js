@@ -725,6 +725,7 @@ console.log("FIRESAVEBIRTH");
   };
   render() {
       const { selectedTask, sestoken, checked } = this.state;
+
       return (
           <div style={{ marginLeft: 10 }}>
               <FunnelForm
@@ -736,6 +737,7 @@ console.log("FIRESAVEBIRTH");
           
                   handleSubmit={this.handleSubmit} />
               <FunnelEditForm
+                  users={this.props.users}
                   user={this.props.user}
                   sessionCheck={() => this.props.dispatch(sessionCheck())}
                   userRole={this.props.user.role}
@@ -905,6 +907,7 @@ console.log("FIRESAVEBIRTH");
 function mapStateToProps(state) {
     return {
         user: state.global.user,
+        users: state.global.users,
     };
 }
 function mapDispatchToProps(dispatch) {

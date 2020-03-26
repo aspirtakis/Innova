@@ -68,7 +68,6 @@ class ModalAddTask extends React.Component {
             FunnelPhase: values.funnelPhase,
             funnel: values.funnel,
             coach: values.coach,
-            leader: values.leader,
             sponsor: values.sponsor,
             spnsr: values.spnsr,
           },
@@ -185,26 +184,6 @@ class ModalAddTask extends React.Component {
               </Rect6>
 
               <Rect7 className="nopadding">
-                <Form.Item label="Product Owner">
-                  {getFieldDecorator('leader', {
-                    rules: [
-                      {
-                        required: true,
-                        message: 'Please input your username!',
-                      },
-                    ],
-                  })(
-                    <Input
-                      prefix={
-                        <Icon
-                          type="user"
-                          style={{ color: 'rgba(0,0,0,.25)' }}
-                        />
-                      }
-                      placeholder="Product Owner"
-                    />,
-                  )}
-                </Form.Item>
                 <Form.Item label="Horizon">
                   {getFieldDecorator('horizon', {
                     rules: [{ required: true, message: 'Horizon!' }],

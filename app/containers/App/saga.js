@@ -41,12 +41,22 @@ export function* fetchSession() {
     const urlsession = backend.beUrl + backend.sessionUrl;
     const user = yield request(urlsession, options);
     //console.log(user);
-
+    const options2 = {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': backend.apptoken,
+        'Content-Type': 'application/json',
+      },
+    };
+    const urlsystem = backend.beUrl + backend.system;
+    const users = yield request(urlsystem, options2);
 
     if (user.session_token) {
       yield put({
         type: AUTHENTICATED,
         user,
+        users: users.resource,
       });
     }
 
@@ -59,6 +69,10 @@ export function* fetchSession() {
     localStorage.clear();
   }
 }
+
+
+
+
 
 export function* fetchSignIn(action) {
   try {
@@ -78,7 +92,9 @@ export function* fetchSignIn(action) {
     const urlsession = backend.beUrl + backend.sessionUrl;
     const response = yield request(urlsession, options);
     const user = response;
-    //console.log(user);
+
+
+
 
     if (user.session_token) {
       yield put({

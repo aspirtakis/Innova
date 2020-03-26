@@ -29,16 +29,18 @@ const remarksUrl = backend.beUrl + backend.remarks;
 const assumptionsUrl = backend.beUrl + backend.assumptions;
 const checklistsUrl = backend.beUrl + backend.checklists;
 const stageGatesUrl = backend.beUrl + backend.stageGates;
-const dateFormat = 'DD/MM/YYYY';
+const dateFormat = 'DD/MM/YYYY HH:mm:ss';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ModalEditTask extends React.Component {
   constructor(props) {
     super(props);
-    const { data } = this.props;
+    const { data,users } = this.props;
     const gates = data.stageGates;
 
     this.state = {
+      users: users,
+      cardPO:data.cardpo,
       spinning: false,
       funnel: data.funnel,
       description: data.description,
@@ -48,7 +50,6 @@ class ModalEditTask extends React.Component {
       status: data.status,
       FunnelPhase: data.FunnelPhase,
       coach: data.coach,
-      leader: data.leader,
       sponsor: data.sponsor,
       task_id: data.task_id,
       createDate: data.createDate,
@@ -65,9 +66,16 @@ class ModalEditTask extends React.Component {
 
   componentWillReceiveProps(next) {
     const { data } = next;
-  //  console.log(data);
+    
+   // console.log(next.users);
+const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
+//const test = test1.filter(word => word.role_id !== '20);
+//console.log(test1);
+
     this.setState({
+      users:next.users,
       spinning: false,
+      cardPO:data.cardpo,
       funnel: data.funnel,
       projectname: data.projectname,
       description: data.description,
@@ -76,7 +84,6 @@ class ModalEditTask extends React.Component {
       status: data.status,
       FunnelPhase: data.FunnelPhase,
       coach: data.coach,
-      leader: data.leader,
       sponsor: data.sponsor,
       task_id: data.task_id,
       createDate: data.createDate,
@@ -664,11 +671,11 @@ class ModalEditTask extends React.Component {
         title: this.state.taskname,
         funnel: this.state.funnel,
         coach: this.state.coach,
-        leader: this.state.leader,
         sponsor: this.state.sponsor,
         spnsr: this.state.spnsr,
         value:this.state.value,
         prjcost:this.state.prjcost,
+        cardpo:this.state.cardPO,
         nexStageGate:this.state.nexStageGate,
       }),
     })
@@ -759,11 +766,12 @@ return data;
 
   render() {
     const { visible, onOK, onCancel, user} = this.props;
-    const data = this.state;
+    const  data  = this.state;
+    const titles = this.state.cardPO === user.email ? data.projectname + "overview - You are PO of this project" : data.projectname+" overview";
 
     return (
       <Modal
-        title="Update funnel Card"
+        title={titles}
         centered
         visible={visible}
 
@@ -789,7 +797,7 @@ return data;
                   </Col>
                   <Col span={12}>
                     <p>Coach : {data.coach} </p>
-                    <p>P.Owner : {data.leader} </p>
+                    <p>P.Owner : {data.cardpo} </p>
                     <p>Sponsor : {data.spnsr} </p>
                     <p>Team Members : {data.sponsor} </p>
                     <p>NextStageGate :{data.nexStageGate}</p>
@@ -808,7 +816,7 @@ return data;
 
 
 
-     {(this.props.user.role === 'User' || this.props.user.role === 'CardPO' || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
+     {(this.state.cardPO === this.props.user.email || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
@@ -880,14 +888,15 @@ return data;
       <option value="red">STOPPED </option>
       <option value="orange">PARKED</option>
     </Form.Control>
-
-    <Form.Label style={{ marginTop: 5 }}>Product Owner</Form.Label>
+    
+    <Form.Label style={{ marginTop: 5 }}>CardPO</Form.Label>
     <Form.Control
-      value={this.state.leader}
-      onChange={e => this.setState({ leader: e.target.value })}
-      type="text"
-      placeholder="PO"
-    />
+      value={this.state.cardPO}
+      onChange={e => this.setState({ cardPO: e.target.value })}
+      as="select"
+    >
+{this.state.users.map(username =>  <option  key={username.id} value={username.email}>{username.first_name+"."+username.last_name}</option>)}
+    </Form.Control>
 
     <Form.Label style={{ marginTop: 5 }}>Coach</Form.Label>
     <Form.Control
@@ -897,7 +906,6 @@ return data;
     >
       <option>Kevin</option>
       <option>Mike</option>
-      <option>Mark </option>
       <option>Amber</option>
     </Form.Control>
 
@@ -1002,7 +1010,12 @@ return data;
       <Button style={{  marginRight: 16  }} onClick={() => this.addNewMeeting("FundingMoment")} type="primary" style={{  marginBottom: 16 }}>Funding Momment
 </Button>
 <span style={{  marginLeft: 30  }}>
-Next Meeting :<DatePicker 
+Next Meeting :
+<DatePicker 
+showTime={{
+  hideDisabledOptions: true,
+}}
+
 value={moment(this.state.nexStageGate, dateFormat)}
 format={dateFormat}
 onChange={(date, dateString) => {

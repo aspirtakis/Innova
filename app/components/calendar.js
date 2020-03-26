@@ -4,12 +4,14 @@ import React from 'react';
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import { backend } from '../utils/config';
+import ModalEditTask from '../components/editFunnel';
 const url = backend.beUrl + backend.sessionUrl;
 const tasksUrl = backend.beUrl + backend.tasks;
 
+
 const { apptoken } = backend;
 
-
+const dateFormat = 'DD/MM/YYYY HH:mm:ss';
 
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(Calendar);
@@ -71,13 +73,15 @@ getData = () => {
           
           const events = 
               {
-                start: moment(officer2.nexStageGate, 'DD-MM-YYYY').toDate(),
-                end: moment(officer2.nexStageGate, 'DD-MM-YYYY').toDate(),
+                start: moment(officer2.nexStageGate, dateFormat).toDate(),
+                end: moment(officer2.nexStageGate, dateFormat)
+                .add(20, "minutes")
+                .toDate(),
+          
               title: officer2.projectname,
               };
               mak.push(events);
- 
-       
+
           });
 
           this.setState({event1s: mak});
@@ -94,15 +98,15 @@ getData = () => {
     console.log(this.state);
     return (
       <div>
+
       <DnDCalendar
       defaultDate={moment().toDate()}
       defaultView="month"
       events={this.state.event1s}
       localizer={localizer}
-      onEventDrop={this.onEventDrop}
-      onEventResize={this.onEventResize}
-      resizable
+      onDoubleClickEvent={() => console.log("CLICKCK")}
       style={{ height: "100vh" }}
+      
     />
       </div>
 
