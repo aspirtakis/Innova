@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Icon from '@material-ui/core/Icon';
+import CalIcon from '@material-ui/icons/DateRange';
+import FunnelIcon from '@material-ui/icons/ViewDay';
 
 // Components
 import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
@@ -20,14 +22,14 @@ const Menu = [
   {
     id: 'funnel ',
     text: 'Funnel',
-    icon: <Icon>Info</Icon>,
+    icon: <FunnelIcon />,
     url: '/Funnel',
     component: Funnel,
   },
   {
     id: 'calendar',
-    text: 'STGCalendar',
-    icon: <Icon>Calendar</Icon>,
+    text: 'SG-Calendar',
+    icon: <CalIcon />,
     url: '/Calendar',
     component: STGCalendar,
   },
@@ -36,12 +38,12 @@ const Menu = [
 // Asign index and parent fields for each item, which is needed for header tabs navigation
 let index = 0;
 
-Menu.map(item => {
+Menu.map((item) => {
   const menuItem = item;
   menuItem.index = index;
   index += 1;
   if (menuItem.children) {
-    menuItem.children.map(child => {
+    menuItem.children.map((child) => {
       const childItem = child;
 
       childItem.index = index;
@@ -59,7 +61,7 @@ Menu.map(item => {
 });
 
 // Routes
-const getRoute = item => (
+const getRoute = (item) => (
   <Route key={item.id} exact path={item.url} component={item.component} />
 );
 
@@ -67,11 +69,9 @@ const Routes = (location, dynamicMenu) => {
   const menu = dynamicMenu || Menu;
   return (
     <Switch key={location.key} location={location}>
-      {menu.map(item =>
-        !item.children
-          ? getRoute(item)
-          : item.children.map(child => getRoute(child)),
-      )}
+      {menu.map((item) => (!item.children
+        ? getRoute(item)
+        : item.children.map((child) => getRoute(child))))}
       <Route component={NotFoundPage} />
     </Switch>
   );

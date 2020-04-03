@@ -2,7 +2,7 @@ const backendProd = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
   apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
-  system: 'system/user?related=user_to_app_to_role_by_user_id',
+  system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'funnel/_table/funnel.tasks',
   remarks: 'funnel/_table/funnel.remarks',
   assumptions: 'funnel/_table/funnel.assumptions',
@@ -16,7 +16,7 @@ const backendDev = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
   apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
-  system: 'system/user?related=user_to_app_to_role_by_user_id',
+  system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'funnel_dev/_table/funnel.tasks',
   remarks: 'funnel_dev/_table/funnel.remarks',
   assumptions: 'funnel_dev/_table/funnel.assumptions',
@@ -29,7 +29,7 @@ const backendAga = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
   apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
-  system: 'system/user?related=user_to_app_to_role_by_user_id',
+  system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'funnel_dev/_table/funnel.tasks',
   remarks: 'funnel_dev/_table/funnel.remarks',
   assumptions: 'funnel_dev/_table/funnel.assumptions',
@@ -42,7 +42,7 @@ const backendAgaSTG = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
   apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
-  system: 'system/user?related=user_to_app_to_role_by_user_id',
+  system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'FunnSTG/_table/funnel.tasks',
   remarks: 'FunnSTG/_table/funnel.remarks',
   assumptions: 'FunnSTG/_table/funnel.assumptions',
@@ -55,7 +55,7 @@ const backendSTG = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
   apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
-  system: 'system/user?related=user_to_app_to_role_by_user_id',
+  system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'FunnSTG/_table/funnel.tasks',
   remarks: 'FunnSTG/_table/funnel.remarks',
   assumptions: 'FunnSTG/_table/funnel.assumptions',
@@ -67,6 +67,5 @@ const backendSTG = {
 
 
 
-const backend = backendDev;
-
+const backend = backendAga;
 export { backend };

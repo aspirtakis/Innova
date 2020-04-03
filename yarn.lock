@@ -11691,6 +11691,17 @@ sugarss@^2.0.0:
   dependencies:
     postcss "^7.0.2"
 
+suneditor-react@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/suneditor-react/-/suneditor-react-2.8.0.tgz#8c94f903f455f4443b54ed3b49e773c20a08be20"
+  dependencies:
+    prop-types "^15.7.2"
+    suneditor "^2.27.1"
+
+suneditor@^2.27.1:
+  version "2.28.1"
+  resolved "https://registry.yarnpkg.com/suneditor/-/suneditor-2.28.1.tgz#b0f58dd2cf77683964cd1079110f817c6efed1c6"
+
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"

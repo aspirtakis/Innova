@@ -54,13 +54,13 @@ class ModalEditTask extends React.Component {
       task_id: data.task_id,
       createDate: data.createDate,
       spnsr: data.spnsr,
-      remarks:data.remarks,
+      remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
       value:data.value,
       prjcost:data.prjcost,
       assumptions:data.assumptions,
       nexStageGate:data.nexStageGate,
       visiblePopoverRecId: null,
-      stageGates:gates,
+      stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
     };
   }
 
@@ -71,6 +71,8 @@ class ModalEditTask extends React.Component {
 const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
 //const test = test1.filter(word => word.role_id !== '20);
 //console.log(test1);
+
+const gates = data.stageGates;
 
     this.setState({
       users:next.users,
@@ -88,12 +90,13 @@ const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id
       task_id: data.task_id,
       createDate: data.createDate,
       spnsr: data.spnsr,
-      remarks:data.remarks,
+      remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
+      value:data.value,
       value:data.value,
       prjcost:data.prjcost,
       assumptions:data.assumptions,
       nexStageGate:data.nexStageGate,
-      stageGates:data.stageGates
+      stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
       
     });
   }
@@ -176,7 +179,7 @@ const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id
         .catch(taskData => console.log(taskData));
   };
   addNewCheckList = (r) => {
-   // this.props.sessionCheck();
+
      fetch(checklistsUrl, {
        method: 'POST',
        headers: {
@@ -383,7 +386,7 @@ const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id
   addNewRemark = values => {
   // this.props.sessionCheck();
     // this.setState({ spinning: true });
-    const { remarks } = this.state;
+   const { remarks } = this.state;
      fetch(remarksUrl, {
        method: 'POST',
        headers: {
@@ -421,9 +424,9 @@ const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id
           card_id: this.state.task_id,
           remarker: this.props.user.first_name,
         };
-  
+        
         this.setState({
-          remarks: [...remarks, newRemark],
+          remarks: [newRemark, ...remarks ],
         });
        })
        .catch(taskData => console.log(taskData));
@@ -474,13 +477,13 @@ const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id
         };
   
         this.setState({
-          stageGates: [...stageGates, newRemark],
+          stageGates: [newRemark,...stageGates],
         });
        })
        .catch(taskData => console.log(taskData));
   };
   deleteMeeting = (meeting) => {
-    this.props.sessionCheck();
+  //  this.props.sessionCheck();
     const id = meeting.id;
       this.setState({ spinning: true });
       const url4 = stageGatesUrl+'/'+id;
@@ -512,7 +515,7 @@ const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id
     const newData = [...this.state.stageGates];
     const index = newData.findIndex(item => remark.id === item.id);
     let item = newData[index];
-    item.title= e.target.value;
+    item.title= e;
     newData.splice(index, 1, {
       ...item,
       ...item,
@@ -530,7 +533,7 @@ const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title: e.target.value,
+        title: e,
       }),
     })
       .then(response => {
@@ -816,7 +819,7 @@ return data;
 
 
 
-     {(this.state.cardPO === this.props.user.email || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
+     {(this.state.cardPO === this.props.user.first_name+" "+this.props.last_name || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
@@ -895,7 +898,7 @@ return data;
       onChange={e => this.setState({ cardPO: e.target.value })}
       as="select"
     >
-{this.state.users.map(username =>  <option  key={username.id} value={username.email}>{username.first_name+"."+username.last_name}</option>)}
+{this.state.users.map(username =>  <option  key={username.id} value={username.first_name+" "+username.last_name}>{username.first_name+" "+username.last_name}</option>)}
     </Form.Control>
 
     <Form.Label style={{ marginTop: 5 }}>Coach</Form.Label>

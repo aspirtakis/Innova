@@ -4,9 +4,14 @@ import {
 } from 'antd';
 import React from 'react';
 import moment from 'moment';
+import SunEditor from 'suneditor-react';
+import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
+
+
 
 const { Meta } = Card;
 const { TextArea } = Input;
+
 
 class StageGates extends React.Component {
   constructor(props) {
@@ -72,8 +77,9 @@ class StageGates extends React.Component {
 
                   </div>
                 )}
-                description={this.state.editable === meeting.id && meeting.editor === user.first_name ? <TextArea style={{ minWidth: 400 }} defaultValue={meeting.title} onPressEnter={() => this.setState({ editable: null })} onChange={(e) => saveMeeting(e, meeting)} /> : meeting.title}
+                description={this.state.editable === meeting.id && meeting.editor === user.first_name ? <SunEditor style={{ minWidth: 400 }} defaultValue={meeting.title} onPressEnter={() => this.setState({ editable: null })} onChange={(e) => saveMeeting(e, meeting)} /> : meeting.title}
               />
+        
             </List.Item>
           )}
         />

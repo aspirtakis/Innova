@@ -105,8 +105,7 @@ return n;
                                   </div>
 
                                   <div className="col col--12">
-                                  <h1 style={styles.cardTitleleader} >{taskproblem.leader}</h1>
-                                 
+                                  <h1 style={styles.cardTitleleader} >{taskproblem.cardpo}</h1>
                                   </div>
                                   </div>
                       

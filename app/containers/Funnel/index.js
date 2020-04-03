@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import {
-   Button, Select, Icon, Collapse, Spin, Switch, LocaleProvider,
+   Button, Select, Icon, Collapse, Spin, Switch, LocaleProvider,Input,
 } from 'antd';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -168,6 +168,39 @@ class Funnel extends Component {
           })
           .catch(taskData => console.log(taskData));
   };
+
+  getDataFiltered = (type,word) => {
+    this.props.dispatch(sessionCheck());
+       fetch(tasksUrl, {
+           method: 'GET',
+           headers: {
+               Accept: 'application/json',
+               'X-DreamFactory-API-Key': apptoken,
+               'X-DreamFactory-Session-Token': this.state.sestoken,
+               'Cache-Control': 'no-cache',
+               'Content-Type': 'application/json',
+           },
+       })
+           .then((response) => {
+               if (!response.ok) {
+                   throw Error(response.statusText);
+               }
+               return response;
+           })
+           .then(response => response.json())
+           .then((taskData) => {
+               const datas = taskData.resource;
+
+               function filterByValue(array, string) {
+                return array.filter(o =>
+                    Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
+            }
+               
+               const result = filterByValue(datas);
+               //this.setStates(datas);
+           })
+           .catch(taskData => console.log(taskData));
+   };
 
   setStates = (datas) => {
       const officersIds = datas.map(officer => officer.projectname);
@@ -371,30 +404,10 @@ class Funnel extends Component {
                   </Col>
        
                   <Col>
-                      <Row style={{ maxHeigth: 5 }}> Theme</Row>
+                      <Row style={{ maxHeigth: 5 }}>Search</Row>
                       <Row>
-                          <Select allowClear  onChange={e => this.filter('theme', e)} style={{ width: 150 }}>
-                      
-                     
-                                <Option value="NextGenInfra">Next-Gen Infra</Option>
-                                <Option value="DataTech">Data Tech</Option>
-                                <Option value="Techco">TechCo</Option>
-                                <Option value="Other">Other</Option>
-                    
-                             
-                          </Select>
-                      </Row>
-                  </Col>
-                  <Col style={styles.containerTopCol}>
-                      <Row style={{ maxHeigth: 5 }}> Project</Row>
-                      <Row>
-                          <Select allowClear  onChange={e => this.filter('projectname', e)} style={{ width: 200 }}>
-                              {this.state.projectnames.map(row => (
-                                  <Option key={row} value={row}>
-                                      {row}
-                                  </Option>
-                              ))}
-                          </Select>
+                          <Input allowClear  onChange={e => this.filter('search', e)} style={{ width: 150 }}>
+                          </Input>
                       </Row>
                   </Col>
                   <Col style={styles.containerTopCol}>
