@@ -14,7 +14,7 @@ const backendProd = {
 
 const backendDev = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
-  apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
+  apptoken: '35eeec37d6439c878471b426502d6b3903b023bb16d909000100dc912883fb74',
   sessionUrl: 'user/session',
   system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'funnel_dev/_table/funnel.tasks',
@@ -27,7 +27,7 @@ const backendDev = {
 };
 const backendAga = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
-  apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
+  apptoken: '35eeec37d6439c878471b426502d6b3903b023bb16d909000100dc912883fb74',
   sessionUrl: 'user/session',
   system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'funnel_dev/_table/funnel.tasks',
@@ -40,7 +40,7 @@ const backendAga = {
 };
 const backendAgaSTG = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
-  apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
+  apptoken: '35eeec37d6439c878471b426502d6b3903b023bb16d909000100dc912883fb74',
   sessionUrl: 'user/session',
   system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'FunnSTG/_table/funnel.tasks',
@@ -53,7 +53,7 @@ const backendAgaSTG = {
 };
 const backendSTG = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
-  apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
+  apptoken: '35eeec37d6439c878471b426502d6b3903b023bb16d909000100dc912883fb74',
   sessionUrl: 'user/session',
   system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'FunnSTG/_table/funnel.tasks',
@@ -67,5 +67,5 @@ const backendSTG = {
 
 
 
-const backend = backendAga;
+const backend = backendProd;
 export { backend };
