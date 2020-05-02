@@ -21,6 +21,7 @@ import EditableTable from './editableTable';
 import StageGates from './stagegates';
 
 
+
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 const { Panel } = Collapse;
 const apptoken = backend.apptoken;

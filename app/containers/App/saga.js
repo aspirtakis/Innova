@@ -71,9 +71,6 @@ export function* fetchSession() {
 }
 
 
-
-
-
 export function* fetchSignIn(action) {
   try {
     const { payload } = action;
@@ -141,20 +138,44 @@ export function* register() {
   yield takeLatest(REGISTER, fetchRegister);
 }
 
+
 export function* fetchResetPassword(action) {
   try {
-    // here you can call your API in order to reset the password, for this demo just authenticate an user
-    yield put({
-      type: AUTHENTICATED,
-      user: {
-        name: 'John Smith',
-        email: action.payload.email,
+    const { payload } = action;
+    const options = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': backend.apptoken,
+        'Content-Type': 'application/json',
       },
-    });
+      body: JSON.stringify({
+        email: payload.email,
+      }),
+    };
+    //const urlsession = backend.beUrl + backend.passreset;
+    //const response = yield request(urlsession, options);
+    //const user = response;
+    console.log(user);
+
+    // if (user.session_token) {
+    //   yield put({
+    //     type: AUTHENTICATED,
+    //     user,
+    //   });
+    //   localStorage.setItem('token', user.session_token);
+    // } else {
+    //   yield put({
+    //     type: AUTHENTICATION_FAILED,
+    //     message: user.error.message,
+    //   });
+    // }
   } catch (e) {
     yield put({ type: RESET_PASSWORD_FAILED, message: e.message });
   }
 }
+
+
 
 export function* resetPassword() {
   yield takeLatest(RESET_PASSWORD, fetchResetPassword);
