@@ -15,31 +15,34 @@ import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { backend } from '../utils/config';
-
 import Remarks from '../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
 import EditableTable from './editableTable';
+import StageGates from './stagegates';
+
 
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
-
 const { Panel } = Collapse;
-
 const apptoken = backend.apptoken;
 const tasksUrl = backend.beUrl + backend.tasks;
 const remarksUrl = backend.beUrl + backend.remarks;
 const assumptionsUrl = backend.beUrl + backend.assumptions;
-
 const checklistsUrl = backend.beUrl + backend.checklists;
-const dateFormat = 'YYYY/MM/DD';
+const stageGatesUrl = backend.beUrl + backend.stageGates;
+const dateFormat = 'DD/MM/YYYY HH:mm:ss';
+
 // eslint-disable-next-line react/prefer-stateless-function
 class ModalEditTask extends React.Component {
   constructor(props) {
     super(props);
-    const { data } = this.props;
+    const { data,users } = this.props;
+    const gates = data.stageGates;
+
     this.state = {
+      users: users,
+      cardPO:data.cardpo,
       spinning: false,
-      title: data.title,
       funnel: data.funnel,
       description: data.description,
       projectname: data.projectname,
@@ -48,23 +51,34 @@ class ModalEditTask extends React.Component {
       status: data.status,
       FunnelPhase: data.FunnelPhase,
       coach: data.coach,
-      leader: data.leader,
       sponsor: data.sponsor,
       task_id: data.task_id,
       createDate: data.createDate,
       spnsr: data.spnsr,
-      remarks:data.remarks,
+      remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
       value:data.value,
       prjcost:data.prjcost,
       assumptions:data.assumptions,
       nexStageGate:data.nexStageGate,
+      visiblePopoverRecId: null,
+      stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
     };
   }
+
   componentWillReceiveProps(next) {
     const { data } = next;
+    
+   // console.log(next.users);
+const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
+//const test = test1.filter(word => word.role_id !== '20);
+//console.log(test1);
+
+const gates = data.stageGates;
+
     this.setState({
+      users:next.users,
       spinning: false,
-      title: data.title,
+      cardPO:data.cardpo,
       funnel: data.funnel,
       projectname: data.projectname,
       description: data.description,
@@ -73,53 +87,100 @@ class ModalEditTask extends React.Component {
       status: data.status,
       FunnelPhase: data.FunnelPhase,
       coach: data.coach,
-      leader: data.leader,
       sponsor: data.sponsor,
       task_id: data.task_id,
       createDate: data.createDate,
       spnsr: data.spnsr,
-      remarks:data.remarks,
+      remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
+      value:data.value,
       value:data.value,
       prjcost:data.prjcost,
       assumptions:data.assumptions,
-      nexStageGate:data.nexStageGate
+      nexStageGate:data.nexStageGate,
+      stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
       
     });
   }
 
-  // saveAssumption = row => {
-  //   const newData = [...this.state.assumptions];
-  //   const index = newData.findIndex(item => row.id === item.id);
-  //   const item = newData[index];
-  //   newData.splice(index, 1, {
-  //     ...item,
-  //     ...row,
-  //   });
-  //   this.setState({assumptions:newData});
-  // };
+  saveChecklist = (r,row) => {
+    //this.props.sessionCheck();
+    const url = checklistsUrl+'/'+row.id;
+    //console.log(row);
+    //console.log(r);
+    fetch(url, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: row.title,
+        status: row.status,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+    const newData = [...this.state.assumptions];
+    const index = newData.findIndex(item => r.id === item.id);
+    const item = newData[index];
+    let chkl = item.experiments;
+    const listitem = chkl.findIndex(litem => row.id === litem.id);
+    const lit = chkl[listitem];
+    lit.title= row.title;
+    lit.status=row.status;
+    this.setState({assumptions:newData});
+      })
+      .catch(taskData => console.log(taskData));
+  };
+  deleteChecklist = (r,checklist) => {
+    //this.props.sessionCheck();
+      this.setState({ spinning: true });
+      const taskid = this.state.task_id;
+      const url4 = checklistsUrl+'/'+checklist;
 
-  // handleDeleteAssumption = id => {
-  //   const assumptions = [...this.state.assumptions];
-  //   this.setState({ assumptions: dataSource.filter(item => item.id !== id) });
-  // };
+      fetch(url4, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'X-DreamFactory-API-Key': apptoken,
+          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(taskData => {
+ 
+        const newData = [...this.state.assumptions];
+        const index = newData.findIndex(item => r.id === item.id);
+        let item = newData[index];
+        let chkl = item.experiments;
+        const mak = chkl.filter(item1 => item1.id !== checklist);
+        item.experiments=mak;
   
+  
+        this.setState({assumptions:newData});
 
+        })
+        .catch(taskData => console.log(taskData));
+  };
+  addNewCheckList = (r) => {
 
-  // handleAdd = () => {
-  //   const { count, dataSource } = this.state;
-  //   const newData = {
-  //     key: count,
-  //     name: `Edward King ${count}`,
-  //     age: 32,
-  //     address: `London, Park Lane no. ${count}`,
-  //   };
-  //   this.setState({
-  //     dataSource: [...dataSource, newData],
-  //     count: count + 1,
-  //   });
-  // };
-
-  addNewCheckList = (id) => {
      fetch(checklistsUrl, {
        method: 'POST',
        headers: {
@@ -132,9 +193,9 @@ class ModalEditTask extends React.Component {
        body: JSON.stringify({
          resource: [
           {
-            title: "New Check",
-            assumptionid: id,
-            status:false,
+            title: "New Experiment",
+            assumptionid: r.id,
+            status:"Backlog",
           },
          ],
        }),
@@ -147,15 +208,87 @@ class ModalEditTask extends React.Component {
        })
        .then(response => response.json())
        .then(assumptionData => {
-        //  console.log(assumptionData);
-        //  this.props.reload();
-         
+
+      const newData = [...this.state.assumptions];
+      const index = newData.findIndex(item => r.id === item.id);
+      let item = newData[index];
+      let chkl = item.experiments;
+
+      const newCheckList =     {
+        title: "New Experiment",
+        id:assumptionData.resource[0].id,
+         assumptionid: r.id,
+         status:"Backlog",
+        };
+      if(chkl) {
+          chkl.push(newCheckList);
+      }
+      if(!chkl){
+        //console.log(item);
+      item.experiments=[];
+        item.experiments.push(newCheckList);
+
+      }
+      this.setState({assumptions:newData});
        })
        .catch(taskData => console.log(taskData));
   };
+  deleteAssumption = (r) => {
+   // this.props.sessionCheck();
+    this.setState({ spinning: true });
+    const url4 = assumptionsUrl+'/'+r.id;
+    const checklistsU = checklistsUrl +"?filter=assumptionid="+r.id;
 
 
+    fetch(url4, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+      const newData = [...this.state.assumptions];
+      this.setState({assumptions:newData.filter(item => item.id !== r.id)});
+
+
+      fetch(checklistsU, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'X-DreamFactory-API-Key': apptoken,
+          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(taskData => {
+        })
+        .catch(taskData => console.log(taskData));
+
+
+      })
+      .catch(taskData => console.log(taskData));
+};
   addNewAssumption = values => {
+   // this.props.sessionCheck();
     // this.setState({ spinning: true });
     const { assumptions } = this.state;
      fetch(assumptionsUrl, {
@@ -173,7 +306,8 @@ class ModalEditTask extends React.Component {
             title: "New Assumption",
             meta: "empty",
             task_id: this.state.task_id,
-            category: null,
+            category: "Choose",
+            status:"Processing",
           },
          ],
        }),
@@ -188,14 +322,15 @@ class ModalEditTask extends React.Component {
        .then(assumptionData => {
        //  this.props.onOK();
          this.setState({ spinning: false });
-         console.log(assumptionData);
+         //console.log(assumptionData);
         
          const newRemark = {
           id:assumptionData.resource[0].id,
           title: "New Assumption",
           meta: "empty",
           task_id: this.state.task_id,
-          category: null,
+          category: "Choose",
+          status:"Processing",
         };
   
         this.setState({
@@ -204,8 +339,11 @@ class ModalEditTask extends React.Component {
        })
        .catch(taskData => console.log(taskData));
   };
-  saveAssumption = row => {
-    const url = assumptionsUrl+'/'+row.id;
+  saveAssumption = (r,result,status) => {
+    //this.props.sessionCheck();
+    const url = assumptionsUrl+'/'+r.id;
+    //console.log(result);
+    //console.log(status);
     fetch(url, {
       method: 'PATCH',
       headers: {
@@ -216,7 +354,10 @@ class ModalEditTask extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title: row.title,
+        title: r.title,
+        category: r.category,
+        result:result ? result : r.result,
+        status: status ? status : r.status,
       }),
     })
       .then(response => {
@@ -228,20 +369,25 @@ class ModalEditTask extends React.Component {
       .then(response => response.json())
       .then(taskData => {
           const newData = [...this.state.assumptions];
-    const index = newData.findIndex(item => row.id === item.id);
+    const index = newData.findIndex(item => r.id === item.id);
     const item = newData[index];
+    item.result=result ? result : r.result;
+    item.status=status ? status : r.status;
+    item.category=r.category;
+    item.title=r.title;
+
     newData.splice(index, 1, {
       ...item,
-      ...row,
+      ...item,
     });
     this.setState({assumptions:newData});
       })
       .catch(taskData => console.log(taskData));
   };
-  
   addNewRemark = values => {
+  // this.props.sessionCheck();
     // this.setState({ spinning: true });
-    const { remarks } = this.state;
+   const { remarks } = this.state;
      fetch(remarksUrl, {
        method: 'POST',
        headers: {
@@ -254,7 +400,7 @@ class ModalEditTask extends React.Component {
        body: JSON.stringify({
          resource: [
           {
-            description: "New Remark",
+            description: "New Remarka",
             funnelPhase: this.state.FunnelPhase,
             card_id: this.state.task_id,
             remarker: this.props.user.first_name,
@@ -272,25 +418,150 @@ class ModalEditTask extends React.Component {
        .then(remarkData => {
        //  this.props.onOK();
          this.setState({ spinning: false });
-         console.log(remarkData);
+         //console.log(remarkData);
          const newRemark = {
           id:remarkData.resource[0].id,
-          description: "New Remark",
+          description: "New Remar",
           card_id: this.state.task_id,
           remarker: this.props.user.first_name,
         };
-  
+        
         this.setState({
-          remarks: [...remarks, newRemark],
+          remarks: [newRemark, ...remarks ],
         });
        })
        .catch(taskData => console.log(taskData));
   };
-  saveRemark = (e, remark) => {
+  addNewMeeting = (type) => {
+   // this.props.sessionCheck();
+    // this.setState({ spinning: true });
+    const { stageGates } = this.state;
+     fetch(stageGatesUrl, {
+       method: 'POST',
+       headers: {
+         Accept: 'application/json',
+         'X-DreamFactory-API-Key': apptoken,
+         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'Cache-Control': 'no-cache',
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+         resource: [
+          {
+            title: "New Meeting",
+            cardid: this.state.task_id,
+            editor: this.props.user.first_name,
+            type: type,
+            stage:0,
+          },
+         ],
+       }),
+     })
+       .then(response => {
+         if (!response.ok) {
+           throw Error(response.statusText);
+         }
+         return response;
+       })
+       .then(response => response.json())
+       .then(remarkData => {
+       //  this.props.onOK();
+         this.setState({ spinning: false });
+         //console.log(remarkData);
+         const newRemark = {
+          id:remarkData.resource[0].id,
+          title: "New Meeting",
+          cardid: this.state.task_id,
+          editor: this.props.user.first_name,
+          type: type,
+          stage:0,
+        };
+  
+        this.setState({
+          stageGates: [newRemark,...stageGates],
+        });
+       })
+       .catch(taskData => console.log(taskData));
+  };
+  deleteMeeting = (meeting) => {
+  //  this.props.sessionCheck();
+    const id = meeting.id;
+      this.setState({ spinning: true });
+      const url4 = stageGatesUrl+'/'+id;
+   
+      fetch(url4, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'X-DreamFactory-API-Key': apptoken,
+          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(taskData => {
+      const dataSource = [...this.state.stageGates];
+      this.setState({stageGates: dataSource.filter(item => item.id !== id) });
+        })
+        .catch(taskData => this.props.sessionCheck());
+  };
+  saveMeeting = (e, remark) => {
+    const newData = [...this.state.stageGates];
+    const index = newData.findIndex(item => remark.id === item.id);
+    let item = newData[index];
+    item.title= e;
+    newData.splice(index, 1, {
+      ...item,
+      ...item,
+    });
+    this.setState({stageGates:newData});
+    const id = remark.id
+    const url4 = stageGatesUrl +'/'+id;
+    fetch(url4, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: e,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
 
+      })
+      .catch(taskData => console.log(taskData));
+  };
+
+  saveRemark = (e, remark) => {
+    const newData = [...this.state.remarks];
+    const index = newData.findIndex(item => remark.id === item.id);
+    let item = newData[index];
+    item.description= e.target.value;
+    newData.splice(index, 1, {
+      ...item,
+      ...item,
+    });
+    this.setState({remarks:newData});
     const id = remark.id
     const url4 = remarksUrl+'/'+id;
-
     fetch(url4, {
       method: 'PATCH',
       headers: {
@@ -312,6 +583,7 @@ class ModalEditTask extends React.Component {
       })
       .then(response => response.json())
       .then(taskData => {
+
       })
       .catch(taskData => console.log(taskData));
   };
@@ -339,13 +611,43 @@ class ModalEditTask extends React.Component {
         })
         .then(response => response.json())
         .then(taskData => {
-         // this.props.onCancel();
-        //  this.setState({ spinning: false });
-      //    this.props.onOK();
       const dataSource = [...this.state.remarks];
       this.setState({remarks: dataSource.filter(item => item.id !== id) });
         })
         .catch(taskData => console.log(taskData));
+  };
+
+  onSTGUpdate = (newDate) => {
+    this.setState({ spinning: true });
+    const taskid = this.props.data.task_id;
+    const url4 = tasksUrl+'/'+taskid;
+
+    fetch(url4, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+
+        nexStageGate:newDate,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+      //  this.props.onCancel();
+        this.setState({ spinning: false });
+      })
+      .catch(taskData => console.log(taskData));
   };
 
   onUpdate = () => {
@@ -373,13 +675,11 @@ class ModalEditTask extends React.Component {
         title: this.state.taskname,
         funnel: this.state.funnel,
         coach: this.state.coach,
-        leader: this.state.leader,
         sponsor: this.state.sponsor,
         spnsr: this.state.spnsr,
-        remarks:this.state.remarks,
         value:this.state.value,
         prjcost:this.state.prjcost,
-        assumptions:this.state.assumptions,
+        cardpo:this.state.cardPO,
         nexStageGate:this.state.nexStageGate,
       }),
     })
@@ -459,20 +759,30 @@ class ModalEditTask extends React.Component {
     </Row>
   );
 
+sortthings = (data) => {
+//   var obj = [data];
+// obj.sort((a,b) => b.created < a.created);
+
+return data;
+
+} 
+
+
   render() {
     const { visible, onOK, onCancel, user} = this.props;
-    const data = this.state;
+    const  data  = this.state;
+    const titles = this.state.cardPO === user.email ? data.projectname + "overview - You are PO of this project" : data.projectname+" overview";
 
     return (
       <Modal
-        title="Update funnel Card"
+        title={titles}
         centered
         visible={visible}
-        closable={false}
+
         onOk={onOK}
-        onCancel={onCancel}
+        onCancel={onOK}
         footer={null}
-        style={{minWidth:'60%'}}
+        style={{minWidth:'70%'}}
       >
        <div className="card-container">
     <Tabs type="card">
@@ -491,30 +801,30 @@ class ModalEditTask extends React.Component {
                   </Col>
                   <Col span={12}>
                     <p>Coach : {data.coach} </p>
-                    <p>P.Owner : {data.leader} </p>
+                    <p>P.Owner : {data.cardpo} </p>
                     <p>Sponsor : {data.spnsr} </p>
                     <p>Team Members : {data.sponsor} </p>
                     <p>NextStageGate :{data.nexStageGate}</p>
                     <p>Created Date : {data.createDate} </p>
                     <p>Added :{moment(data.createDate).fromNow()}</p>
                     <p>Updated :{moment(data.updateDate).fromNow()}</p>
+                    <p>Updated :{moment(data.birthonproblem).fromNow()}</p>
+            
+
         
                   </Col>
                 </Row>
           
               </div>
       </TabPane>
-      <TabPane tab="Update" key="2">
+
+
+
+     {(this.state.cardPO === this.props.user.first_name+" "+this.props.last_name || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
-<Form.Label style={{ marginTop: 9 }}> NextStageGate</Form.Label> 
-                             <br/>
-                         <DatePicker 
-    value={moment(this.state.nexStageGate, dateFormat)}
-    format={dateFormat}
-    onChange={(date, dateString) => this.setState({nexStageGate: moment(date).format()})} />
-<br/>
+
     <Form.Label style={{ marginTop: 5 }}>Department</Form.Label>
     <Form.Control
       value={this.state.funnel}
@@ -523,20 +833,28 @@ class ModalEditTask extends React.Component {
       }
       as="select"
     >
-      <option>PLATFORM</option>
-      <option>ECOSYSTEM</option>
-      <option>OTHER</option>
+                      <option value="OIH">OIH</option>
+                      <option value="CM">CM</option>
+                      <option value="BM">BM</option>
+                      <option value="WS">WS</option>
+                      <option value="OPS">OPS</option>
     </Form.Control>
-
-
     <Form.Label style={{ marginTop: 5 }}>Theme</Form.Label>
 
-    <Form.Control
-    value={this.state.theme}
-    onChange={e => this.setState({ theme: e.target.value })}
-    type="text"
-    placeholder="Theme"
-  />
+
+
+  <Form.Control
+  value={this.state.theme}
+  onChange={e => this.setState({ theme: e.target.value })}
+  as="select"
+>
+
+  <option value="NextGenInfra">Next-Gen Infra</option>
+  <option value="DataTech">Data Tech</option>
+  <option value="Techco">TechCo</option>
+  <option value="Other">Other</option>
+</Form.Control>
+
     <Form.Label style={{ marginTop: 5 }}>Description</Form.Label>
     <Form.Control
       value={this.state.description}
@@ -574,23 +892,15 @@ class ModalEditTask extends React.Component {
       <option value="red">STOPPED </option>
       <option value="orange">PARKED</option>
     </Form.Control>
-
-  <Form.Label style={{ marginTop: 5 }}>Title</Form.Label>
-  <Form.Control
-    value={this.state.title}
-    onChange={e => this.setState({ title: e.target.value })}
-    type="text"
-    placeholder="Card Title"
-  />
-        
-
-    <Form.Label style={{ marginTop: 5 }}>Product Owner</Form.Label>
+    
+    <Form.Label style={{ marginTop: 5 }}>CardPO</Form.Label>
     <Form.Control
-      value={this.state.leader}
-      onChange={e => this.setState({ leader: e.target.value })}
-      type="text"
-      placeholder="Card Title"
-    />
+      value={this.state.cardPO}
+      onChange={e => this.setState({ cardPO: e.target.value })}
+      as="select"
+    >
+{this.state.users.map(username =>  <option  key={username.id} value={username.first_name+" "+username.last_name}>{username.first_name+" "+username.last_name}</option>)}
+    </Form.Control>
 
     <Form.Label style={{ marginTop: 5 }}>Coach</Form.Label>
     <Form.Control
@@ -600,7 +910,6 @@ class ModalEditTask extends React.Component {
     >
       <option>Kevin</option>
       <option>Mike</option>
-      <option>Mark </option>
       <option>Amber</option>
     </Form.Control>
 
@@ -666,25 +975,64 @@ class ModalEditTask extends React.Component {
 </Button>
 </Form>
       </TabPane>
-      <TabPane tab="Assumptions" key="3">
+}
+
+
+{ this.props.user.role !== 'Tv' && 
+<TabPane tab="Assumptions" key="3">
+
+{ (this.props.user.role === 'Coach' || this.props.user.role === 'CardPO' || this.props.user.role === 'BO' ||  this.props.user.role === 'User' ) && 
       <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
-      Add Assumption
-    </Button>
-      <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Save</Button>
+      Create New
+    </Button>}
+
       <EditableTable 
       saveAssumption={this.saveAssumption} 
-      deleteAssumption={this.handleDeleteAssumption}
+      saveChecklist={this.saveChecklist} 
+      deleteChecklist={this.deleteChecklist}
+      deleteAssumption={this.deleteAssumption}
       assumptions={this.state.assumptions}
       addChecklist={this.addNewCheckList}
+      role={this.props.user.role}
       />
-      </TabPane>
+      </TabPane>}
+      { (this.props.user.role === 'Coach' || this.props.user.role === 'Manager' ) &&
             <TabPane tab="Remarks" key="4">
-            <Button onClick={this.addNewRemark} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>
-        Add
+
+      { this.props.user.role === 'Coach'  && <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Create New
+      </Button>}
+        <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
+      </TabPane>}
+       
+      <TabPane tab="Meetings" key="5">
+      <Button 
+      onClick={() => this.addNewMeeting("StageGate")} 
+      type="primary" 
+      style={{  marginRight: 16,marginLeft: 16  }}>
+      Create SG
       </Button>
-     <Button onClick={this.props.onOK} type="primary" style={{ marginLeft:15, marginBottom: 16 }}>Save</Button>
-        <Remarks deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
-      </TabPane>
+      <Button style={{  marginRight: 16  }} onClick={() => this.addNewMeeting("FundingMoment")} type="primary" style={{  marginBottom: 16 }}>Funding Momment
+</Button>
+<span style={{  marginLeft: 30  }}>
+Next Meeting :
+<DatePicker 
+showTime={{
+  hideDisabledOptions: true,
+}}
+
+value={moment(this.state.nexStageGate, dateFormat)}
+format={dateFormat}
+onChange={(date, dateString) => {
+  this.setState({nexStageGate: moment(date).format(dateFormat)});
+  this.onSTGUpdate(moment(date).format(dateFormat));
+} } />
+</span>
+
+  <StageGates onOK={this.props.onOK} deleteMeeting={this.deleteMeeting} user={user} saveMeeting={this.saveMeeting} stageGates={this.state.stageGates} nextGate={this.state.nexStageGate} />
+</TabPane>
+
+
+      
     </Tabs>
   </div>
       </Modal>

@@ -6,6 +6,8 @@ import 'react-quill/dist/quill.snow.css'; // ES6
 import { withStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Header from 'containers/Layout/Header';
+import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import Auth from 'containers/Auth';
 import { findMenuItem, isMobile, updateMenuDimensions } from 'utils/menuHelper';
@@ -34,6 +36,7 @@ class App extends React.Component {
     this.state = {
       open: false,
       location: props.location,
+      resetcode: props.location.pathname === '/rstpassword' ? props.location.search.substring(1) : null,
     };
   }
 
@@ -44,6 +47,8 @@ class App extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
+    console.log(nextProps);
+  
     if (nextProps.location.pathname !== prevProps.location.pathname) {
       const url = nextProps.location.pathname;
       const { menu, openViews, dispatch } = nextProps;
@@ -70,6 +75,7 @@ class App extends React.Component {
       }
       return { location: nextProps.location };
     }
+
     return null;
   }
 
@@ -195,8 +201,12 @@ class App extends React.Component {
 
     return (
       <div id="app-wrapper">
+
+
+
+
         {!userIsAuthenticated ? (
-          <Auth />
+          <Auth resetcode={this.state.resetcode}/>
         ) : (
           <div className="app-frame">
             {this.renderHeader()}

@@ -25,12 +25,12 @@ const Login = ({
   onRegister,
   onSignIn,
   password,
-  rememberMe
+  rememberMe,
 }) => (
   <div
     className={classNames(
       classes.boxContainer,
-      isMobile() ? classes.mobileContainer : {}
+      isMobile() ? classes.mobileContainer : {},
     )}
   >
     <div className={classes.boxWrapper}>
@@ -38,13 +38,15 @@ const Login = ({
         <div className={classes.logoContainer}>
           <img
             style={{ width: 295 }}
-            src={require('../../images/logo.svg')}
-            alt="KPN Open Innovation Hub login"
+            src="https://dcassetcdn.com/design_img/8177/22993/22993_244281_8177_thumbnail.jpg"
+            alt="PublicWays Innovation Hub login"
           />
         </div>
         {errorMessage ? (
           <Typography paragraph className={classes.errorMessage}>
-            * {errorMessage}
+            *
+            {' '}
+            {errorMessage}
           </Typography>
         ) : null}
 
@@ -68,14 +70,14 @@ const Login = ({
           <div className={classes.buttonsContainer}>
             <div className={classes.checkRememberContainer}>
               <FormControlLabel
-                control={
+                control={(
                   <Checkbox
                     className={classes.checkRemember}
                     checked={rememberMe}
                     value="rememberMe"
                     onChange={onRememberMeChange}
                   />
-                }
+                )}
                 label="Remember me"
               />
             </div>

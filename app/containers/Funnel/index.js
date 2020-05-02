@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import {
-    Select, Icon, Collapse, Spin, Switch,
+   Button, Select, Icon, Collapse, Spin, Switch, LocaleProvider,Input,
 } from 'antd';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -16,6 +16,7 @@ import FunnelEditForm from '../../components/editFunnel';
 import { styles } from './funnel_styles';
 import Column from './column';
 import { backend } from '../../utils/config';
+import { sessionCheck } from 'containers/App/actions';
 
 
 
@@ -94,7 +95,7 @@ class Funnel extends Component {
         super(props);
         this.state = {
             targetOn: true,
-            sestoken: '',
+            sestoken:  '',
             setOpen: false,
             setOpenEdit: false,
             selectedTask: '',
@@ -122,10 +123,8 @@ class Funnel extends Component {
     }
 
     componentDidMount() {
-        this.setState({ spinning: true });
-        console.log('MINT', this.props);
-        console.log('BE', backend);
-        console.log(this.props.user);
+        this.setState({ spinning: true });;
+        //console.log(this.props.user);
         if (this.props.user && this.props.user.session_token.length > 0) {
             this.setState({ sestoken: this.props.user.session_token });
             this.getData();
@@ -136,7 +135,7 @@ class Funnel extends Component {
     }
 
     // static getDerivedStateFromProps(nextProps, prevProps) {
-    //   console.log("NEXT",nextProps);
+    //   //console.log("NEXT",nextProps);
     //   if(nextProps.user && nextProps.user.session_token){
     //     this.setState({ sestoken: this.nextProps.user.session_token });
     //     this.getData();
@@ -145,6 +144,7 @@ class Funnel extends Component {
     // }
 
   getData = () => {
+   this.props.dispatch(sessionCheck());
       fetch(tasksUrl, {
           method: 'GET',
           headers: {
@@ -169,6 +169,39 @@ class Funnel extends Component {
           .catch(taskData => console.log(taskData));
   };
 
+  getDataFiltered = (type,word) => {
+    this.props.dispatch(sessionCheck());
+       fetch(tasksUrl, {
+           method: 'GET',
+           headers: {
+               Accept: 'application/json',
+               'X-DreamFactory-API-Key': apptoken,
+               'X-DreamFactory-Session-Token': this.state.sestoken,
+               'Cache-Control': 'no-cache',
+               'Content-Type': 'application/json',
+           },
+       })
+           .then((response) => {
+               if (!response.ok) {
+                   throw Error(response.statusText);
+               }
+               return response;
+           })
+           .then(response => response.json())
+           .then((taskData) => {
+               const datas = taskData.resource;
+
+               function filterByValue(array, string) {
+                return array.filter(o =>
+                    Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
+            }
+               
+               const result = filterByValue(datas);
+               //this.setStates(datas);
+           })
+           .catch(taskData => console.log(taskData));
+   };
+
   setStates = (datas) => {
       const officersIds = datas.map(officer => officer.projectname);
       const projectnames = officersIds.reduce(
@@ -180,7 +213,6 @@ class Funnel extends Component {
           (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
           [],
       );
-
       const arch = datas.filter(word => word.FunnelPhase === 'archive');
       const backl = datas.filter(word => word.FunnelPhase === 'backlog');
       const inita = datas.filter(word => word.FunnelPhase === 'initiate');
@@ -214,10 +246,12 @@ class Funnel extends Component {
   };
 
   handleOpen = () => {
+    this.props.dispatch(sessionCheck());
       this.setState({ setOpen: true });
   };
 
   handleOpenEdit = (data) => {
+    this.props.dispatch(sessionCheck());
       this.setState({ selectedTask: data });
       this.setState({ setOpenEdit: true });
   };
@@ -321,7 +355,7 @@ class Funnel extends Component {
       this.getData();
   };
   reloadData = () => {
-    console.log("FIRE GET DATA");
+    //console.log("FIRE GET DATA");
     this.getData();
 };
 
@@ -333,14 +367,23 @@ class Funnel extends Component {
       <Collapse>
           <Panel header="Filters" key="1">
               <Row style={styles.containerTop}>
-                   {(this.props.user.role === "DashboardPO" || this.props.user.role === "DashboardCoach") && <Col style={{ maxWidth: 100 }}>
-                        <Row style={{ maxHeigth: 10 }}>BackLog</Row>
+                   {!(this.props.user.role === "Tv" || this.props.user.role === "Viewer") && <Col style={{ maxWidth: 100 }}>
+                        <Row style={{ maxHeigth: 20 }}>BackLog</Row>
                         <Switch checked={this.state.checked} defaultChecked={false} onChange={this.showOperations} />
                     </Col>}
                     <Col>
+     
+                    <Row>
+                        <Button onClick={this.reloadData} style={{ marginTop:15}}>Reset
+                    
+                        </Button>
+                    </Row>
+                </Col>
+
+                    <Col>
                       <Row style={{ maxHeigth: 10 }}>StageGate</Row>
                       <Row>
-                          <Select onChange={this.filterToday} style={{ width: 180 }}>
+                          <Select allowClear  onChange={this.filterToday} style={{ width: 180 }}>
                               <Option value="TODAY">TODAY</Option>
                  
                           </Select>
@@ -350,42 +393,27 @@ class Funnel extends Component {
                   <Col>
                       <Row style={{ maxHeigth: 10 }}>Department</Row>
                       <Row>
-                          <Select onChange={this.filterDepartment} style={{ width: 180 }}>
-                              <Option value="PLATFORM">PLATFORM</Option>
-                              <Option value="ECOSYSTEM">ECOSYSTEM</Option>
-                              <Option value="ALL">ALL</Option>
+                          <Select allowClear onChange={this.filterDepartment} style={{ width: 80 }}>
+                          <Option value="OIH">OIH</Option>
+                      <Option value="CM">CM</Option>
+                      <Option value="BM">BM</Option>
+                      <Option value="WS">WS</Option>
+                      <Option value="OPS">OPS</Option>
                           </Select>
                       </Row>
                   </Col>
        
                   <Col>
-                      <Row style={{ maxHeigth: 5 }}> Theme</Row>
+                      <Row style={{ maxHeigth: 5 }}>Search</Row>
                       <Row>
-                          <Select onChange={e => this.filter('theme', e)} style={{ width: 150 }}>
-                              {this.state.themes.map(row => (
-                                  <Option key={row} value={row}>
-                                      {row}
-                                  </Option>
-                              ))}
-                          </Select>
-                      </Row>
-                  </Col>
-                  <Col style={styles.containerTopCol}>
-                      <Row style={{ maxHeigth: 5 }}> Project</Row>
-                      <Row>
-                          <Select onChange={e => this.filter('projectname', e)} style={{ width: 200 }}>
-                              {this.state.projectnames.map(row => (
-                                  <Option key={row} value={row}>
-                                      {row}
-                                  </Option>
-                              ))}
-                          </Select>
+                          <Input allowClear  onChange={e => this.filter('search', e)} style={{ width: 150 }}>
+                          </Input>
                       </Row>
                   </Col>
                   <Col style={styles.containerTopCol}>
                       <Row style={{ maxHeigth: 5 }}> Status</Row>
                       <Row>
-                          <Select onChange={e => this.filter('status', e)} style={{ width: 200 }}>
+                          <Select allowClear  onChange={e => this.filter('status', e)} style={{ width: 150 }}>
                               <Option value="green">
                                   <div style={{ flex: 1, alignContent: 'center' }}>
                     PROGRESSING
@@ -428,7 +456,7 @@ class Funnel extends Component {
       this.setState({ setOpenEdit: false });
   };
 
-  onSave = (task, scope, order) => {
+  onSave = (task, scope, order ) => {
       const url4 = `${tasksUrl}/${task}`;
       fetch(url4, {
           method: 'PATCH',
@@ -453,11 +481,43 @@ class Funnel extends Component {
           })
           .then(response => response.json())
           .then((taskData) => {
-              // console.log(taskData);
+              // //console.log(taskData);
               this.getData();
           })
           .catch(taskData => console.log(taskData));
   };
+
+
+  onSaveBirth = (task,date ) => {
+console.log("FIRESAVEBIRTH");
+    const url4 = `${tasksUrl}/${task}`;
+    fetch(url4, {
+        method: 'PATCH',
+        headers: {
+            Accept: 'application/json',
+            'X-DreamFactory-API-Key': apptoken,
+            'X-DreamFactory-Session-Token': this.state.sestoken,
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({    
+            updateDate: new Date(),
+            birthonproblem:date,
+        }),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response;
+        })
+        .then(response => response.json())
+        .then((taskData) => {
+            // //console.log(taskData);
+            this.getData();
+        })
+        .catch(taskData => console.log(taskData));
+};
 
   fixStatus = (status) => {
       if (status === 'green') {
@@ -474,9 +534,9 @@ class Funnel extends Component {
       }
       return 'NO SET';
   };
-
   onDragEnd = (result) => {
       const { destination, source, draggableId } = result;
+      console.log(result);
       if (!destination) {
           return;
       }
@@ -510,6 +570,8 @@ class Funnel extends Component {
       const mak = newLocal[draggedFrom].find(
           task => task.task_id === draggableId,
       );
+      console.log(mak);
+      const birth = !mak.birthonproblem && mak.FunnelPhase === 'problem' &&  this.onSaveBirth(draggableId, new Date);
       this.setState({ draggedTask: mak });
 
       const start = source.droppableId;
@@ -674,10 +736,9 @@ class Funnel extends Component {
         }
       }
   };
-
-
   render() {
       const { selectedTask, sestoken, checked } = this.state;
+
       return (
           <div style={{ marginLeft: 10 }}>
               <FunnelForm
@@ -689,17 +750,21 @@ class Funnel extends Component {
           
                   handleSubmit={this.handleSubmit} />
               <FunnelEditForm
+                  users={this.props.users}
                   user={this.props.user}
+                  sessionCheck={() => this.props.dispatch(sessionCheck())}
                   userRole={this.props.user.role}
                   sestoken={sestoken}
                   visible={this.state.setOpenEdit}
                   onCancel={this.handleClose}
                   onOK={this.handleOk}
                   data={selectedTask}
-                  reload={this.reloadData}
+                  reload={this.getData}
                   footer={null} />
-              {this.filterBar()}
-              <DragDropContext onDragEnd={this.onDragEnd}>
+              {!(this.props.user.role === 'Tv' ) && this.filterBar()}
+              <DragDropContext 
+         
+              onDragEnd={this.onDragEnd}>
                   <div style={styles.coreContainer}>
                       { checked && (
                           <Col style={styles.coreColumn}>
@@ -855,6 +920,7 @@ class Funnel extends Component {
 function mapStateToProps(state) {
     return {
         user: state.global.user,
+        users: state.global.users,
     };
 }
 function mapDispatchToProps(dispatch) {

@@ -97,7 +97,7 @@ class EditableCell extends React.Component {
 function Anttable(assumptions) {
 
   const expandedRowRender = (r) => {
-    console.log(r);
+    //console.log(r);
     const columns = [
       { title: 'Title',  editable: true, dataIndex: 'title', key: 'title' },
       { title: 'Id', dataIndex: 'id', key: 'id' },

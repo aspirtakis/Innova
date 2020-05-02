@@ -2,7 +2,7 @@ import backend from './config';
 
 function handleErrors(response) {
   if (!response.ok) {
-    console.log(response.status);
+    //console.log(response.status);
   }
   return response;
 }
@@ -58,7 +58,9 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-
+  if (response.status === 401) {
+    return response;
+  }
   const error = new Error(response.statusText);
   error.response = response;
   throw error;

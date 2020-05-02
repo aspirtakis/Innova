@@ -80,7 +80,7 @@ class HeaderTabs extends React.Component {
             <SearchIcon />
           </IconButton>
           <SettingsButton />
-          <Profile drawerIsOpen={drawerIsOpen} />
+          <Profile user={this.props.user} drawerIsOpen={drawerIsOpen} />
         </Toolbar>
       </AppBar>
     );

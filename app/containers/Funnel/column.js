@@ -4,12 +4,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Droppable } from 'react-beautiful-dnd';
-import Task from './task';
-
-import { styles } from './funnel_styles';
 import {
   Select, Spin, Button, Icon, Collapse,
 } from 'antd';
+import Task from './task';
+
+import { styles } from './funnel_styles';
 
 const Container = styled.div`
 
@@ -26,7 +26,7 @@ const Container = styled.div`
 const TaskList = styled.div`
   padding: 1px;
   transition: background-color 0.2s ease;
-  background-color: ${props => (props.isDraggingOver ? 'green' : 'white')}
+  background-color: ${(props) => (props.isDraggingOver ? 'green' : 'white')}
   max-height: calc(100vh - 11.8rem);
   height: calc(100vh - 8.6rem);
   overflow-y: auto;
@@ -34,7 +34,7 @@ const TaskList = styled.div`
 
 export default class Column extends React.Component {
   render() {
-    const {userRole} = this.props;
+    const { userRole } = this.props;
 
     return (
       <Container>
@@ -50,6 +50,7 @@ export default class Column extends React.Component {
             >
               {this.props.tasks.map((task, index) => (
                 <Task
+                  userRole={userRole}
                   openEdit={this.props.openEdit}
                   key={task.task_id}
                   task={task}
@@ -57,7 +58,8 @@ export default class Column extends React.Component {
                 />
               ))}
               {provided.placeholder}
-  {userRole === 'DashboardCoach'  &&
+              {(userRole === 'DashboardCoach' || userRole === 'Coach' || userRole === 'BO' || userRole === 'Manager')
+              && (
               <button
                 style={{
                   display: 'flex',
@@ -76,7 +78,7 @@ export default class Column extends React.Component {
                 <Icon style={{ marginRight: 10 }} type="plus-circle" />
                 Add Task
               </button>
-            }
+              )}
             </TaskList>
           )}
         </Droppable>
