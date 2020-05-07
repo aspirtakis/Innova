@@ -6,7 +6,8 @@ import React from 'react';
 import moment from 'moment';
 import SunEditor from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
-
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const { Meta } = Card;
 const { TextArea } = Input;
@@ -76,13 +77,25 @@ class StageGates extends React.Component {
 
                   </div>
                 )}
-                description={this.state.editable === meeting.id && meeting.editor === user.first_name ? <SunEditor style={{ minWidth: 400 }} setContents={meeting.title} onChange={(e) => saveMeeting(e, meeting)} /> : (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: meeting.title,
-                    }}
-                  />
-                )}
+                description={this.state.editable === meeting.id && meeting.editor === user.first_name
+                  ? (
+                    <Editor
+
+                      toolbarClassName="toolbarClassName"
+                      wrapperClassName="wrapperClassName"
+                      editorClassName="editorClassName"
+                      onEditorStateChange={(e) => saveMeeting(e, meeting)}
+                    />
+                  )
+
+
+                  : (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: meeting.title,
+                      }}
+                    />
+                  )}
               />
 
             </List.Item>
