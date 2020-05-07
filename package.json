@@ -99,7 +99,7 @@
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
     "styled-components": "^4.4.0",
-    "suneditor-react": "^2.8.0"
+    "suneditor-react": "^2.10.1"
   },
   "devDependencies": {
     "@babel/cli": "7.4.3",
