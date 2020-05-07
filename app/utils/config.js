@@ -1,6 +1,6 @@
 const backendProd = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
-  apptoken: '35eeec37d6439c878471b426502d6b3903b023bb16d909000100dc912883fb74',
+  apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
   system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'funnel/_table/funnel.tasks',
@@ -8,14 +8,13 @@ const backendProd = {
   assumptions: 'funnel/_table/funnel.assumptions',
   checklists: 'funnel/_table/funnel.checklists',
   stageGates: 'funnel/_table/funnel.stagegates',
-  passreset: 'user/password?reset=true',
   defUser: '',
   defPass: '',
 };
 
 const backendDev = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
-  apptoken: '35eeec37d6439c878471b426502d6b3903b023bb16d909000100dc912883fb74',
+  apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
   system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'funnel_dev/_table/funnel.tasks',
@@ -23,13 +22,12 @@ const backendDev = {
   assumptions: 'funnel_dev/_table/funnel.assumptions',
   checklists: 'funnel_dev/_table/funnel.checklists',
   stageGates: 'funnel_dev/_table/funnel.stagegates',
-  passreset: 'user/password?reset=true',
   defUser: '',
   defPass: '',
 };
 const backendAga = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
-  apptoken: '35eeec37d6439c878471b426502d6b3903b023bb16d909000100dc912883fb74',
+  apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
   system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'funnel_dev/_table/funnel.tasks',
@@ -37,13 +35,12 @@ const backendAga = {
   assumptions: 'funnel_dev/_table/funnel.assumptions',
   checklists: 'funnel_dev/_table/funnel.checklists',
   stageGates: 'funnel_dev/_table/funnel.stagegates',
-  passreset: 'user/password?reset=true',
   defUser: 'agamemnon.aspirtakis@kpn.com',
   defPass: 'a224935a',
 };
 const backendAgaSTG = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
-  apptoken: '35eeec37d6439c878471b426502d6b3903b023bb16d909000100dc912883fb74',
+  apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
   system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'FunnSTG/_table/funnel.tasks',
@@ -51,13 +48,12 @@ const backendAgaSTG = {
   assumptions: 'FunnSTG/_table/funnel.assumptions',
   checklists: 'FunnSTG/_table/funnel.checklists',
   stageGates: 'FunnSTG/_table/funnel.stagegates',
-  passreset: 'user/password?reset=true',
   defUser: 'agamemnon.aspirtakis@kpn.com',
   defPass: 'a224935a',
 };
 const backendSTG = {
   beUrl: 'https://aws.openinnovationhub.nl/api/v2/',
-  apptoken: '35eeec37d6439c878471b426502d6b3903b023bb16d909000100dc912883fb74',
+  apptoken: 'cfe595a88b10a4aa5ef460660f6240bd3a72f89e411d31169579444145119f89',
   sessionUrl: 'user/session',
   system: 'system/user?related=user_to_app_to_role_by_user_id&order=name%20ASC',
   tasks: 'FunnSTG/_table/funnel.tasks',
@@ -65,12 +61,11 @@ const backendSTG = {
   assumptions: 'FunnSTG/_table/funnel.assumptions',
   checklists: 'FunnSTG/_table/funnel.checklists',
   stageGates: 'FunnSTG/_table/funnel.stagegates',
-  passreset: 'user/password?reset=true',
   defUser: '',
   defPass: '',
 };
 
 
 
-const backend = backendProd;
+const backend = backendSTG;
 export { backend };

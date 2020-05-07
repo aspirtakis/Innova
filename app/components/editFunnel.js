@@ -9,6 +9,7 @@ import {
 DatePicker, 
 Tabs 
 } from 'antd';
+import nlNL from 'antd/es/locale/nl_NL';
 
 const { TabPane } = Tabs;
 import moment from 'moment';
@@ -19,7 +20,6 @@ import Remarks from '../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
 import EditableTable from './editableTable';
 import StageGates from './stagegates';
-
 
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
@@ -72,9 +72,7 @@ class ModalEditTask extends React.Component {
 const test1 = next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
 //const test = test1.filter(word => word.role_id !== '20);
 //console.log(test1);
-
 const gates = data.stageGates;
-
     this.setState({
       users:next.users,
       spinning: false,
@@ -549,7 +547,6 @@ const gates = data.stageGates;
       })
       .catch(taskData => console.log(taskData));
   };
-
   saveRemark = (e, remark) => {
     const newData = [...this.state.remarks];
     const index = newData.findIndex(item => remark.id === item.id);
@@ -616,7 +613,6 @@ const gates = data.stageGates;
         })
         .catch(taskData => console.log(taskData));
   };
-
   onSTGUpdate = (newDate) => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
@@ -649,7 +645,6 @@ const gates = data.stageGates;
       })
       .catch(taskData => console.log(taskData));
   };
-
   onUpdate = () => {
     this.setState({ spinning: true });
     const taskid = this.props.data.task_id;
@@ -758,7 +753,6 @@ const gates = data.stageGates;
       </Col>
     </Row>
   );
-
 sortthings = (data) => {
 //   var obj = [data];
 // obj.sort((a,b) => b.created < a.created);
@@ -809,22 +803,14 @@ return data;
                     <p>Added :{moment(data.createDate).fromNow()}</p>
                     <p>Updated :{moment(data.updateDate).fromNow()}</p>
                     <p>Updated :{moment(data.birthonproblem).fromNow()}</p>
-            
-
-        
                   </Col>
                 </Row>
-          
               </div>
       </TabPane>
-
-
-
      {(this.state.cardPO === this.props.user.first_name+" "+this.props.last_name || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
-
     <Form.Label style={{ marginTop: 5 }}>Department</Form.Label>
     <Form.Control
       value={this.state.funnel}
@@ -1016,6 +1002,7 @@ return data;
 <span style={{  marginLeft: 30  }}>
 Next Meeting :
 <DatePicker 
+
 showTime={{
   hideDisabledOptions: true,
 }}

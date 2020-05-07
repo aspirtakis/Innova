@@ -5,7 +5,6 @@ import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { backend }  from '../../utils/config';
 import ForgotPassword from 'components/Auth/forgotPassword';
-import Passreset from 'components/Auth/passreset';
 import Login from 'components/Auth/login';
 import Register from 'components/Auth/register';
 import {
@@ -32,15 +31,14 @@ class AuthPage extends React.Component {
         rememberMe: false,
       },
       register: {
-        fullName: backend.defUser,
+        fullName: 'John Smith',
         email: 'demo@test.com',
-        password: backend.defPass,
-        confirmPassword: backend.defPass,
+        password: 'demo',
+        confirmPassword: 'demo',
       },
       forgotPassword: {
-        email: '',
+        email: 'demo@test.com',
       },
-
       showForgotPassword: false,
       showRegister: false,
       errorMessage: props.authenticationErrorMessage,
@@ -50,13 +48,11 @@ class AuthPage extends React.Component {
   componentDidMount(){
 
     this.props.dispatch(sessionCheck());
+
     //console.log('fire32e');
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
-    console.log(nextProps);
-
- 
     if (
       nextProps.authenticationErrorMessage !==
       prevProps.authenticationErrorMessage
@@ -71,7 +67,9 @@ class AuthPage extends React.Component {
     ) {
       return {
         errorMessage: nextProps.authenticationErrorMessage,
+   
       };
+     
     }
     return null;
   }
@@ -135,21 +133,6 @@ class AuthPage extends React.Component {
     this.props.dispatch(register(payload));
   };
 
-
-  
-  pswcodereset= () => {
-    // validations goes here
-    const { fullName, email, password } = this.state;
-    const payload = {
-      fullName,
-      email,
-      password,
-    };
-//
-console.log(payload);
-  //  this.props.dispatch(resetPassword(payload));
-  };
-
   registerFullNameChanged = event => {
     const fullName = event.target.value;
     const registerState = this.state.register;
@@ -197,7 +180,7 @@ console.log(payload);
     const payload = {
       email: this.state.forgotPassword.email,
     };
-console.log("HIT RESET");
+
     this.props.dispatch(resetPassword(payload));
   };
 
@@ -232,19 +215,10 @@ console.log("HIT RESET");
 
   render() {
     const { showRegister, login, errorMessage, forgotPassword } = this.state;
-const { resetcode} =this.props;
+
     return (
       <div>
-
-      {resetcode ? <div>          <Passreset
-        code={resetcode}
-        email={this.state.register.email}
-        password={this.state.register.password}
-        onGoBack={this.showLogin}
-        onReset={this.pswcodereset}
-      /></div> : <div>
-      
-        {showRegister && !resetcode ? (
+        {showRegister ? (
           <div>
             <Register
               fullName={this.state.register.fullName}
@@ -261,12 +235,11 @@ const { resetcode} =this.props;
           </div>
         ) : (
           <div>
-            {this.state.showForgotPassword && !resetcode ? (
+            {this.state.showForgotPassword ? (
               <ForgotPassword
                 email={forgotPassword.email}
                 onEmailChange={this.forgotPasswordEmailChanged}
                 onGoBack={this.showLogin}
-                resetPassword={this.resetPassword}
               />
             ) : (
               <Login
@@ -283,15 +256,9 @@ const { resetcode} =this.props;
               />
             )}
           </div>
-       
         )}
-        </div>
-      }
       </div>
-
-            
     );
-    
   }
 }
 

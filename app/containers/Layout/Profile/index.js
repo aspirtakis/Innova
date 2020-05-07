@@ -36,6 +36,7 @@ class Profile extends React.Component {
       anchorEl: null,
     });
     this.props.dispatch(signOut());
+    location.href = '/'
   };
 
   render() {

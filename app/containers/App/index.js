@@ -36,7 +36,6 @@ class App extends React.Component {
     this.state = {
       open: false,
       location: props.location,
-      resetcode: props.location.pathname === '/rstpassword' ? props.location.search.substring(1) : null,
     };
   }
 
@@ -47,8 +46,6 @@ class App extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
-    console.log(nextProps);
-  
     if (nextProps.location.pathname !== prevProps.location.pathname) {
       const url = nextProps.location.pathname;
       const { menu, openViews, dispatch } = nextProps;
@@ -75,7 +72,6 @@ class App extends React.Component {
       }
       return { location: nextProps.location };
     }
-
     return null;
   }
 
@@ -201,12 +197,8 @@ class App extends React.Component {
 
     return (
       <div id="app-wrapper">
-
-
-
-
         {!userIsAuthenticated ? (
-          <Auth resetcode={this.state.resetcode}/>
+          <Auth />
         ) : (
           <div className="app-frame">
             {this.renderHeader()}

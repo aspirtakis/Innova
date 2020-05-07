@@ -21,7 +21,6 @@ class ForgotPassword extends React.Component {
       showEmailSentMessage: true,
       message: `An email has been sent to ${email} with further instructions.`,
     });
-    this.props.resetPassword();
   };
 
   render() {

@@ -8,7 +8,6 @@ import SunEditor from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 
 
-
 const { Meta } = Card;
 const { TextArea } = Input;
 
@@ -57,12 +56,12 @@ class StageGates extends React.Component {
                 title={(
                   <div>
                     <Row>
-                      <Col style={{ maxWidth: 400}} span={19}>
-                        Editor: 
+                      <Col style={{ maxWidth: 400 }} span={19}>
+                        Editor:
                         {meeting.editor}
                       </Col>
                       <Col span={5}>
-                        <div style={{ maxWidth: 150,textAlign: 'Left'}}>{meeting.type}</div>
+                        <div style={{ maxWidth: 150, textAlign: 'Left' }}>{meeting.type}</div>
                       </Col>
                     </Row>
 
@@ -77,9 +76,15 @@ class StageGates extends React.Component {
 
                   </div>
                 )}
-                description={this.state.editable === meeting.id && meeting.editor === user.first_name ? <SunEditor style={{ minWidth: 400 }} defaultValue={meeting.title} onPressEnter={() => this.setState({ editable: null })} onChange={(e) => saveMeeting(e, meeting)} /> : meeting.title}
+                description={this.state.editable === meeting.id && meeting.editor === user.first_name ? <SunEditor style={{ minWidth: 400 }} setContents={meeting.title} onChange={(e) => saveMeeting(e, meeting)} /> : (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: meeting.title,
+                    }}
+                  />
+                )}
               />
-        
+
             </List.Item>
           )}
         />

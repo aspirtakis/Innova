@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Paper from '@material-ui/core/Paper';
 import { DragDropContext } from 'react-beautiful-dnd';
-
+import { ConfigProvider } from 'antd';
 import {
    Button, Select, Icon, Collapse, Spin, Switch, LocaleProvider,Input,
 } from 'antd';
@@ -17,7 +17,12 @@ import { styles } from './funnel_styles';
 import Column from './column';
 import { backend } from '../../utils/config';
 import { sessionCheck } from 'containers/App/actions';
-
+import nlNL from 'antd/es/locale/nl_NL';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+  } from "react-router-dom";
 
 
 const columnsdata = [
@@ -75,6 +80,8 @@ const columnsdata = [
 //   display: flex;
 // `;
 
+
+
 const { Panel } = Collapse;
 const { Option } = Select;
 
@@ -129,9 +136,14 @@ class Funnel extends Component {
             this.setState({ sestoken: this.props.user.session_token });
             this.getData();
             this.setState({ spinning: true });
-            this.setState({permissions:this.props.user.role})
+            this.setState({permissions:this.props.user.role});
+    
+        }
+        if (!this.props.user && !this.props.user.session_token.length > 0) {
+            location.href = '/';
         }
         this.setState({ spinning: false });
+
     }
 
     // static getDerivedStateFromProps(nextProps, prevProps) {
@@ -169,7 +181,7 @@ class Funnel extends Component {
           .catch(taskData => console.log(taskData));
   };
 
-  getDataFiltered = (type,word) => {
+  getDataFiltered = (e) => {
     this.props.dispatch(sessionCheck());
        fetch(tasksUrl, {
            method: 'GET',
@@ -190,14 +202,13 @@ class Funnel extends Component {
            .then(response => response.json())
            .then((taskData) => {
                const datas = taskData.resource;
+             
+               const myName = datas.filter(name => name.includes("0"));
 
-               function filterByValue(array, string) {
-                return array.filter(o =>
-                    Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
-            }
-               
-               const result = filterByValue(datas);
-               //this.setStates(datas);
+
+    
+               console.log(myName);
+          //     this.setStates(result);
            })
            .catch(taskData => console.log(taskData));
    };
@@ -406,7 +417,7 @@ class Funnel extends Component {
                   <Col>
                       <Row style={{ maxHeigth: 5 }}>Search</Row>
                       <Row>
-                          <Input allowClear  onChange={e => this.filter('search', e)} style={{ width: 150 }}>
+                          <Input allowClear  onChange={e => this.getDataFiltered(e.target.value)} style={{ width: 150 }}>
                           </Input>
                       </Row>
                   </Col>
@@ -740,6 +751,10 @@ console.log("FIRESAVEBIRTH");
       const { selectedTask, sestoken, checked } = this.state;
 
       return (
+          <ConfigProvider locale={nlNL}>
+          
+          
+
           <div style={{ marginLeft: 10 }}>
               <FunnelForm
                   userRole={this.props.user.role}
@@ -913,6 +928,7 @@ console.log("FIRESAVEBIRTH");
                   </div>
               </DragDropContext>
           </div>
+          </ConfigProvider>
       );
   }
 }
