@@ -765,7 +765,9 @@ return data;
   render() {
     const { visible, onOK, onCancel, user} = this.props;
     const  data  = this.state;
-    const titles = this.state.cardPO === user.email ? data.projectname + "overview - You are PO of this project" : data.projectname+" overview";
+    const titles = this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname+" overview";
+
+    
 
     return (
       <Modal
@@ -807,7 +809,7 @@ return data;
                 </Row>
               </div>
       </TabPane>
-     {(this.state.cardPO === this.props.user.first_name+" "+this.props.last_name || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
+     {(this.state.cardPO === this.props.user.first_name+" "+this.props.user.last_name || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
@@ -885,7 +887,7 @@ return data;
       onChange={e => this.setState({ cardPO: e.target.value })}
       as="select"
     >
-{this.state.users.map(username =>  <option  key={username.id} value={username.first_name+" "+username.last_name}>{username.first_name+" "+username.last_name}</option>)}
+{this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
     </Form.Control>
 
     <Form.Label style={{ marginTop: 5 }}>Coach</Form.Label>
@@ -895,8 +897,9 @@ return data;
       as="select"
     >
       <option>Kevin</option>
-      <option>Mike</option>
+      <option>Gerard</option>
       <option>Amber</option>
+      <option>TBO</option>
     </Form.Control>
 
   </Form.Group>
