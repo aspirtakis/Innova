@@ -551,7 +551,7 @@ const gates = data.stageGates;
     const newData = [...this.state.remarks];
     const index = newData.findIndex(item => remark.id === item.id);
     let item = newData[index];
-    item.description= e.target.value;
+    item.description= e;
     newData.splice(index, 1, {
       ...item,
       ...item,
@@ -569,7 +569,7 @@ const gates = data.stageGates;
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        description: e.target.value,
+        description: e,
       }),
     })
       .then(response => {

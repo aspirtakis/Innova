@@ -4,6 +4,7 @@ import {
 } from 'antd';
 import React from 'react';
 import moment from 'moment';
+import { Editor } from '@tinymce/tinymce-react';
 
 const { Meta } = Card;
 const { TextArea } = Input;
@@ -42,7 +43,7 @@ class Remarks extends React.Component {
                 && (
                 <div>
                   {this.state.editable !== remark.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: remark.id })} type="edit" /> }
-                  {this.state.editable  === remark.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: null }); }} type="save" /> }
+                  {this.state.editable === remark.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: null }); }} type="save" /> }
                   <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => deleteRemark(e, remark)} type="delete" />
                 </div>
                 )]}
@@ -64,7 +65,38 @@ class Remarks extends React.Component {
 
                   </div>
                 )}
-                description={this.state.editable === remark.id && remark.remarker === user.first_name ? <TextArea style={{ minWidth: 400 }} defaultValue={remark.description} onPressEnter={() => this.setState({ editable: false })} onChange={(e) => saveRemark(e, remark)} /> : remark.description}
+                description={this.state.editable === remark.id && remark.remarker === user.first_name
+
+
+                  ? (
+                    <Editor
+
+                      initialValue={remark.description}
+                      init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount',
+                        ],
+                        toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | help',
+                      }}
+                      onEditorChange={(content) => saveRemark(content, remark)}
+                    />
+                  )
+
+
+                  : (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: remark.description,
+                      }}
+                    />
+                  )}
               />
             </List.Item>
           )}

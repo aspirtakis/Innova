@@ -8,6 +8,9 @@ import { ConfigProvider } from 'antd';
 import {
    Button, Select, Icon, Collapse, Spin, Switch, LocaleProvider,Input,
 } from 'antd';
+import { DatePicker } from 'antd';
+
+
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import makeSelectFunnel from './selectors';
@@ -24,7 +27,8 @@ import {
     Link
   } from "react-router-dom";
 
-
+  import moment from 'moment';
+  const dateFormat = 'DD/MM/YYYY HH:mm:ss';
 const columnsdata = [
     {
         id: 'initiate',
@@ -327,13 +331,11 @@ class Funnel extends Component {
           })
           .catch(taskData => console.log(taskData));
   };
-  filterToday = () => {
-      const date = new Date();
+  filterToday = (e) => {
+    console.log(e);
+    const date = new Date();
     this.setState({ spinning: true });
-    let funnelUrl = `${tasksUrl}?filter=nexStageGate=${date}`;
-    if (funnel === 'ALL') {
-        funnelUrl = tasksUrl;
-    }
+    let funnelUrl = `${tasksUrl}?filter=nexStageGate=${e}`;
     fetch(funnelUrl, {
         method: 'GET',
         headers: {
@@ -394,10 +396,17 @@ class Funnel extends Component {
                     <Col>
                       <Row style={{ maxHeigth: 10 }}>StageGate</Row>
                       <Row>
-                          <Select allowClear  onChange={this.filterToday} style={{ width: 180 }}>
-                              <Option value="TODAY">TODAY</Option>
-                 
-                          </Select>
+                      <DatePicker 
+
+                      showTime={{
+                        hideDisabledOptions: true,
+                      }}
+                      
+                      format={dateFormat}
+                      onChange={(date, dateString) => {
+                        this.filterToday(moment(date).format(dateFormat));
+                       
+                      } } />
                       </Row>
                   </Col>
               

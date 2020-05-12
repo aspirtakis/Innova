@@ -4,12 +4,7 @@ import {
 } from 'antd';
 import React from 'react';
 import moment from 'moment';
-import SunEditor from 'suneditor-react';
-import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
-
-
-const { Meta } = Card;
-const { TextArea } = Input;
+import { Editor } from '@tinymce/tinymce-react';
 
 
 class StageGates extends React.Component {
@@ -18,11 +13,13 @@ class StageGates extends React.Component {
     this.state = {
       editable: null,
       edit: true,
+      editorState: props.meeting,
     };
   }
 
 
   render() {
+    const { editorState } = this.state;
     const {
       stageGates, user, deleteMeeting, saveMeeting,
     } = this.props;
@@ -33,6 +30,7 @@ class StageGates extends React.Component {
         display: 'flex', minWidth: '100%', flexWrap: 'wrap', marginLeft: 10,
       }}
       >
+
         <List
           itemLayout="horizontal"
           dataSource={stageGates}
@@ -76,13 +74,38 @@ class StageGates extends React.Component {
 
                   </div>
                 )}
-                description={this.state.editable === meeting.id && meeting.editor === user.first_name ? <SunEditor style={{ minWidth: 400 }} setContents={meeting.title} onChange={(e) => saveMeeting(e, meeting)} /> : (
-                  <div
+                description={this.state.editable === meeting.id && meeting.editor === user.first_name
+                  ? (
+
+                    <Editor
+                   
+                      initialValue={meeting.title}
+                      init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount',
+                        ],
+                        toolbar:
+                        'undo redo | formatselect | bold italic backcolor | \
+                        alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | removeformat | help',
+                      }}
+                      onEditorChange={(content) => saveMeeting(content, meeting)}
+                    />
+
+                  )
+
+
+                  : (
+                    <div
                     dangerouslySetInnerHTML={{
-                      __html: meeting.title,
+                      __html:meeting.title,
                     }}
-                  />
-                )}
+                    />
+                  )}
               />
 
             </List.Item>
