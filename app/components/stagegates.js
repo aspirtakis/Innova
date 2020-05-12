@@ -78,7 +78,7 @@ class StageGates extends React.Component {
                   ? (
 
                     <Editor
-                     // apiKey="uhfpkeli5jvppm4eulu0gem1bryyhuoinpfdd7ua9db5wawa"
+                   
                       initialValue={meeting.title}
                       init={{
                         height: 500,
