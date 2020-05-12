@@ -4,10 +4,6 @@ import {
 } from 'antd';
 import React from 'react';
 import moment from 'moment';
-
-import MyEditor from './editor';
-import 'braft-editor/dist/index.css';
-import RichTextEditor from 'react-rte';
 import { Editor } from '@tinymce/tinymce-react';
 
 
