@@ -4,13 +4,11 @@ import {
 } from 'antd';
 import React from 'react';
 import moment from 'moment';
-import SunEditor from 'suneditor-react';
-import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const { Meta } = Card;
-const { TextArea } = Input;
+import MyEditor from './editor';
+import 'braft-editor/dist/index.css';
+import RichTextEditor from 'react-rte';
+import { Editor } from '@tinymce/tinymce-react';
 
 
 class StageGates extends React.Component {
@@ -19,11 +17,13 @@ class StageGates extends React.Component {
     this.state = {
       editable: null,
       edit: true,
+      editorState: props.meeting,
     };
   }
 
 
   render() {
+    const { editorState } = this.state;
     const {
       stageGates, user, deleteMeeting, saveMeeting,
     } = this.props;
@@ -34,6 +34,7 @@ class StageGates extends React.Component {
         display: 'flex', minWidth: '100%', flexWrap: 'wrap', marginLeft: 10,
       }}
       >
+
         <List
           itemLayout="horizontal"
           dataSource={stageGates}
@@ -79,22 +80,34 @@ class StageGates extends React.Component {
                 )}
                 description={this.state.editable === meeting.id && meeting.editor === user.first_name
                   ? (
-                    <Editor
-            
 
-                      toolbarClassName="toolbarClassName"
-                      wrapperClassName="wrapperClassName"
-                      editorClassName="editorClassName"
-                      onEditorStateChange={(editorState) => console.log(editorState)}
+                    <Editor
+                      apiKey="uhfpkeli5jvppm4eulu0gem1bryyhuoinpfdd7ua9db5wawa"
+                      initialValue={meeting.title}
+                      init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount',
+                        ],
+                        toolbar:
+                        'undo redo | formatselect | bold italic backcolor | \
+                        alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | removeformat | help',
+                      }}
+                      onEditorChange={(content) => saveMeeting(content, meeting)}
                     />
+
                   )
 
 
                   : (
                     <div
-                      dangerouslySetInnerHTML={{
-                        __html: meeting.title,
-                      }}
+                    dangerouslySetInnerHTML={{
+                      __html:meeting.title,
+                    }}
                     />
                   )}
               />
