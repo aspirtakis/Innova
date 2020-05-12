@@ -69,4 +69,4 @@ const backendSTG = {
 
 
 const backend = backendAgaSTG;
-export { backend };
+export default { backend };
