@@ -80,11 +80,12 @@ class StageGates extends React.Component {
                 description={this.state.editable === meeting.id && meeting.editor === user.first_name
                   ? (
                     <Editor
+            
 
                       toolbarClassName="toolbarClassName"
                       wrapperClassName="wrapperClassName"
                       editorClassName="editorClassName"
-                      onEditorStateChange={(e) => saveMeeting(e, meeting)}
+                      onEditorStateChange={(editorState) => console.log(editorState)}
                     />
                   )
 
