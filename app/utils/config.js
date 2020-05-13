@@ -50,7 +50,7 @@ const backendSTG = {
   checklists: 'FunnSTG/_table/funnel.checklists',
   stageGates: 'FunnSTG/_table/funnel.stagegates',
   defUser: '',
-  defPass: '',
+  defPass: '1',
 };
 
 
