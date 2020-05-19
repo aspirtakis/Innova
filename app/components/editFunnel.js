@@ -797,7 +797,7 @@ return data;
                   </Col>
                   <Col span={12}>
                     <p>Coach : {data.coach} </p>
-                    <p>P.Owner : {data.cardpo} </p>
+                    <p>P.Owner : {data.cardPO} </p>
                     <p>Sponsor : {data.spnsr} </p>
                     <p>Team Members : {data.sponsor} </p>
                     <p>NextStageGate :{data.nexStageGate}</p>
