@@ -78,7 +78,6 @@ class StageGates extends React.Component {
                   ? (
 
                     <Editor
-                   
                       initialValue={meeting.title}
                       init={{
                         height: 500,
@@ -97,8 +96,6 @@ class StageGates extends React.Component {
                     />
 
                   )
-
-
                   : (
                     <div
                     dangerouslySetInnerHTML={{

@@ -797,7 +797,7 @@ return data;
                   </Col>
                   <Col span={12}>
                     <p>Coach : {data.coach} </p>
-                    <p>P.Owner : {data.cardPO} </p>
+                    <p>P.Owner : {data.cardpo} </p>
                     <p>Sponsor : {data.spnsr} </p>
                     <p>Team Members : {data.sponsor} </p>
                     <p>NextStageGate :{data.nexStageGate}</p>
@@ -896,10 +896,7 @@ return data;
       onChange={e => this.setState({ coach: e.target.value })}
       as="select"
     >
-      <option>Kevin</option>
-      <option>Gerard</option>
-      <option>Amber</option>
-      <option>TBO</option>
+    {this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
     </Form.Control>
 
   </Form.Group>
@@ -970,7 +967,7 @@ return data;
 { this.props.user.role !== 'Tv' && 
 <TabPane tab="Assumptions" key="3">
 
-{ (this.props.user.role === 'Coach' || this.props.user.role === 'CardPO' || this.props.user.role === 'BO' ||  this.props.user.role === 'User' ) && 
+{ (this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach' || this.props.user.role === 'CardPO' || this.props.user.role === 'BO' ||  this.props.user.role === 'User' ) && 
       <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
       Create New
     </Button>}
@@ -985,6 +982,8 @@ return data;
       role={this.props.user.role}
       />
       </TabPane>}
+
+
       { (this.props.user.role === 'Coach' || this.props.user.role === 'Manager' ) &&
             <TabPane tab="Remarks" key="4">
 
@@ -994,6 +993,10 @@ return data;
       </TabPane>}
        
       <TabPane tab="Meetings" key="5">
+      
+      
+     {(this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach') && 
+     <div > 
       <Button 
       onClick={() => this.addNewMeeting("StageGate")} 
       type="primary" 
@@ -1017,8 +1020,19 @@ onChange={(date, dateString) => {
   this.onSTGUpdate(moment(date).format(dateFormat));
 } } />
 </span>
+      
+      </div>}
+    
 
-  <StageGates onOK={this.props.onOK} deleteMeeting={this.deleteMeeting} user={user} saveMeeting={this.saveMeeting} stageGates={this.state.stageGates} nextGate={this.state.nexStageGate} />
+
+  <StageGates 
+  onOK={this.props.onOK} 
+  deleteMeeting={this.deleteMeeting}
+  user={user} 
+  saveMeeting={this.saveMeeting}
+   stageGates={this.state.stageGates} 
+   nextGate={this.state.nexStageGate} />
+
 </TabPane>
 
 
