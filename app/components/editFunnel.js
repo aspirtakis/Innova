@@ -551,7 +551,7 @@ const gates = data.stageGates;
     const newData = [...this.state.remarks];
     const index = newData.findIndex(item => remark.id === item.id);
     let item = newData[index];
-    item.description= e.target.value;
+    item.description= e;
     newData.splice(index, 1, {
       ...item,
       ...item,
@@ -569,7 +569,7 @@ const gates = data.stageGates;
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        description: e.target.value,
+        description: e,
       }),
     })
       .then(response => {
@@ -765,7 +765,9 @@ return data;
   render() {
     const { visible, onOK, onCancel, user} = this.props;
     const  data  = this.state;
-    const titles = this.state.cardPO === user.email ? data.projectname + "overview - You are PO of this project" : data.projectname+" overview";
+    const titles = this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname+" overview";
+
+    
 
     return (
       <Modal
@@ -807,7 +809,7 @@ return data;
                 </Row>
               </div>
       </TabPane>
-     {(this.state.cardPO === this.props.user.first_name+" "+this.props.last_name || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
+     {(this.state.cardPO === this.props.user.first_name+" "+this.props.user.last_name || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
@@ -885,7 +887,7 @@ return data;
       onChange={e => this.setState({ cardPO: e.target.value })}
       as="select"
     >
-{this.state.users.map(username =>  <option  key={username.id} value={username.first_name+" "+username.last_name}>{username.first_name+" "+username.last_name}</option>)}
+{this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
     </Form.Control>
 
     <Form.Label style={{ marginTop: 5 }}>Coach</Form.Label>
@@ -894,9 +896,7 @@ return data;
       onChange={e => this.setState({ coach: e.target.value })}
       as="select"
     >
-      <option>Kevin</option>
-      <option>Mike</option>
-      <option>Amber</option>
+    {this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
     </Form.Control>
 
   </Form.Group>
@@ -967,7 +967,7 @@ return data;
 { this.props.user.role !== 'Tv' && 
 <TabPane tab="Assumptions" key="3">
 
-{ (this.props.user.role === 'Coach' || this.props.user.role === 'CardPO' || this.props.user.role === 'BO' ||  this.props.user.role === 'User' ) && 
+{ (this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach' || this.props.user.role === 'CardPO' || this.props.user.role === 'BO' ||  this.props.user.role === 'User' ) && 
       <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
       Create New
     </Button>}
@@ -982,6 +982,8 @@ return data;
       role={this.props.user.role}
       />
       </TabPane>}
+
+
       { (this.props.user.role === 'Coach' || this.props.user.role === 'Manager' ) &&
             <TabPane tab="Remarks" key="4">
 
@@ -991,6 +993,10 @@ return data;
       </TabPane>}
        
       <TabPane tab="Meetings" key="5">
+      
+      
+     {(this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach') && 
+     <div > 
       <Button 
       onClick={() => this.addNewMeeting("StageGate")} 
       type="primary" 
@@ -1014,8 +1020,19 @@ onChange={(date, dateString) => {
   this.onSTGUpdate(moment(date).format(dateFormat));
 } } />
 </span>
+      
+      </div>}
+    
 
-  <StageGates onOK={this.props.onOK} deleteMeeting={this.deleteMeeting} user={user} saveMeeting={this.saveMeeting} stageGates={this.state.stageGates} nextGate={this.state.nexStageGate} />
+
+  <StageGates 
+  onOK={this.props.onOK} 
+  deleteMeeting={this.deleteMeeting}
+  user={user} 
+  saveMeeting={this.saveMeeting}
+   stageGates={this.state.stageGates} 
+   nextGate={this.state.nexStageGate} />
+
 </TabPane>
 
 
