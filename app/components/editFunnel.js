@@ -995,7 +995,7 @@ return data;
       <TabPane tab="Meetings" key="5">
       
       
-     {(this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach') && 
+     {(this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach' || this.props.user.role === 'Manager') && 
      <div > 
       <Button 
       onClick={() => this.addNewMeeting("StageGate")} 
