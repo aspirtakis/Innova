@@ -184,11 +184,17 @@ class App extends React.Component {
     const { open } = this.state;
 
     return (
+      <div>
+      
       <Header
-        drawerIsOpen={open}
-        handleDrawerToggle={this.handleDrawerToggle}
-        handleCloseView={this.handleCloseView}
-      />
+      drawerIsOpen={open}
+      handleDrawerToggle={this.handleDrawerToggle}
+      handleCloseView={this.handleCloseView}
+    />
+
+  <div class="title-bar__title">Lorem ipsum</div>
+</div>
+ 
     );
   };
 
@@ -231,14 +237,15 @@ class App extends React.Component {
           <Auth />
         ) : (
           <div className="app-frame">
-          {this.renderHeader()}
- 
-          <Hidden mdUp>{this.renderLeftSideBar('temporary')}</Hidden>
-          <Hidden smDown implementation="css">
-            {this.renderLeftSideBar('permanent')}
-          </Hidden>
-          {this.renderMainContent()}
-          <Settings location={location} />
+          
+            {this.renderHeader()}
+            
+            <Hidden mdUp>{this.renderLeftSideBar('temporary')}</Hidden>
+            <Hidden smDown implementation="css">
+              {this.renderLeftSideBar('permanent')}
+            </Hidden>
+            {this.renderMainContent()}
+            <Settings location={location} />
           </div>
         )}
         <GlobalStyle />
