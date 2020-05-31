@@ -75,7 +75,7 @@ class ForgotPassword extends React.Component {
         <div className={classes.boxWrapper}>
           <Paper className={classes.paper} elevation={3} square>
             <div>
-              <div className={classes.title}>Forgot Password11111?</div>
+              <div className={classes.title}>Forgot Password2222</div>
               <div className={classes.logoSmallContainer}>
                 <img
                   src="https://s3.amazonaws.com/OIHubassets/logo-small.png"
