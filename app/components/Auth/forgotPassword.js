@@ -8,6 +8,8 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import styles from './styles';
+import { backend } from '../../utils/config';
+const rsturl = backend.beUrl + backend.passrst;
 
 class ForgotPassword extends React.Component {
   state = {
@@ -15,12 +17,53 @@ class ForgotPassword extends React.Component {
     message: 'Enter your e-mail address below to reset your password.',
   };
 
+
+  resetRequest = () => {
+    // this.props.sessionCheck();
+     // this.setState({ spinning: true });
+     const { email } = this.props;
+      fetch(rsturl+"?reset=true", {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'X-DreamFactory-API-Key': backend.apptoken,
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+      
+           
+             email: email,
+           
+          
+        }),
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(remarkData => {
+        //  this.props.onOK();
+        console.log(remarkData);
+        this.setState({
+          showEmailSentMessage: true,
+          message: `An email has been sent to ${email} with further instructions.`,
+        });
+   
+        })
+        .catch(taskData2 => {
+          this.setState({
+            showEmailSentMessage: true,
+            message: `User not found `,
+          });
+        });
+   };
+
   sentEmail = () => {
-    const { email } = this.props;
-    this.setState({
-      showEmailSentMessage: true,
-      message: `An email has been sent to ${email} with further instructions.`,
-    });
+
   };
 
   render() {
@@ -59,7 +102,7 @@ class ForgotPassword extends React.Component {
                   <Button
                     color="primary"
                     className={classes.boxBtn}
-                    onClick={this.sentEmail}
+                    onClick={this.resetRequest}
                   >
                     Submit
                   </Button>
