@@ -2,6 +2,10 @@
 // Important modules this config uses
 const path = require('path');
 
+const PACKAGE = require('../../package.json');
+
+const { version } = PACKAGE;
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
@@ -20,8 +24,8 @@ module.exports = require('./webpack.base.babel')({
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].js',
+    filename: `[name].${version}.js`,
+    chunkFilename: `[name].${version}chunk.js`,
   },
 
   optimization: {
@@ -86,6 +90,7 @@ module.exports = require('./webpack.base.babel')({
       inject: true,
       chunksSortMode: 'none',
     }),
+
 
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
