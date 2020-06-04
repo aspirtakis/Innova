@@ -16,6 +16,33 @@ import Search from 'components/Layout/Header/Search';
 import SettingsButton from 'containers/Layout/Settings/settingsButton';
 import Tabs from './Tabs';
 
+import {
+  AppBody,
+  AppLayout,
+  Collapse,
+  Footer,
+  FooterBody,
+  FooterInlineList,
+  FooterLink,
+  FooterLogo,
+  Main,
+  SideBar,
+  SideBarActionMenu,
+  SideBarClose,
+  SideBarLink,
+  SideBarMenu,
+  SideBarSubMenu,
+  TitleBar,
+  TitleBarTitle,
+  TopBar,
+  TopBarActionMenu,
+  TopBarItem,
+  TopBarLink,
+  TopBarLogo,
+  TopBarMenu,
+  TopBarTitle
+} from "@kpn-style/react";
+
 class HeaderTabs extends React.Component {
   handleOnClickAway = () => {
     const { showSearch, onShowSearch } = this.props;
@@ -46,7 +73,7 @@ class HeaderTabs extends React.Component {
 
     return (
       <AppBar
-        elevation={2}
+        elevation={0}
         position="fixed"
         color="default"
         className={classNames(
@@ -68,24 +95,30 @@ class HeaderTabs extends React.Component {
               handleTabChange={handleTabChange}
             />
           )}
-          {showSearch && (
-            <ClickAwayListener onClickAway={this.handleOnClickAway}>
-              <Search />
-            </ClickAwayListener>
-          )}
-          <IconButton
-            aria-label="search"
-            onClick={() => this.handleHideSearch(!showSearch)}
-          >
-            <SearchIcon />
-          </IconButton>
-          <SettingsButton />
+      
+   
           <Profile user={this.props.user} drawerIsOpen={drawerIsOpen} />
         </Toolbar>
+        <TitleBar style={{minHeigth:200}}>
+        <TitleBarTitle >Full example</TitleBarTitle>
+      </TitleBar>
       </AppBar>
     );
   }
 }
+
+
+// {showSearch && (
+//   <ClickAwayListener onClickAway={this.handleOnClickAway}>
+//     <Search />
+//   </ClickAwayListener>
+// )}
+// <IconButton
+//   aria-label="search"
+//   onClick={() => this.handleHideSearch(!showSearch)}
+// >
+//   <SearchIcon />
+// </IconButton>
 
 HeaderTabs.propTypes = {
   classes: PropTypes.object.isRequired,

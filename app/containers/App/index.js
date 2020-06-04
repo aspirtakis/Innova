@@ -29,6 +29,35 @@ import {
 import { Routes } from './menu';
 import GlobalStyle from '../../global-styles';
 
+
+import {
+  AppBody,
+  AppLayout,
+  Collapse,
+  Footer,
+  FooterBody,
+  FooterInlineList,
+  FooterLink,
+  FooterLogo,
+  Main,
+  SideBar,
+  SideBarActionMenu,
+  SideBarClose,
+  SideBarLink,
+  SideBarMenu,
+  SideBarSubMenu,
+  TitleBar,
+  TitleBarTitle,
+  TopBar,
+  TopBarActionMenu,
+  TopBarItem,
+  TopBarLink,
+  TopBarLogo,
+  TopBarMenu,
+  TopBarTitle,
+  Col
+} from "@kpn-style/react";
+
 class App extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -193,7 +222,8 @@ class App extends React.Component {
   };
 
   render() {
-    const { userIsAuthenticated, location } = this.props;
+    const { userIsAuthenticated, location } = this.props; 
+
 
     return (
       <div id="app-wrapper">
@@ -201,13 +231,14 @@ class App extends React.Component {
           <Auth />
         ) : (
           <div className="app-frame">
-            {this.renderHeader()}
-            <Hidden mdUp>{this.renderLeftSideBar('temporary')}</Hidden>
-            <Hidden smDown implementation="css">
-              {this.renderLeftSideBar('permanent')}
-            </Hidden>
-            {this.renderMainContent()}
-            <Settings location={location} />
+          {this.renderHeader()}
+ 
+          <Hidden mdUp>{this.renderLeftSideBar('temporary')}</Hidden>
+          <Hidden smDown implementation="css">
+            {this.renderLeftSideBar('permanent')}
+          </Hidden>
+          {this.renderMainContent()}
+          <Settings location={location} />
           </div>
         )}
         <GlobalStyle />
@@ -215,6 +246,9 @@ class App extends React.Component {
     );
   }
 }
+
+
+
 
 App.propTypes = {
   location: PropTypes.any.isRequired,
