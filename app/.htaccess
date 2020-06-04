@@ -1,52 +1,22 @@
-<ifModule mod_rewrite.c>
-
-
-  #######################################################################
-  # GENERAL                                                             #
-  #######################################################################
-
-  # Make apache follow sym links to files
-  Options +FollowSymLinks
-  # If somebody opens a folder, hide all files from the resulting folder list
-  IndexIgnore */*
-
-
-  #######################################################################
-  # REWRITING                                                           #
-  #######################################################################
-
-  # Enable rewriting
-  RewriteEngine On
-
-  # If its not HTTPS
-  RewriteCond %{HTTPS} off
-
-  # Comment out the RewriteCond above, and uncomment the RewriteCond below if you're using a load balancer (e.g. CloudFlare) for SSL
-  # RewriteCond %{HTTP:X-Forwarded-Proto} !https
-
-  # Redirect to the same URL with https://, ignoring all further rules if this one is in effect
-  RewriteRule ^(.*) https://%{HTTP_HOST}/$1 [R,L]
-
-  # If we get to here, it means we are on https://
-
-  # If the file with the specified name in the browser doesn't exist
-  RewriteCond %{REQUEST_FILENAME} !-f
-
-  # and the directory with the specified name in the browser doesn't exist
-  RewriteCond %{REQUEST_FILENAME} !-d
-
-  # and we are not opening the root already (otherwise we get a redirect loop)
-  RewriteCond %{REQUEST_FILENAME} !\/$
-
-  # Rewrite all requests to the root
-  RewriteRule ^(.*) /
-
-</ifModule>
 
 <IfModule mod_headers.c>
-  # Do not cache sw.js, required for offline-first updates.
-  <FilesMatch "sw\.js$">
-    Header set Cache-Control "private, no-cache, no-store, proxy-revalidate, no-transform"
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
     Header set Pragma "no-cache"
-  </FilesMatch>
+    Header set Expires 0
 </IfModule>
+
+<FilesMatch "\.(css|flv|gif|htm|html|ico|jpe|jpeg|jpg|js|mp3|mp4|png|pdf|swf|txt)$">
+    <IfModule mod_expires.c>
+        ExpiresActive Off
+    </IfModule>
+    <IfModule mod_headers.c>
+        FileETag None
+        Header unset ETag
+        Header unset Pragma
+        Header unset Cache-Control
+        Header unset Last-Modified
+        Header set Pragma "no-cache"
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Expires "Thu, 1 Jan 1970 00:00:00 GMT"
+    </IfModule>
+</FilesMatch>

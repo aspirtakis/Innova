@@ -99,9 +99,7 @@ class HeaderTabs extends React.Component {
    
           <Profile user={this.props.user} drawerIsOpen={drawerIsOpen} />
         </Toolbar>
-        <TitleBar style={{minHeigth:200}}>
-        <TitleBarTitle >Full example</TitleBarTitle>
-      </TitleBar>
+
       </AppBar>
     );
   }
