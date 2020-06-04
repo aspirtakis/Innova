@@ -111,7 +111,8 @@ const Login = ({
       >
         Register
       </Button>
-      V{pack.version}
+      V
+      {pack.version}
 
     </div>
   </div>
