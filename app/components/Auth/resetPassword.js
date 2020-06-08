@@ -47,12 +47,7 @@ class ResetPassword extends React.Component {
                 disabled
                 
               />
-              <TextField
-              label="Code"
-              fullWidth
-              defaultValue={code}
-              disabled
-            />
+
 
             <TextField
             label="New Password"
