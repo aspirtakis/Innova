@@ -72,5 +72,5 @@ const backendSTG = {
 
 
 
-const backend = backendProd;
+const backend = backendSTG;
 export { backend };
