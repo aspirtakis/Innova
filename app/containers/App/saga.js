@@ -27,7 +27,7 @@ import {
 
 export function* fetchSession() {
   try {
-    //console.log('SASASDAS');
+    // console.log('SASASDAS');
     const tok = localStorage.getItem('token');
     const options = {
       method: 'GET',
@@ -40,7 +40,7 @@ export function* fetchSession() {
     };
     const urlsession = backend.beUrl + backend.sessionUrl;
     const user = yield request(urlsession, options);
-    //console.log(user);
+    // console.log(user);
     const options2 = {
       method: 'GET',
       headers: {
@@ -59,7 +59,6 @@ export function* fetchSession() {
         users: users.resource,
       });
     }
-
   } catch (e) {
     yield put({
       type: AUTHENTICATION_FAILED,
@@ -69,9 +68,6 @@ export function* fetchSession() {
     localStorage.clear();
   }
 }
-
-
-
 
 
 export function* fetchSignIn(action) {
@@ -92,8 +88,6 @@ export function* fetchSignIn(action) {
     const urlsession = backend.beUrl + backend.sessionUrl;
     const response = yield request(urlsession, options);
     const user = response;
-
-
 
 
     if (user.session_token) {
@@ -143,18 +137,58 @@ export function* register() {
 
 export function* fetchResetPassword(action) {
   try {
-    // here you can call your API in order to reset the password, for this demo just authenticate an user
-    yield put({
-      type: AUTHENTICATED,
-      user: {
-        name: 'John Smith',
-        email: action.payload.email,
+    const { payload } = action;
+    const options = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': backend.apptoken,
+        'Content-Type': 'application/json',
       },
-    });
+      body: JSON.stringify({
+        email: payload.email,
+        code: payload.code,
+        new_password: payload.newpass,
+      }),
+
+    };
+    const urlsession = backend.beUrl + backend.passrst;
+    const response = yield request(urlsession, options);
+
+    const options2 = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': backend.apptoken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: payload.email,
+        password: payload.newpass,
+      }),
+    };
+    const urlsession3 = backend.beUrl + backend.sessionUrl;
+    const response3 = yield request(urlsession3, options2);
+    const user = response3;
+
+
+    if (user.session_token) {
+      yield put({
+        type: AUTHENTICATED,
+        user,
+      });
+      localStorage.setItem('token', user.session_token);
+    } else {
+      yield put({
+        type: AUTHENTICATION_FAILED,
+        message: user.error.message,
+      });
+    }
   } catch (e) {
-    yield put({ type: RESET_PASSWORD_FAILED, message: e.message });
+    yield put({ type: AUTHENTICATION_FAILED, message: e.message });
   }
 }
+
 
 export function* resetPassword() {
   yield takeLatest(RESET_PASSWORD, fetchResetPassword);

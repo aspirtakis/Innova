@@ -382,7 +382,7 @@ const gates = data.stageGates;
       })
       .catch(taskData => console.log(taskData));
   };
-  addNewRemark = values => {
+  addNewRemark = type => {
   // this.props.sessionCheck();
     // this.setState({ spinning: true });
    const { remarks } = this.state;
@@ -402,6 +402,7 @@ const gates = data.stageGates;
             funnelPhase: this.state.FunnelPhase,
             card_id: this.state.task_id,
             remarker: this.props.user.first_name,
+            type:type,
           },
          ],
        }),
@@ -422,6 +423,7 @@ const gates = data.stageGates;
           description: "New Remar",
           card_id: this.state.task_id,
           remarker: this.props.user.first_name,
+          type:type,
         };
         
         this.setState({
@@ -765,8 +767,13 @@ return data;
   render() {
     const { visible, onOK, onCancel, user} = this.props;
     const  data  = this.state;
-    const titles = this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname+" overview";
+    const titles = this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname + " overview";
+const rema =this.state.remarks;
 
+ let TeamRemarks = rema && rema.filter(city => city.type === "User");
+ let CoachRemarks = rema && rema.filter(city => (city.type == null || city.type === "Coach"));
+
+//  const remUser = remarks.filter(mak => mak.type === "User");
     
 
     return (
@@ -985,14 +992,21 @@ return data;
 
 
       { (this.props.user.role === 'Coach' || this.props.user.role === 'Manager' ) &&
-            <TabPane tab="Remarks" key="4">
+            <TabPane tab="Coach Remarks" key="4">
 
-      { this.props.user.role === 'Coach'  && <Button onClick={this.addNewRemark} type="primary" style={{  marginBottom: 16 }}>Create New
+      { this.props.user.role === 'Coach'  && <Button onClick={() => this.addNewRemark("Coach")} type="primary" style={{  marginBottom: 16 }}>Create New
       </Button>}
-        <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={this.state.remarks} />
+        <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={CoachRemarks} />
       </TabPane>}
+
+      {<TabPane tab="Team Remarks" key="5">
+
+{ <Button onClick={() => this.addNewRemark("User")} type="primary" style={{  marginBottom: 16 }}>Create New
+</Button>}
+  <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={ TeamRemarks } />
+</TabPane>}
        
-      <TabPane tab="Meetings" key="5">
+      <TabPane tab="Meetings" key="6">
       
       
      {(this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach' || this.props.user.role === 'Manager') && 

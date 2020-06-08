@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
+import pack from '../../../package.json';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -36,12 +36,14 @@ const Login = ({
     <div className={classes.boxWrapper}>
       <Paper className={classes.paper} elevation={3} square>
         <div className={classes.logoContainer}>
+        
           <img
             style={{ width: 295 }}
             src="https://dcassetcdn.com/design_img/8177/22993/22993_244281_8177_thumbnail.jpg"
             alt="PublicWays Innovation Hub login"
           />
         </div>
+
         {errorMessage ? (
           <Typography paragraph className={classes.errorMessage}>
             *
@@ -102,16 +104,21 @@ const Login = ({
       >
         Forgot Password?
       </Button>
-      <Button
-        onClick={onRegister}
-        className={classes.flatButton}
-        icon={<Icon className="material-icons">person_add</Icon>}
-      >
-        Register
-      </Button>
+
+      {pack.version}
+
     </div>
   </div>
 );
+
+
+// <Button
+// onClick={onRegister}
+// className={classes.flatButton}
+// icon={<Icon className="material-icons">person_add</Icon>}
+// >
+// Register
+// </Button>
 
 Login.propTypes = {
   email: PropTypes.string.isRequired,

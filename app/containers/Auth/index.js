@@ -5,12 +5,16 @@ import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { backend }  from '../../utils/config';
 import ForgotPassword from 'components/Auth/forgotPassword';
+import ResetPassword from 'components/Auth/resetPassword';
 import Login from 'components/Auth/login';
 import Register from 'components/Auth/register';
 import {
+  makeSelectLocation,
   makeSelectUserIsAuthenticated,
   makeSelectAuthenticationErrorMessage,
 } from 'containers/App/selectors';
+import queryString from 'query-string'
+
 
 import {
   signIn,
@@ -19,6 +23,10 @@ import {
   register,
   resetPassword,
 } from 'containers/App/actions';
+
+import {
+  useParams
+} from "react-router-dom";
 
 class AuthPage extends React.Component {
   constructor(props) {
@@ -29,6 +37,7 @@ class AuthPage extends React.Component {
         email: backend.defUser, // default values, leave it empty when implementing your logic
         password: backend.defPass, // default values, leave it empty when implementing your logic
         rememberMe: false,
+    
       },
       register: {
         fullName: 'John Smith',
@@ -38,18 +47,45 @@ class AuthPage extends React.Component {
       },
       forgotPassword: {
         email: 'demo@test.com',
+        code:null,
+     
       },
       showForgotPassword: false,
+      resetPassMode:false,
       showRegister: false,
       errorMessage: props.authenticationErrorMessage,
     };
   }
 
   componentDidMount(){
-
     this.props.dispatch(sessionCheck());
+    const value=queryString.parse(this.props.location.search);
+    const code=value.code ? value.code : null;
+    if(code){
+      const email=value.email;
+      this.setState({
+        forgotPassword: {
+          email: email,
+          code:code,
+         
+        },
+        resetPassMode:true,
+      });
+    }
+    else{
+      this.setState({
+        forgotPassword: {
+          email: null,
+          code:null,
+  
+        },
+        resetPassMode:false,
+      });
 
-    //console.log('fire32e');
+
+    }
+
+    
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
@@ -60,16 +96,13 @@ class AuthPage extends React.Component {
     {
       //location.href = '/';
     }
-
     if (
       nextProps.authenticationErrorMessage !==
       prevProps.authenticationErrorMessage
     ) {
       return {
         errorMessage: nextProps.authenticationErrorMessage,
-   
       };
-     
     }
     return null;
   }
@@ -175,12 +208,13 @@ class AuthPage extends React.Component {
     });
   };
 
-  resetPassword = () => {
+  resetPassword = (newpass) => {
     // validations goes here
     const payload = {
       email: this.state.forgotPassword.email,
+      code: this.state.forgotPassword.code,
+      newpass:newpass,
     };
-
     this.props.dispatch(resetPassword(payload));
   };
 
@@ -214,10 +248,19 @@ class AuthPage extends React.Component {
   };
 
   render() {
-    const { showRegister, login, errorMessage, forgotPassword } = this.state;
+    const { showRegister, login, errorMessage, forgotPassword,resetPassMode } = this.state;
 
     return (
       <div>
+      {resetPassMode ? (       
+        <ResetPassword
+        email={forgotPassword.email}
+        code={forgotPassword.code}
+        rst={this.resetPassword}
+        onEmailChange={this.forgotPasswordEmailChanged}
+        onGoBack={this.showLogin}
+      />)
+:      <div>
         {showRegister ? (
           <div>
             <Register
@@ -238,6 +281,7 @@ class AuthPage extends React.Component {
             {this.state.showForgotPassword ? (
               <ForgotPassword
                 email={forgotPassword.email}
+                rst={this.resetPassword}
                 onEmailChange={this.forgotPasswordEmailChanged}
                 onGoBack={this.showLogin}
               />
@@ -258,6 +302,13 @@ class AuthPage extends React.Component {
           </div>
         )}
       </div>
+      }
+
+      
+      </div>
+ 
+
+
     );
   }
 }
@@ -272,6 +323,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = createStructuredSelector({
+  location: makeSelectLocation(),
   userIsAuthenticated: makeSelectUserIsAuthenticated(),
   authenticationErrorMessage: makeSelectAuthenticationErrorMessage(),
 });

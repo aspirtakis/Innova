@@ -23,6 +23,7 @@ class Remarks extends React.Component {
     const {
       remarks, user, deleteRemark, saveRemark,
     } = this.props;
+ 
 
 
     return (
