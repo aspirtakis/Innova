@@ -1,6 +1,6 @@
 {
   "name": "innovation-funnel",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "Innovation Hub Dashboard",
   "engines": {
     "npm": ">=5",
