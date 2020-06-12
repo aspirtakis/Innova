@@ -6,13 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import layoutStyles from 'containers/Layout/styles';
 
 const LeftSideDrawer = ({ classes, children }) => (
-  <div className={classes.drawerInner}>
-    <div className={classes.drawerHeader}>
-      <div className={classes.sidebarTitle}>
-        <span className={classes.sidebarTitleBold}>OIHub </span>
-        ADMIN
-      </div>
-    </div>
+  <div >
     {children}
   </div>
 );

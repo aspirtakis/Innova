@@ -6,7 +6,16 @@ import classNames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Collapse from '@material-ui/core/Collapse';
+
+import {
+  Collapse,
+  SideBar,
+  SideBarActionMenu,
+  SideBarClose,
+  SideBarLink,
+  SideBarMenu,
+  SideBarSubMenu
+} from "@kpn-style/react";
 
 import {
   makeSelectMenu,
@@ -342,8 +351,7 @@ class LeftSideBar extends React.Component {
           isCollapsed={collapseMenu}
           menuListClass={classes.root}
           sidebarIsOpen={open}
-          subHeaderClass={classes.subHeader}
-          title="MENU"
+       
         >
           {this.renderMenuItems()}
         </LeftSideBarMenuList>
@@ -356,7 +364,7 @@ class LeftSideBar extends React.Component {
 
     return (
       <div>
-        {showOpenViews && this.renderOpenViewsList()}
+
         {this.renderMenuList()}
       </div>
     );
@@ -368,28 +376,22 @@ class LeftSideBar extends React.Component {
     const open = drawerIsOpen || openDrawerOnHover;
 
     return (
-      <Drawer
-        id={`sidebar-menu${type === 'temporary' ? '-mobile' : ''}`}
-        variant={type}
-        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-        open={open}
-        classes={{
-          paper: classNames(
-            classes.drawerPaper,
-            !open && classes.drawerPaperClose,
-          ),
-        }}
-        ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
-        }}
-        onMouseEnter={type === 'permanent' ? this.openDrawer : null}
-        onMouseLeave={type === 'permanent' ? this.closeDrawer : null}
-        onClose={this.props.handleDrawerToggle}
-      >
-        <LeftSideDrawer {...this.props}>
+
+
+        <SideBar fitLayout={false}>
+        <SideBarActionMenu>
+          <SideBarLink>Jon Doe</SideBarLink>
+          <SideBarClose />
+        </SideBarActionMenu>
+        <SideBarMenu>
+
           {this.renderDrawerMenuItems()}
-        </LeftSideDrawer>
-      </Drawer>
+
+        </SideBarMenu>
+      </SideBar>
+
+
+      
     );
   };
 

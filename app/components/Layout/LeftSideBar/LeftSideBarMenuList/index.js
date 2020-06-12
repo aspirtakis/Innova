@@ -11,6 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MenuList from '@material-ui/core/MenuList';
 
 import layoutStyles from 'containers/Layout/styles';
+
 class LeftSideBarMenuList extends React.Component {
   renderExpandIcons(collapse) {
     const { classes } = this.props;
@@ -47,26 +48,9 @@ class LeftSideBarMenuList extends React.Component {
           menuListClass,
           sidebarIsOpen ? 'sidebar-opened' : 'sidebar-closed',
         )}
-        subheader={
-          <ListItem
-            button
-            onClick={this.props.handleOnClick}
-            className={classNames(
-              classes.menuTitleContainer,
-              !sidebarIsOpen ? subHeaderClass : null,
-            )}
-          >
-            <ListItemText
-              secondary={title}
-              className={classNames(classes.menuTitle)}
-            />
-            {this.renderExpandIcons(isCollapsed)}
-          </ListItem>
-        }
+
       >
-        <Collapse unmountOnExit in={isCollapsed}>
-          {children}
-        </Collapse>
+          {children} 
       </MenuList>
     );
   }
@@ -83,6 +67,6 @@ LeftSideBarMenuList.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default withStyles(theme => layoutStyles(theme), {
+export default withStyles((theme) => layoutStyles(theme), {
   withTheme: true,
 })(LeftSideBarMenuList);

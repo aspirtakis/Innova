@@ -29,7 +29,6 @@ import {
 import { Routes } from './menu';
 import GlobalStyle from '../../global-styles';
 
-
 import {
   AppBody,
   AppLayout,
@@ -54,8 +53,7 @@ import {
   TopBarLink,
   TopBarLogo,
   TopBarMenu,
-  TopBarTitle,
-  Col
+  TopBarTitle
 } from "@kpn-style/react";
 
 class App extends React.Component {
@@ -236,23 +234,48 @@ class App extends React.Component {
         {!userIsAuthenticated ? (
           <Auth />
         ) : (
-          <div className="app-frame">
-          
-            {this.renderHeader()}
-            
-            <Hidden mdUp>{this.renderLeftSideBar('temporary')}</Hidden>
-            <Hidden smDown implementation="css">
-              {this.renderLeftSideBar('permanent')}
-            </Hidden>
-            {this.renderMainContent()}
-            <Settings location={location} />
-          </div>
+          <AppBody>
+          <AppLayout >
+            <TopBar>
+              <TopBarLogo>OIH</TopBarLogo>
+              <TopBarTitle>Dashboard </TopBarTitle>
+              <TopBarMenu>
+      
+              </TopBarMenu>
+            </TopBar>
+            <SideBar>
+            {this.renderLeftSideBar('permanent')}
+            </SideBar>
+            <Main>
+              <TitleBar>
+                <TitleBarTitle>Dashboard</TitleBarTitle>
+              </TitleBar>
+              <div >
+              {this.renderMainContent()}
+              </div>
+            </Main>
+
+          </AppLayout>
+        </AppBody>
+
         )}
         <GlobalStyle />
       </div>
     );
   }
 }
+
+// <div className="app-frame">
+          
+// {this.renderHeader()}
+
+// <Hidden mdUp>{this.renderLeftSideBar('temporary')}</Hidden>
+// <Hidden smDown implementation="css">
+//   {this.renderLeftSideBar('permanent')}
+// </Hidden>
+// {this.renderMainContent()}
+// <Settings location={location} />
+// </div>
 
 
 
