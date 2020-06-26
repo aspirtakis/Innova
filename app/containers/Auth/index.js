@@ -49,6 +49,7 @@ class AuthPage extends React.Component {
       forgotPassword: {
         email: 'demo@test.com',
         code:null,
+        register:false,
      
       },
       showForgotPassword: false,
@@ -62,7 +63,7 @@ class AuthPage extends React.Component {
     this.props.dispatch(sessionCheck());
     const value=queryString.parse(this.props.location.search);
     const code=value.code ? value.code : null;
-    console.log(location.pathname);
+    console.log(value);
 
     if(location.pathname === '/register'){
       const email=value.email;
@@ -78,6 +79,7 @@ class AuthPage extends React.Component {
         forgotPassword: {
           email: email,
           code:code,
+          register:value.register ? true : false,
          
         },
         resetPassMode:true,
@@ -167,6 +169,7 @@ class AuthPage extends React.Component {
 
   registerUser = () => {
     // validations goes here
+  
     const { fullName, email, password } = this.state;
     const payload = {
       fullName,
@@ -266,6 +269,7 @@ class AuthPage extends React.Component {
       {resetPassMode ? (       
         <ResetPassword
         email={forgotPassword.email}
+        register={forgotPassword.register}
         code={forgotPassword.code}
         rst={this.resetPassword}
         onEmailChange={this.forgotPasswordEmailChanged}
@@ -285,6 +289,7 @@ class AuthPage extends React.Component {
               onConfirmPasswordChange={this.registerConfirmPasswordChanged}
               onRegister={this.registerUser}
               onGoBack={this.showLogin}
+          
             />
           </div>
         ) : (
