@@ -31,11 +31,8 @@ class ForgotPassword extends React.Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-      
-           
              email: email,
            
-          
         }),
       })
         .then(response => {
@@ -62,9 +59,6 @@ class ForgotPassword extends React.Component {
         });
    };
 
-  sentEmail = () => {
-
-  };
 
   render() {
     const { classes, email, onEmailChange, onGoBack } = this.props;
