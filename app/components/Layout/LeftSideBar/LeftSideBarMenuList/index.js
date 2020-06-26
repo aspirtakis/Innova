@@ -9,7 +9,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuList from '@material-ui/core/MenuList';
-
+import ListSubheader from '@material-ui/core/ListSubheader';
 import layoutStyles from 'containers/Layout/styles';
 
 class LeftSideBarMenuList extends React.Component {
@@ -46,23 +46,10 @@ class LeftSideBarMenuList extends React.Component {
       <MenuList
         className={classNames(
           menuListClass,
-          sidebarIsOpen ? 'sidebar-opened' : 'sidebar-closed',
+
         )}
         subheader={(
-          <ListItem
-            button
-            onClick={this.props.handleOnClick}
-            className={classNames(
-              classes.menuTitleContainer,
-              !sidebarIsOpen ? subHeaderClass : null,
-            )}
-          >
-            <ListItemText
-              secondary={title}
-              className={classNames(classes.menuTitle)}
-            />
-            {this.renderExpandIcons(isCollapsed)}
-          </ListItem>
+          <ListSubheader style={{ minHeight: 48, backgroundColor: '#009900' }} component="div" id="nested-list-subheader" />
         )}
       >
         <Collapse unmountOnExit in={isCollapsed}>

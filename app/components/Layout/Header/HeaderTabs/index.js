@@ -103,7 +103,7 @@ class HeaderTabs extends React.Component {
           <Profile user={this.props.user} drawerIsOpen={drawerIsOpen} />
 
         </Toolbar>
-        <div style={{marginTop:1, minHeight:56, backgroundColor:'#009900'}}>Dashboard</div>
+        <div style={{marginTop:1, minHeight:48, backgroundColor:'#009900'}}>Dashboard</div>
 
       </AppBar>
 

@@ -51,7 +51,7 @@ var av = first+last;
  
 
     return (
-      <div>
+      <div style={{minWidth:300 ,display:'contents'}}>
         <Tooltip title={user.first_name+" " + user.last_name}>
           <IconButton
             aria-owns={drawerIsOpen ? 'menu-appbar' : null}
@@ -61,6 +61,7 @@ var av = first+last;
             <Avatar className={classes.avatar}>{av}</Avatar>
           </IconButton>
         </Tooltip>
+
         <Menu
           id="menu-appbar"
           anchorEl={anchorEl}
@@ -81,6 +82,7 @@ var av = first+last;
           <MenuItem >Role: {user.role}</MenuItem>
           <MenuItem onClick={this.signOut}>Sign out</MenuItem>
         </Menu>
+        <div>{user.first_name} {user.last_name}</div>
       </div>
     );
   }

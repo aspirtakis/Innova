@@ -9,27 +9,29 @@ import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
 import STGCalendar from 'containers/SgCalendar/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-
+import iconhome from '../../images/icon_home.png';
+import backlog from '../../images/icon_backlog.png';
+import graveyard from '../../images/icon_graveyard.png';
 // Menu tree
 const Menu = [
   {
     id: 'dashboard',
     text: 'DashBoard',
-    icon: <Icon>assessment</Icon>,
+    icon: <img style={{height:20}} src={iconhome}/>,
     url: '/',
     component: DashboardPage,
   },
   {
     id: 'funnel ',
-    text: 'Funnel',
-    icon: <FunnelIcon />,
+    text: 'Ways funnel',
+    icon: <img style={{height:20}} src={backlog}/>,
     url: '/Funnel',
     component: Funnel,
   },
   {
     id: 'calendar',
     text: 'SG-Calendar',
-    icon: <CalIcon />,
+    icon: <img style={{height:20}} src={graveyard}/>,
     url: '/Calendar',
     component: STGCalendar,
   },

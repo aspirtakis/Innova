@@ -26,6 +26,7 @@ const themeDefault = createMuiTheme({
   custom: {
     link: {
       color: '#09c',
+ 
     },
     appBar: {
       backgroundColor: '#fff',

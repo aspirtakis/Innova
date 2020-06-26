@@ -105,7 +105,7 @@ const getStyles = theme => ({
   },
   menuTitleContainer: {
     position: 'sticky',
-    minHeight: 56,
+    minHeight: 48,
     zIndex: 1,
     top: 0,
     backgroundColor: theme.custom.drawerMenuList.backgroundColor,
