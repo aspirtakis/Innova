@@ -72,6 +72,9 @@ class HeaderTabs extends React.Component {
     } = this.props;
 
     return (
+
+      
+
       <AppBar
         elevation={0}
         position="fixed"
@@ -83,7 +86,7 @@ class HeaderTabs extends React.Component {
           drawerIsOpen && classes.appBarShift,
         )}
       >
-        <Toolbar disableGutters={!drawerIsOpen}>
+        <Toolbar style={{maxHeight:1}} disableGutters={!drawerIsOpen}>
           <IconButton aria-label="open drawer" onClick={handleDrawerToggle}>
             <MenuIcon />
           </IconButton>
@@ -98,9 +101,13 @@ class HeaderTabs extends React.Component {
       
    
           <Profile user={this.props.user} drawerIsOpen={drawerIsOpen} />
+
         </Toolbar>
+        <div style={{marginTop:1, minHeight:56, backgroundColor:'#009900'}}>Dashboard</div>
 
       </AppBar>
+
+
     );
   }
 }
