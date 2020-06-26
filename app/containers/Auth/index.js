@@ -8,6 +8,7 @@ import ForgotPassword from 'components/Auth/forgotPassword';
 import ResetPassword from 'components/Auth/resetPassword';
 import Login from 'components/Auth/login';
 import Register from 'components/Auth/register';
+import { useLocation } from 'react-router-dom'
 import {
   makeSelectLocation,
   makeSelectUserIsAuthenticated,
@@ -61,6 +62,16 @@ class AuthPage extends React.Component {
     this.props.dispatch(sessionCheck());
     const value=queryString.parse(this.props.location.search);
     const code=value.code ? value.code : null;
+    console.log(location.pathname);
+
+    if(location.pathname === '/register'){
+      const email=value.email;
+      this.setState({
+
+        showRegister: true,
+      });
+    }
+
     if(code){
       const email=value.email;
       this.setState({
