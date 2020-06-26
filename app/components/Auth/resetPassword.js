@@ -31,7 +31,7 @@ class ResetPassword extends React.Component {
         <div className={classes.boxWrapper}>
           <Paper className={classes.paper} elevation={3} square>
             <div>
-              <div className={classes.title}>{register ? "New Registration " : "Reset your password"} </div>
+              <div className={classes.title}>{register ? "Registration confirmation " : "Reset your password"} </div>
               <div className={classes.logoSmallContainer}>
               </div>
             </div>
@@ -45,7 +45,6 @@ class ResetPassword extends React.Component {
                 disabled
                 
               />
-
 
             <TextField
             label="New Password"

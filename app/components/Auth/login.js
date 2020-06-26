@@ -104,21 +104,22 @@ const Login = ({
       >
         Forgot Password?
       </Button>
+      <Button
+        onClick={onRegister}
+        className={classes.flatButton}
+        icon={<Icon className="material-icons">person_add</Icon>}
+        >
+        Register
+        </Button>
 
-      {pack.version}
+      V.{pack.version}
 
     </div>
   </div>
 );
 
 
-// <Button
-// onClick={onRegister}
-// className={classes.flatButton}
-// icon={<Icon className="material-icons">person_add</Icon>}
-// >
-// Register
-// </Button>
+
 
 Login.propTypes = {
   email: PropTypes.string.isRequired,
