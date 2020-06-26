@@ -92,7 +92,7 @@ const GlobalStyle = createGlobalStyle`
 
   /* main container */
   main.main-container {
-    background-color: #fff;
+    background-color: #E3E3E3;
   }
 
   main.main-container-sidebar-closed {

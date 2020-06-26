@@ -56,8 +56,8 @@ export const styles = {
 
   },
   cardToolsText: {
-    color:'gray',
-    fontSize:10,
+    color: 'gray',
+    fontSize: 10,
     textAlign: 'left',
     fontWeight: 'bold',
     margin: 'auto',
@@ -65,7 +65,21 @@ export const styles = {
 
   },
 
+  rowsborder: {
+    minHeight: 3,
+    backgroundColor: '#009900',
+    marginBottom: 4,
+  },
+
   cardTitleleader: {
+    fontSize: 14,
+    textAlign: 'left',
+    fontWeight: 'normal',
+    margin: 'auto',
+    paddingBottom: 3,
+
+  },
+  rowatyle: {
     fontSize: 14,
     textAlign: 'left',
     fontWeight: 'normal',
@@ -81,8 +95,8 @@ export const styles = {
   },
 
   cardToolsIcons: {
-    fontSize:15,
-    margin:2,
+    fontSize: 15,
+    margin: 2,
 
   },
   cardTitle2: {
@@ -95,16 +109,20 @@ export const styles = {
     justifyContent: 'center',
   },
   titles: {
-    fontSize: 20,
+    fontSize: 28,
+    backgroundColor:'#E3E3E3',
     fontWeight: 'bold',
-    color: 'white',
-    backgroundColor: '#009900',
-    textAlign: 'center',
+    color: '#009900',
+    textAlign: 'left',
     minWidth: '100%',
-    maxHeight: 35,
-    minHeight: 35,
+    maxHeight: 40,
+    minHeight: 40,
+    fontFamily: 'KPN Metric',
+
+
   },
   coreColumn: {
+    
     margin: 3,
     minWidth: 410,
     backgroundColor: 'white',
@@ -121,13 +139,15 @@ export const styles = {
   },
 
   ColTitles: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'white',
-    backgroundColor: '#99cc00',
-    textAlign: 'center',
+    fontSize: 24,
+    fontFamily: 'KPN Metric',
+    backgroundColor: '#E3E3E3',
+    fontWeight: 300,
+    color: '#333333',
+    textAlign: 'left',
     justifyContent: 'center',
     minHeight: 30,
+ 
   },
 
   funnelHeaders: {

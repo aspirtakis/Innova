@@ -184,7 +184,6 @@ class Funnel extends Component {
           })
           .catch(taskData => console.log(taskData));
   };
-
   getDataFiltered = (e) => {
     this.props.dispatch(sessionCheck());
        fetch(tasksUrl, {
@@ -216,7 +215,6 @@ class Funnel extends Component {
            })
            .catch(taskData => console.log(taskData));
    };
-
   setStates = (datas) => {
       const officersIds = datas.map(officer => officer.projectname);
       const projectnames = officersIds.reduce(
@@ -259,19 +257,15 @@ class Funnel extends Component {
       });
       this.setState({ spinning: false });
   };
-
   handleOpen = () => {
     this.props.dispatch(sessionCheck());
       this.setState({ setOpen: true });
   };
-
   handleOpenEdit = (data) => {
     this.props.dispatch(sessionCheck());
       this.setState({ selectedTask: data });
       this.setState({ setOpenEdit: true });
   };
-
-
   filter = (type, project) => {
       this.setState({ spinning: true });
       const projectUrl = `${tasksUrl}?filter=${type}=${project}`;
@@ -299,8 +293,6 @@ class Funnel extends Component {
           })
           .catch(taskData => console.log(taskData));
   };
-
-
   filterDepartment = (funnel) => {
       this.setState({ spinning: true });
       let funnelUrl = `${tasksUrl}?filter=funnel=${funnel}`;
@@ -360,7 +352,6 @@ class Funnel extends Component {
         })
         .catch(taskData => console.log(taskData));
 };
-
   handleOk = () => {
       this.setState({ spinning: true });
       this.setState({ setOpen: false });
@@ -371,11 +362,9 @@ class Funnel extends Component {
     //console.log("FIRE GET DATA");
     this.getData();
 };
-
   showOperations = (checked) => {
       this.setState({ checked });
   };
-
   filterBar = () => (
       <Collapse>
           <Panel header="Filters" key="1">
@@ -470,12 +459,10 @@ class Funnel extends Component {
           </Panel>
       </Collapse>
   );
-
   handleClose = () => {
       this.setState({ setOpen: false });
       this.setState({ setOpenEdit: false });
   };
-
   onSave = (task, scope, order ) => {
       const url4 = `${tasksUrl}/${task}`;
       fetch(url4, {
@@ -506,8 +493,6 @@ class Funnel extends Component {
           })
           .catch(taskData => console.log(taskData));
   };
-
-
   onSaveBirth = (task,date ) => {
 console.log("FIRESAVEBIRTH");
     const url4 = `${tasksUrl}/${task}`;
@@ -538,7 +523,6 @@ console.log("FIRESAVEBIRTH");
         })
         .catch(taskData => console.log(taskData));
 };
-
   fixStatus = (status) => {
       if (status === 'green') {
           return 'PROGRESSING';
@@ -761,9 +745,6 @@ console.log("FIRESAVEBIRTH");
 
       return (
           <ConfigProvider locale={nlNL}>
-          
-          
-
           <div style={{ marginLeft: 10 }}>
               <FunnelForm
                   userRole={this.props.user.role}
@@ -786,8 +767,7 @@ console.log("FIRESAVEBIRTH");
                   reload={this.getData}
                   footer={null} />
               {!(this.props.user.role === 'Tv' ) && this.filterBar()}
-              <DragDropContext 
-         
+              <DragDropContext  
               onDragEnd={this.onDragEnd}>
                   <div style={styles.coreContainer}>
                       { checked && (
@@ -797,6 +777,7 @@ console.log("FIRESAVEBIRTH");
                                       <div className="title-bar__title">Operations</div>
                                   </div>
                               </Row>
+                              <Row style={styles.rowsborder}></Row>
                               <Row style={{ flexWrap: 'nowrap' }}>
                                   <Column
                                       userRole={this.props.user.role}
@@ -817,14 +798,14 @@ console.log("FIRESAVEBIRTH");
                               </Row>
                           </Col>
                       )}
-
-
                       <Col style={styles.coreColumn}>
                           <Row>
                               <div style={styles.titles}>
-                                  <div className="title-bar__title">Explore</div>
+                                  <div >Explore</div>
                               </div>
+            
                           </Row>
+                          <Row style={styles.rowsborder}></Row>
 
                           <Row style={{ flexWrap: 'nowrap' }}>
                               <Column
@@ -851,6 +832,7 @@ console.log("FIRESAVEBIRTH");
                                   <div className="title-bar__title">Validate</div>
                               </Paper>
                           </Row>
+                          <Row style={styles.rowsborder}></Row>
                           <Row style={{ flexWrap: 'nowrap' }}>
                               <Column
                                       userRole={this.props.user.role}
@@ -888,6 +870,7 @@ console.log("FIRESAVEBIRTH");
                                   <div className="title-bar__title">Execute</div>
                               </Paper>
                           </Row>
+                          <Row style={styles.rowsborder}></Row>
 
                           <Row style={{ flexWrap: 'nowrap' }}>
         
@@ -913,6 +896,7 @@ console.log("FIRESAVEBIRTH");
                                   <div className="title-bar__title">Scale</div>
                               </Paper>
                           </Row>
+                          <Row style={styles.rowsborder}></Row>
 
                           <Row style={{ flexWrap: 'nowrap' }}>
                           <Column
