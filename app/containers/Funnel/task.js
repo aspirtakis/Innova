@@ -12,6 +12,8 @@ import { styles } from './funnel_styles';
 import { FaBeer ,FaBullhorn,FaRoad,FaRegClock
 } from 'react-icons/fa';
 import Tooltip from '@material-ui/core/Tooltip';
+import './funnel.css';
+import dots from '../../images/dots.png';
 
 
 
@@ -86,35 +88,32 @@ return n;
 
                   <Tooltip placement="top" title={taskproblem.projectname}>
                       <div onClick={() => this.props.openEdit(taskproblem)}>
-                          <div style= {{margin: 2, border: '3px solid lightgray', borderRadius: 8}} className="card">
+                          <div className="card">
                          
-                              <div className="card__body" style={{padding:6}}>
+                              <div  style={{padding:6}}>
                                   <div className="row">
-                                  <div  style={{ whiteSpace: 'nowrap' }}  className="col col--10">
-                                  <h1 style={styles.cardTitle} >{this.truncated(taskproblem.projectname,12)}</h1>
-                                  </div>
-                                  <div  className="col col--2" >
-
-                                  <div style={styles.cardStatus2} className="row">
-
-                                  {taskproblem.status === 'green' && <SentimentVerySatisfiedIcon style= {{color: 'green'}}></SentimentVerySatisfiedIcon>}
-                                  {taskproblem.status === 'yellow' && <SentimentSatisfiedIcon style= {{marginRight:3 ,color: 'orange'}}></SentimentSatisfiedIcon>}
-                                  {taskproblem.status === 'orange' && <SentimentVeryDissatisfiedIcon></SentimentVeryDissatisfiedIcon>}
-                                  {taskproblem.status === 'red' && <SentimentVeryDissatisfiedIcon style= {{marginRight:3 ,color: 'red'}} ></SentimentVeryDissatisfiedIcon>}
+                                  <div  className="col col--1" >
+                                  <div style={{ marginLeft:1, }} className="row">
+                                  {taskproblem.status === 'green' && <SentimentVerySatisfiedIcon style= {{maxWidth:15, color: 'green'}}></SentimentVerySatisfiedIcon>}
+                                  {taskproblem.status === 'yellow' && <SentimentSatisfiedIcon style= {{maxWidth:15, color: 'orange'}}></SentimentSatisfiedIcon>}
+                                  {taskproblem.status === 'orange' && <SentimentVeryDissatisfiedIcon style= {{maxWidth:15}}></SentimentVeryDissatisfiedIcon>}
+                                  {taskproblem.status === 'red' && <SentimentVeryDissatisfiedIcon style= {{maxWidth:15, color: 'red'}} ></SentimentVeryDissatisfiedIcon>}
                                   </div>
                                   </div>
-
-                                  <div className="col col--12">
-                                  <h1 style={styles.cardTitleleader} >{taskproblem.cardpo}</h1>
+                                  <div className="col col--8">
+                                  <h3 className="titel">{this.truncated(taskproblem.projectname,10)}</h3>
+                                  </div>
+                                  <div  className="col col--2">
+                                  <img src={dots}></img>
                                   </div>
                                   </div>
                       
                                   <div style={{ color:'gray', marginTop:15, flexWrap: 'nowrap'}} className="row">
-                            <div style={{minWidth:50 ,marginLeft:10}}  className="col col--4">
+                                  <div style={{minWidth:50 ,marginLeft:10}}  className="col col--4">
                                   <div style={styles.cardTools} className="row">
                                   <FaRegClock style={styles.cardToolsIcons}></FaRegClock>
                                   <h1 style={styles.cardToolsText}>{this.getTime()}</h1>
-                             </div>
+                                 </div>
 
                                   </div>
 

@@ -103,7 +103,17 @@ class HeaderTabs extends React.Component {
           <Profile user={this.props.user} drawerIsOpen={drawerIsOpen} />
 
         </Toolbar>
-        <div style={{marginTop:1, minHeight:48, backgroundColor:'#009900'}}>Dashboard</div>
+        <div style={{
+          marginTop:1,
+          minHeight:48, 
+          backgroundColor:'#009900',
+        }}> <div  style={{ color: '#FFFFFF',fontFamily: "KPN Metric",
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginTop:8,
+        marginLeft:17,
+    
+      }} >Ways funnel</div></div>
 
       </AppBar>
 

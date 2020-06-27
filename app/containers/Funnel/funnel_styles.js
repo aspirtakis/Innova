@@ -39,22 +39,6 @@ export const styles = {
     padding: 'auto',
   },
 
-  cardStatus2: {
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginRight: 'auto',
-
-  },
-
-  cardTitle: {
-    fontSize: 16,
-    textAlign: 'left',
-    fontWeight: 'bold',
-    margin: 'auto',
-    paddingBottom: 3,
-
-  },
   cardToolsText: {
     color: 'gray',
     fontSize: 10,
@@ -66,9 +50,9 @@ export const styles = {
   },
 
   rowsborder: {
-    minHeight: 3,
+    minHeight: 4,
     backgroundColor: '#009900',
-    marginBottom: 4,
+
   },
 
   cardTitleleader: {
@@ -110,7 +94,7 @@ export const styles = {
   },
   titles: {
     fontSize: 28,
-    backgroundColor:'#E3E3E3',
+    backgroundColor:'#F3F3F3',
     fontWeight: 'bold',
     color: '#009900',
     textAlign: 'left',
@@ -140,8 +124,9 @@ export const styles = {
 
   ColTitles: {
     fontSize: 24,
+    marginTop: 10,
     fontFamily: 'KPN Metric',
-    backgroundColor: '#E3E3E3',
+
     fontWeight: 300,
     color: '#333333',
     textAlign: 'left',
