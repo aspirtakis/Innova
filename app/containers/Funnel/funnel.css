@@ -1,0 +1,33 @@
+.card {
+    height: 142px;
+    width: 210px;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+  }
+
+  .titel {
+    color: #333333;
+    font-family: "KPN Metric";
+    font-size: 21px;
+    font-weight: bold;
+    max-height:10px;
+  }
+
+
+.oih-fit {
+  color: #333333;
+  font-family: "KPN Metric";
+  font-size: 15px;
+  margin-left: 5px;
+
+}
+.experiments {
+    height: 24px;
+    width: 123px;
+    color: #333333;
+    font-family: "KPN Metric";
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 24px;
+  }

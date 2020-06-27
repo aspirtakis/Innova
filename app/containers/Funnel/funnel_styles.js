@@ -39,33 +39,31 @@ export const styles = {
     padding: 'auto',
   },
 
-  cardStatus2: {
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginRight: 'auto',
-
-  },
-
-  cardTitle: {
-    fontSize: 16,
-    textAlign: 'left',
-    fontWeight: 'bold',
-    margin: 'auto',
-    paddingBottom: 3,
-
-  },
   cardToolsText: {
-    color:'gray',
-    fontSize:10,
+    color: 'gray',
+    fontSize: 10,
     textAlign: 'left',
     fontWeight: 'bold',
     margin: 'auto',
     paddingBottom: 3,
+
+  },
+
+  rowsborder: {
+    minHeight: 4,
+    backgroundColor: '#009900',
 
   },
 
   cardTitleleader: {
+    fontSize: 14,
+    textAlign: 'left',
+    fontWeight: 'normal',
+    margin: 'auto',
+    paddingBottom: 3,
+
+  },
+  rowatyle: {
     fontSize: 14,
     textAlign: 'left',
     fontWeight: 'normal',
@@ -81,8 +79,8 @@ export const styles = {
   },
 
   cardToolsIcons: {
-    fontSize:15,
-    margin:2,
+    fontSize: 15,
+    margin: 2,
 
   },
   cardTitle2: {
@@ -95,18 +93,22 @@ export const styles = {
     justifyContent: 'center',
   },
   titles: {
-    fontSize: 20,
+    fontSize: 28,
+    backgroundColor:'#F3F3F3',
     fontWeight: 'bold',
-    color: 'white',
-    backgroundColor: '#009900',
-    textAlign: 'center',
+    color: '#009900',
+    textAlign: 'left',
     minWidth: '100%',
-    maxHeight: 35,
-    minHeight: 35,
+    maxHeight: 40,
+    minHeight: 40,
+    fontFamily: 'KPN Metric',
+
+
   },
   coreColumn: {
+    
     margin: 3,
-    minWidth: 410,
+    minWidth: 420,
     backgroundColor: 'white',
     maxHeight: 800,
     minHeight: '100%',
@@ -114,20 +116,23 @@ export const styles = {
 
   coreColumnExp: {
     margin: 3,
-    minWidth: 800,
+    minWidth: 850,
     backgroundColor: 'white',
     maxHeight: 800,
     minHeight: '100%',
   },
 
   ColTitles: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'white',
-    backgroundColor: '#99cc00',
-    textAlign: 'center',
+    fontSize: 24,
+    marginTop: 10,
+    fontFamily: 'KPN Metric',
+
+    fontWeight: 300,
+    color: '#333333',
+    textAlign: 'left',
     justifyContent: 'center',
     minHeight: 30,
+ 
   },
 
   funnelHeaders: {

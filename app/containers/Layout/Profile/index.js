@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Tooltip from '@material-ui/core/Tooltip';
+import './profile.css';
 
 import { signOut } from 'containers/App/actions';
 import styles from './styles';
@@ -51,16 +52,17 @@ var av = first+last;
  
 
     return (
-      <div>
+      <div style={{minWidth:300 ,display:'contents'}}>
         <Tooltip title={user.first_name+" " + user.last_name}>
           <IconButton
             aria-owns={drawerIsOpen ? 'menu-appbar' : null}
             aria-haspopup="true"
             onClick={this.handleMenu}
           >
-            <Avatar className={classes.avatar}>{av}</Avatar>
+            <Avatar style={{maxWidth:25, maxHeight:25}} className={classes.avatar}>{av}</Avatar>
           </IconButton>
         </Tooltip>
+
         <Menu
           id="menu-appbar"
           anchorEl={anchorEl}
@@ -75,12 +77,11 @@ var av = first+last;
           open={open}
           onClose={this.handleClose}
         >
-
           <Divider />
-          <MenuItem >{user.first_name} {user.last_name}</MenuItem>
           <MenuItem >Role: {user.role}</MenuItem>
           <MenuItem onClick={this.signOut}>Sign out</MenuItem>
         </Menu>
+        <div className='username'>{user.first_name} {user.last_name}</div>
       </div>
     );
   }

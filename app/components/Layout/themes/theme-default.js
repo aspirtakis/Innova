@@ -26,6 +26,7 @@ const themeDefault = createMuiTheme({
   custom: {
     link: {
       color: '#09c',
+ 
     },
     appBar: {
       backgroundColor: '#fff',
@@ -35,10 +36,11 @@ const themeDefault = createMuiTheme({
     },
     drawerHeader: {
       backgroundColor: '#fff',
+      diplay:'inline-flex',
       color: '#fff',
     },
     drawerMenuList: {
-      backgroundColor: 'rgb(153, 204, 0)',
+      backgroundColor: 'rgb(0, 153, 0)',
     },
     selectedItem: {
       backgroundColor: 'transparent',
@@ -51,9 +53,6 @@ const themeDefault = createMuiTheme({
       color: '#d6d7e1',
     },
   },
-
-
-
 
 });
 

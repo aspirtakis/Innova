@@ -46,7 +46,7 @@ class Register extends React.PureComponent {
               <div className={classes.logoSmallContainer}>
                 <img
                   src="https://s3.amazonaws.com/OIHubassets/logo-small.png"
-                  alt="OIHub Admin Templat"
+                  alt="OIHub Dashboard"
                 />
               </div>
             </div>

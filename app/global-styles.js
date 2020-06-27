@@ -39,19 +39,20 @@ const GlobalStyle = createGlobalStyle`
   /* header appbar */
 
   header .tabs button:hover i {
-    visibility: visible !important;
+
   }
 
   /* header primary appbar */
   .primary-appbar {
-    height: 56px;
+    min-height: 56px;
     margin-top: -8px;
+
   }
 
   /* header secondary appbar */
 
   .secondary-appbar {
-    margin-top: 48px;
+    margin-top: 90px;
     min-height: 48px;
   }
 
@@ -91,15 +92,18 @@ const GlobalStyle = createGlobalStyle`
 
   /* main container */
   main.main-container {
-    background-color: #fff;
+    background-color: #F3F3F3;
   }
 
   main.main-container-sidebar-closed {
     margin-left: 60px;
+    margin-top: 100px;
   }
 
   main.main-container-sidebar-opened {
     margin-left: 240px;
+    margin-top: 100px;
+
   }
 
   @media screen and (max-width: 959px) {

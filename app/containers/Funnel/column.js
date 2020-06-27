@@ -8,25 +8,24 @@ import {
   Select, Spin, Button, Icon, Collapse,
 } from 'antd';
 import Task from './task';
+import './funnel.css'
 
 import { styles } from './funnel_styles';
 
 const Container = styled.div`
-
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  background-color: #f4f9f4;
   display: flex;
   width:100%;
   min-height: 780px;
   flex-direction: column;
   height: calc(100vh - 8.6rem);
+  background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
+
 `;
 
 const TaskList = styled.div`
   padding: 1px;
   transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isDraggingOver ? 'green' : 'white')}
+  background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
   max-height: calc(100vh - 11.8rem);
   height: calc(100vh - 8.6rem);
   overflow-y: auto;
@@ -39,7 +38,7 @@ export default class Column extends React.Component {
     return (
       <Container>
         <div style={styles.ColTitles}>
-          <div className="title-bar__title">{this.props.column.title.toUpperCase()}</div>
+          <div className="title-bar__title">{this.props.column.title}(5)</div>
         </div>
         <Droppable droppableId={this.props.column.id} type="TASK">
           {(provided, snapshot) => (

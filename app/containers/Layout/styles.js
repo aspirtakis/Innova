@@ -1,4 +1,4 @@
-const drawerWidth = 240;
+const drawerWidth = 235;
 
 const getStyles = theme => ({
   appBar: {
@@ -101,9 +101,11 @@ const getStyles = theme => ({
   },
   menuTitle: {
     fontSize: 14,
+    color:'white',
   },
   menuTitleContainer: {
     position: 'sticky',
+    minHeight: 48,
     zIndex: 1,
     top: 0,
     backgroundColor: theme.custom.drawerMenuList.backgroundColor,

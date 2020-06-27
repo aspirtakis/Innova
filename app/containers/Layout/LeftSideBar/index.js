@@ -343,7 +343,7 @@ class LeftSideBar extends React.Component {
           menuListClass={classes.root}
           sidebarIsOpen={open}
           subHeaderClass={classes.subHeader}
-          title="MENU"
+          title=""
         >
           {this.renderMenuItems()}
         </LeftSideBarMenuList>
