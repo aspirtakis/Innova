@@ -1,0 +1,14 @@
+.card {
+    height: 142px;
+    width: 200px;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+  }
+
+  .titel {
+    color: #333333;
+    font-family: "KPN Metric";
+    font-size: 21px;
+    font-weight: bold;
+    max-height:10px;
+  }

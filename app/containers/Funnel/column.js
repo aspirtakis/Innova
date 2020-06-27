@@ -8,27 +8,27 @@ import {
   Select, Spin, Button, Icon, Collapse,
 } from 'antd';
 import Task from './task';
+import './funnel.css'
 
 import { styles } from './funnel_styles';
 
 const Container = styled.div`
-
   display: flex;
   width:100%;
   min-height: 780px;
   flex-direction: column;
   height: calc(100vh - 8.6rem);
+  background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
 
 `;
 
 const TaskList = styled.div`
   padding: 1px;
   transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isDraggingOver ? 'green' : '#E3E3E3')}
+  background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
   max-height: calc(100vh - 11.8rem);
   height: calc(100vh - 8.6rem);
   overflow-y: auto;
-
 `;
 
 export default class Column extends React.Component {

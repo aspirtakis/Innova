@@ -46,7 +46,6 @@ class LeftSideBarMenuList extends React.Component {
       <MenuList
         className={classNames(
           menuListClass,
-
         )}
         subheader={(
           <ListSubheader style={{ minHeight: 48, backgroundColor: '#009900' }} component="div" id="nested-list-subheader" />
