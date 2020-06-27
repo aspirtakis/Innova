@@ -8,7 +8,7 @@ import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import LocalParkingIcon from '@material-ui/icons/LocalParking'
 import { styles } from './funnel_styles';
-
+import Avatar from '@material-ui/core/Avatar';
 import { FaBeer ,FaBullhorn,FaRoad,FaRegClock
 } from 'react-icons/fa';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -107,45 +107,38 @@ return n;
                                   <img src={dots}></img>
                                   </div>
                                   </div>
+
+
+
+                                  <div style={{ color:'gray', marginTop:10,}} className="row">
+                                  <div className="col col--12 oih-fit"  >{taskproblem.theme}
+                                  </div>
+                    
+                                  </div>
+
+                                  <div style={{ color:'gray', marginTop:10,}} className="row">
+                                  <div className="col col--12 experiments"  >4 Experiments | 10 Days
+                                  </div>
+                    
+                                  </div>
+
                       
                                   <div style={{ color:'gray', marginTop:15, flexWrap: 'nowrap'}} className="row">
-                                  <div style={{minWidth:50 ,marginLeft:10}}  className="col col--4">
-                                  <div style={styles.cardTools} className="row">
-                                  <FaRegClock style={styles.cardToolsIcons}></FaRegClock>
-                                  <h1 style={styles.cardToolsText}>{this.getTime()}</h1>
-                                 </div>
+                                  <div  style={{maxWidth:24}} className="col col--4">
+                
+                                  <Avatar style={{maxWidth:24, maxHeight:24}} ></Avatar>
+                         
+                                  </div>
+                                  <div style={{maxWidth:39}} className="col col--4">
 
+                                  <Avatar style={{maxWidth:24, maxHeight:24}} ></Avatar>
                                   </div>
 
-                                  <div style={{minWidth:70 }} className="col col--4">
-     
-                                  <div className="row">
-                                  <FaBullhorn style={styles.cardToolsIcons}/>
-                                  <h1 style={styles.cardToolsText}>{taskproblem.coach}</h1>
-                  
-                          
-                             </div>
+                    
                                   </div>
-
-                                  <div style={{maxWidth:42 }} className="col col--4">
-     
-                                  <div style={styles.cardTools} className="row">
-                                  <FaRoad style={styles.cardToolsIcons}></FaRoad>
-                                  <h1 style={styles.cardToolsText} >{taskproblem.horizon}</h1>
-                               
-                               
-                             </div>
-                                  </div>
-                                  </div>
-
-
-
-                                  
-
                               </div>
                           </div>
                       </div>
-
                       </Tooltip>
                   </Container>
               )}

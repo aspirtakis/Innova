@@ -108,7 +108,7 @@ export const styles = {
   coreColumn: {
     
     margin: 3,
-    minWidth: 410,
+    minWidth: 420,
     backgroundColor: 'white',
     maxHeight: 800,
     minHeight: '100%',
@@ -116,7 +116,7 @@ export const styles = {
 
   coreColumnExp: {
     margin: 3,
-    minWidth: 800,
+    minWidth: 850,
     backgroundColor: 'white',
     maxHeight: 800,
     minHeight: '100%',
