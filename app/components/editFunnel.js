@@ -1147,8 +1147,15 @@ onChange={(date, dateString) => {
   </div></div>
   </div>
     </div>
+    
+    
     <div className="col col--2 prjRemarks">
-    <div>Team Remarks</div>
+
+    <div className='col'>
+    <div className='row'>Remarks</div>
+    {this.state.remarks && this.state.remarks.map(remark => <div className='row'>{remark.description}</div>)}
+    </div>
+
       </div>  
 
 </div>
