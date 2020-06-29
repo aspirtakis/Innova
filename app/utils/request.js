@@ -1,4 +1,5 @@
-import backend from './config';
+
+import { backend } from './config';
 
 function handleErrors(response) {
   if (!response.ok) {
