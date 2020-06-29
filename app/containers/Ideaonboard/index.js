@@ -45,7 +45,7 @@ export function Ideaonboard() {
 
 
 
-          <Label>Bussiness oportunity</Label>
+          <Label>Bussiness oportunity asassassa</Label>
           <Input type="select">
             <option value="ar">1</option>
             <option value="nl">2</option>
@@ -90,10 +90,10 @@ export function Ideaonboard() {
           <Input type="textarea">Lorem ipsum</Input>
 
 
-          <h3>Input with icon action button</h3>
+          <h3>Input wssssith issssscon actionsss button</h3>
 
 
-          <h3>Inline components using Row and Col</h3>
+          <h3>Inline componentsdd  using Row and Col</h3>
           <Row>
             <Col xs={12} s={3}>
               <Input placeholder="Enter your first name" />

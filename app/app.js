@@ -31,7 +31,7 @@ import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
-import './kpn.css';
+//import './kpn.css';
 import './styles.scss';
 
 // Import CSS reset and Global Styles

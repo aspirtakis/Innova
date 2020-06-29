@@ -774,7 +774,7 @@ console.log("FIRESAVEBIRTH");
                           <Col style={styles.coreColumn}>
                               <Row>
                                   <div style={styles.titles}>
-                                      <div className="title-bar__title">Operations</div>
+                                      <div className="title-bar__title">Operations21</div>
                                   </div>
                               </Row>
                               <Row style={styles.rowsborder}></Row>
