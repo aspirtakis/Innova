@@ -7,6 +7,7 @@ import FunnelIcon from '@material-ui/icons/ViewDay';
 // Components
 import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
+import Ideaonboard from 'containers/ideaonboard/Loadable';
 import STGCalendar from 'containers/SgCalendar/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import iconhome from '../../images/icon_home.png';
@@ -34,6 +35,13 @@ const Menu = [
     icon: <img style={{height:20}} src={graveyard}/>,
     url: '/Calendar',
     component: STGCalendar,
+  },
+  {
+    id: 'Ideaonboard',
+    text: 'IdeaOnboard',
+    icon: <img style={{height:20}} src={graveyard}/>,
+    url: '/onboarding',
+    component: Ideaonboard,
   },
 ];
 

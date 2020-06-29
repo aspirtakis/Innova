@@ -8,7 +8,6 @@ import {
   Select, Spin, Button, Icon, Collapse,
 } from 'antd';
 import Task from './task';
-import './funnel.css'
 
 import { styles } from './funnel_styles';
 
