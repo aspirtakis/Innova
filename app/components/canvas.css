@@ -1,23 +1,23 @@
 
 .prjDetails {
 min-height: 500px;
-background-color: rgb(231, 231, 231) ;
+background-color: rgb(232, 240, 250) ;
 color:black;
 
   }
   .prjPhase2 {
     min-height: 100px;
-    background-color: rgb(238, 224, 223) ;
+    background-color: rgb(240, 240, 240) ;
         }   
 
 .prjAssumptions {
     min-height: 500px;
-    background-color: rgb(175, 171, 166) ;
+    background-color: rgb(216, 216, 216) ;
 }
 
 .canvasR1 {
     min-height: 100%;
-    background-color: rgb(214, 218, 212) ;
+    background-color: rgb(223, 223, 223) ;
 }
 .canvasR2 {
     color:black;
@@ -28,7 +28,7 @@ color:black;
     .prjPhase {
         max-height: 100px;
         min-height: 20px;
-        background-color: rgb(90, 94, 91) ;
+        background-color: rgb(202, 202, 202) ;
             }
 
 
@@ -43,7 +43,7 @@ color:black;
 
     .canvasR3 {
         min-height: 50%;
-        background-color: rgb(194, 172, 201) ;
+        background-color: rgb(223, 223, 223) ;
         }
 
         .canvasR4 {
@@ -55,7 +55,7 @@ color:black;
 
             .rev1 {
                 min-height: 100px;
-                background-color: rgb(181, 189, 159) ;
+                background-color: rgb(226, 226, 226) ;
                     }   
 
                     .rev2 {
@@ -65,12 +65,12 @@ color:black;
                                 
 .prjRemarks {
     min-height: 500px;
-    background-color: rgb(132, 169, 226) ;
+    background-color: rgb(226, 226, 226) ;
         }
 
                 .prjCanvas {
                     min-height: 500px;
-                    background-color: rgb(109, 18, 26) ;
+                    background-color: rgb(216, 216, 216) ;
                         }      
 
               
