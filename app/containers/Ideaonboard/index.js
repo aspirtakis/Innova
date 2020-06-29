@@ -24,6 +24,7 @@ import {
   LabelFor,
   Row,
 } from '@kpn-style/react';
+
 import makeSelectIdeaonboard from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -42,18 +43,11 @@ export function Ideaonboard() {
         <div className="voting">
         <h3>Voting</h3>
         </div>
-
-
-
           <Label>Bussiness oportunity asassassa</Label>
           <Input type="select">
             <option value="ar">1</option>
             <option value="nl">2</option>
           </Input>
-
-     
-
-
           <h3>Input with icon action button</h3>
 
 
@@ -90,7 +84,7 @@ export function Ideaonboard() {
           <Input type="textarea">Lorem ipsum</Input>
 
 
-          <h3>Input wssssith issssscon actionsss button</h3>
+          <h3>Input actionsss button</h3>
 
 
           <h3>Inline componentsdd  using Row and Col</h3>
