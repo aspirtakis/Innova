@@ -91,7 +91,7 @@ class EditableCell extends React.Component {
     ) : (
       <div
         className="editable-cell-value-wrap"
-        style={{ paddingRight: 24 }}
+        style={{ paddingRight: 20 }}
         onClick={this.toggleEdit}
       >
         {children}
@@ -105,10 +105,17 @@ class EditableCell extends React.Component {
     const { editing } = this.state;
     return editing ? (
       <Form.Item style={{ margin: 0 }}>
-  <Select defaultValue={record.category} style={{ width: 120 }} onChange={this.saveCombo}>
+  <Select defaultValue={record.category} style={{ width: 170 }} onChange={this.saveCombo}>
       <Option value="Viability">Viability</Option>
-      <Option value="Feasibility">Feasibility</Option>
-      <Option value="Desirability" >Desirability</Option>
+      <Option value="KeyPartners">Key Partners</Option>
+      <Option value="KeyActivities" >Key Activities</Option>
+      <Option value="CostStructure">Cost structure</Option>
+      <Option value="RevenueStreams">Revenue streams</Option>
+      <Option value="KeyResources" >Key Resources</Option>
+      <Option value="ValuePropositions" >Value propositions</Option>
+      <Option value="Channels" >Channels</Option>
+      <Option value="CustomerSegments" >Customer segments</Option>
+      <Option value="CustomerRelationships" >Customer Relationships</Option>
     </Select>
       </Form.Item>
     ) : (

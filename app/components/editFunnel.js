@@ -330,6 +330,7 @@ const gates = data.stageGates;
           task_id: this.state.task_id,
           category: "Choose",
           status:"Processing",
+          phase: this.state.FunnelPhase,
         };
   
         this.setState({
@@ -341,8 +342,9 @@ const gates = data.stageGates;
   saveAssumption = (r,result,status) => {
     //this.props.sessionCheck();
     const url = assumptionsUrl+'/'+r.id;
-    //console.log(result);
-    //console.log(status);
+    console.log(result);
+    console.log(status);
+    console.log(r);
     fetch(url, {
       method: 'PATCH',
       headers: {
@@ -352,11 +354,14 @@ const gates = data.stageGates;
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
+      
       body: JSON.stringify({
         title: r.title,
         category: r.category,
         result:result ? result : r.result,
         status: status ? status : r.status,
+        phase: this.state.FunnelPhase,
+     
       }),
     })
       .then(response => {
@@ -775,8 +780,15 @@ const rema =this.state.remarks;
  let CoachRemarks = rema && rema.filter(city => (city.type == null || city.type === "Coach"));
 
 //  const remUser = remarks.filter(mak => mak.type === "User");
-    
-
+    const keyactivities = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "KeyActivities" ) ;
+    const keyresources = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "KeyResources" ) ;
+    const keypartners = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "KeyPartners" ) ;
+    const valuepropositions = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "ValuePropositions" ) ;
+    const customerrelationship = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "CustomerRelationship" ) ;
+    const channels = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "Channels" ) ;
+    const segments = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "CustomerSegments" ) ;
+    const coststructure = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "CostStructure" ) ;
+    const revenuestreams = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "RevenueStreams" ) ;
     return (
       <Modal
         title={titles}
@@ -1051,55 +1063,95 @@ onChange={(date, dateString) => {
 </TabPane>
 
 <TabPane style={{fontSize:10 ,color:'white'}}tab="Canvas" key="7">
-<div class="row">
+<div className="row">
   <div className="col col--2 prjDetails">
 <div>Project Details</div>
 <div>Coach:{data.coach}</div>
 <div>Title:{data.projectname}</div>
-<div>{console.log(data)}</div>
+<div>sdsdds</div>
   </div>
-  <div class="col col--8 prjAssumptions">
+  <div className="col col--8 prjAssumptions">
 
 
 
-  <div class="row prjPhase">
+  <div className="row prjPhase">
   <div>FUNNEL PHASE:{data.FunnelPhase}</div>
   </div>
 
-  <div class="row prjCanvas">
-  <div class='col col--2 canvasR2'>Key Partners</div>
-  <div class='col col--3 canvasR2'>
-  <div class='row canvasR3' >Key Activities</div>
-  <div class='row canvasR4' >Key resources</div>
+  <div className="row prjCanvas">
+  <div className='col col--2 canvasR2'>Key Partners</div>
+  <div className='col col--3 canvasR2'>
+  <div className='row canvasR3'>  
+  <div className='col'>
+  <div className='row'>Key Activities</div>
+  {keyactivities && keyactivities.map(assumption => <div className='row'>{assumption.title}</div>)}
+  </div>
   </div>
 
-  <div class='col col--2 canvasR2'>Value Propositions</div>
-
-  <div class='col col--3 canvasR2'>
-  <div class='row canvasR3' >Customer Relationships</div>
-  <div class='row canvasR4' >Channels</div>
+  
+  <div className='row canvasR4'>
+  <div className='col'>
+  <div className='row'>Key Resources</div>
+  {keyresources && keyresources.map(assumption => <div className='row'>{assumption.title}</div>)}
   </div>
 
-  <div class='col col--2 Seagments'> Customer Segments</div>
-
-
-
   </div>
-
-
-
-
-  <div class="row prjPhase2">
-  <div class="col col--6"> Cost structure</div>
-  <div class="col col--6"> Revenue streams</div>
+  </div>
+  <div className='col col--2 canvasR2'>
+  
+  <div className='col'>
+  <div className='row'>Value propositions</div>
+  {valuepropositions && valuepropositions.map(assumption => <div className='row'>{assumption.title}</div>)}
+  </div>
+  
+  </div>
+  <div className='col col--3 canvasR2'>
+  <div className='row canvasR3' >
+  
+  <div className='col'>
+  <div className='row'>Customer Relationships </div>
+  {customerrelationship && customerrelationship.map(assumption => <div className='row'>{assumption.title}</div>)}
+  </div>
+  
+  </div>
+  <div className='row canvasR4' >
+  
+  <div className='col'>
+  <div className='row'>Channels </div>
+  {channels && channels.map(assumption => <div className='row'>{assumption.title}</div>)}
+  </div>
+  
+  </div>
+  </div>
+  <div className='col col--2 Seagments'> 
+  
+  <div className='col'>
+  <div className='row'>Customer segments </div>
+  {segments && segments.map(assumption => <div className='row'>{assumption.title}</div>)}
+  </div>
+  </div>
+  </div>
+  <div className="row prjPhase2">
+  <div className="col col--6 rev1" > 
+  <div className='col'>
+  <div className='row'>Cost Structure</div>
+  {coststructure && coststructure.map(assumption => <div className='row'>{assumption.title}</div>)}
+  </div>
+  
+  </div>
+  <div className="col col--6 rev2">
+  
+  <div className='col'>
+  <div className='row'>Revenue streams</div>
+  {revenuestreams && revenuestreams.map(assumption => <div className='row'>{assumption.title}</div>)}
+  </div></div>
   </div>
     </div>
-    <div class="col col--2 prjRemarks">
+    <div className="col col--2 prjRemarks">
     <div>Team Remarks</div>
       </div>  
 
 </div>
-
 </TabPane>
 
     </Tabs>
