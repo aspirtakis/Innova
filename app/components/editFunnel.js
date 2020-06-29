@@ -10,6 +10,7 @@ DatePicker,
 Tabs 
 } from 'antd';
 import nlNL from 'antd/es/locale/nl_NL';
+import './canvas.css';
 
 const { TabPane } = Tabs;
 import moment from 'moment';
@@ -1049,8 +1050,58 @@ onChange={(date, dateString) => {
 
 </TabPane>
 
+<TabPane style={{fontSize:10 ,color:'white'}}tab="Canvas" key="7">
+<div class="row">
+  <div className="col col--2 prjDetails">
+<div>Project Details</div>
+<div>Coach:{data.coach}</div>
+<div>Title:{data.projectname}</div>
+<div>{console.log(data)}</div>
+  </div>
+  <div class="col col--8 prjAssumptions">
 
-      
+
+
+  <div class="row prjPhase">
+  <div>FUNNEL PHASE:{data.FunnelPhase}</div>
+  </div>
+
+  <div class="row prjCanvas">
+  <div class='col col--2 canvasR2'>Key Partners</div>
+  <div class='col col--3 canvasR2'>
+  <div class='row canvasR3' >Key Activities</div>
+  <div class='row canvasR4' >Key resources</div>
+  </div>
+
+  <div class='col col--2 canvasR2'>Value Propositions</div>
+
+  <div class='col col--3 canvasR2'>
+  <div class='row canvasR3' >Customer Relationships</div>
+  <div class='row canvasR4' >Channels</div>
+  </div>
+
+  <div class='col col--2 Seagments'> Customer Segments</div>
+
+
+
+  </div>
+
+
+
+
+  <div class="row prjPhase2">
+  <div class="col col--6"> Cost structure</div>
+  <div class="col col--6"> Revenue streams</div>
+  </div>
+    </div>
+    <div class="col col--2 prjRemarks">
+    <div>Team Remarks</div>
+      </div>  
+
+</div>
+
+</TabPane>
+
     </Tabs>
   </div>
       </Modal>

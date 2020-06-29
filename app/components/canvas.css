@@ -1,0 +1,75 @@
+
+.prjDetails {
+min-height: 500px;
+background-color: rgb(179, 204, 170) ;
+
+  }
+  .prjPhase2 {
+    min-height: 100px;
+    background-color: rgb(216, 43, 30) ;
+        }   
+
+.prjAssumptions {
+    min-height: 500px;
+    background-color: rgb(17, 12, 6) ;
+}
+
+.canvasR1 {
+    min-height: 100%;
+    background-color: rgb(214, 218, 212) ;
+}
+.canvasR2 {
+    min-height: 500px;
+    background-color: rgb(202, 200, 63) ;
+    }
+
+    .prjPhase {
+        max-height: 100px;
+        min-height: 20px;
+        background-color: rgb(90, 94, 91) ;
+            }
+
+
+    .Seagments {
+        min-height: 500px;
+        color:white;
+        font-size:10px;
+        background-color: rgb(106, 126, 214) ;
+        }
+        
+        
+
+    .canvasR3 {
+        min-height: 50%;
+        background-color: rgb(170, 63, 202) ;
+        }
+
+        .canvasR4 {
+            min-height: 50%;
+            min-width: 100%;
+            background-color: rgb(31, 62, 199) ;
+            }
+    
+
+
+.prjRemarks {
+    min-height: 500px;
+    background-color: rgb(132, 169, 226) ;
+        }
+
+                .prjCanvas {
+                    min-height: 500px;
+                    background-color: rgb(109, 18, 26) ;
+                        }      
+
+                        .rev1 {
+                            min-height: 500px;
+                            background-color: rgb(109, 18, 26) ;
+                                }   
+
+                                .rev2 {
+                                    min-height: 500px;
+                                    background-color: rgb(109, 18, 26) ;
+                                        }   
+                                               
+        
