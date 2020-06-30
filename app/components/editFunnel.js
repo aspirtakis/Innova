@@ -761,11 +761,23 @@ const gates = data.stageGates;
       </Col>
     </Row>
   );
-sortthings = (data) => {
-//   var obj = [data];
-// obj.sort((a,b) => b.created < a.created);
 
-return data;
+  
+canvasStatuses= (status) => {
+if(status === "Accepted"){
+
+  return "green";
+}
+if(status === "Rejected"){
+
+  return "red";
+}
+if(status === "Processing"){
+
+  return "blue";
+}
+
+return null;
 
 } 
 
@@ -1084,7 +1096,7 @@ onChange={(date, dateString) => {
   <div className='row canvasR3'>  
   <div className='col'>
   <div className='row'>Key Activities</div>
-  {keyactivities && keyactivities.map(assumption => <div style={{backgroundColor: assumption.phase === this.state.FunnelPhase ? 'green' : null}}  className='row'>{assumption.title}</div>)}
+  {keyactivities && keyactivities.map(assumption => <div  style={{ borderStyle: 'dotted', border: assumption.phase === this.state.FunnelPhase ? 5 : null ,backgroundColor: this.canvasStatuses(assumption.status)}  } className='row'>{assumption.title}</div>)}
   </div>
   </div>
 
@@ -1092,7 +1104,7 @@ onChange={(date, dateString) => {
   <div className='row canvasR4'>
   <div className='col'>
   <div className='row'>Key Resources</div>
-  {keyresources && keyresources.map(assumption => <div style={{backgroundColor: assumption.phase === this.state.FunnelPhase ? 'green' : null}}  className='row'>{assumption.title}</div>)}
+  {keyresources && keyresources.map(assumption => <div  style={{borderStyle: 'dotted',border: assumption.phase === this.state.FunnelPhase ? 5 : null ,backgroundColor: this.canvasStatuses(assumption.status)}  }  className='row'>{assumption.title}</div>)}
   </div>
 
   </div>
@@ -1101,7 +1113,7 @@ onChange={(date, dateString) => {
   
   <div className='col'>
   <div className='row'>Value propositions</div>
-  {valuepropositions && valuepropositions.map(assumption => <div style={{backgroundColor: assumption.phase === this.state.FunnelPhase ? 'green' : null}}  className='row'>{assumption.title}</div>)}
+  {valuepropositions && valuepropositions.map(assumption => <div  style={{borderStyle: 'dotted',border: assumption.phase === this.state.FunnelPhase ? 5 : null ,backgroundColor: this.canvasStatuses(assumption.status)}  } className='row'>{assumption.title}</div>)}
   </div>
   
   </div>
@@ -1110,7 +1122,7 @@ onChange={(date, dateString) => {
   
   <div className='col'>
   <div className='row'>Customer Relationships </div>
-  {customerrelationship && customerrelationship.map(assumption => <div style={{backgroundColor: assumption.phase === this.state.FunnelPhase ? 'green' : null}}  className='row'>{assumption.title}</div>)}
+  {customerrelationship && customerrelationship.map(assumption => <div  style={{borderStyle: 'dotted',border: assumption.phase === this.state.FunnelPhase ? 5 : null ,backgroundColor: this.canvasStatuses(assumption.status)}  }  className='row'>{assumption.title}</div>)}
   </div>
   
   </div>
@@ -1118,7 +1130,7 @@ onChange={(date, dateString) => {
   
   <div className='col'>
   <div className='row'>Channels </div>
-  {channels && channels.map(assumption => <div  style={{backgroundColor: assumption.phase === this.state.FunnelPhase ? 'green' : null}} className='row'>{assumption.title}</div>)}
+  {channels && channels.map(assumption => <div   style={{borderStyle: 'dotted',border: assumption.phase === this.state.FunnelPhase ? 5 : null ,backgroundColor: this.canvasStatuses(assumption.status)}  } className='row'>{assumption.title}</div>)}
   </div>
   
   </div>
@@ -1127,7 +1139,7 @@ onChange={(date, dateString) => {
   
   <div className='col'>
   <div className='row'>Customer segments </div>
-  {segments && segments.map(assumption => <div style={{backgroundColor: assumption.phase === this.state.FunnelPhase ? 'green' : null}}  className='row'>{assumption.title}</div>)}
+  {segments && segments.map(assumption => <div  style={{borderStyle: 'dotted',border: assumption.phase === this.state.FunnelPhase ? 5 : null ,backgroundColor: this.canvasStatuses(assumption.status)}  }  className='row'>{assumption.title}</div>)}
   </div>
   </div>
   </div>
@@ -1135,7 +1147,7 @@ onChange={(date, dateString) => {
   <div className="col col--6 rev1" > 
   <div className='col'>
   <div className='row'>Cost Structure</div>
-  {coststructure && coststructure.map(assumption => <div style={{backgroundColor: assumption.phase === this.state.FunnelPhase ? 'green' : null}} className='row'>{assumption.title}</div>)}
+  {coststructure && coststructure.map(assumption => <div  style={{borderStyle: 'dotted',border: assumption.phase === this.state.FunnelPhase ? 5 : null ,backgroundColor: this.canvasStatuses(assumption.status)}  } className='row'>{assumption.title}</div>)}
   </div>
   
   </div>
@@ -1143,7 +1155,9 @@ onChange={(date, dateString) => {
   
   <div className='col'>
   <div className='row'>Revenue streams</div>
-  {revenuestreams && revenuestreams.map(assumption => <div style={{backgroundColor: assumption.phase === this.state.FunnelPhase ? 'green' : null}}  className='row'>{assumption.title}</div>)}
+  {revenuestreams && revenuestreams.map(assumption => <div 
+    style={{borderStyle: 'dotted',border: assumption.phase === this.state.FunnelPhase ? 5 : null ,backgroundColor: this.canvasStatuses(assumption.status)}  }
+    className='row'>{assumption.title}</div>)}
   </div></div>
   </div>
     </div>
