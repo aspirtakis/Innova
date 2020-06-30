@@ -2,6 +2,7 @@
   "name": "innovation-funnel",
 <<<<<<< 0a68fad5766ccbec84b0e4e9397352e25c1bf9f1
 <<<<<<< 0a68fad5766ccbec84b0e4e9397352e25c1bf9f1
+<<<<<<< 0a68fad5766ccbec84b0e4e9397352e25c1bf9f1
   "version": "0.61.2",
 =======
   "version": "0.60.2",
@@ -9,6 +10,9 @@
 =======
   "version": "0.60.3",
 >>>>>>> v0.60.3
+=======
+  "version": "0.60.4",
+>>>>>>> v0.60.4
   "description": "Innovation Hub Dashboard",
   "engines": {
     "npm": ">=5",
