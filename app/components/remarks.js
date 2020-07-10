@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import {
-  Button, Row, Col, Card, Icon, Avatar, Input, List,
+  Button, Row, Col, Card, Icon, Avatar, Input, List,Popconfirm
 } from 'antd';
 import React from 'react';
 import moment from 'moment';
@@ -23,7 +23,6 @@ class Remarks extends React.Component {
     const {
       remarks, user, deleteRemark, saveRemark,
     } = this.props;
- 
 
 
     return (
@@ -45,7 +44,9 @@ class Remarks extends React.Component {
                 <div>
                   {this.state.editable !== remark.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: remark.id })} type="edit" /> }
                   {this.state.editable === remark.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: null }); }} type="save" /> }
-                  <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => deleteRemark(e, remark)} type="delete" />
+                  <Popconfirm title="Delete Remark?" onConfirm={(e) => deleteRemark(e, remark)}>
+                    <Icon type="delete" />
+                  </Popconfirm>
                 </div>
                 )]}
             >

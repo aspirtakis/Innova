@@ -38,13 +38,6 @@ class ResetPassword extends React.Component {
             <form>
               {showEmailSentMessage ? null : (
                 <div>
-                <TextField
-                label="E-mail"
-                fullWidth
-                defaultValue={email}
-                disabled
-                
-              />
 
             <TextField
             label="New Password"
