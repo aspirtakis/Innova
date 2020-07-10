@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import {
-  Button, Row, Col, Card, Icon, Avatar, Input, List,
+  Button, Row, Col, Card, Icon, Avatar, Input, List,Popconfirm
 } from 'antd';
 import React from 'react';
 import moment from 'moment';
@@ -45,7 +45,11 @@ class StageGates extends React.Component {
                 <div>
                   {this.state.editable !== meeting.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => this.setState({ editable: meeting.id })} type="edit" /> }
                   {this.state.editable === meeting.id && <Icon style={{ fontSize: '16px', padding: 5 }} onClick={(e) => { this.setState({ editable: null }); }} type="save" /> }
-                  <Icon style={{ fontSize: '16px', padding: 5 }} onClick={() => deleteMeeting(meeting)} type="delete" />
+
+
+                  <Popconfirm title="Delete Meeting?" onConfirm={() => deleteMeeting(meeting)}>
+                  <Icon type="delete" />
+                </Popconfirm>
                 </div>
                 )]}
             >
