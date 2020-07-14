@@ -82,6 +82,7 @@ class Register extends React.PureComponent {
 
               <div className={classes.buttonsContainer}>
                 <Button onClick={onGoBack}>Go Back</Button>
+                {!showEmailSentMessage && (
                 <Button
                //   disabled={!(fullName.length > 3 && first_name.length > 3 && email.length > 3 )}
                   color="primary"
@@ -90,6 +91,8 @@ class Register extends React.PureComponent {
                 >
                   Register
                 </Button>
+                )}
+
               </div>
             </form>
           </Paper>
