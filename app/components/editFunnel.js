@@ -398,7 +398,7 @@ const gates = data.stageGates;
        body: JSON.stringify({
          resource: [
           {
-            description: "New Remarka",
+            description: "New Remark",
             funnelPhase: this.state.FunnelPhase,
             card_id: this.state.task_id,
             remarker: this.props.user.first_name,
@@ -420,7 +420,7 @@ const gates = data.stageGates;
          //console.log(remarkData);
          const newRemark = {
           id:remarkData.resource[0].id,
-          description: "New Remar",
+          description: "New Remark",
           card_id: this.state.task_id,
           remarker: this.props.user.first_name,
           type:type,
