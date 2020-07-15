@@ -9,6 +9,7 @@ const backendProd = {
   checklists: 'funnel/_table/funnel.checklists',
   stageGates: 'funnel/_table/funnel.stagegates',
   passrst:'user/password',
+  register:'user/register',
   defUser: '',
   defPass: '',
 };
@@ -24,6 +25,7 @@ const backendDev = {
   checklists: 'funnel_dev/_table/funnel.checklists',
   stageGates: 'funnel_dev/_table/funnel.stagegates',
   passrst:'user/password',
+  register:'user/register',
   defUser: '',
   defPass: '',
 };
@@ -38,6 +40,7 @@ const backendAga = {
   checklists: 'funnel_dev/_table/funnel.checklists',
   stageGates: 'funnel_dev/_table/funnel.stagegates',
   passrst:'user/password',
+  register:'user/register',
   defUser: 'agamemnon.aspirtakis@kpn.com',
   defPass: 'a224935a',
 };
@@ -52,6 +55,7 @@ const backendAgaSTG = {
   checklists: 'FunnSTG/_table/funnel.checklists',
   stageGates: 'FunnSTG/_table/funnel.stagegates',
   passrst:'user/password',
+  register:'user/register',
   defUser: 'agamemnon.aspirtakis@kpn.com',
   defPass: 'a224935a',
 };
@@ -66,11 +70,12 @@ const backendSTG = {
   checklists: 'FunnSTG/_table/funnel.checklists',
   stageGates: 'FunnSTG/_table/funnel.stagegates',
   passrst:'user/password',
+  register:'user/register',
   defUser: '',
   defPass: '',
 };
 
 
 
-const backend = backendProd;
+const backend = backendSTG;
 export { backend };

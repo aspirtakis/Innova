@@ -10,20 +10,25 @@ import TextField from '@material-ui/core/TextField';
 import { isMobile } from 'utils/menuHelper';
 import styles from './styles';
 
+
 class Register extends React.PureComponent {
   render() {
     const {
       classes,
       confirmPassword,
+      first_name,
       fullName,
       email,
       onConfirmPasswordChange,
       onFullNameChange,
+      onFullFirstNameChange,
       onGoBack,
       onEmailChange,
       onPasswordChange,
       onRegister,
       password,
+      showEmailSentMessage,
+      message,
     } = this.props;
 
     let container;
@@ -47,47 +52,47 @@ class Register extends React.PureComponent {
             </div>
             <hr />
             <form>
-              <TextField
-                margin="normal"
-                label="Full Name"
-                fullWidth
-                defaultValue={fullName}
-                onBlur={onFullNameChange}
-              />
-              <TextField
-                margin="normal"
-                label="E-mail"
-                fullWidth
-                defaultValue={email}
-                onBlur={onEmailChange}
-              />
-              <TextField
-                margin="normal"
-                label="Password"
-                fullWidth
-                type="password"
-                defaultValue={password}
-                onBlur={onPasswordChange}
-              />
-              <TextField
-                margin="normal"
-                label="Confirm Password"
-                fullWidth
-                type="password"
-                defaultValue={confirmPassword}
-                onBlur={onConfirmPasswordChange}
-              />
+              {showEmailSentMessage ? message : (
+                <div>
+                  <TextField
+                    margin="normal"
+                    label="First name"
+                    fullWidth
+                    defaultValue={first_name}
+                    onBlur={onFullFirstNameChange}
+                  />
+                  <TextField
+                    margin="normal"
+                    label="Last name"
+                    fullWidth
+                    defaultValue={fullName}
+                    onBlur={onFullNameChange}
+                  />
+                  <TextField
+                    margin="normal"
+                    label="E-mail"
+                    fullWidth
+                    defaultValue={email}
+                    onBlur={onEmailChange}
+                  />
+                </div>
+
+              )}
+
 
               <div className={classes.buttonsContainer}>
                 <Button onClick={onGoBack}>Go Back</Button>
-
+                {!showEmailSentMessage && (
                 <Button
+               //   disabled={!(fullName.length > 3 && first_name.length > 3 && email.length > 3 )}
                   color="primary"
                   className={classes.boxBtn}
                   onClick={onRegister}
                 >
                   Register
                 </Button>
+                )}
+
               </div>
             </form>
           </Paper>
