@@ -102,8 +102,10 @@
     "redux-saga": "1.0.2",
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
+    "segoe-fonts": "^1.0.1",
     "styled-components": "^4.4.0",
-    "suneditor-react": "^2.10.1"
+    "suneditor-react": "^2.10.1",
+    "system-font-css": "^2.0.2"
   },
   "devDependencies": {
     "@babel/cli": "7.4.3",
