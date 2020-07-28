@@ -1076,18 +1076,44 @@ onChange={(date, dateString) => {
 
 <TabPane style={{fontSize:10 ,color:'white'}}tab="Canvas" key="7">
 <div className="row">
-  <div className="col col--2 prjDetails">
-<div>Project Details</div>
-<div>Coach:{data.coach}</div>
-<div>Title:{data.projectname}</div>
-<div>sdsdds</div>
-  </div>
+  <div className="col col--2 prjDetails ">
+<div className="titlePRJDetails">Project Details</div>
+<div className="listGroup">
+<div className="company-name">Ticket</div>
+<div className="company-name-copy">{data.coach}</div>
+</div>
+<div className="listGroup">
+<div className="company-name">Product Owner</div>
+<div className="company-name-copy">{data.cardPO}</div>
+</div>
+<div className="listGroup">
+<div className="company-name">Coach</div>
+<div className="company-name-copy">{data.coach}</div>
+</div>
+<div className="listGroup">
+<div className="company-name">Growth hacker</div>
+<div className="company-name-copy">{data.coach}</div>
+</div>
+
+<div className="listGroup2">
+<div className="company-name">Sponsor</div>
+<div className="company-name-copy">{data.spnsr}</div>
+</div>
+<div className="listGroup">
+<div className="company-name">Department</div>
+<div className="company-name-copy">{data.sponsor}</div>
+</div>
+
+
+
+</div>
   <div className="col col--8 prjAssumptions">
 
 
 
-  <div className="row prjPhase">
-  <div>FUNNEL PHASE:{data.FunnelPhase}</div>
+  <div className="row prjPhase titleCanvas">
+  <div>Business Model Canvas -> </div>
+  <div>{data.FunnelPhase}</div>
   </div>
 
   <div className="row prjCanvas">
@@ -1159,15 +1185,12 @@ onChange={(date, dateString) => {
   </div></div>
   </div>
     </div>
-    
-    
     <div className="col col--2 prjRemarks">
     <div className='col'>
     <div className='row'>Remarks</div>
     {TeamRemarks && TeamRemarks.map(remark => <div style={{ backgroundColor: "orange" }} className='row'>{remark.description}</div>)}
     </div>
       </div>  
-
 </div>
 </TabPane>
 

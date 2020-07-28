@@ -1,77 +1,137 @@
-
 .prjDetails {
-min-height: 500px;
-background-color: rgb(232, 240, 250) ;
-color:black;
+  min-height: 690px;
+  width: 167px;
+}
 
-  }
-  .prjPhase2 {
-    min-height: 100px;
-    background-color: rgb(240, 240, 240) ;
-        }   
+.prjPhase2 {
+  min-height: 100px;
+  background-color: rgb(240, 240, 240);
+}
 
 .prjAssumptions {
-    min-height: 500px;
-    background-color: rgb(216, 216, 216) ;
+  min-height: 500px;
+  background-color: rgb(216, 216, 216);
 }
 
 .canvasR1 {
-    min-height: 100%;
-    background-color: rgb(223, 223, 223) ;
+  min-height: 100%;
+  background-color: rgb(223, 223, 223);
 }
+
 .canvasR2 {
-    color:black;
-    min-height: 500px;
-    background-color: rgb(211, 211, 188) ;
-    }
+  color: black;
+  min-height: 500px;
+  background-color: rgb(211, 211, 188);
+}
 
-    .prjPhase {
-        max-height: 100px;
-        min-height: 20px;
-        background-color: rgb(202, 202, 202) ;
-            }
+.prjPhase {
+  max-height: 100px;
+  min-height: 20px;
+  background-color: rgb(202, 202, 202);
+}
 
 
-    .Seagments {
-        min-height: 500px;
-        color:black;
-        font-size:10px;
-        background-color: rgb(205, 206, 211) ;
-        }
-        
-        
+.Seagments {
+  min-height: 500px;
+  color: black;
+  font-size: 10px;
+  background-color: rgb(205, 206, 211);
+}
 
-    .canvasR3 {
-        min-height: 50%;
-        background-color: rgb(223, 223, 223) ;
-        }
 
-        .canvasR4 {
-            min-height: 50%;
-            min-width: 100%;
-            background-color: rgb(184, 193, 231) ;
-            }
-    
 
-            .rev1 {
-                min-height: 100px;
-                background-color: rgb(226, 226, 226) ;
-                    }   
+.canvasR3 {
+  min-height: 50%;
+  background-color: rgb(223, 223, 223);
+}
 
-                    .rev2 {
-                        min-height: 100px;
-                        background-color: rgb(190, 182, 183) ;
-                            }   
-                                
+.canvasR4 {
+  min-height: 50%;
+  min-width: 100%;
+  background-color: rgb(184, 193, 231);
+}
+
+
+.rev1 {
+  min-height: 100px;
+  background-color: rgb(226, 226, 226);
+}
+
+.rev2 {
+  min-height: 100px;
+  background-color: rgb(190, 182, 183);
+}
+
 .prjRemarks {
-    min-height: 500px;
-    background-color: rgb(226, 226, 226) ;
-        }
+  min-height: 500px;
+  background-color: rgb(226, 226, 226);
+}
 
-                .prjCanvas {
-                    min-height: 500px;
-                    background-color: rgb(216, 216, 216) ;
-                        }      
+.prjCanvas {
+  min-height: 500px;
+  background-color: rgb(216, 216, 216);
+}
 
-              
-        
+.titleCanvas {
+  height: 24px;
+  width: 1174px;
+  color: #333333;
+  font-family: "KPN Metric";
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.card-02-black-title-copy-4-car {
+    height: 690px;
+    width: 167px;
+  }
+
+  .titlePRJDetails {
+    height: 24px;
+    width: 135px;
+    color: #333333;
+    font-family: "KPN Metric";
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0;
+    margin-bottom: 20px;
+  }
+
+  .contactgegevens-1-copy-9-conta {
+    height: 43px;
+    width: 162px;
+  }
+  .listGroup {
+    height: 41px;
+    margin-bottom: 10px;
+    width: 200px;
+  }
+  .listGroup2 {
+    height: 41px;
+    margin-top: 100px;
+    margin-bottom: 10px;
+
+
+  }
+  .company-name {
+    height: 19px;
+    color: #333333;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 19px;
+
+  }
+
+  .company-name-copy {
+    height: 19px;
+    width: 162px;
+    color: #333333;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 19px;
+  }
