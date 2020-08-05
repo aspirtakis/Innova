@@ -41,11 +41,11 @@ class Canvas extends React.Component {
       }
       if(status === "Rejected"){
        // return "#ffa3a3";
-        return <FaTimes style={{marginRight:7, marginTop:2 ,color: this.canvasStatuses(status)}} /> 
+        return <FaTimes style={{fontSize:20, marginRight:7, marginTop:2 ,color: this.canvasStatuses(status)}} /> 
       }
       if(status === "Processing"){
        // return "#a2e8eb";
-        return <FaClock style={{marginRight:7, marginTop:2 ,color: this.canvasStatuses(status)}} /> 
+        return <FaClock style={{fontSize:20, marginRight:7, marginTop:2 ,color: this.canvasStatuses(status)}} /> 
       }
       
       return null;
@@ -115,7 +115,7 @@ class Canvas extends React.Component {
         <div style={{ minHeight:100, maxHeight:400, overflow:'auto' }} className='col'>
         {keypartners && keypartners.map(assumption => 
           <div 
-          style={{ flexFlow: "row nowrap"}} 
+          style={{ marginRight:3,flexFlow: "row nowrap"}} 
           className='row listItem '> 
           <div>{this.canvasSymbols(assumption.status)}</div>
           <div>{assumption.title}</div>
@@ -132,7 +132,7 @@ class Canvas extends React.Component {
         <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
         {keyactivities && keyactivities.map(assumption => 
           <div 
-          style={{ flexFlow: "row nowrap"}} 
+          style={{ marginRight:3,flexFlow: "row nowrap"}} 
           className='row listItem '> 
           <div>{this.canvasSymbols(assumption.status)}</div>
           <div>{assumption.title}</div>
@@ -147,7 +147,7 @@ class Canvas extends React.Component {
         <div className='row canvTitles box2'>Key Resources</div>
         <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
         {keyresources && keyresources.map(assumption =>           <div 
-          style={{ flexFlow: "row nowrap"}} 
+          style={{ marginRight:3,flexFlow: "row nowrap"}} 
           className='row listItem '> 
           <div>{this.canvasSymbols(assumption.status)}</div>
           <div>{assumption.title}</div>
@@ -159,16 +159,16 @@ class Canvas extends React.Component {
         </div>
       
         <div style={{minWidth:120 , minHeight:500 }} className='col keySingle'>
-        <div className='col'>
+       
         <div className='row canvTitles box2'>Value propositions</div>
         <div style={{ minHeight:100, maxHeight:400, overflow:'auto' }} className='col'>
         {valuepropositions && valuepropositions.map(assumption =>           <div 
-          style={{ flexFlow: "row nowrap"}} 
+          style={{marginRight:3, flexFlow: "row nowrap"}} 
           className='row listItem '> 
           <div>{this.canvasSymbols(assumption.status)}</div>
           <div>{assumption.title}</div>
           </div>)}
-        </div>
+        
         </div>
       
       
@@ -180,7 +180,7 @@ class Canvas extends React.Component {
         <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
         {customerrelationships && customerrelationships.map(assumption =>
           <div 
-          style={{ flexFlow: "row nowrap"}} 
+          style={{marginRight:3, flexFlow: "row nowrap"}} 
           className='row listItem '> 
           <div>{this.canvasSymbols(assumption.status)}</div>
           <div>{assumption.title}</div>
@@ -194,7 +194,7 @@ class Canvas extends React.Component {
         <div className='row canvTitles box2'>Channels </div>
         <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
         {channels && channels.map(assumption =>           <div 
-          style={{ flexFlow: "row nowrap"}} 
+          style={{  marginRight:3,flexFlow: "row nowrap"}} 
           className='row listItem '> 
           <div>{this.canvasSymbols(assumption.status)}</div>
           <div>{assumption.title}</div>
@@ -209,7 +209,7 @@ class Canvas extends React.Component {
         <div className='row canvTitles box2'>Customer segments </div>
         <div style={{ minHeight:100, overflow:'auto' }} className='col'>
         {segments && segments.map(assumption =>           <div 
-          style={{ flexFlow: "row nowrap"}} 
+          style={{ marginRight:3,flexFlow: "row nowrap"}} 
           className='row listItem '> 
           <div>{this.canvasSymbols(assumption.status)}</div>
           <div>{assumption.title}</div>
@@ -222,7 +222,7 @@ class Canvas extends React.Component {
         <div className='row canvTitles box2'>Cost Structure</div>
         <div style={{ minHeight:100, maxHeight:100, overflow:'auto' }}  className='col'>
         {coststructure && coststructure.map(assumption =>           <div 
-          style={{ flexFlow: "row nowrap"}} 
+          style={{ marginRight:3,flexFlow: "row nowrap"}} 
           className='row listItem '> 
           <div>{this.canvasSymbols(assumption.status)}</div>
           <div>{assumption.title}</div>
@@ -233,7 +233,7 @@ class Canvas extends React.Component {
         <div className='row canvTitles box2'>Revenue streams</div>
         <div style={{ minHeight:100, maxHeight:100, overflow:'auto' }} className='col'>
         {revenuestreams && revenuestreams.map(assumption =>           <div 
-          style={{ flexFlow: "row nowrap"}} 
+          style={{ marginRight:3,flexFlow: "row nowrap"}} 
           className='row listItem '> 
           <div>{this.canvasSymbols(assumption.status)}</div>
           <div>{assumption.title}</div>
