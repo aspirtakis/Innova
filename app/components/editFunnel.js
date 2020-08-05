@@ -11,6 +11,9 @@ Tabs
 } from 'antd';
 import nlNL from 'antd/es/locale/nl_NL';
 import './canvas.css';
+import { FaCheck } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
+import { FaClock } from 'react-icons/fa';
 
 const { TabPane } = Tabs;
 import moment from 'moment';
@@ -21,6 +24,7 @@ import Remarks from '../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
 import EditableTable from './editableTable';
 import StageGates from './stagegates';
+import { size } from 'lodash';
 
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
@@ -765,31 +769,45 @@ const gates = data.stageGates;
   
 canvasStatuses= (status) => {
 if(status === "Accepted"){
-
   return "#1eb53a";
 }
 if(status === "Rejected"){
-
   return "#ffa3a3";
 }
 if(status === "Processing"){
-
   return "#a2e8eb";
 }
 
 return null;
 
 } 
+canvasSymbols= (status) => {
+  if(status === "Accepted"){
+    return <FaCheck style={{fontSize:20, marginRight:7, paddingTop:2 ,color: this.canvasStatuses(status)}} /> 
+  //  return <i class="fa fa-camera-retro fa-lg"></i> 
+  }
+  if(status === "Rejected"){
+   // return "#ffa3a3";
+    return <FaTimes style={{marginRight:7, marginTop:2 ,color: this.canvasStatuses(status)}} /> 
+  }
+  if(status === "Processing"){
+   // return "#a2e8eb";
+    return <FaClock style={{marginRight:7, marginTop:2 ,color: this.canvasStatuses(status)}} /> 
+  }
+  
+  return null;
+  
+  } 
 
 
   render() {
     const { visible, onOK, onCancel, user} = this.props;
     const  data  = this.state;
     const titles = this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname + " overview";
-const rema =this.state.remarks;
+    const rema =this.state.remarks;
 
- let TeamRemarks = rema && rema.filter(city => city.type === "User");
- let CoachRemarks = rema && rema.filter(city => (city.type == null || city.type === "Coach"));
+ const TeamRemarks = rema && rema.filter(city => city.type === "User");
+ const CoachRemarks = rema && rema.filter(city => (city.type == null || city.type === "Coach"));
 
 //  const remUser = remarks.filter(mak => mak.type === "User");
     const keyactivities = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "KeyActivities" ) ;
@@ -804,13 +822,12 @@ const rema =this.state.remarks;
     return (
       <Modal
         title={titles}
-        centered
+ 
         visible={visible}
-
         onOk={onOK}
         onCancel={onOK}
         footer={null}
-        style={{minWidth:'70%'}}
+        style={{minWidth:'80%'}}
       >
        <div className="card-container">
     <Tabs type="card">
@@ -1074,9 +1091,10 @@ onChange={(date, dateString) => {
 
 </TabPane>
 
-<TabPane style={{fontSize:10 ,color:'white'}}tab="Canvas" key="7">
-<div className="row">
-  <div className="col col--2 prjDetails ">
+<TabPane style={{fontSize:10 ,color:'white'}} tab="Canvas" key="7">
+<div  style={{padding:10, overflow:'auto', flexWrap: 'nowrap'}} className="row">
+
+<div style={{minWidth:150 ,maxWidth:150}} className="col col--2 prjDetails ">
 <div className="titlePRJDetails">Project Details</div>
 <div className="listGroup">
 <div className="company-name">Ticket</div>
@@ -1107,93 +1125,117 @@ onChange={(date, dateString) => {
 
 
 </div>
-  <div className="col col--8 prjAssumptions">
-
-
-
-  <div className="row prjPhase titleCanvas">
+  
+<div style={{minWidth:800 }} className="col col--8 prjMainBoard nowrap ">
+  <div className="row titlePRJDetails2">
   <div>Business Model Canvas -> </div>
   <div>{data.FunnelPhase}</div>
   </div>
+  <div className="row ">
+  <div className='col keySingle' style={{minWidth:150 ,}}>
+  <div  className='row canvTitles box2'>Key Partners</div>
+  <div style={{ minHeight:100, maxHeight:400, overflow:'auto' }} className='col'>
+  {keypartners && keypartners.map(assumption => <div  
+    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
+  </div>
+</div>
 
-  <div className="row prjCanvas">
-  <div className='col col--2 canvasR2'>Key Partners</div>
-  <div className='col col--3 canvasR2'>
-  <div className='row canvasR3'>  
-  <div className='col'>
-  <div className='row'>Key Activities</div>
-  {keyactivities && keyactivities.map(assumption => <div  style={{borderStyle: assumption.phase === this.state.FunnelPhase ? "dotted" : null, backgroundColor: this.canvasStatuses(assumption.status)}} className='row'>{assumption.title}</div>)}
+  <div style={{minWidth:120 , minHeight:500}} className='col keyDouble'>
+  <div className='row'>  
+  <div style={{ minHeight:250}} className='col'>
+  <div className='row canvTitles box2'>Key Activities</div>
+  <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
+  {keyactivities && keyactivities.map(assumption => <div  
+    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
   </div>
   </div>
+  </div>
 
-  
   <div className='row canvasR4'>
   <div className='col'>
-  <div className='row'>Key Resources</div>
-  {keyresources && keyresources.map(assumption => <div  style={{borderStyle: assumption.phase === this.state.FunnelPhase ? "dotted" : null, backgroundColor: this.canvasStatuses(assumption.status)}}  className='row'>{assumption.title}</div>)}
+  <div className='row canvTitles box2'>Key Resources</div>
+  <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
+  {keyresources && keyresources.map(assumption => <div  
+    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
+  </div>
   </div>
 
   </div>
   </div>
-  <div className='col col--2 canvasR2'>
+
+  <div style={{minWidth:120 , minHeight:500 }} className='col keySingle'>
   <div className='col'>
-  <div className='row'>Value propositions</div>
-  {valuepropositions && valuepropositions.map(assumption => <div  style={{borderStyle: assumption.phase === this.state.FunnelPhase ? "dotted" : null, backgroundColor: this.canvasStatuses(assumption.status)}} className='row'>{assumption.title}</div>)}
-  </div>
-  
-  </div>
-  <div className='col col--3 canvasR2'>
-  <div className='row canvasR3' >
-  
-  <div className='col'>
-  <div className='row'>Customer Relationships </div>
-  {customerrelationship && customerrelationship.map(assumption => <div  style={{borderStyle: assumption.phase === this.state.FunnelPhase ? "dotted" : null, backgroundColor: this.canvasStatuses(assumption.status)}}  className='row'>{assumption.title}</div>)}
-  </div>
-  
-  </div>
-  <div className='row canvasR4' >
-  
-  <div className='col'>
-  <div className='row'>Channels </div>
-  {channels && channels.map(assumption => <div   style={{borderStyle: assumption.phase === this.state.FunnelPhase ? "dotted" : null,backgroundColor: this.canvasStatuses(assumption.status)}  } className='row'>{assumption.title}</div>)}
-  </div>
-  
+  <div className='row canvTitles box2'>Value propositions</div>
+  <div style={{ minHeight:100, maxHeight:400, overflow:'auto' }} className='col'>
+  {valuepropositions && valuepropositions.map(assumption => <div  
+    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
   </div>
   </div>
-  <div className='col col--2 Seagments'> 
-  
-  <div className='col'>
-  <div className='row'>Customer segments </div>
-  {segments && segments.map(assumption => <div  style={{borderStyle: assumption.phase === this.state.FunnelPhase ? "dotted" : null,backgroundColor: this.canvasStatuses(assumption.status)}  }  className='row'>{assumption.title}</div>)}
+
+
+  </div>
+  <div style={{minWidth:120 ,minHeight:500 }} className='col keyDouble'>
+  <div className='row ' >
+  <div style={{ minHeight:250}} className='col'>
+  <div className='row canvTitles box2'>Customer Relationships </div>
+  <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
+  {customerrelationship && customerrelationship.map(assumption => <div  
+    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
+  </div>
+ 
+  </div>
+  </div>
+  <div className='row ' >
+  <div className='col '>
+  <div className='row canvTitles box2'>Channels </div>
+  <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
+  {channels && channels.map(assumption => <div  
+    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
   </div>
   </div>
   </div>
-  <div className="row prjPhase2">
-  <div className="col col--6 rev1" > 
-  <div className='col'>
-  <div className='row'>Cost Structure</div>
-  {coststructure && coststructure.map(assumption => <div  style={{borderStyle: assumption.phase === this.state.FunnelPhase ? "dotted" : null, backgroundColor: this.canvasStatuses(assumption.status)}  } className='row'>{assumption.title}</div>)}
   </div>
-  
+
+
+  <div style={{minWidth:120 , minHeight:500 }}  className='col keySingle'> 
+  <div className='row canvTitles box2'>Customer segments </div>
+  <div style={{ minHeight:100, overflow:'auto' }} className='col'>
+  {segments && segments.map(assumption => <div  
+    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
   </div>
-  <div className="col col--6 rev2">
-  <div className='col'>
-  <div className='row'>Revenue streams</div>
-  {revenuestreams && revenuestreams.map(assumption => <div 
-    style={{ borderStyle: assumption.phase === this.state.FunnelPhase ? "dotted" : null,backgroundColor: this.canvasStatuses(assumption.status)}  }
-    className='row'>{assumption.title}</div>)}
-  </div></div>
+  </div>
+  </div>
+  <div className="row ">
+  <div className="col bordered col--6" > 
+  <div className='row canvTitles box2'>Cost Structure</div>
+  <div style={{ minHeight:100, maxHeight:100, overflow:'auto' }}  className='col'>
+  {coststructure && coststructure.map(assumption => <div  
+    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
+  </div>
+  </div>
+  <div className="col bordered col--6 ">
+  <div className='row canvTitles box2'>Revenue streams</div>
+  <div style={{ minHeight:100, maxHeight:100, overflow:'auto' }} className='col'>
+  {revenuestreams && revenuestreams.map(assumption => <div  
+    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
+  </div>
+  </div>
   </div>
     </div>
-    <div className="col col--2 prjRemarks">
+  
+<div style={{minWidth:150 ,maxWidth:150}} className="col col--2 prjRemarks">
     <div className='col'>
-    <div className='row'>Remarks</div>
-    {TeamRemarks && TeamRemarks.map(remark => <div style={{ backgroundColor: "orange" }} className='row'>{remark.description}</div>)}
+    <div className='row titlePRJDetails'>Remarks</div>
+    {TeamRemarks && TeamRemarks.map(remark => <div  className='row  listItem '>{<div
+      dangerouslySetInnerHTML={{
+        __html: remark.description,
+      }}
+    />}</div>)}
     </div>
       </div>  
-</div>
-</TabPane>
+      </div>
 
+</TabPane>
     </Tabs>
   </div>
       </Modal>
