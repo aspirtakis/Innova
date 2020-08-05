@@ -25,6 +25,7 @@ import ReactQuill from 'react-quill'; // ES6
 import EditableTable from './editableTable';
 import StageGates from './stagegates';
 import { size } from 'lodash';
+import Canvas from './canvas';
 
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
@@ -767,37 +768,7 @@ const gates = data.stageGates;
   );
 
   
-canvasStatuses= (status) => {
-if(status === "Accepted"){
-  return "#1eb53a";
-}
-if(status === "Rejected"){
-  return "#ffa3a3";
-}
-if(status === "Processing"){
-  return "#a2e8eb";
-}
 
-return null;
-
-} 
-canvasSymbols= (status) => {
-  if(status === "Accepted"){
-    return <FaCheck style={{fontSize:20, marginRight:7, paddingTop:2 ,color: this.canvasStatuses(status)}} /> 
-  //  return <i class="fa fa-camera-retro fa-lg"></i> 
-  }
-  if(status === "Rejected"){
-   // return "#ffa3a3";
-    return <FaTimes style={{marginRight:7, marginTop:2 ,color: this.canvasStatuses(status)}} /> 
-  }
-  if(status === "Processing"){
-   // return "#a2e8eb";
-    return <FaClock style={{marginRight:7, marginTop:2 ,color: this.canvasStatuses(status)}} /> 
-  }
-  
-  return null;
-  
-  } 
 
 
   render() {
@@ -810,15 +781,7 @@ canvasSymbols= (status) => {
  const CoachRemarks = rema && rema.filter(city => (city.type == null || city.type === "Coach"));
 
 //  const remUser = remarks.filter(mak => mak.type === "User");
-    const keyactivities = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "KeyActivities" ) ;
-    const keyresources = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "KeyResources" ) ;
-    const keypartners = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "KeyPartners" ) ;
-    const valuepropositions = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "ValuePropositions" ) ;
-    const customerrelationship = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "CustomerRelationship" ) ;
-    const channels = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "Channels" ) ;
-    const segments = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "CustomerSegments" ) ;
-    const coststructure = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "CostStructure" ) ;
-    const revenuestreams = this.state.assumptions && this.state.assumptions.filter((ert) => ert.category === "RevenueStreams" ) ;
+
     return (
       <Modal
         title={titles}
@@ -1079,8 +1042,6 @@ onChange={(date, dateString) => {
       
       </div>}
     
-
-
   <StageGates 
   onOK={this.props.onOK} 
   deleteMeeting={this.deleteMeeting}
@@ -1088,153 +1049,13 @@ onChange={(date, dateString) => {
   saveMeeting={this.saveMeeting}
    stageGates={this.state.stageGates} 
    nextGate={this.state.nexStageGate} />
-
 </TabPane>
 
 <TabPane style={{fontSize:10 ,color:'white'}} tab="Canvas" key="7">
-<div  style={{padding:10, overflow:'auto', flexWrap: 'nowrap'}} className="row">
-
-<div style={{minWidth:150 ,maxWidth:150}} className="col col--2 prjDetails ">
-<div className="titlePRJDetails">Project Details</div>
-<div className="listGroup">
-<div className="company-name">Ticket</div>
-<div className="company-name-copy">{data.coach}</div>
-</div>
-<div className="listGroup">
-<div className="company-name">Product Owner</div>
-<div className="company-name-copy">{data.cardPO}</div>
-</div>
-<div className="listGroup">
-<div className="company-name">Coach</div>
-<div className="company-name-copy">{data.coach}</div>
-</div>
-<div className="listGroup">
-<div className="company-name">Growth hacker</div>
-<div className="company-name-copy">{data.coach}</div>
-</div>
-
-<div className="listGroup2">
-<div className="company-name">Sponsor</div>
-<div className="company-name-copy">{data.spnsr}</div>
-</div>
-<div className="listGroup">
-<div className="company-name">Department</div>
-<div className="company-name-copy">{data.sponsor}</div>
-</div>
-
-
-
-</div>
-  
-<div style={{minWidth:800 }} className="col col--8 prjMainBoard nowrap ">
-  <div className="row titlePRJDetails2">
-  <div>Business Model Canvas -> </div>
-  <div>{data.FunnelPhase}</div>
-  </div>
-  <div className="row ">
-  <div className='col keySingle' style={{minWidth:150 ,}}>
-  <div  className='row canvTitles box2'>Key Partners</div>
-  <div style={{ minHeight:100, maxHeight:400, overflow:'auto' }} className='col'>
-  {keypartners && keypartners.map(assumption => <div  
-    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
-  </div>
-</div>
-
-  <div style={{minWidth:120 , minHeight:500}} className='col keyDouble'>
-  <div className='row'>  
-  <div style={{ minHeight:250}} className='col'>
-  <div className='row canvTitles box2'>Key Activities</div>
-  <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
-  {keyactivities && keyactivities.map(assumption => <div  
-    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
-  </div>
-  </div>
-  </div>
-
-  <div className='row canvasR4'>
-  <div className='col'>
-  <div className='row canvTitles box2'>Key Resources</div>
-  <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
-  {keyresources && keyresources.map(assumption => <div  
-    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
-  </div>
-  </div>
-
-  </div>
-  </div>
-
-  <div style={{minWidth:120 , minHeight:500 }} className='col keySingle'>
-  <div className='col'>
-  <div className='row canvTitles box2'>Value propositions</div>
-  <div style={{ minHeight:100, maxHeight:400, overflow:'auto' }} className='col'>
-  {valuepropositions && valuepropositions.map(assumption => <div  
-    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
-  </div>
-  </div>
-
-
-  </div>
-  <div style={{minWidth:120 ,minHeight:500 }} className='col keyDouble'>
-  <div className='row ' >
-  <div style={{ minHeight:250}} className='col'>
-  <div className='row canvTitles box2'>Customer Relationships </div>
-  <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
-  {customerrelationship && customerrelationship.map(assumption => <div  
-    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
-  </div>
- 
-  </div>
-  </div>
-  <div className='row ' >
-  <div className='col '>
-  <div className='row canvTitles box2'>Channels </div>
-  <div style={{ minHeight:100, maxHeight:200, overflow:'auto' }} className='col'>
-  {channels && channels.map(assumption => <div  
-    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
-  </div>
-  </div>
-  </div>
-  </div>
-
-
-  <div style={{minWidth:120 , minHeight:500 }}  className='col keySingle'> 
-  <div className='row canvTitles box2'>Customer segments </div>
-  <div style={{ minHeight:100, overflow:'auto' }} className='col'>
-  {segments && segments.map(assumption => <div  
-    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
-  </div>
-  </div>
-  </div>
-  <div className="row ">
-  <div className="col bordered col--6" > 
-  <div className='row canvTitles box2'>Cost Structure</div>
-  <div style={{ minHeight:100, maxHeight:100, overflow:'auto' }}  className='col'>
-  {coststructure && coststructure.map(assumption => <div  
-    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
-  </div>
-  </div>
-  <div className="col bordered col--6 ">
-  <div className='row canvTitles box2'>Revenue streams</div>
-  <div style={{ minHeight:100, maxHeight:100, overflow:'auto' }} className='col'>
-  {revenuestreams && revenuestreams.map(assumption => <div  
-    style={{ flexFlow: "row nowrap"}} className='row listItem '> { this.canvasSymbols(assumption.status)} {assumption.title}</div>)}
-  </div>
-  </div>
-  </div>
-    </div>
-  
-<div style={{minWidth:150 ,maxWidth:150}} className="col col--2 prjRemarks">
-    <div className='col'>
-    <div className='row titlePRJDetails'>Remarks</div>
-    {TeamRemarks && TeamRemarks.map(remark => <div  className='row  listItem '>{<div
-      dangerouslySetInnerHTML={{
-        __html: remark.description,
-      }}
-    />}</div>)}
-    </div>
-      </div>  
-      </div>
-
+<Canvas
+data={data}
+assumptions={this.state.assumptions}
+TeamRemarks={TeamRemarks} />
 </TabPane>
     </Tabs>
   </div>
