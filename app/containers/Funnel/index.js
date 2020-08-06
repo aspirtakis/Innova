@@ -494,7 +494,6 @@ class Funnel extends Component {
           .catch(taskData => console.log(taskData));
   };
   onSaveBirth = (task,date ) => {
-console.log("FIRESAVEBIRTH");
     const url4 = `${tasksUrl}/${task}`;
     fetch(url4, {
         method: 'PATCH',
@@ -740,7 +739,12 @@ console.log("FIRESAVEBIRTH");
         }
       }
   };
+  countTasks = (type) =>{
+
+  }
   render() {
+
+
       const { selectedTask, sestoken, checked } = this.state;
 
       return (
@@ -815,6 +819,7 @@ console.log("FIRESAVEBIRTH");
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[0].id}
                                   column={columnsdata[0]}
+                                  tasksCount={this.state.initiate.length}
                                   tasks={this.state[columnsdata[0].id]} />
                               <Column
                                   userRole={this.props.user.role}
@@ -822,7 +827,9 @@ console.log("FIRESAVEBIRTH");
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[1].id}
+                                  tasksCount={this.state.scope.length}
                                   column={columnsdata[1]}
+                        
                                   tasks={this.state[columnsdata[1].id]} />
                           </Row>
                       </Col>
@@ -840,6 +847,7 @@ console.log("FIRESAVEBIRTH");
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[2].id}
                                   column={columnsdata[2]}
+                                  tasksCount={this.state.problem.length}
                                   tasks={this.state[columnsdata[2].id]} />
                               <Column
                                       userRole={this.props.user.role}
@@ -847,6 +855,7 @@ console.log("FIRESAVEBIRTH");
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[3].id}
                                   column={columnsdata[3]}
+                                  tasksCount={this.state.solution.length}
                                   tasks={this.state[columnsdata[3].id]} />
                               <Column
                                       userRole={this.props.user.role}
@@ -854,13 +863,15 @@ console.log("FIRESAVEBIRTH");
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[4].id}
                                   column={columnsdata[4]}
+                                  tasksCount={this.state.business.length}
                                   tasks={this.state[columnsdata[4].id]} />
                                                         <Column
-                                      userRole={this.props.user.role}
+                                  userRole={this.props.user.role}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[6].id}
                                   column={columnsdata[6]}
+                                  tasksCount={this.state.feasibility.length}
                                   tasks={this.state[columnsdata[6].id]} />
                           </Row>
                       </Col>
@@ -880,6 +891,7 @@ console.log("FIRESAVEBIRTH");
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[5].id}
                                   column={columnsdata[5]}
+                                  tasksCount={this.state.mvp.length}
                                   tasks={this.state[columnsdata[5].id]} />
                                         <Column
                                       userRole={this.props.user.role}
@@ -887,6 +899,7 @@ console.log("FIRESAVEBIRTH");
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[8].id}
                                   column={columnsdata[8]}
+                                  tasksCount={this.state.softlaunch.length}
                                   tasks={this.state[columnsdata[8].id]} />
                           </Row>
                       </Col>
@@ -904,6 +917,7 @@ console.log("FIRESAVEBIRTH");
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[7].id}
+                                  tasksCount={this.state.scalelaunch.length}
                                   column={columnsdata[7]}
                                   tasks={this.state[columnsdata[7].id]} />
                           <Column
@@ -912,6 +926,7 @@ console.log("FIRESAVEBIRTH");
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[11].id}
                                   column={columnsdata[11]}
+                                  tasksCount={this.state.integration.length}
                                   tasks={this.state[columnsdata[11].id]} />
 
                                                 

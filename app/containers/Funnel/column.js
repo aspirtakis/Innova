@@ -32,12 +32,17 @@ const TaskList = styled.div`
 
 export default class Column extends React.Component {
   render() {
-    const { userRole } = this.props;
+    const { userRole,tasksCount } = this.props;
 
     return (
       <Container>
         <div style={styles.ColTitles}>
-          <div className="title-bar__title">{this.props.column.title}(5)</div>
+          <div className="title-bar__title">
+            {this.props.column.title}
+            (
+            {tasksCount}
+            )
+          </div>
         </div>
         <Droppable droppableId={this.props.column.id} type="TASK">
           {(provided, snapshot) => (
