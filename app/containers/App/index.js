@@ -212,7 +212,7 @@ class App extends React.Component {
 
     return (
       <MainContent 
-        style={{padding:50}}
+
         sidebarIsOpen={sidebarIsOpen}
         selectedMenuItem={selectedMenuItem}
         showHeaderTabs={showHeaderTabs}

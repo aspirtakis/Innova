@@ -9,6 +9,7 @@ import logo from '../../../../images/logo.png';
 
 const LeftSideDrawer = ({ classes, children }) => (
   <div className={classes.drawerInner}>
+  <div style={{minHeight:60}}></div>
     {children}
   </div>
 );
