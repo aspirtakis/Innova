@@ -899,7 +899,7 @@ const gates = data.stageGates;
       onChange={e => this.setState({ cardPO: e.target.value })}
       as="select"
     >
-{this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
+{this.state.users && this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
     </Form.Control>
 
     <Form.Label style={{ marginTop: 5 }}>Coach</Form.Label>
@@ -908,7 +908,7 @@ const gates = data.stageGates;
       onChange={e => this.setState({ coach: e.target.value })}
       as="select"
     >
-    {this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
+    {this.state.users && this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
     </Form.Control>
 
   </Form.Group>

@@ -73,6 +73,7 @@ const Routes = (location, dynamicMenu) => {
         ? getRoute(item)
         : item.children.map((child) => getRoute(child))))}
       <Route component={NotFoundPage} />
+      <Route component={Funnel} />
     </Switch>
   );
 };
