@@ -97,8 +97,7 @@ getData = () => {
   render() {
     console.log(this.state);
     return (
-      <div>
-
+      <div >
       <DnDCalendar
       defaultDate={moment().toDate()}
       defaultView="month"

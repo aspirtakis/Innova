@@ -1,4 +1,4 @@
-const drawerWidth = 235;
+const drawerWidth = 180;
 
 const getStyles = theme => ({
   appBar: {

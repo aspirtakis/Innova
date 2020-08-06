@@ -9,9 +9,6 @@ import logo from '../../../../images/logo.png';
 
 const LeftSideDrawer = ({ classes, children }) => (
   <div className={classes.drawerInner}>
-    <div style={{display:'inline-flex'}} className={classes.drawerHeader}>
-      <img style={{paddingLeft:10, paddingBottom:10}} src={logo} alt="Logo" />
-    </div>
     {children}
   </div>
 );

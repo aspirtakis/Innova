@@ -211,7 +211,8 @@ class App extends React.Component {
     const sidebarIsOpen = this.state.open;
 
     return (
-      <MainContent
+      <MainContent 
+        style={{padding:50}}
         sidebarIsOpen={sidebarIsOpen}
         selectedMenuItem={selectedMenuItem}
         showHeaderTabs={showHeaderTabs}

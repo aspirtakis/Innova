@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Collapse from '@material-ui/core/Collapse';
+import logo from '../../../images/logo.png';
 
 import {
   makeSelectMenu,
@@ -386,6 +387,9 @@ class LeftSideBar extends React.Component {
         onMouseLeave={type === 'permanent' ? this.closeDrawer : null}
         onClose={this.props.handleDrawerToggle}
       >
+      <div style={{display:'inline-flex'}} className={classes.drawerHeader}>
+      <img style={{paddingLeft:10, paddingBottom:10}} src={logo} alt="Logo" />
+    </div>
         <LeftSideDrawer {...this.props}>
           {this.renderDrawerMenuItems()}
         </LeftSideDrawer>

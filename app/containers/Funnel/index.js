@@ -766,7 +766,7 @@ console.log("FIRESAVEBIRTH");
                   data={selectedTask}
                   reload={this.getData}
                   footer={null} />
-              {!(this.props.user.role === 'Tv' ) && this.filterBar()}
+              {/*!(this.props.user.role === 'Tv' ) && this.filterBar()*/}
               <DragDropContext  
               onDragEnd={this.onDragEnd}>
                   <div style={styles.coreContainer}>
@@ -774,7 +774,7 @@ console.log("FIRESAVEBIRTH");
                           <Col style={styles.coreColumn}>
                               <Row>
                                   <div style={styles.titles}>
-                                      <div className="title-bar__title">Operations21</div>
+                                      <div className="title-bar__title">Operations</div>
                                   </div>
                               </Row>
                               <Row style={styles.rowsborder}></Row>

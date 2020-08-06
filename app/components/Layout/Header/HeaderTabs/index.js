@@ -15,6 +15,7 @@ import Profile from 'containers/Layout/Profile';
 import Search from 'components/Layout/Header/Search';
 import SettingsButton from 'containers/Layout/Settings/settingsButton';
 import Tabs from './Tabs';
+import logo from '../../../../images/logo.png';
 
 import {
   AppBody,
@@ -87,9 +88,10 @@ class HeaderTabs extends React.Component {
         )}
       >
         <Toolbar style={{maxHeight:1}} disableGutters={!drawerIsOpen}>
-          <IconButton aria-label="open drawer" onClick={handleDrawerToggle}>
-            <MenuIcon />
-          </IconButton>
+        <div style={{display:'inline-flex'}} className={classes.drawerHeader}>
+        <img style={{paddingTop:2, paddingLeft:10, paddingBottom:1}} src={logo} alt="Logo" />
+      </div>
+  
           {openViews && (
             <Tabs
               openViews={openViews}
