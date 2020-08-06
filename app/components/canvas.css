@@ -3,12 +3,12 @@
   margin-left: 15px;
 }
 .prjRemarks {
-  border: 2px solid rgb(213, 214, 213);
+  border: 1px solid rgb(213, 214, 213);
 }
 
 .prjPhaseTop {
   max-height: 100px;  
-  border: 2px solid rgb(168, 168, 170);
+  border: 2px solid rgb(252, 252, 252);
   margin-bottom: 10px;
 }
 .flex-container {
@@ -136,7 +136,7 @@
     font-size: 12px;
     letter-spacing: 0;
     line-height: 16px;
-    margin: 5px;
+    margin: 2px;
   }
 
   .box {
@@ -149,6 +149,6 @@
   .box2 {
     margin-top: 5px;
     margin-bottom: 3px;
-    padding-left: 15px;
+    padding-left: 12px;
 
   }
