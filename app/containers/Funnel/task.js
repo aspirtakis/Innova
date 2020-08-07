@@ -57,6 +57,7 @@ const n = moment(this.props.task.birthonproblem).fromNow(true);
 return n;
 
   }
+  
 
  truncated = (source, size) => {
     return source.length > size ? source.slice(0, size - 1) + "…" : source;
@@ -67,6 +68,9 @@ return n;
       const taskproblem = this.props.task;
       var string = taskproblem.projectname;
 
+console.log(taskproblem);
+var po = taskproblem.cardpo.charAt(0);
+var coach = taskproblem.coach.charAt(0);
 
 
 
@@ -86,7 +90,7 @@ return n;
                       isDragDisabled={isDragDisabled}
                   >
 
-                  <Tooltip placement="top" title={taskproblem.projectname}>
+
                       <div onClick={() => this.props.openEdit(taskproblem)}>
                           <div className="card">
                          
@@ -101,7 +105,9 @@ return n;
                                   </div>
                                   </div>
                                   <div className="col col--8">
+                                  <Tooltip placement="top" title={taskproblem.projectname}>
                                   <h3 className="titel">{this.truncated(taskproblem.projectname,10)}</h3>
+                                  </Tooltip>
                                   </div>
                                   <div  className="col col--2">
                                   <img src={dots}></img>
@@ -125,13 +131,14 @@ return n;
                       
                                   <div style={{ color:'gray', marginTop:15, flexWrap: 'nowrap'}} className="row">
                                   <div  style={{maxWidth:24}} className="col col--4">
-                
-                                  <Avatar style={{maxWidth:24, maxHeight:24}} ></Avatar>
-                         
+                                  <Tooltip placement="top" title={taskproblem.cardpo}>
+                                  <Avatar style={{maxWidth:24, maxHeight:24}} >{po}</Avatar>
+                         </Tooltip>
                                   </div>
                                   <div style={{maxWidth:39}} className="col col--4">
-
-                                  <Avatar style={{maxWidth:24, maxHeight:24}} ></Avatar>
+                                  <Tooltip placement="top" title={taskproblem.coach}>
+                                  <Avatar style={{maxWidth:24, maxHeight:24}} >{coach}</Avatar>
+                         </Tooltip>
                                   </div>
 
                     
@@ -139,7 +146,7 @@ return n;
                               </div>
                           </div>
                       </div>
-                      </Tooltip>
+              
                   </Container>
               )}
           </Draggable>
