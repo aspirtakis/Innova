@@ -14,7 +14,7 @@ import { styles } from './funnel_styles';
 const Container = styled.div`
   display: flex;
   width:100%;
-  min-height: 780px;
+  min-height: 760px;
   flex-direction: column;
   height: calc(100vh - 8.6rem);
   background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
@@ -22,12 +22,12 @@ const Container = styled.div`
 `;
 
 const TaskList = styled.div`
-  padding: 1px;
+  padding-right:5px;
   transition: background-color 0.2s ease;
   background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
   max-height: calc(100vh - 11.8rem);
   height: calc(100vh - 8.6rem);
-  overflow-y: auto;
+  overflow-x: auto;
 `;
 
 export default class Column extends React.Component {
