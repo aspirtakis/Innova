@@ -1,8 +1,10 @@
 .card {
     height: 142px;
-    width: 210px;
-    border-radius: 2px;
+    min-width: 210px;
+    max-width: 210px;
+
     background-color: #FFFFFF;
+
   }
 
   .titel {

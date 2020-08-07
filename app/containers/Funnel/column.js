@@ -22,12 +22,13 @@ const Container = styled.div`
 `;
 
 const TaskList = styled.div`
-  padding-right:5px;
+  padding-left:5px;
+  padding-right:1px;
   transition: background-color 0.2s ease;
   background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
   max-height: calc(100vh - 11.8rem);
   height: calc(100vh - 8.6rem);
-  overflow-x: auto;
+  overflow-y: auto;
 `;
 
 export default class Column extends React.Component {
