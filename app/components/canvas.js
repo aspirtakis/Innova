@@ -70,41 +70,51 @@ class Canvas extends React.Component {
 
 
     return (
-      <div  style={{padding:10, overflow:'auto', flexWrap: 'nowrap'}} className="row">
-
-      <div style={{minWidth:150 ,maxWidth:150}} className="col col--2 prjDetails ">
-      <div className="titlePRJDetails">Project Details</div>
+      <div>
+      <div className="row">
+      <div  className="col col--12 prjDetails ">
+      <div className="row">     
+       <div className="titlePRJDetails">Project Details</div>
       <div className="listGroup">
       <div className="company-name">Ticket</div>
       <div className="company-name-copy">{data.coach}</div>
       </div>
+
       <div className="listGroup">
       <div className="company-name">Product Owner</div>
       <div className="company-name-copy">{data.cardPO}</div>
       </div>
+
+
       <div className="listGroup">
       <div className="company-name">Coach</div>
       <div className="company-name-copy">{data.coach}</div>
       </div>
+
       <div className="listGroup">
       <div className="company-name">Growth hacker</div>
       <div className="company-name-copy">{data.coach}</div>
       </div>
-      
-      <div className="listGroup2">
+
+      <div className="listGroup">
       <div className="company-name">Sponsor</div>
       <div className="company-name-copy">{data.spnsr}</div>
       </div>
+
+
       <div className="listGroup">
       <div className="company-name">Department</div>
       <div className="company-name-copy">{data.sponsor}</div>
       </div>
-      
-      
+
+       </div>
       
       </div>
-        
-      <div style={{minWidth:800 }} className="col col--8 prjMainBoard nowrap ">
+      </div>
+   
+      <div  style={{marginLeft:15, overflow:'auto', flexWrap: 'nowrap'}} className="row">
+
+      <div style={{minWidth:800 ,alignItems: 'center',}} className="col col--10 prjMainBoard nowrap ">
         <div className="row titlePRJDetails2">
         <div>Business Model Canvas -> </div>
         <div>{data.FunnelPhase}</div>
@@ -243,7 +253,7 @@ class Canvas extends React.Component {
         </div>
           </div>
         
-      <div style={{minWidth:150 ,maxWidth:150}} className="col col--2 prjRemarks">
+      <div style={{minWidth:180 ,maxWidth:180}} className="col col--2 prjRemarks">
           <div className='col'>
           <div className='row titlePRJDetails'>Remarks</div>
           {TeamRemarks && TeamRemarks.map(remark => <div  className='row  listItem '>{<div
@@ -253,6 +263,7 @@ class Canvas extends React.Component {
           />}</div>)}
           </div>
             </div>  
+            </div>
             </div>
     );
   }
