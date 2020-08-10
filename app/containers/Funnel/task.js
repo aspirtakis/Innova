@@ -52,12 +52,21 @@ var duration = moment.duration(now.diff(end));
 var days = duration.asDays();
 //console.log(days)
 //var n = days.toFixed();
-
 const n = moment(this.props.task.birthonproblem).fromNow(true);
 return n;
 
   }
-  
+  countExperiments = (problem) => {
+   let count = 0; 
+      
+   const lak = problem.assumptions.map((assumption) => count = count + assumption.experiments.length );
+
+return count;
+
+
+
+      }
+
 
  truncated = (source, size) => {
     return source.length > size ? source.slice(0, size - 1) + "…" : source;
@@ -123,13 +132,8 @@ var coach = taskproblem.coach.charAt(0);
                                   </div>
 
                                   <div style={{ color:'gray', marginTop:10,}} className="row">
-                                  <div className="col col--12 experiments"  >{taskproblem.assumptions.map((assum) => assum.experiments.length
-            
-                              
-              
-                                    
-                                      )}
-                                     Experiments | 10 Days
+                                  <div className="col col--12 experiments"  >{this.countExperiments(taskproblem)}
+                                  {' '}Experiments | {this.getTime()}
                                   </div>
                     
                                   </div>
@@ -146,7 +150,9 @@ var coach = taskproblem.coach.charAt(0);
                                   <Avatar style={{maxWidth:24, maxHeight:24}} >{coach}</Avatar>
                          </Tooltip>
                                   </div>
+                
 
+    
                     
                                   </div>
                               </div>
