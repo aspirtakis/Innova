@@ -107,23 +107,25 @@ export const styles = {
   },
   coreColumn: {
     margin: 3,
-    minWidth: 460,
-    backgroundColor: 'white',
+    minWidth: 468,
     maxHeight: 800,
     minHeight: '100%',
+
+
   },
 
   coreColumnExp: {
     margin: 3,
-    minWidth: 910,
-    backgroundColor: 'white',
+    minWidth: 912,
     maxHeight: 800,
     minHeight: '100%',
+
   },
 
   ColTitles: {
     fontSize: 22,
     marginTop: 8,
+    marginLeft:6,
     fontFamily: 'KPN Metric',
     fontWeight: 300,
     color: '#333333',

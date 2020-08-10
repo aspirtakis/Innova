@@ -839,9 +839,9 @@ class Funnel extends Component {
                       </Col>
                       <Col xs={4} style={styles.coreColumnExp}>
                           <Row>
-                              <Paper style={styles.titles}>
+                              <div style={styles.titles}>
                                   <div className="title-bar__title">Validate</div>
-                              </Paper>
+                              </div>
                           </Row>
                           <Row style={styles.rowsborder}></Row>
                           <Row style={{ flexWrap: 'nowrap' }}>
@@ -881,9 +881,9 @@ class Funnel extends Component {
                       </Col>
                       <Col style={styles.coreColumn}>
                           <Row>
-                              <Paper style={styles.titles}>
+                              <div style={styles.titles}>
                                   <div className="title-bar__title">Execute</div>
-                              </Paper>
+                              </div>
                           </Row>
                           <Row style={styles.rowsborder}></Row>
 

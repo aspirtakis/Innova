@@ -77,7 +77,7 @@ return count;
       const taskproblem = this.props.task;
       var string = taskproblem.projectname;
 
-console.log(taskproblem);
+//console.log(taskproblem);
 var po = taskproblem.cardpo.charAt(0);
 var coach = taskproblem.coach.charAt(0);
 

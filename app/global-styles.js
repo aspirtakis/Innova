@@ -93,16 +93,20 @@ const GlobalStyle = createGlobalStyle`
   /* main container */
   main.main-container {
     background-color: #F3F3F3;
+    padding:0;
+    
   }
 
   main.main-container-sidebar-closed {
     margin-left: 60px;
     margin-top: 100px;
+    min-width:1000px;
   }
 
   main.main-container-sidebar-opened {
     margin-left: 240px;
     margin-top: 100px;
+    padding:0;
 
   }
 

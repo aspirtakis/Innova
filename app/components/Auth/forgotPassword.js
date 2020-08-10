@@ -44,7 +44,7 @@ class ForgotPassword extends React.Component {
         .then(response => response.json())
         .then(remarkData => {
         //  this.props.onOK();
-        console.log(remarkData);
+        //console.log(remarkData);
         this.setState({
           showEmailSentMessage: true,
           message: `An email has been sent to ${email} with further instructions.`,

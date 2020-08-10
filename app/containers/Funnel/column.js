@@ -72,7 +72,7 @@ export default class Column extends React.Component {
                   color: 'black',
                   margin: 'auto',
                   backgroundColor: 'lightgray',
-                  minWidth: '100%',
+                  minWidth: '60%',
                   fontSize: 14,
                 }}
                 id="music"

@@ -69,7 +69,7 @@ class AuthPage extends React.Component {
     this.props.dispatch(sessionCheck());
     const value=queryString.parse(this.props.location.search);
     const code=value.code ? value.code : null;
-    console.log(value);
+    //console.log(value);
 
     if(location.pathname === '/register'){
       const email=value.email;
@@ -199,7 +199,7 @@ class AuthPage extends React.Component {
       .then(response => response.json())
       .then(remarkData => {
       //  this.props.onOK();
-      console.log(remarkData);
+      //console.log(remarkData);
       this.setState({
         showRegEmailSentMessage: true,
         messageReg: `An email has been sent to ${email} with further instructions.`,
@@ -250,7 +250,7 @@ class AuthPage extends React.Component {
           //Email valid. Procees to test if it's from the right domain (Second argument is to check that the string ENDS with this domain, and that it doesn't just contain it)
           if(emailt.indexOf("@kpn.com", emailt.length - "@kpn.com".length) !== -1){
               //VALID
-              console.log("VALID");
+              //console.log("VALID");
               return true;
           }
       }
@@ -258,7 +258,7 @@ class AuthPage extends React.Component {
   }
 
   const testemail = validateEmail(email);
-  console.log(testemail);
+  //console.log(testemail);
   if(!testemail){
     this.setState({
       register: registerModified,

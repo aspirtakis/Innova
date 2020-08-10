@@ -27,7 +27,7 @@ class MainContent extends React.PureComponent {
 
     return (
       <main
-        style={{padding:15}}
+
         className={classNames(classes.content, mainContainerClass, subtabs)}
       >
         {this.props.children}

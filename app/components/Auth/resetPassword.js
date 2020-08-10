@@ -24,7 +24,7 @@ class ResetPassword extends React.Component {
   render() {
     const { classes, email, onEmailChange, onGoBack,code,register } = this.props;
     const { showEmailSentMessage,newpass,newpass2 } = this.state;
-    console.log(register);
+    //console.log(register);
 
     return (
       <div className={classes.boxContainer}>
