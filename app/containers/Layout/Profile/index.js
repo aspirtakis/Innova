@@ -47,7 +47,7 @@ class Profile extends React.Component {
     //console.log(user.first_name);
     var first = user.first_name.charAt(0);
     var last = user.last_name.charAt(0);
-var av = first+last;
+    var av = first+last;
 
  
 

@@ -784,6 +784,7 @@ class Funnel extends Component {
                               <Row style={styles.rowsborder}></Row>
                               <Row style={{ flexWrap: 'nowrap' }}>
                                   <Column
+                          
                                       userRole={this.props.user.role}
                                       xs={6}
                                       openEdit={this.handleOpenEdit}
@@ -819,8 +820,10 @@ class Funnel extends Component {
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[0].id}
                                   column={columnsdata[0]}
+                                  style={{minWidth:260}}
                                   tasksCount={this.state.initiate.length}
                                   tasks={this.state[columnsdata[0].id]} />
+                           
                               <Column
                                   userRole={this.props.user.role}
                                   xs={6}
@@ -829,6 +832,7 @@ class Funnel extends Component {
                                   key={columnsdata[1].id}
                                   tasksCount={this.state.scope.length}
                                   column={columnsdata[1]}
+                                  style={{minWidth:260}}
                         
                                   tasks={this.state[columnsdata[1].id]} />
                           </Row>

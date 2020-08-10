@@ -82,7 +82,7 @@ var coach = taskproblem.coach.charAt(0);
               isDragDisabled={isDragDisabled}
           >
               {(provided, snapshot) => (
-                  <Container
+                  <div
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
@@ -98,10 +98,10 @@ var coach = taskproblem.coach.charAt(0);
                                   <div className="row">
                                   <div  className="col col--1" >
                                   <div style={{ marginLeft:1, }} className="row">
-                                  {taskproblem.status === 'green' && <SentimentVerySatisfiedIcon style= {{maxWidth:15, color: 'green'}}></SentimentVerySatisfiedIcon>}
-                                  {taskproblem.status === 'yellow' && <SentimentSatisfiedIcon style= {{maxWidth:15, color: 'orange'}}></SentimentSatisfiedIcon>}
-                                  {taskproblem.status === 'orange' && <SentimentVeryDissatisfiedIcon style= {{maxWidth:15}}></SentimentVeryDissatisfiedIcon>}
-                                  {taskproblem.status === 'red' && <SentimentVeryDissatisfiedIcon style= {{maxWidth:15, color: 'red'}} ></SentimentVeryDissatisfiedIcon>}
+                                  {taskproblem.status === 'green' && <div className='circle' style= {{ backgroundColor: 'green'}} ></div>}
+                                  {taskproblem.status === 'yellow' && <div className='circle'  style= {{ backgroundColor: 'orange'}}></div>}
+                                  {taskproblem.status === 'orange' && <div className='circle'  style= {{maxWidth:15}}></div>}
+                                  {taskproblem.status === 'red' && <div className='circle'  style= {{backgroundColor: 'red'}} ></div>}
                                   </div>
                                   </div>
                                   <div className="col col--8">
@@ -123,13 +123,19 @@ var coach = taskproblem.coach.charAt(0);
                                   </div>
 
                                   <div style={{ color:'gray', marginTop:10,}} className="row">
-                                  <div className="col col--12 experiments"  >4 Experiments | 10 Days
+                                  <div className="col col--12 experiments"  >{taskproblem.assumptions.map((assum) => assum.experiments.length
+            
+                              
+              
+                                    
+                                      )}
+                                     Experiments | 10 Days
                                   </div>
                     
                                   </div>
 
                       
-                                  <div style={{ color:'gray', marginTop:15, flexWrap: 'nowrap'}} className="row">
+                                  <div style={{ paddingLeft:1, color:'gray', marginTop:10 ,flexWrap: 'nowrap'}} className="row">
                                   <div  style={{maxWidth:24}} className="col col--4">
                                   <Tooltip placement="top" title={taskproblem.cardpo}>
                                   <Avatar style={{maxWidth:24, maxHeight:24}} >{po}</Avatar>
@@ -147,7 +153,7 @@ var coach = taskproblem.coach.charAt(0);
                           </div>
                       </div>
               
-                  </Container>
+                  </div>
               )}
           </Draggable>
       );
