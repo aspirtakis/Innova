@@ -7,6 +7,23 @@
 
   }
 
+  .right {
+    position: absolute;
+    right: 7px;
+  }
+  .marginLeft {
+
+    left: 3px;
+  }
+
+  .right2 {
+    float: right;
+    position: relative;
+    right: 8px;
+    text-align: right;
+
+  }
+
   .titel {
     color: #333333;
     font-family: "KPN Metric";
@@ -29,11 +46,11 @@
     height: 10px;
 }
 
-.oih-fit {
+.oih-fonts {
   color: #333333;
   font-family: "KPN Metric";
   font-size: 15px;
-  margin-left: 3px;
+
 
 }
 .experiments {

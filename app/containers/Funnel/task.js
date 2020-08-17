@@ -80,6 +80,7 @@ return count;
 //console.log(taskproblem);
 var po = taskproblem.cardpo.charAt(0);
 var coach = taskproblem.coach.charAt(0);
+var horizon = taskproblem.horizon.charAt(1);
 
 
 
@@ -118,20 +119,35 @@ var coach = taskproblem.coach.charAt(0);
                                   <h3 className="titel">{this.truncated(taskproblem.projectname,10)}</h3>
                                   </Tooltip>
                                   </div>
-                                  <div  className="col col--2">
+                                  <div  className="col col--2 right">
                                   <img src={dots}></img>
                                   </div>
                                   </div>
 
 
 
-                                  <div style={{ color:'gray', marginTop:10,}} className="row">
-                                  <div className="col col--12 oih-fit"  >{taskproblem.theme}
-                                  </div>
-                    
+                                  <div style={{ color:'gray', marginTop:15,}} className="row">
+                                  <div  className="col col--8 oih-fonts marginLeft"  >{taskproblem.theme}
                                   </div>
 
-                                  <div style={{ color:'gray', marginTop:10,}} className="row">
+                                  <div className="col col--4 oih-fonts right2" > 
+                                  <Tooltip placement="top" title={taskproblem.funnel}>
+                                 <div>
+                                 
+                                 {this.truncated(taskproblem.funnel,5)}
+                                 </div> 
+                         </Tooltip>
+                                  
+                                  
+                                  
+                             
+                                  </div>
+                                  </div>
+
+
+
+
+                                  <div style={{ color:'gray', marginTop:8,}} className="row">
                                   <div className="col col--12 experiments"  >{this.countExperiments(taskproblem)}
                                   {' '}Experiments | {this.getTime()}
                                   </div>
@@ -150,6 +166,12 @@ var coach = taskproblem.coach.charAt(0);
                                   <Avatar style={{maxWidth:24, maxHeight:24}} >{coach}</Avatar>
                          </Tooltip>
                                   </div>
+                                  <div style={{ maxWidth:39}} className="col col--8, right">
+                                  <Tooltip placement="top" title={"Horizon > "+taskproblem.horizon}>
+                                  <Avatar style={{fontSize:12, maxWidth:24, maxHeight:24}} >{taskproblem.horizon}</Avatar>
+                         </Tooltip>
+                                  </div>
+                
                 
 
     
