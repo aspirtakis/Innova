@@ -51,6 +51,7 @@ export const styles = {
 
   rowsborder: {
     minHeight: 4,
+    marginRight: 0.2,
     backgroundColor: '#009900',
 
   },
@@ -106,7 +107,7 @@ export const styles = {
 
   },
   coreColumn: {
-    margin: 3,
+    marginTop: 3,
     minWidth: 468,
     maxHeight: 800,
     minHeight: '100%',
@@ -115,7 +116,8 @@ export const styles = {
   },
 
   coreColumnExp: {
-    margin: 3,
+    marginTop: 3,
+
     minWidth: 912,
     maxHeight: 800,
     minHeight: '100%',
