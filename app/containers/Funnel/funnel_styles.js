@@ -51,7 +51,7 @@ export const styles = {
 
   rowsborder: {
     minHeight: 4,
-    marginRight: 0.2,
+    marginRight: 1,
     backgroundColor: '#009900',
 
   },

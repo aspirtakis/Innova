@@ -168,7 +168,7 @@ var horizon = taskproblem.horizon.charAt(1);
                                   </div>
                                   <div style={{ maxWidth:39}} className="col col--8, right">
                                   <Tooltip placement="top" title={"Horizon > "+taskproblem.horizon}>
-                                  <Avatar style={{fontSize:12, maxWidth:24, maxHeight:24}} >{taskproblem.horizon}</Avatar>
+                                  <div className='row right2' style={{marginTop:5,fontWeight:'bold', fontSize:12, maxWidth:24, maxHeight:24}} >{taskproblem.horizon}</div>
                          </Tooltip>
                                   </div>
                 
