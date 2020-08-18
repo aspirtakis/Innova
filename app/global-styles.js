@@ -117,7 +117,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  @import '@kpn-style/bundle/bundle';
+
 
   .main-container.subtabs {
     height: calc(100% - 112px);
