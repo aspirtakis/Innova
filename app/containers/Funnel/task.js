@@ -58,14 +58,17 @@ return n;
   }
   countExperiments = (problem) => {
    let count = 0; 
-      
    const lak = problem.assumptions.map((assumption) => count = count + assumption.experiments.length );
-
 return count;
 
-
-
       }
+      countAssumptions = (problem) => {
+        let count = problem.assumptions.length; 
+
+     return count;
+     
+           }
+     
 
 
  truncated = (source, size) => {
@@ -148,8 +151,7 @@ var horizon = taskproblem.horizon.charAt(1);
 
 
                                   <div style={{ color:'gray', marginTop:8,}} className="row">
-                                  <div className="col col--12 experiments"  >{this.countExperiments(taskproblem)}
-                                  {' '}Experiments | {this.getTime()}
+                                  <div className="col col--12 experiments"  >{this.countAssumptions(taskproblem)}{' '}Assumptions({this.countExperiments(taskproblem)}{')'}{' '}|{' '}{this.getTime()}
                                   </div>
                     
                                   </div>
