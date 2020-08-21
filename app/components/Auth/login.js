@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { isMobile } from 'utils/menuHelper';
 import styles from './styles';
+import logo from '../../images/logo.png';
 
 const Login = ({
   classes,
@@ -36,12 +37,7 @@ const Login = ({
     <div className={classes.boxWrapper}>
       <Paper className={classes.paper} elevation={3} square>
         <div className={classes.logoContainer}>
-        
-          <img
-            style={{ width: 295 }}
-            src="https://dcassetcdn.com/design_img/8177/22993/22993_244281_8177_thumbnail.jpg"
-            alt="PublicWays Innovation Hub login"
-          />
+        <img  src={logo} alt="Logo" />
         </div>
 
         {errorMessage ? (

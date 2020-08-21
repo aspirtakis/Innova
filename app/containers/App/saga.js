@@ -27,7 +27,7 @@ import {
 
 export function* fetchSession() {
   try {
-    // console.log('SASASDAS');
+     console.log('FetchSession');
     const tok = localStorage.getItem('token');
     const options = {
       method: 'GET',
