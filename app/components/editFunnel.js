@@ -70,15 +70,16 @@ class ModalEditTask extends React.Component {
       stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
     };
   }
+  componentDidMount(){
+    this.props.sessionCheck();
+  }
 
   componentWillReceiveProps(next) {
-        this.props.sessionCheck();
+
     const { data } = next;
-    
-   // console.log(next.users);
-const test1 = next.users && next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
-//const test = test1.filter(word => word.role_id !== '20);
-//console.log(test1);
+
+//const test1 = next.users && next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
+
 const gates = data.stageGates;
     this.setState({
       users:next.users,
