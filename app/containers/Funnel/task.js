@@ -99,8 +99,8 @@ var horizon = taskproblem.horizon.charAt(1);
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
-                      isDragging={snapshot.isDragging}
-                      isDragDisabled={isDragDisabled}
+                     // isDragging={snapshot.isDragging}
+                  //   isDragDisabled={isDragDisabled}
                   >
 
 
