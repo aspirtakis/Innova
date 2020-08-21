@@ -111,6 +111,7 @@ export const styles = {
     minWidth: 468,
     maxHeight: 800,
     minHeight: '100%',
+    backgroundColor: '#F3F3F3',
 
 
   },

@@ -909,9 +909,9 @@ class Funnel extends Component {
                       </Col>
                       <Col style={styles.coreColumn}>
                           <Row>
-                              <Paper style={styles.titles}>
-                                  <div className="title-bar__title">Scale</div>
-                              </Paper>
+                          <div style={styles.titles}>
+                          <div className="title-bar__title">Scale</div>
+                      </div>
                           </Row>
                           <Row style={styles.rowsborder}></Row>
 
