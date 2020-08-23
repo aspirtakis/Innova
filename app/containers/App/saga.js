@@ -122,8 +122,9 @@ export function* fetchRegister(action) {
     yield put({
       type: AUTHENTICATED,
       user: {
-        name: 'John Smith',
+        name: action.payload.fullName,
         email: action.payload.email,
+        password: action.payload.password,
       },
     });
   } catch (e) {

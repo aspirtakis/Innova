@@ -22,21 +22,19 @@ class ResetPassword extends React.Component {
 
 
   render() {
-    const { classes, email, onEmailChange, onGoBack,code } = this.props;
+    const { classes, email, onEmailChange, onGoBack,code,register } = this.props;
     const { showEmailSentMessage,newpass,newpass2 } = this.state;
+    console.log(register);
 
     return (
       <div className={classes.boxContainer}>
         <div className={classes.boxWrapper}>
           <Paper className={classes.paper} elevation={3} square>
             <div>
-              <div className={classes.title}>Change your password </div>
+              <div className={classes.title}>{register ? "Registration confirmation " : "Reset your password"} </div>
               <div className={classes.logoSmallContainer}>
-
               </div>
             </div>
-
-
             <form>
               {showEmailSentMessage ? null : (
                 <div>
@@ -47,7 +45,6 @@ class ResetPassword extends React.Component {
                 disabled
                 
               />
-
 
             <TextField
             label="New Password"
@@ -72,15 +69,14 @@ class ResetPassword extends React.Component {
               )}
 
               <div className={classes.buttonsContainer}>
-     
-
+    
               {newpass === newpass2 ?      <Button
                 color="primary"
                 className={classes.boxBtn}
                 onClick={() => this.props.rst(newpass2)}
             
               >
-                Reset
+              {register ? "Complete Registration " : "Reset your password"}
               </Button> : null}
              
                 
