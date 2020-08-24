@@ -26,7 +26,7 @@
 
   .titel {
     color: #333333;
-    font-family: "KPN Metric";
+    font-family: "kpn-metric-bold";
     font-size: 21px;
     font-weight: bold;
     max-height:10px;
@@ -48,7 +48,7 @@
 
 .oih-fonts {
   color: #333333;
-  font-family: "KPN Metric";
+  font-family: "kpn-metric-normal";
   font-size: 15px;
 
 
@@ -58,7 +58,7 @@
     width: 123px;
     margin-left: 3px;
     color: #333333;
-    font-family: "KPN Metric";
+    font-family: "kpn-metric-normal";
     font-size: 14px;
     font-weight: 300;
     letter-spacing: 0;

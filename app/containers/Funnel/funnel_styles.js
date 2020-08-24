@@ -102,7 +102,7 @@ export const styles = {
     minWidth: '100%',
     maxHeight: 40,
     minHeight: 40,
-    fontFamily: 'KPN Metric',
+    fontFamily: 'kpn-metric-bold',
 
 
   },
@@ -126,11 +126,11 @@ export const styles = {
   },
 
   ColTitles: {
-    fontSize: 22,
+    fontSize: 23,
     marginTop: 8,
     marginLeft:6,
-    fontFamily: 'KPN Metric',
-    fontWeight: 300,
+    fontFamily: 'kpn-metric-normal',
+    fontWeight: 0,
     color: '#333333',
     textAlign: 'left',
     justifyContent: 'center',

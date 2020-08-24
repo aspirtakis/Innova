@@ -18,6 +18,7 @@ import dots from '../../images/dots.png';
 
 
 
+
 const Container = styled.div`
   transition: background-color 0.2s ease;
   background-color: ${props => (props.isDragDisabled

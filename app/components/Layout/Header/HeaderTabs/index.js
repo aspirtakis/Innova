@@ -109,10 +109,10 @@ class HeaderTabs extends React.Component {
           marginTop:1,
           minHeight:48, 
           backgroundColor:'#009900',
-        }}> <div  style={{ color: '#FFFFFF',fontFamily: "KPN Metric",
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginTop:8,
+        }}> <div  style={{ color: '#FFFFFF',fontFamily: "kpn-metric-bold",
+        fontSize: 27,
+    
+        marginTop:7,
         marginLeft:17,
     
       }} >Ways funnel</div></div>
