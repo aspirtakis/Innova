@@ -32,11 +32,11 @@ import configureStore from './configureStore';
 // Import i18n messages
 import { translationMessages } from './i18n';
 
-//import './styles.scss';
+import './styles.scss';
 
 // Import CSS reset and Global Styles
 import './global-styles';
-import './kpn.css';
+//import './kpn.css';
 
 // Import app saga
 import sagas from './containers/App/saga';
