@@ -28,6 +28,7 @@ const TaskList = styled.div`
   background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
   max-height: calc(100vh - 11.8rem);
   height: calc(100vh - 8.6rem);
+  overflow-x: hidden;
   overflow-y: auto;
 `;
 

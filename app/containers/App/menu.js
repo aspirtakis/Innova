@@ -32,7 +32,7 @@ const Menu = [
   {
     id: 'calendar',
     text: 'SG-Calendar',
-    icon: <img style={{height:20}} src={graveyard}/>,
+    icon: <i class="fal fa-quidditch"></i>,
     url: '/Calendar',
     component: STGCalendar,
   },
