@@ -9,7 +9,7 @@ import {
    Button, Select, Icon, Collapse, Spin, Switch, LocaleProvider,Input,
 } from 'antd';
 import { DatePicker } from 'antd';
-
+import { useHistory } from "react-router-dom";
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -261,11 +261,25 @@ class Funnel extends Component {
     this.props.dispatch(sessionCheck());
       this.setState({ setOpen: true });
   };
+
   handleOpenEdit = (data) => {
-    this.props.dispatch(sessionCheck());
-      this.setState({ selectedTask: data });
-      this.setState({ setOpenEdit: true });
+
+
+    this.props.history.push("/initiatives",
+    {data:data,
+    users:this.props.users,
+    user:this.props.user,
+    session:this.props.dispatch(sessionCheck()),
+    role:this.props.user.role,
+    sestoken:this.state.sestoken
+});
+  
+    // this.props.dispatch(sessionCheck());
+     //this.setState({ selectedTask: data });
+    //   this.setState({ setOpenEdit: true });
+
   };
+
   filter = (type, project) => {
       this.setState({ spinning: true });
       const projectUrl = `${tasksUrl}?filter=${type}=${project}`;
@@ -758,18 +772,7 @@ class Funnel extends Component {
                   onOK={this.handleOk}
           
                   handleSubmit={this.handleSubmit} />
-              <FunnelEditForm
-                  users={this.props.users}
-                  user={this.props.user}
-                  sessionCheck={() => this.props.dispatch(sessionCheck())}
-                  userRole={this.props.user.role}
-                  sestoken={sestoken}
-                  visible={this.state.setOpenEdit}
-                  onCancel={this.handleClose}
-                  onOK={this.handleOk}
-                  data={selectedTask}
-                  reload={this.getData}
-                  footer={null} />
+
               {/*!(this.props.user.role === 'Tv' ) && this.filterBar()*/}
               <DragDropContext  
               onDragEnd={this.onDragEnd}>
