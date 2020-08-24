@@ -4,6 +4,7 @@ import Icon from '@material-ui/core/Icon';
 import CalIcon from '@material-ui/icons/DateRange';
 import FunnelIcon from '@material-ui/icons/ViewDay';
 
+
 // Components
 import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
@@ -32,7 +33,7 @@ const Menu = [
   {
     id: 'calendar',
     text: 'SG-Calendar',
-    icon: <i class="fal fa-quidditch"></i>,
+    icon: <CalIcon/>,
     url: '/Calendar',
     component: STGCalendar,
   },
