@@ -35,7 +35,7 @@ const Menu = [
   {
     id: 'initiatives',
     text: 'initiatives',
-    icon: <img style={{height:20}} src={backlog}/>,
+    icon: <i className="ui-flag" />,
     url: '/initiatives',
     component: initiatives,
   },
