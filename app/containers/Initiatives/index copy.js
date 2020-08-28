@@ -27,8 +27,6 @@ import StageGates from '../../components/stagegates';
 import { size } from 'lodash';
 
 
-import { Tab, TabItem, TabLink, TabMenu } from '@kpn-style/react';
-//import { boolean, withKnobs } from "@storybook/addon-knobs";
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 const { Panel } = Collapse;
@@ -792,24 +790,280 @@ const gates = data.stageGates;
 //  const remUser = remarks.filter(mak => mak.type === "User");
 
     return (
-      <div className="row">
-      <div className="col col--4">
-        <Tab>
-          <TabMenu>
-            <TabItem>
-              <TabLink active>
-                Home
-              </TabLink>
-            </TabItem>
-            <TabItem>
-              <TabLink>
-                Services
-              </TabLink>
-            </TabItem>
-          </TabMenu>
-        </Tab>
+      <div
+        title={titles}
+ 
+        visible={visible}
+        onOk={onOK}
+        onCancel={onOK}
+        footer={null}
+        style={{minWidth:'80%'}}
+      >
+       <div className="card-container">
+    <Tabs type="card">
+      <TabPane tab="Overview" key="1">
+      <div>
+                <Row>
+                  <Col span={12}>
+                    <p>Department : {data.funnel} </p>
+                    <p>Theme : {data.theme} </p>
+                    <p>Horizon : {data.horizon} </p>
+                    <p>Project Name : {data.projectname} </p>
+                    <p>Project Cost : {data.prjcost} </p>
+                    <p>Value : {data.value} </p>
+                    <p>Description :</p>
+                    <p style={{ maxWidth: 220 }}> {data.description} </p>
+                  </Col>
+                  <Col span={12}>
+                    <p>Coach : {data.coach} </p>
+                    <p>P.Owner : {data.cardPO} </p>
+                    <p>Sponsor : {data.spnsr} </p>
+                    <p>Team Members : {data.sponsor} </p>
+                    <p>NextStageGate :{data.nexStageGate}</p>
+                    <p>Created Date : {data.createDate} </p>
+                    <p>Added :{moment(data.createDate).fromNow()}</p>
+                    <p>Updated :{moment(data.updateDate).fromNow()}</p>
+                    <p>Updated :{moment(data.birthonproblem).fromNow()}</p>
+                  </Col>
+                </Row>
+              </div>
+      </TabPane>
+     {(this.state.cardPO === this.props.location.state.user.first_name+" "+this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
+      <Form>
+<Form.Row>
+<Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
+    <Form.Label style={{ marginTop: 5 }}>Department</Form.Label>
+    <Form.Control
+      value={this.state.funnel}
+      onChange={e =>
+        this.setState({ funnel: e.target.value })
+      }
+      as="select"
+    >
+                      <option value="OIH">OIH</option>
+                      <option value="CM">CM</option>
+                      <option value="BM">BM</option>
+                      <option value="WS">WS</option>
+                      <option value="OPS">OPS</option>
+    </Form.Control>
+    <Form.Label style={{ marginTop: 5 }}>Theme</Form.Label>
+
+
+
+  <Form.Control
+  value={this.state.theme}
+  onChange={e => this.setState({ theme: e.target.value })}
+  as="select"
+>
+
+  <option value="NextGenInfra">Next-Gen Infra</option>
+  <option value="DataTech">Data Tech</option>
+  <option value="Techco">TechCo</option>
+  <option value="Other">Other</option>
+</Form.Control>
+
+    <Form.Label style={{ marginTop: 5 }}>Description</Form.Label>
+    <Form.Control
+      value={this.state.description}
+      onChange={e =>
+        this.setState({ description: e.target.value })
+      }
+      as="textarea"
+      rows="5"
+    />
+    </Form.Group>
+
+<Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel2"
+    style={{ marginLeft: 10 }}
+    as={Col}
+    controlId="Title"
+  >
+
+    <Form.Label style={{ marginTop: 5 }}>Project</Form.Label>
+    <Form.Control
+    value={this.state.projectname}
+    onChange={e => this.setState({ projectname: e.target.value })}
+    type="text"
+    placeholder="project name"
+  />
+
+
+    <Form.Label style={{ marginTop: 5 }}>Status</Form.Label>
+    <Form.Control
+      value={this.state.status}
+      onChange={e => this.setState({ status: e.target.value })}
+      as="select"
+    >
+      <option value="green">PROGRESSING</option>
+      <option value="yellow">IMPEDIMENT</option>
+      <option value="red">STOPPED </option>
+      <option value="orange">PARKED</option>
+    </Form.Control>
+    
+    <Form.Label style={{ marginTop: 5 }}>CardPO</Form.Label>
+    <Form.Control
+      value={this.state.cardPO}
+      onChange={e => this.setState({ cardPO: e.target.value })}
+      as="select"
+    >
+{this.state.users && this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
+    </Form.Control>
+
+    <Form.Label style={{ marginTop: 5 }}>Coach</Form.Label>
+    <Form.Control
+      value={this.state.coach}
+      onChange={e => this.setState({ coach: e.target.value })}
+      as="select"
+    >
+    {this.state.users && this.state.users.map(username =>  <option  key={username.id} value={username.first_name +" " + username.last_name}>{username.first_name +" "+ username.last_name}</option>)}
+    </Form.Control>
+
+  </Form.Group>
+<Form.Group style={{flexWrap:"nowrap", marginLeft:10}}  as={Col} controlId="ControlFunnel3">
+  <Form.Label style={{ marginTop: 5 }}>Value</Form.Label>
+  <Form.Control
+    value={this.state.value}
+    onChange={e => this.setState({ value: e.target.value })}
+    type="text"
+    placeholder="Value"
+  />
+
+
+  <Form.Label style={{ marginTop: 5 }}>Project Cost</Form.Label>
+  <Form.Control
+    value={this.state.prjcost}
+    onChange={e => this.setState({ prjcost: e.target.value })}
+    type="number"
+    placeholder="Project Cost"
+  />
+
+  <Form.Label style={{ marginTop: 5 }}>Team Members</Form.Label>
+  <Form.Control
+    value={this.state.sponsor}
+    onChange={e => this.setState({ sponsor: e.target.value })}
+    as="select"
+  >
+    <option>1</option>
+    <option>2</option>
+    <option>3 </option>
+    <option>4</option>
+  </Form.Control>
+  <Form.Label style={{ marginTop: 5 }}>Sponsor</Form.Label>
+    <Form.Control
+      value={this.state.spnsr}
+      onChange={e => this.setState({ spnsr: e.target.value })}
+      type="text"
+      placeholder="Sponsor"
+    />
+
+  <Form.Label style={{ marginTop: 5 }}>Horizon</Form.Label>
+    <Form.Control
+      value={this.state.horizon}
+      onChange={e => this.setState({ horizon: e.target.value })}
+      as="select"
+    >
+      <option>H1</option>
+      <option>H2</option>
+      <option>H3</option>
+    </Form.Control>
+
+</Form.Group>
+</Form.Row>
+<Button onClick={this.onUpdate} variant="primary" type="submit">
+  Submit
+</Button>
+<Button onClick={onCancel} variant="primary" type="submit">
+  Cancel
+</Button>
+<Button style={{marginLeft:100}} onClick={this.onDelete} variant="danger" type="submit">
+  Delete
+</Button>
+</Form>
+      </TabPane>
+}
+
+
+{ this.props.location.state.user.role !== 'Tv' && 
+<TabPane tab="Assumptions" key="3">
+
+{ (this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'CardPO' || this.props.location.state.user.role === 'BO' ||  this.props.location.state.user.role === 'User' ) && 
+      <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
+      Create New
+    </Button>}
+
+      <EditableTable 
+      saveAssumption={this.saveAssumption} 
+      saveChecklist={this.saveChecklist} 
+      deleteChecklist={this.deleteChecklist}
+      deleteAssumption={this.deleteAssumption}
+      assumptions={this.state.assumptions}
+      addChecklist={this.addNewCheckList}
+      role={this.props.location.state.user.role}
+      />
+      </TabPane>}
+
+
+      { (this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'Manager' ) &&
+            <TabPane tab="Coach Remarks" key="4">
+
+      { this.props.location.state.user.role === 'Coach'  && <Button onClick={() => this.addNewRemark("Coach")} type="primary" style={{  marginBottom: 16 }}>Create New
+      </Button>}
+        <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={CoachRemarks} />
+      </TabPane>}
+
+      {<TabPane tab="Team Remarks" key="5">
+
+{ <Button onClick={() => this.addNewRemark("User")} type="primary" style={{  marginBottom: 16 }}>Create New
+</Button>}
+  <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={ TeamRemarks } />
+</TabPane>}
+       
+      <TabPane tab="Meetings" key="6">
+      
+      
+     {(this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'Manager') && 
+     <div > 
+      <Button 
+      onClick={() => this.addNewMeeting("StageGate")} 
+      type="primary" 
+      style={{  marginRight: 16,marginLeft: 16  }}>
+      Create SG
+      </Button>
+      <Button style={{  marginRight: 16  }} onClick={() => this.addNewMeeting("FundingMoment")} type="primary" style={{  marginBottom: 16 }}>Funding Momment
+</Button>
+<span style={{  marginLeft: 30  }}>
+Next Meeting :
+<DatePicker 
+
+showTime={{
+  hideDisabledOptions: true,
+}}
+
+value={moment(this.state.nexStageGate, dateFormat)}
+format={dateFormat}
+onChange={(date, dateString) => {
+  this.setState({nexStageGate: moment(date).format(dateFormat)});
+  this.onSTGUpdate(moment(date).format(dateFormat));
+} } />
+</span>
+      
+      </div>}
+    
+  <StageGates 
+  onOK={this.props.onOK} 
+  deleteMeeting={this.deleteMeeting}
+  user={user} 
+  saveMeeting={this.saveMeeting}
+   stageGates={this.state.stageGates} 
+   nextGate={this.state.nexStageGate} />
+</TabPane>
+
+<TabPane style={{fontSize:10 ,color:'white'}} tab="Canvas" key="7">
+
+</TabPane>
+    </Tabs>
+  </div>
       </div>
-    </div>
     );
   }
 }
