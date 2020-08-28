@@ -111,19 +111,19 @@ var horizon = taskproblem.horizon.charAt(1);
                               <div  style={{padding:6}}>
                                   <div className="row">
                                   <div  className="col col--1" >
-                                  <div style={{ marginLeft:1, }} className="row">
+                                  <div style={{ marginLeft:1,marginTop:3 }} className="row">
                                   {taskproblem.status === 'green' && <div className='circle' style= {{ backgroundColor: 'green'}} ></div>}
                                   {taskproblem.status === 'yellow' && <div className='circle'  style= {{ backgroundColor: 'orange'}}></div>}
                                   {taskproblem.status === 'orange' && <div className='circle'  style= {{maxWidth:15}}></div>}
                                   {taskproblem.status === 'red' && <div className='circle'  style= {{backgroundColor: 'red'}} ></div>}
                                   </div>
                                   </div>
-                                  <div className="col col--8">
+                                  <div  style={{marginLeft:6}} className="col--8">
                                   <Tooltip placement="top" title={taskproblem.projectname}>
-                                  <h3 className="titel">{this.truncated(taskproblem.projectname,10)}</h3>
+                                  <div className="titel">{this.truncated(taskproblem.projectname,15)}</div>
                                   </Tooltip>
                                   </div>
-                                  <div  className="col col--2 right">
+                                  <div   className="col col--2 right">
                                   <i className="ui-more" />
                                   </div>
                                   </div>
