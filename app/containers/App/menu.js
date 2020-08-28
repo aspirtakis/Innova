@@ -4,10 +4,10 @@ import Icon from '@material-ui/core/Icon';
 import CalIcon from '@material-ui/icons/DateRange';
 import FunnelIcon from '@material-ui/icons/ViewDay';
 
-
 // Components
 import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
+
 
 import STGCalendar from 'containers/SgCalendar/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -19,21 +19,22 @@ const Menu = [
   {
     id: 'dashboard',
     text: 'DashBoard',
-    icon: <img style={{height:20}} src={iconhome}/>,
+    icon: <i className="ui-home" />,
     url: '/',
     component: DashboardPage,
   },
   {
     id: 'funnel ',
     text: 'Ways funnel',
-    icon: <img style={{height:20}} src={backlog}/>,
+    icon:  <i className="ui-bulb" />,
     url: '/Funnel',
     component: Funnel,
   },
+
   {
     id: 'calendar',
     text: 'SG-Calendar',
-    icon: <CalIcon/>,
+    icon: <i className="ui-calendar" />,
     url: '/Calendar',
     component: STGCalendar,
   },

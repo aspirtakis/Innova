@@ -124,7 +124,7 @@ var horizon = taskproblem.horizon.charAt(1);
                                   </Tooltip>
                                   </div>
                                   <div  className="col col--2 right">
-                                  <img src={dots}></img>
+                                  <i className="ui-more" />
                                   </div>
                                   </div>
 

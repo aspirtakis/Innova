@@ -5,4 +5,4 @@
  @include font-face("kpn-metric-normal", normal, 700, "~@kpn-style/bundle/base/typography", "kpn-metric-normal");
  @include font-face("kpn-metric-bold", normal, 700, "~@kpn-style/bundle/base/typography", "kpn-metric-bold");
  //@include font-face("kpn-metric", normal, 700, "../app/utils/typography", "kpn-metric-bold");
-//  @include font-face("kpn-ui-icons", normal, 400, "~@kpn-style/bundle/base/ui-icon", "kpn-ui-icons");
+ @include font-face("kpn-ui-icons", normal, 400, "~@kpn-style/bundle/base/ui-icon", "kpn-ui-icons");
