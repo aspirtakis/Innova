@@ -1,5 +1,5 @@
  @import "../node_modules/@kpn-style/bundle/";
- @import "../node_modules/segoe-fonts/";
+
 
  // font-face(font family name, style, weight, path, filename without extension);
  @include font-face("kpn-metric-semi", normal, 700, "~@kpn-style/bundle/base/typography", "kpn-metric-semi-bold");
