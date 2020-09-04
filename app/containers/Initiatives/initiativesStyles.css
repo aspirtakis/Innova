@@ -1,0 +1,86 @@
+.mainContainer {
+    height: 944px;
+    width: 100%;
+    background-color: #FFFFFF;
+    margin-left:40px;
+    margin-right:40px;
+    margin-top:30px;
+  }
+
+  .titleContainer {
+   padding-left: 30px;
+   padding-top: 27px;
+  }
+
+  .titleInit {
+
+    color: #009900;
+    font-family: "kpn-metric-bold";
+    font-size: 30px;
+    letter-spacing: 0;
+
+  }
+
+
+.ant-tabs-ink-bar {
+   position: absolute;
+   background: #009900;
+   pointer-events: none;
+}
+
+
+.ant-tabs-tab {
+  color: #0a0303 !important;
+}
+
+.ant-tabs-tab-active {
+  color: #009900 !important;
+}
+
+
+
+
+  .titleGeneral {
+    font-family: "Segoe UI";
+    color: #333333;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0;
+
+
+  }
+  .dataGeneral {
+    font-family: "Segoe UI";
+    margin-bottom:30px;
+    color: #333333;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 0px;
+
+  }
+
+  .dataDescription {
+    height: 57px;
+    color: #333333;
+    font-family: "Segoe UI";
+    font-size: 14px;
+
+
+  }
+
+
+  .mainTab {
+
+padding: 30px;
+
+  }
+  .titlesTab {
+
+
+    font-family: "kpn-metric-semi";
+    font-size: 24px;
+    font-weight: 1200;
+    letter-spacing: 0;
+    line-height: 24px;
+    text-align: center;
+  }
