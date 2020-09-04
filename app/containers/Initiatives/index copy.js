@@ -792,7 +792,6 @@ const gates = data.stageGates;
     return (
       <div
         title={titles}
- 
         visible={visible}
         onOk={onOK}
         onCancel={onOK}
@@ -1001,7 +1000,6 @@ const gates = data.stageGates;
       role={this.props.location.state.user.role}
       />
       </TabPane>}
-
 
       { (this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'Manager' ) &&
             <TabPane tab="Coach Remarks" key="4">

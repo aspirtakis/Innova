@@ -271,7 +271,7 @@ class Funnel extends Component {
     user:this.props.user,
     session:this.props.dispatch(sessionCheck()),
     role:this.props.user.role,
-    sestoken:this.state.sestoken
+    sestoken:this.state.sestoken,
 });
   
     // this.props.dispatch(sessionCheck());
