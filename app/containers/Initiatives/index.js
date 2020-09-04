@@ -10,7 +10,7 @@ DatePicker,
 Tabs 
 } from 'antd';
 import nlNL from 'antd/es/locale/nl_NL';
-import './canvas.css';
+
 import { FaCheck } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
 import { FaClock } from 'react-icons/fa';
@@ -19,14 +19,17 @@ const { TabPane } = Tabs;
 import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { backend } from '../utils/config';
-import Remarks from '../components/remarks';
+import { backend } from '../../utils/config';
+import Remarks from '../../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
-import EditableTable from './editableTable';
-import StageGates from './stagegates';
+import EditableTable from '../../components/editableTable';
+import StageGates from '../../components/stagegates';
 import { size } from 'lodash';
-import Canvas from './canvas';
+import './initiativesStyles.css';
 
+
+import { Tab, TabItem, TabLink, TabMenu } from '@kpn-style/react';
+//import { boolean, withKnobs } from "@storybook/addon-knobs";
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 const { Panel } = Collapse;
@@ -39,50 +42,70 @@ const stageGatesUrl = backend.beUrl + backend.stageGates;
 const dateFormat = 'DD/MM/YYYY HH:mm:ss';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class EditTask extends React.Component {
+class Initiatives extends React.Component {
   constructor(props) {
     super(props);
-    const { data,users } = this.props;
-    const gates = data.stageGates;
 
     this.state = {
-      users: users,
-      cardPO:data.cardpo,
-      spinning: false,
-      funnel: data.funnel,
-      description: data.description,
-      projectname: data.projectname,
-      horizon: data.horizon,
-      theme: data.theme,
-      status: data.status,
-      FunnelPhase: data.FunnelPhase,
-      coach: data.coach,
-      sponsor: data.sponsor,
-      task_id: data.task_id,
-      createDate: data.createDate,
-      spnsr: data.spnsr,
-      remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
-      value:data.value,
-      prjcost:data.prjcost,
-      assumptions:data.assumptions,
-      nexStageGate:data.nexStageGate,
-      visiblePopoverRecId: null,
-      stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
+      hasSelectedcard: false,
     };
+
   }
-  componentDidMount(){
-    this.props.sessionCheck();
+  componentWillMount(){
+const data = this.props.location.state ? this.props.location.state.data :null ;
+if(!data){
+  this.setState({
+      hasSelectedcard: false,
+  });
+}
+if(data){
+  const gates = data.stageGates;
+  this.setState({
+    hasSelectedcard: true,
+    users:this.props.location.state.users,
+    spinning: false,
+    cardPO:data.cardpo,
+    funnel: data.funnel,
+    projectname: data.projectname,
+    description: data.description,
+    horizon: data.horizon,
+    theme: data.theme,
+    status: data.status,
+    FunnelPhase: data.FunnelPhase,
+    coach: data.coach,
+    sponsor: data.sponsor,
+    task_id: data.task_id,
+    createDate: data.createDate,
+    spnsr: data.spnsr,
+    remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
+    value:data.value,
+    value:data.value,
+    prjcost:data.prjcost,
+    assumptions:data.assumptions,
+    nexStageGate:data.nexStageGate,
+    stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,   
+  });
+
+}
+
+
   }
 
   componentWillReceiveProps(next) {
 
-    const { data } = next;
+    const  data  = next.location.state ? next.location.state.data : null;
+    console.log(next);
+    if(!data){
+      this.setState({
+          hasSelectedcard: false,
+      });
+    }
 
 //const test1 = next.users && next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
-
+if(data){
 const gates = data.stageGates;
     this.setState({
-      users:next.users,
+      users:next.location.state.users,
       spinning: false,
       cardPO:data.cardpo,
       funnel: data.funnel,
@@ -107,6 +130,7 @@ const gates = data.stageGates;
       
     });
   }
+  }
 
   saveChecklist = (r,row) => {
     //this.props.sessionCheck();
@@ -118,7 +142,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -158,7 +182,7 @@ const gates = data.stageGates;
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -192,7 +216,7 @@ const gates = data.stageGates;
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -251,7 +275,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -273,7 +297,7 @@ const gates = data.stageGates;
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -302,7 +326,7 @@ const gates = data.stageGates;
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -357,7 +381,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -404,7 +428,7 @@ const gates = data.stageGates;
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -414,7 +438,7 @@ const gates = data.stageGates;
             description: "New Remark",
             funnelPhase: this.state.FunnelPhase,
             card_id: this.state.task_id,
-            remarker: this.props.user.first_name,
+            remarker: this.props.location.state.user.first_name,
             type:type,
           },
          ],
@@ -435,7 +459,7 @@ const gates = data.stageGates;
           id:remarkData.resource[0].id,
           description: "New Remark",
           card_id: this.state.task_id,
-          remarker: this.props.user.first_name,
+          remarker: this.props.location.state.user.first_name,
           type:type,
         };
         
@@ -454,7 +478,7 @@ const gates = data.stageGates;
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -463,7 +487,7 @@ const gates = data.stageGates;
           {
             title: "New Meeting",
             cardid: this.state.task_id,
-            editor: this.props.user.first_name,
+            editor: this.props.location.state.user.first_name,
             type: type,
             stage:0,
           },
@@ -485,7 +509,7 @@ const gates = data.stageGates;
           id:remarkData.resource[0].id,
           title: "New Meeting",
           cardid: this.state.task_id,
-          editor: this.props.user.first_name,
+          editor: this.props.location.state.user.first_name,
           type: type,
           stage:0,
         };
@@ -507,7 +531,7 @@ const gates = data.stageGates;
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -542,7 +566,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -579,7 +603,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -610,7 +634,7 @@ const gates = data.stageGates;
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -630,7 +654,7 @@ const gates = data.stageGates;
   };
   onSTGUpdate = (newDate) => {
     this.setState({ spinning: true });
-    const taskid = this.props.data.task_id;
+    const taskid = this.props.location.state.data.task_id;
     const url4 = tasksUrl+'/'+taskid;
 
     fetch(url4, {
@@ -638,7 +662,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -655,14 +679,14 @@ const gates = data.stageGates;
       })
       .then(response => response.json())
       .then(taskData => {
-      //  this.props.onCancel();
+
         this.setState({ spinning: false });
       })
       .catch(taskData => console.log(taskData));
   };
   onUpdate = () => {
     this.setState({ spinning: true });
-    const taskid = this.props.data.task_id;
+    const taskid = this.props.location.state.data.task_id;
     const url4 = tasksUrl+'/'+taskid;
 
     fetch(url4, {
@@ -670,7 +694,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -701,7 +725,7 @@ const gates = data.stageGates;
       })
       .then(response => response.json())
       .then(taskData => {
-        this.props.onCancel();
+      //  this.props.onCancel();
         this.setState({ spinning: false });
         this.props.onOK();
       })
@@ -717,7 +741,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -730,7 +754,7 @@ const gates = data.stageGates;
       })
       .then(response => response.json())
       .then(taskData => {
-        this.props.onCancel();
+      //  this.props.onCancel();
         this.setState({ spinning: false });
         this.props.onOK();
       })
@@ -768,62 +792,103 @@ const gates = data.stageGates;
       </Col>
     </Row>
   );
+  fixTitles = () =>
+  {
+    const titles =  this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname + " overview";
+
+  };
+
+  remarksType = (type) =>
+  {
+  const TeamRemarks = this.state.remarks && this.state.remarks.filter(city => city.type === "User");
+  const CoachRemarks = this.state.remarks && this.state.remarks.filter(city => (city.type == null || city.type === "Coach"));
+  if(type === "coach"){
+    return CoachRemarks;
+  }
+  if(type === "team"){
+    return TeamRemarks;
+  }
+  
+  };
 
   
 
 
 
   render() {
-    const { visible, onOK, onCancel, user} = this.props;
+
     const  data  = this.state;
-    const titles = this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname + " overview";
-    const rema =this.state.remarks;
-
- const TeamRemarks = rema && rema.filter(city => city.type === "User");
- const CoachRemarks = rema && rema.filter(city => (city.type == null || city.type === "Coach"));
-
-//  const remUser = remarks.filter(mak => mak.type === "User");
 
     return (
-      <div
-        title={titles}
- 
-        visible={visible}
-        onOk={onOK}
-        onCancel={onOK}
-        footer={null}
-        style={{minWidth:'80%'}}
+      <div className="row">
+      {this.state.hasSelectedcard ? 
+        <div
       >
-       <div className="card-container">
-    <Tabs type="card">
-      <TabPane tab="Overview" key="1">
+       <div className=" mainContainer">
+       <div className="titleContainer">
+       <div className="titleInit">{this.state.projectname}</div>
+       </div>
+    <Tabs tabBarStyle={{borderBlockColor:"#009900", color:'green', fontFamily:"kpn-metric-bold",  }} className="mainTab">
+      <TabPane  tab={<span className="titlesTab"> General</span>} key="1">
       <div>
                 <Row>
-                  <Col span={12}>
-                    <p>Department : {data.funnel} </p>
-                    <p>Theme : {data.theme} </p>
-                    <p>Horizon : {data.horizon} </p>
-                    <p>Project Name : {data.projectname} </p>
-                    <p>Project Cost : {data.prjcost} </p>
-                    <p>Value : {data.value} </p>
-                    <p>Description :</p>
-                    <p style={{ maxWidth: 220 }}> {data.description} </p>
+                  <Col span={8}>
+                  <p className="titleInit">Team Members </p>
+                  <p className="titleGeneral" >Product Owner </p>
+                  <p className="dataGeneral" > {data.cardPO} </p>
+
+                  <p className="titleGeneral" >Coach </p>
+                  <p className="dataGeneral" > {data.coach} </p>
+       
+
+                  <p className="titleGeneral" >Sponsor </p>
+                  <p className="dataGeneral" > {data.spnsr} </p>
+
+                  <p className="titleGeneral" >Growth Hacker  </p>
+                  <p className="dataGeneral" > XXXXXX </p>
+
+                  <p className="titleGeneral" >Data Expert  </p>
+                  <p className="dataGeneral" > XXXXXX </p>
+                  <p>Created Date : {data.createDate} </p>
+                  <p>Added :{moment(data.createDate).fromNow()}</p>
+                  <p>Updated :{moment(data.updateDate).fromNow()}</p>
+                  <p>Updated :{moment(data.birthonproblem).fromNow()}</p>
+
+  
                   </Col>
-                  <Col span={12}>
-                    <p>Coach : {data.coach} </p>
-                    <p>P.Owner : {data.cardPO} </p>
-                    <p>Sponsor : {data.spnsr} </p>
-                    <p>Team Members : {data.sponsor} </p>
-                    <p>NextStageGate :{data.nexStageGate}</p>
-                    <p>Created Date : {data.createDate} </p>
-                    <p>Added :{moment(data.createDate).fromNow()}</p>
-                    <p>Updated :{moment(data.updateDate).fromNow()}</p>
-                    <p>Updated :{moment(data.birthonproblem).fromNow()}</p>
+                  <Col span={6}>
+                  <p className="titleInit">Project </p>
+
+                  <p className="titleGeneral" >Department</p>
+                  <p className="dataGeneral" > {data.funnel} </p>
+
+                  <p className="titleGeneral" >Theme</p>
+                  <p className="dataGeneral" > {data.theme} </p>
+
+                  <p className="titleGeneral" >Horizon</p>
+                  <p className="dataGeneral" > {data.horizon} </p>
+              
+                  <p className="titleGeneral" >Project Cost</p>
+                  <p className="dataGeneral" > {data.prjcost} </p>
+
+                  <p className="titleGeneral" >Value</p>
+                  <p className="dataGeneral" > {data.value} </p>
+
+                  <p className="titleGeneral" >Description</p>
+                  <p className="dataDescription" > {data.description} </p>
+
+                  <p className="titleGeneral" >Team Members</p>
+                  <p className="dataGeneral" > {data.sponsor} </p>
+
+                  <p className="titleGeneral" >Next StageGate</p>
+                  <p className="dataGeneral" > {data.nextStageGate} </p>
+
+
                   </Col>
                 </Row>
               </div>
       </TabPane>
-     {(this.state.cardPO === this.props.user.first_name+" "+this.props.user.last_name || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
+     {(this.state.cardPO === this.props.location.state.user.first_name+" "+this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach') &&  <TabPane tab={<span className="titlesTab"> Update</span>} key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
@@ -967,9 +1032,7 @@ const gates = data.stageGates;
 <Button onClick={this.onUpdate} variant="primary" type="submit">
   Submit
 </Button>
-<Button onClick={onCancel} variant="primary" type="submit">
-  Cancel
-</Button>
+
 <Button style={{marginLeft:100}} onClick={this.onDelete} variant="danger" type="submit">
   Delete
 </Button>
@@ -978,10 +1041,10 @@ const gates = data.stageGates;
 }
 
 
-{ this.props.user.role !== 'Tv' && 
-<TabPane tab="Assumptions" key="3">
+{ this.props.location.state.user.role !== 'Tv' && 
+<TabPane tab={<span className="titlesTab"> Assumptions </span>} key="3">
 
-{ (this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach' || this.props.user.role === 'CardPO' || this.props.user.role === 'BO' ||  this.props.user.role === 'User' ) && 
+{ (this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'CardPO' || this.props.location.state.user.role === 'BO' ||  this.props.location.state.user.role === 'User' ) && 
       <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
       Create New
     </Button>}
@@ -993,30 +1056,29 @@ const gates = data.stageGates;
       deleteAssumption={this.deleteAssumption}
       assumptions={this.state.assumptions}
       addChecklist={this.addNewCheckList}
-      role={this.props.user.role}
+      role={this.props.location.state.user.role}
       />
       </TabPane>}
 
+      { (this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'Manager' ) &&
+            <TabPane tab={<span className="titlesTab"> Coach remarks</span>} key="4">
 
-      { (this.props.user.role === 'Coach' || this.props.user.role === 'Manager' ) &&
-            <TabPane tab="Coach Remarks" key="4">
-
-      { this.props.user.role === 'Coach'  && <Button onClick={() => this.addNewRemark("Coach")} type="primary" style={{  marginBottom: 16 }}>Create New
+      { this.props.location.state.user.role === 'Coach'  && <Button onClick={() => this.addNewRemark("Coach")} type="primary" style={{  marginBottom: 16 }}>Create New
       </Button>}
-        <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={CoachRemarks} />
+        <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={this.props.location.state.user} saveRemark={this.saveRemark} remarks={  this.remarksType("coach")  }/>
       </TabPane>}
 
-      {<TabPane tab="Team Remarks" key="5">
+      {<TabPane tab={<span className="titlesTab"> Team remarks</span>} key="5">
 
 { <Button onClick={() => this.addNewRemark("User")} type="primary" style={{  marginBottom: 16 }}>Create New
 </Button>}
-  <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={ TeamRemarks } />
+  <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={this.props.location.state.user} saveRemark={this.saveRemark} remarks={  this.remarksType("team") } />
 </TabPane>}
        
-      <TabPane tab="Meetings" key="6">
+      <TabPane tab={<span className="titlesTab"> Meetings</span>} key="6">
       
       
-     {(this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach' || this.props.user.role === 'Manager') && 
+     {(this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'Manager') && 
      <div > 
       <Button 
       onClick={() => this.addNewMeeting("StageGate")} 
@@ -1047,23 +1109,22 @@ onChange={(date, dateString) => {
   <StageGates 
   onOK={this.props.onOK} 
   deleteMeeting={this.deleteMeeting}
-  user={user} 
+  user={this.props.location.state.user} 
   saveMeeting={this.saveMeeting}
    stageGates={this.state.stageGates} 
    nextGate={this.state.nexStageGate} />
 </TabPane>
 
-<TabPane style={{fontSize:10 ,color:'white'}} tab="Canvas" key="7">
-<Canvas
-data={data}
-assumptions={this.state.assumptions}
-TeamRemarks={TeamRemarks} />
+<TabPane style={{fontSize:10 ,color:'white'}} tab={<span className="titlesTab"> Canvas</span>} key="7">
+
 </TabPane>
     </Tabs>
   </div>
-      </div>
+      </div>:<div>You have to Select a Card from funnel</div>
+      }
+    </div>
     );
   }
 }
 
-export default EditTask;
+export default Initiatives;

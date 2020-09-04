@@ -7,6 +7,7 @@ import FunnelIcon from '@material-ui/icons/ViewDay';
 // Components
 import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
+import initiatives from 'containers/Initiatives/Loadable';
 
 
 import STGCalendar from 'containers/SgCalendar/Loadable';
@@ -31,6 +32,13 @@ const Menu = [
     component: Funnel,
   },
 
+  {
+    id: 'initiatives',
+    text: 'initiatives',
+    icon: <i className="ui-flag" />,
+    url: '/initiatives',
+    component: initiatives,
+  },
   {
     id: 'calendar',
     text: 'SG-Calendar',

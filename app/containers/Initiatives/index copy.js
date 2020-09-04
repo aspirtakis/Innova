@@ -10,7 +10,7 @@ DatePicker,
 Tabs 
 } from 'antd';
 import nlNL from 'antd/es/locale/nl_NL';
-import './canvas.css';
+
 import { FaCheck } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
 import { FaClock } from 'react-icons/fa';
@@ -19,13 +19,13 @@ const { TabPane } = Tabs;
 import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { backend } from '../utils/config';
-import Remarks from '../components/remarks';
+import { backend } from '../../utils/config';
+import Remarks from '../../components/remarks';
 import ReactQuill from 'react-quill'; // ES6
-import EditableTable from './editableTable';
-import StageGates from './stagegates';
+import EditableTable from '../../components/editableTable';
+import StageGates from '../../components/stagegates';
 import { size } from 'lodash';
-import Canvas from './canvas';
+
 
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
@@ -39,44 +39,48 @@ const stageGatesUrl = backend.beUrl + backend.stageGates;
 const dateFormat = 'DD/MM/YYYY HH:mm:ss';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class EditTask extends React.Component {
+class Initiatives extends React.Component {
   constructor(props) {
     super(props);
-    const { data,users } = this.props;
-    const gates = data.stageGates;
 
-    this.state = {
-      users: users,
-      cardPO:data.cardpo,
-      spinning: false,
-      funnel: data.funnel,
-      description: data.description,
-      projectname: data.projectname,
-      horizon: data.horizon,
-      theme: data.theme,
-      status: data.status,
-      FunnelPhase: data.FunnelPhase,
-      coach: data.coach,
-      sponsor: data.sponsor,
-      task_id: data.task_id,
-      createDate: data.createDate,
-      spnsr: data.spnsr,
-      remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
-      value:data.value,
-      prjcost:data.prjcost,
-      assumptions:data.assumptions,
-      nexStageGate:data.nexStageGate,
-      visiblePopoverRecId: null,
-      stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
-    };
   }
-  componentDidMount(){
-    this.props.sessionCheck();
+  componentWillMount(){
+  //  this.props.sessionCheck();
+    console.log(this.props);
+const data = this.props.location.state.data;
+const gates = data.stageGates;
+this.setState({
+  users:this.props.location.users,
+  spinning: false,
+  cardPO:data.cardpo,
+  funnel: data.funnel,
+  projectname: data.projectname,
+  description: data.description,
+  horizon: data.horizon,
+  theme: data.theme,
+  status: data.status,
+  FunnelPhase: data.FunnelPhase,
+  coach: data.coach,
+  sponsor: data.sponsor,
+  task_id: data.task_id,
+  createDate: data.createDate,
+  spnsr: data.spnsr,
+  remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
+  value:data.value,
+  value:data.value,
+  prjcost:data.prjcost,
+  assumptions:data.assumptions,
+  nexStageGate:data.nexStageGate,
+  stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
+  
+});
+
   }
 
   componentWillReceiveProps(next) {
 
-    const { data } = next;
+    const  data  = next.location.state.data;
+    console.log(next);
 
 //const test1 = next.users && next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
 
@@ -118,7 +122,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -158,7 +162,7 @@ const gates = data.stageGates;
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -192,7 +196,7 @@ const gates = data.stageGates;
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -251,7 +255,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -273,7 +277,7 @@ const gates = data.stageGates;
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -302,7 +306,7 @@ const gates = data.stageGates;
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -357,7 +361,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -404,7 +408,7 @@ const gates = data.stageGates;
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -414,7 +418,7 @@ const gates = data.stageGates;
             description: "New Remark",
             funnelPhase: this.state.FunnelPhase,
             card_id: this.state.task_id,
-            remarker: this.props.user.first_name,
+            remarker: this.props.location.state.user.first_name,
             type:type,
           },
          ],
@@ -435,7 +439,7 @@ const gates = data.stageGates;
           id:remarkData.resource[0].id,
           description: "New Remark",
           card_id: this.state.task_id,
-          remarker: this.props.user.first_name,
+          remarker: this.props.location.state.user.first_name,
           type:type,
         };
         
@@ -454,7 +458,7 @@ const gates = data.stageGates;
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.sestoken,
+         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -463,7 +467,7 @@ const gates = data.stageGates;
           {
             title: "New Meeting",
             cardid: this.state.task_id,
-            editor: this.props.user.first_name,
+            editor: this.props.location.state.user.first_name,
             type: type,
             stage:0,
           },
@@ -485,7 +489,7 @@ const gates = data.stageGates;
           id:remarkData.resource[0].id,
           title: "New Meeting",
           cardid: this.state.task_id,
-          editor: this.props.user.first_name,
+          editor: this.props.location.state.user.first_name,
           type: type,
           stage:0,
         };
@@ -507,7 +511,7 @@ const gates = data.stageGates;
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -542,7 +546,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -579,7 +583,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -610,7 +614,7 @@ const gates = data.stageGates;
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.sestoken,
+          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -630,7 +634,7 @@ const gates = data.stageGates;
   };
   onSTGUpdate = (newDate) => {
     this.setState({ spinning: true });
-    const taskid = this.props.data.task_id;
+    const taskid = this.props.location.state.data.task_id;
     const url4 = tasksUrl+'/'+taskid;
 
     fetch(url4, {
@@ -638,7 +642,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -662,7 +666,7 @@ const gates = data.stageGates;
   };
   onUpdate = () => {
     this.setState({ spinning: true });
-    const taskid = this.props.data.task_id;
+    const taskid = this.props.location.state.data.task_id;
     const url4 = tasksUrl+'/'+taskid;
 
     fetch(url4, {
@@ -670,7 +674,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -717,7 +721,7 @@ const gates = data.stageGates;
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.sestoken,
+        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -774,9 +778,10 @@ const gates = data.stageGates;
 
 
   render() {
-    const { visible, onOK, onCancel, user} = this.props;
+    const { visible, onOK, onCancel, user} = this.props.location.state;
+
     const  data  = this.state;
-    const titles = this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname + " overview";
+    const titles =  this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname + " overview";
     const rema =this.state.remarks;
 
  const TeamRemarks = rema && rema.filter(city => city.type === "User");
@@ -787,7 +792,6 @@ const gates = data.stageGates;
     return (
       <div
         title={titles}
- 
         visible={visible}
         onOk={onOK}
         onCancel={onOK}
@@ -823,7 +827,7 @@ const gates = data.stageGates;
                 </Row>
               </div>
       </TabPane>
-     {(this.state.cardPO === this.props.user.first_name+" "+this.props.user.last_name || this.props.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
+     {(this.state.cardPO === this.props.location.state.user.first_name+" "+this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach') &&  <TabPane tab="Update" key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
@@ -978,10 +982,10 @@ const gates = data.stageGates;
 }
 
 
-{ this.props.user.role !== 'Tv' && 
+{ this.props.location.state.user.role !== 'Tv' && 
 <TabPane tab="Assumptions" key="3">
 
-{ (this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach' || this.props.user.role === 'CardPO' || this.props.user.role === 'BO' ||  this.props.user.role === 'User' ) && 
+{ (this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'CardPO' || this.props.location.state.user.role === 'BO' ||  this.props.location.state.user.role === 'User' ) && 
       <Button onClick={this.addNewAssumption} type="primary" style={{ marginBottom: 16 }}>
       Create New
     </Button>}
@@ -993,15 +997,14 @@ const gates = data.stageGates;
       deleteAssumption={this.deleteAssumption}
       assumptions={this.state.assumptions}
       addChecklist={this.addNewCheckList}
-      role={this.props.user.role}
+      role={this.props.location.state.user.role}
       />
       </TabPane>}
 
-
-      { (this.props.user.role === 'Coach' || this.props.user.role === 'Manager' ) &&
+      { (this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'Manager' ) &&
             <TabPane tab="Coach Remarks" key="4">
 
-      { this.props.user.role === 'Coach'  && <Button onClick={() => this.addNewRemark("Coach")} type="primary" style={{  marginBottom: 16 }}>Create New
+      { this.props.location.state.user.role === 'Coach'  && <Button onClick={() => this.addNewRemark("Coach")} type="primary" style={{  marginBottom: 16 }}>Create New
       </Button>}
         <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={CoachRemarks} />
       </TabPane>}
@@ -1016,7 +1019,7 @@ const gates = data.stageGates;
       <TabPane tab="Meetings" key="6">
       
       
-     {(this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach' || this.props.user.role === 'Manager') && 
+     {(this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'Manager') && 
      <div > 
       <Button 
       onClick={() => this.addNewMeeting("StageGate")} 
@@ -1054,10 +1057,7 @@ onChange={(date, dateString) => {
 </TabPane>
 
 <TabPane style={{fontSize:10 ,color:'white'}} tab="Canvas" key="7">
-<Canvas
-data={data}
-assumptions={this.state.assumptions}
-TeamRemarks={TeamRemarks} />
+
 </TabPane>
     </Tabs>
   </div>
@@ -1066,4 +1066,4 @@ TeamRemarks={TeamRemarks} />
   }
 }
 
-export default EditTask;
+export default Initiatives;
