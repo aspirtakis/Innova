@@ -8,7 +8,7 @@ import FunnelIcon from '@material-ui/icons/ViewDay';
 import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
 import initiatives from 'containers/Initiatives/Loadable';
-
+import OnboardingForm from 'containers/OnboardingForm/Loadable';
 
 import STGCalendar from 'containers/SgCalendar/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -45,6 +45,13 @@ const Menu = [
     icon: <i className="ui-calendar" />,
     url: '/Calendar',
     component: STGCalendar,
+  },
+  {
+    id: 'OnboardingForm',
+    text: 'Onboarding Form',
+    icon: <i className="ui-manual" />,
+    url: '/OnboardingForm',
+    component: OnboardingForm,
   },
 ];
 
