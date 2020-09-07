@@ -26,20 +26,27 @@ export function OnboardingForm() {
   useInjectSaga({ key: "onboardingForm", saga });
 
   return (
-    <div>
-      <div class="onboardingClass">Hello</div>
+    <div class="onboardingForms">
+      <h1 >A nice header outside of the forms :)</h1>
+
       <div class="row">
-  <div class="col col--8"><form class="leftForm">
-  <label class="label">First name</label>
-<input class="input textInputField" type="text" placeholder="Enter your first name" />
-</form>
-  </div>
-  <div class="col col--4"><form className="rightForm"><select class="select">
-  <option>Lorem</option>
-  <option>Ipsum</option>
-  <option>Dolor</option>
-</select></form></div>
-</div>
+        <div class="col col--8">
+          <form class="leftForm">
+            <label class="label">A nice label :)</label>
+            <input class="input textInputField" type="text" placeholder="A nice text input field :)" />
+          </form>
+        </div>
+
+        <div class="col col--4">
+          <form class="rightForm">
+            <select class="select selectInputField">
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
