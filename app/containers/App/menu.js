@@ -49,7 +49,7 @@ const Menu = [
   {
     id: 'OnboardingForm',
     text: 'Onboarding Form',
-    icon: <i className="ui-simcard" />,
+    icon: <i className="ui-manual" />,
     url: '/OnboardingForm',
     component: OnboardingForm,
   },
