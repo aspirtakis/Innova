@@ -27,27 +27,93 @@ export function OnboardingForm() {
 
   return (
     <div class="onboardingForms">
-      <h1 >A nice header outside of the forms :)</h1>
+      <ul class="breadcrumb">
+        <li class="breadcrumb__item"><a class="breadcrumb__link">Explore</a></li>
+        <li class="breadcrumb__item"><a class="breadcrumb__link">5G brood toaster</a></li>
+      </ul>
 
       <div class="row">
-        <div class="col col--8">
+        <div class="col col--7">
           <form class="leftForm">
-            <label class="label">A nice label :)</label>
-            <input class="input textInputField" type="text" placeholder="A nice text input field :)" />
+            <div class="content__header">
+              <h2 class="content__title">5G brood toaster</h2>
+            </div>
+            <div class="content__body">
+              <dl class="dl">
+                <dt>Name</dt>
+                <dd>Kevin Quint</dd>
+                <dt>Email address</dt>
+                <dd>kevin.quint@kpn.com</dd>
+                <dt>Department</dt>
+                <dd>ZM 5G</dd>
+              </dl>
+            </div>
+
+            <div class="content__header">
+              <h2 class="content__title">Idea specifications</h2>
+            </div>
+            <div class="content__body">
+              <dl class="dl">
+                <dt>Name</dt>
+                <dd>Brood toaster met 5G</dd>
+                <dt>Idea code</dt>
+                <dd>1234</dd>
+                <dt>Idea pitch</dt>
+                <dd>
+                  <p class="p">
+                    This toaster will give us an incredible amount of money within
+                    a short time because everybody loves toast. Trust me. I asked
+                    my neighbor and he wanted to buy this. Boom!
+                    Validated.
+                  </p>
+                </dd>
+                <dt>Clear user segment</dt>
+                <dd>
+                  <p class="p">
+                    This toaster will give us an incredible amount of money within
+                    a short time because everybody loves toast.
+                  </p>
+                </dd>
+                <dt>Problem solution</dt>
+                <dd>
+                  <p class="p">
+                    This toaster will give us an incredible amount of money within
+                    a short time because everybody loves toast. Trust me. I asked
+                    my neighbor and he wanted to buy this. Boom!
+                    Validated.
+                  </p>
+                </dd>
+                <dt>KPN fit</dt>
+                <dd>
+                  <p class="p">
+                    This toaster will give us an incredible amount of money within
+                    a short time because everybody loves toast. Trust me. I asked
+                    my neighbor and he wanted to buy this. Boom!
+                    Validated.
+                  </p>
+                </dd>
+                <dt>Ticket fit</dt>
+                <dd>
+                  <p class="p">
+                    This toaster will give us an incredible amount of money within
+                    a short time because everybody loves toast. Trust me. I asked
+                    my neighbor and he wanted to buy this. Boom!
+                    Validated.
+                  </p>
+                </dd>
+              </dl>
+            </div>
+
           </form>
         </div>
 
-        <div class="col col--4">
+        <div class="col col--3">
           <form class="rightForm">
-            <select class="select selectInputField">
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-            </select>
+            
           </form>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
