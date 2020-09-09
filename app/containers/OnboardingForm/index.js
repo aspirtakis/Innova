@@ -21,6 +21,8 @@ import messages from "./messages";
 
 import KpnLongText from "./components/kpnLongText";
 import KpnSmallText from "./components/kpnSmallText";
+import KpnSelect from "./components/kpnSelect";
+import KpnTextArea from "./components/kpnTextArea";
 
 import "./onboardingStyle.css";
 
@@ -64,7 +66,7 @@ export function OnboardingForm() {
               </div>
               <div class="content__body">
                 <dl class="dl">
-                <KpnSmallText
+                  <KpnSmallText
                     title="Name"
                     description="Brood toaster met 5G">
                   </KpnSmallText>
@@ -115,88 +117,40 @@ export function OnboardingForm() {
             </div>
             <div class="content__body">
               <dl class="dl">
-                <dt>Business opportunity</dt>
-                <dd>
-                  <select class="select">
-                    <option hidden disabled selected value> -- select an option -- </option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </dd>
-                <dt>Clear user segment</dt>
-                <dd>
-                  <select class="select">
-                    <option hidden disabled selected value> -- select an option -- </option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </dd>
-                <dt>Problem solving</dt>
-                <dd>
-                  <select class="select">
-                    <option hidden disabled selected value> -- select an option -- </option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </dd>
-                <dt>KPN fit</dt>
-                <dd>
-                  <select class="select">
-                    <option hidden disabled selected value> -- select an option -- </option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </dd>
-                <dt>Ticket fit</dt>
-                <dd>
-                  <select class="select">
-                    <option hidden disabled selected value> -- select an option -- </option>
-                    <option>DDT</option>
-                    <option>NGI</option>
-                    <option>TC</option>
-                  </select>
-                </dd>
-                <dt>Result</dt>
-                <dd>160</dd>
+                <KpnSelect
+                  title="Business opportunity">
+                </KpnSelect>
+                <KpnSelect
+                  title="Clear user segment">
+                </KpnSelect>
+                <KpnSelect
+                  title="Problem solving">
+                </KpnSelect>
+                <KpnSelect
+                  title="KPN fit">
+                </KpnSelect>
+                <KpnSelect
+                  title="Ticket fit">
+                </KpnSelect>
+                <KpnSmallText
+                  title="Result"
+                  description="160">
+                </KpnSmallText>
               </dl>
             </div>
             <div class="content__body">
               <dl class="dl">
-                <dt>Notes</dt>
-                <dd>
-                  <textarea class="textarea">
-                    Briljant idea, must do this. Have to check with Arnoud, Bas and Eric for more information.
-                  </textarea>
-                </dd>
-                <dt>Comments for sender</dt>
-                <dd>
-                  <textarea class="textarea">
-                    Hi Kevin,
-                    Thanks for your idea. Great thinking. We bring your idea to the next phase.
-                    Love, Ewout
-                  </textarea>
-                </dd>
-                <dt>Next phase</dt>
-                <dd>
-                  <select class="select">
-                    <option hidden disabled selected value> -- select an option -- </option>
-                    <option>Option 1</option>
-                    <option>Backlog</option>
-                    <option>Option 3</option>
-                  </select>
-                </dd>
+                <KpnTextArea
+                  title="Notes"
+                  textArea="Briljant idea, must do this. Have to check with Arnoud, Bas and Eric for more information.">
+                </KpnTextArea>
+                <KpnTextArea
+                  title="Comments for sender"
+                  textArea="Hi Kevin, thanks for your idea. Great thinking. We bring your idea to the next phase. Love, Ewout">
+                </KpnTextArea>
+                <KpnSelect
+                  title="Ticket fit">
+                </KpnSelect>
                 <button class="button">Send</button>
               </dl>
             </div>

@@ -27,6 +27,11 @@
 
 .textarea {
     font-size: 14px;
+    max-width: 300px;
+}
+
+.button {
+    width: 200px;
 }
 
 .rightForm {
