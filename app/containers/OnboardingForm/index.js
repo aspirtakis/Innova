@@ -138,7 +138,7 @@ export function OnboardingForm() {
                 </KpnSmallText>
               </dl>
             </div>
-            <div class="content__body">
+            <div class="content__body kpnNotesField">
               <dl class="dl">
                 <KpnTextArea
                   title="Notes"

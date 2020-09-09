@@ -34,6 +34,15 @@
     width: 200px;
 }
 
+.kpnSmallText {
+    margin-bottom: 24px;
+}
+
+.kpnNotesField {
+    padding-top: 24px;
+    border-top: 1px solid #d3d3d3;;
+}
+
 .rightForm {
     background-color: white;
     

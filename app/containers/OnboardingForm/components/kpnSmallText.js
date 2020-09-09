@@ -18,7 +18,7 @@ class KpnSmallText extends React.Component {
         return (
             <div>
                 <dt>{title}</dt>
-                <dd>{description}</dd>
+                <dd className="kpnSmallText">{description}</dd>
             </div>
         );
     }
