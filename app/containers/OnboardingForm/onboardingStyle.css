@@ -3,14 +3,30 @@
     padding: 10px;
 }
 
+.content__title {
+    color: #009900;
+}
+
 .leftForm {
     background-color: white;
     
     padding: 20px;
 }
 
-.textInputField {
-    max-width: 200px;
+.leftFormContent{
+    max-width: 800px;
+}
+
+.p {
+    font-size: 14px;
+}
+
+.select {
+    max-width: 150px;
+}
+
+.textarea {
+    font-size: 14px;
 }
 
 .rightForm {
@@ -19,6 +35,3 @@
     padding: 20px;
 }
 
-.selectInputField {
-    max-width: 200px;
-}
