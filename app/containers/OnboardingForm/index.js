@@ -19,6 +19,9 @@ import reducer from "./reducer";
 import saga from "./saga";
 import messages from "./messages";
 
+import KpnLongText from "./components/kpnLongText";
+import KpnSmallText from "./components/kpnSmallText";
+
 import "./onboardingStyle.css";
 
 export function OnboardingForm() {
@@ -41,12 +44,18 @@ export function OnboardingForm() {
               </div>
               <div class="content__body">
                 <dl class="dl">
-                  <dt>Name</dt>
-                  <dd>Kevin Quint</dd>
-                  <dt>Email address</dt>
-                  <dd>kevin.quint@kpn.com</dd>
-                  <dt>Department</dt>
-                  <dd>ZM 5G</dd>
+                  <KpnSmallText
+                    title="Name"
+                    description="Kevin Quint">
+                  </KpnSmallText>
+                  <KpnSmallText
+                    title="Email address"
+                    description="kevin.quint@kpn.com">
+                  </KpnSmallText>
+                  <KpnSmallText
+                    title="Department"
+                    description="ZM 5G">
+                  </KpnSmallText>
                 </dl>
               </div>
 
@@ -55,53 +64,44 @@ export function OnboardingForm() {
               </div>
               <div class="content__body">
                 <dl class="dl">
-                  <dt>Name</dt>
-                  <dd>Brood toaster met 5G</dd>
-                  <dt>Idea code</dt>
-                  <dd>1234</dd>
-                  <dt>Idea pitch</dt>
-                  <dd>
-                    <p class="p">
-                      This toaster will give us an incredible amount of money within
-                      a short time because everybody loves toast. Trust me. I asked
-                      my neighbor and he wanted to buy this. Boom!
-                      Validated.
-                  </p>
-                  </dd>
-                  <dt>Clear user segment</dt>
-                  <dd>
-                    <p class="p">
-                      This toaster will give us an incredible amount of money within
-                      a short time because everybody loves toast.
-                  </p>
-                  </dd>
-                  <dt>Problem solution</dt>
-                  <dd>
-                    <p class="p">
-                      This toaster will give us an incredible amount of money within
-                      a short time because everybody loves toast. Trust me. I asked
-                      my neighbor and he wanted to buy this. Boom!
-                      Validated.
-                  </p>
-                  </dd>
-                  <dt>KPN fit</dt>
-                  <dd>
-                    <p class="p">
-                      This toaster will give us an incredible amount of money within
-                      a short time because everybody loves toast. Trust me. I asked
-                      my neighbor and he wanted to buy this. Boom!
-                      Validated.
-                  </p>
-                  </dd>
-                  <dt>Ticket fit</dt>
-                  <dd>
-                    <p class="p">
-                      This toaster will give us an incredible amount of money within
-                      a short time because everybody loves toast. Trust me. I asked
-                      my neighbor and he wanted to buy this. Boom!
-                      Validated.
-                  </p>
-                  </dd>
+                <KpnSmallText
+                    title="Name"
+                    description="Brood toaster met 5G">
+                  </KpnSmallText>
+                  <KpnSmallText
+                    title="Idea code"
+                    description="1234">
+                  </KpnSmallText>
+                  <KpnLongText
+                    title="Idea pitch"
+                    description="This toaster will give us an incredible amount of money withing a short time because
+                     everybody loves toast. Trust me. I asked my neighbor and he wanted to buy this. Boom!
+                     Validated.">
+                  </KpnLongText>
+                  <KpnLongText
+                    title="Clear user segment"
+                    description="This toaster will give us an incredible amount of money withing a short time because
+                    everybody loves toast. Trust me. I asked my neighbor and he wanted to buy this. Boom!
+                    Validated.">
+                  </KpnLongText>
+                  <KpnLongText
+                    title="Problem Solution"
+                    description="This toaster will give us an incredible amount of money withing a short time because
+                    everybody loves toast. Trust me. I asked my neighbor and he wanted to buy this. Boom!
+                    Validated.">
+                  </KpnLongText>
+                  <KpnLongText
+                    title="KPN fit"
+                    description="This toaster will give us an incredible amount of money withing a short time because
+                    everybody loves toast. Trust me. I asked my neighbor and he wanted to buy this. Boom!
+                    Validated.">
+                  </KpnLongText>
+                  <KpnLongText
+                    title="Ticket fit"
+                    description="This toaster will give us an incredible amount of money withing a short time because
+                    everybody loves toast. Trust me. I asked my neighbor and he wanted to buy this. Boom!
+                    Validated.">
+                  </KpnLongText>
                 </dl>
               </div>
             </div>
