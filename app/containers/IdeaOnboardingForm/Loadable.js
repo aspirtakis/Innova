@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for OnboardingForm
+ * Asynchronously loads the component for IdeaOnboardingForm
  *
  */
 

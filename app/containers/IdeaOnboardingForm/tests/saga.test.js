@@ -4,11 +4,11 @@
 
 /* eslint-disable redux-saga/yield-effects */
 // import { take, call, put, select } from 'redux-saga/effects';
-// import onboardingFormSaga from '../saga';
+// import ideaOnboardingFormSaga from '../saga';
 
-// const generator = onboardingFormSaga();
+// const generator = ideaOnboardingFormSaga();
 
-describe("onboardingFormSaga Saga", () => {
+describe("ideaOnboardingFormSaga Saga", () => {
   it("Expect to have unit tests specified", () => {
     expect(true).toEqual(false);
   });

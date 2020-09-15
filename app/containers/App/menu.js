@@ -8,7 +8,7 @@ import FunnelIcon from '@material-ui/icons/ViewDay';
 import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
 import initiatives from 'containers/Initiatives/Loadable';
-import OnboardingForm from 'containers/OnboardingForm/Loadable';
+import IdeaOnboardingForm from 'containers/IdeaOnboardingForm/Loadable';
 import VotingForm from 'containers/VotingForm/Loadable';
 
 import STGCalendar from 'containers/SgCalendar/Loadable';
@@ -48,16 +48,16 @@ const Menu = [
     component: STGCalendar,
   },
   {
-    id: 'OnboardingForm',
-    text: 'Onboarding Form',
-    icon: <i className="ui-robot" />,
-    url: '/OnboardingForm',
-    component: OnboardingForm,
+    id: 'IdeaOnboardingForm',
+    text: 'New Idea Form',
+    icon: <i className="ui-message" />,
+    url: '/IdeaOnboardingForm',
+    component: IdeaOnboardingForm,
   },
   {
     id: 'VotingForm',
     text: 'Voting Form',
-    icon: <i className="ui-robot" />,
+    icon: <i className="ui-ticket-diap" />,
     url: '/VotingForm',
     component: VotingForm,
   },

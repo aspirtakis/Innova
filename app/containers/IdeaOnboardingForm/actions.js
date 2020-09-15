@@ -1,6 +1,6 @@
 /*
  *
- * OnboardingForm actions
+ * IdeaOnboardingForm actions
  *
  */
 

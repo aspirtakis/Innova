@@ -1,9 +1,9 @@
 // import produce from 'immer';
-import onboardingFormReducer from "../reducer";
+import ideaOnboardingFormReducer from "../reducer";
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
-describe("onboardingFormReducer", () => {
+describe("ideaOnboardingFormReducer", () => {
   let state;
   beforeEach(() => {
     state = {
@@ -13,7 +13,7 @@ describe("onboardingFormReducer", () => {
 
   it("returns the initial state", () => {
     const expectedResult = state;
-    expect(onboardingFormReducer(undefined, {})).toEqual(expectedResult);
+    expect(ideaOnboardingFormReducer(undefined, {})).toEqual(expectedResult);
   });
 
   /**
