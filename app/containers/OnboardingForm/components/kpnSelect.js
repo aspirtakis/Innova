@@ -17,8 +17,8 @@ class KpnSelect extends React.Component {
 
     return (
       <div>
-        <dt>{title}</dt>
-        <select class="select">
+        <dt className="kpnSelectTitle">{title}</dt>
+        <select className="kpnSelectSelector select">
           <option hidden disabled selected value> 1 - 5 </option>
           <option>1</option>
           <option>2</option>

@@ -17,9 +17,9 @@ class KpnTextArea extends React.Component {
 
     return (
       <div>
-        <dt>{title}</dt>
+        <dt className="kpnTextAreaTitle">{title}</dt>
         <dd>
-          <textarea class="textarea">
+          <textarea className="kpnTextAreaDescription textarea">
             {textArea}
           </textarea>
         </dd>

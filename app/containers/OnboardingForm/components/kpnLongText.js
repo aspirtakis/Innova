@@ -17,9 +17,9 @@ class KpnLongText extends React.Component {
 
     return (
       <div>
-        <dt>{title}</dt>
+        <dt className="kpnLongTextTitle">{title}</dt>
         <dd>
-          <p class="p">
+          <p className="kpnLongTextDescription p">
             {description}
           </p>
         </dd>

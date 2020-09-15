@@ -31,21 +31,21 @@ export function OnboardingForm() {
   useInjectSaga({ key: "onboardingForm", saga });
 
   return (
-    <div class="onboardingForms">
-      <ul class="breadcrumb">
-        <li class="breadcrumb__item"><a class="breadcrumb__link">Explore</a></li>
-        <li class="breadcrumb__item"><a class="breadcrumb__link">5G brood toaster</a></li>
+    <div className="onboardingForms">
+      <ul className="breadcrumb">
+        <li className="breadcrumb__item"><a className="breadcrumb__link">Explore</a></li>
+        <li className="breadcrumb__item"><a className="breadcrumb__link">5G brood toaster</a></li>
       </ul>
 
-      <div class="row">
-        <div class="col col--8">
-          <form class="leftForm">
-            <div class="leftFormContent">
-              <div class="content__header">
-                <h2 class="content__title">5G brood toaster</h2>
+      <div className="row">
+        <div className="col col--8">
+          <form className="leftForm">
+            <div className="leftFormContent">
+              <div className="content__header">
+                <h2 className="content__title">5G brood toaster</h2>
               </div>
-              <div class="content__body">
-                <dl class="dl">
+              <div className="content__body">
+                <dl className="dl">
                   <KpnSmallText
                     title="Name"
                     description="Kevin Quint">
@@ -61,11 +61,11 @@ export function OnboardingForm() {
                 </dl>
               </div>
 
-              <div class="content__header">
-                <h2 class="content__title">Idea specifications</h2>
+              <div className="content__header">
+                <h2 className="content__title">Idea specifications</h2>
               </div>
-              <div class="content__body">
-                <dl class="dl">
+              <div className="content__body">
+                <dl className="dl">
                   <KpnSmallText
                     title="Name"
                     description="Brood toaster met 5G">
@@ -110,13 +110,13 @@ export function OnboardingForm() {
           </form>
         </div>
 
-        <div class="col col--3">
-          <form class="rightForm">
-            <div class="content__header">
-              <h2 class="content__title">Voting</h2>
+        <div className="col col--3">
+          <form className="rightForm">
+            <div className="content__header">
+              <h2 className="content__title">Voting</h2>
             </div>
-            <div class="content__body">
-              <dl class="dl">
+            <div className="content__body">
+              <dl className="dl">
                 <KpnSelect
                   title="Business opportunity">
                 </KpnSelect>
@@ -138,8 +138,8 @@ export function OnboardingForm() {
                 </KpnSmallText>
               </dl>
             </div>
-            <div class="content__body kpnNotesField">
-              <dl class="dl">
+            <div className="content__body kpnNotesField">
+              <dl className="dl">
                 <KpnTextArea
                   title="Notes"
                   textArea="Briljant idea, must do this. Have to check with Arnoud, Bas and Eric for more information.">
@@ -151,7 +151,7 @@ export function OnboardingForm() {
                 <KpnSelect
                   title="Ticket fit">
                 </KpnSelect>
-                <button class="button">Send</button>
+                <button class="kpnNotesFieldButton button">Send</button>
               </dl>
             </div>
           </form>
