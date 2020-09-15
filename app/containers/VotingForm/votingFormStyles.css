@@ -1,0 +1,67 @@
+.votingForms {
+  margin: 10px;
+  padding: 10px;
+}
+
+.content__title {
+	font-family: "Segoe UI Bold", sans-serif;
+	font-size: 20px;
+	color: #009900;
+	margin-top: 0px;
+}
+
+.leftForm {
+  background-color: white;
+
+  padding: 24px;
+}
+
+.leftFormContent {
+  max-width: 800px;
+}
+
+.p {
+  font-size: 14px;
+}
+
+.select {
+  max-width: 150px;
+}
+
+.textarea {
+  font-size: 14px;
+  max-width: 300px;
+}
+
+.button {
+  width: 200px;
+}
+
+.kpnLongTextTitle, .kpnSmallTextTitle, .kpnSelectTitle, .kpnTextAreaTitle {
+	font-family: "Segoe UI Bold", sans-serif;
+	font-size: 14px;
+}
+
+.kpnLongTextDescription, .kpnSmallTextDescription, .kpnSelectSelector, .kpnNotesField {
+	font-family: "Segoe UI Regular", sans-serif;
+	font-size: 14px;
+}
+
+.kpnSmallTextDescription {
+	margin-bottom: 24px;
+}
+
+.kpnNotesField {
+  padding-top: 13px;
+  border-top: 1px solid #d3d3d3;
+}
+
+.kpnNotesFieldButton {
+	margin-top: 32px;
+}
+
+.rightForm {
+  background-color: white;
+
+  padding: 20px;
+}

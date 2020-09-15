@@ -9,6 +9,7 @@ import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
 import initiatives from 'containers/Initiatives/Loadable';
 import OnboardingForm from 'containers/OnboardingForm/Loadable';
+import VotingForm from 'containers/VotingForm/Loadable';
 
 import STGCalendar from 'containers/SgCalendar/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -52,6 +53,13 @@ const Menu = [
     icon: <i className="ui-robot" />,
     url: '/OnboardingForm',
     component: OnboardingForm,
+  },
+  {
+    id: 'VotingForm',
+    text: 'Voting Form',
+    icon: <i className="ui-robot" />,
+    url: '/VotingForm',
+    component: VotingForm,
   },
 ];
 
