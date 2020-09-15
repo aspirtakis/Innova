@@ -71,7 +71,7 @@ export function IdeaOnboardingForm() {
             <KpnLargeInput
               title="Ticket fit">
             </KpnLargeInput>
-            <button class="kpnSubmitIdeaButton button">Send</button>
+            <button className="kpnSubmitIdeaButton button button--3">Send</button>
           </dl>
         </div>
       </form>

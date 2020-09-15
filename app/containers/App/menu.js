@@ -16,6 +16,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import iconhome from '../../images/icon_home.png';
 import backlog from '../../images/icon_backlog.png';
 import graveyard from '../../images/icon_graveyard.png';
+
 // Menu tree
 const Menu = [
   {

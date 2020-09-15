@@ -19,7 +19,7 @@ class KpnLargeInput extends React.Component {
 			<div>
 				<dt className="kpnLargeInputTitle">{title}</dt>
 				<dd className="kpnLargeInputField">
-					<textarea className="intextareaput"></textarea>
+					<textarea className="textarea"></textarea>
 				</dd>
 			</div>
 		);
