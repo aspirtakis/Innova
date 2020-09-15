@@ -149,7 +149,7 @@ export function VotingForm() {
                   textArea="Hi Kevin, thanks for your idea. Great thinking. We bring your idea to the next phase. Love, Ewout">
                 </KpnTextArea>
                 <KpnSelect
-                  title="Ticket fit">
+                  title="Next phase">
                 </KpnSelect>
                 <button class="kpnNotesFieldButton button">Send</button>
               </dl>
