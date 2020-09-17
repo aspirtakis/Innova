@@ -95,7 +95,6 @@ class ModalAddTask extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Modal
-        style={{ minWidth: 900 }}
         title="add new Card"
         centered
         visible={visible}
