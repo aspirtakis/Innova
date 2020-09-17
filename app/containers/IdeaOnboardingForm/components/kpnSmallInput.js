@@ -13,13 +13,13 @@ class KpnSmallInput extends React.Component {
 	}
 
 	render() {
-		const { title } = this.props;
+		const { title, smallInputValue } = this.props;
 
 		return (
 			<div>
 				<dt className="kpnSmallInputTitle">{title}</dt>
 				<dd className="kpnSmallInputField">
-					<input className="input" type="text"></input>
+					<input className="input" type="text" onChange={(e) => smallInputValue(e.target.value)}></input>
 				</dd>
 			</div>
 		);
