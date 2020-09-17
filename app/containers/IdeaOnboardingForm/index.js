@@ -37,20 +37,24 @@ export class IdeaOnboardingForm extends React.Component {
       problemSolution: null,
       kpnFit: null,
       ticketFit: null,
-      buttonDisabled: true,
+      buttonDisabled: false, // button always available
     };
   }
 
   settingValueStates = (type, e) => {
-    if (type === "ideaName") {
-      if (e.length >= 10) {
-        this.setState({[type]: e});
-        this.setState({buttonDisabled: false});
-      } else {
-        this.setState({buttonDisabled: true});
-      }
-    }
-    
+    // useful for allowing 
+    // 
+    // if (type === "ideaName") {
+    //   if (e.length >= 10) {
+    //     this.setState({[type]: e});
+    //     this.setState({buttonDisabled: false});
+    //   } else {
+    //     this.setState({buttonDisabled: true});
+    //   }
+    // }
+
+    this.setState({ [type]: e });
+
     console.log(this.state);
   };
 
@@ -64,10 +68,12 @@ export class IdeaOnboardingForm extends React.Component {
           <div className="content__body">
             <dl className="dl">
               <KpnSmallInput
-                title="Idea owner">
+                title="Idea owner"
+                smallInputValue={(e) => this.settingValueStates("ideaOwner", e)}>
               </KpnSmallInput>
               <KpnSmallInput
-                title="Email address">
+                title="Email address"
+                smallInputValue={(e) => this.settingValueStates("emailAddress", e)}>
               </KpnSmallInput>
               <KpnSmallInput
                 title="Department"
@@ -75,36 +81,49 @@ export class IdeaOnboardingForm extends React.Component {
               </KpnSmallInput>
             </dl>
           </div>
-
+        </form>
+        <form className="ideaForm">
           <div className="content__header">
             <h2 className="content__title">Idea specifications</h2>
           </div>
-          <div className="content__body">
-            <dl className="dl">
-              <KpnSmallInput
-                title="Idea name"
-                smallInputValue={(e) => this.settingValueStates("ideaName", e)}>
-              </KpnSmallInput>
-              <KpnLargeInput
-                title="Idea pitch">
-              </KpnLargeInput>
-              <KpnLargeInput
-                title="Clear user segment">
-              </KpnLargeInput>
-              <KpnLargeInput
-                title="Problem solution">
-              </KpnLargeInput>
-              <KpnLargeInput
-                title="KPN fit">
-              </KpnLargeInput>
-              <KpnLargeInput
-                title="Ticket fit">
-              </KpnLargeInput>
-              <button className="kpnSubmitIdeaButton button button--3" disabled={this.state.buttonDisabled}>Send</button>
-            </dl>
+
+          <div className="content__body row">
+            <div className="col col--6">
+              <dl className="dl">
+                <KpnLargeInput
+                  title="Idea name"
+                  largeInputValue={(e) => this.settingValueStates("ideaName", e)}>
+                </KpnLargeInput>
+                <KpnLargeInput
+                  title="Idea pitch"
+                  largeInputValue={(e) => this.settingValueStates("ideaPitch", e)}>
+                </KpnLargeInput>
+                <KpnLargeInput
+                  title="Clear user segment"
+                  largeInputValue={(e) => this.settingValueStates("userSegment", e)}>
+                </KpnLargeInput>
+              </dl>
+            </div>
+            <div className="col col--6">
+              <dl className="dl">
+                <KpnLargeInput
+                  title="Problem solution"
+                  largeInputValue={(e) => this.settingValueStates("problemSolution", e)}>
+                </KpnLargeInput>
+                <KpnLargeInput
+                  title="KPN fit"
+                  largeInputValue={(e) => this.settingValueStates("kpnFit", e)}>
+                </KpnLargeInput>
+                <KpnLargeInput
+                  title="Ticket fit"
+                  largeInputValue={(e) => this.settingValueStates("ticketFit", e)}>
+                </KpnLargeInput>
+              </dl>
+            </div>
+            <button className="kpnSubmitIdeaButton button button--3" disabled={this.state.buttonDisabled}>Send</button>
           </div>
         </form>
-      </div>
+      </div >
     );
   }
 }

@@ -13,13 +13,16 @@ class KpnLargeInput extends React.Component {
 	}
 
 	render() {
-		const { title } = this.props;
+		const { title, largeInputValue } = this.props;
 
 		return (
 			<div>
 				<dt className="kpnLargeInputTitle">{title}</dt>
 				<dd className="kpnLargeInputField">
-					<textarea className="textarea"></textarea>
+					<textarea
+						className="textarea"
+						onChange={(e) => largeInputValue(e.target.value)}>
+					</textarea>
 				</dd>
 			</div>
 		);

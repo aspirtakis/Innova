@@ -19,7 +19,11 @@ class KpnSmallInput extends React.Component {
 			<div>
 				<dt className="kpnSmallInputTitle">{title}</dt>
 				<dd className="kpnSmallInputField">
-					<input className="input" type="text" onChange={(e) => smallInputValue(e.target.value)}></input>
+					<input 
+					className="input"
+					type="text"
+					onChange={(e) => smallInputValue(e.target.value)}>
+					</input>
 				</dd>
 			</div>
 		);
