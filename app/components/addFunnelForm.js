@@ -95,8 +95,8 @@ class ModalAddTask extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Modal
-      style={{minWidth: "900px"}}
-        title="add new Card"
+        style={{ minWidth: "600px" }}
+        title="New idea"
         centered
         visible={visible}
         onOk={onOK}
@@ -104,7 +104,8 @@ class ModalAddTask extends React.Component {
         footer={null}
       >
         <Spin spinning={this.state.spinning} tip="Updating...">
-          <IdeaOnboardingForm />
+          <IdeaOnboardingForm
+            addNewTask={this.addNewTask} />
         </Spin>
       </Modal>
     );
