@@ -49,13 +49,6 @@ const Menu = [
     component: STGCalendar,
   },
   {
-    id: 'IdeaOnboardingForm',
-    text: 'New Idea Form',
-    icon: <i className="ui-message" />,
-    url: '/IdeaOnboardingForm',
-    component: IdeaOnboardingForm,
-  },
-  {
     id: 'VotingForm',
     text: 'Voting Form',
     icon: <i className="ui-ticket-diap" />,
