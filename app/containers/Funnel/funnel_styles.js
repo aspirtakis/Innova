@@ -126,7 +126,7 @@ export const styles = {
   },
 
   ColTitles: {
-    fontSize: 23,
+    fontSize: 24,
     marginTop: 8,
     marginLeft:6,
     fontFamily: 'kpn-metric-normal',
