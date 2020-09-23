@@ -108,7 +108,7 @@ var horizon = taskproblem.horizon.charAt(1);
                       <div onClick={() => this.props.openEdit(taskproblem)}>
                           <div className="card">
                          
-                              <div  style={{padding:6}}>
+                              <div  style={{padding:8}}>
                                   <div className="row">
                                   <div  className="col col--1" >
                                   <div style={{ marginLeft:1,marginTop:3 }} className="row">
