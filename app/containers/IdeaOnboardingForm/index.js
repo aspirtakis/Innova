@@ -28,36 +28,21 @@ export class IdeaOnboardingForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ideaOwner: null,
-      emailAddress: null,
-      department: null,
-      ideaName: null,
-      ideaPitch: null,
-      userSegment: null,
-      problemSolution: null,
-      kpnFit: null,
-      ticketFit: null,
+      ideaTitle: null,
+      ownerFirstName: null,
+      ownerLastName: null,
+      ownerEmail: null,
+      ownerPhone: null,
+      ownerValue: null,
+      elevatorPitch: null,
+      problem: null,
+      orgValue: null,
       buttonDisabled: false, // button always available
     };
   }
 
-  // resource: [
-  //   {
-  //     description: values.description,
-  //     asssignedUser: '1',
-  //     projectname: values.project,
-  //     horizon: values.horizon,
-  //     theme: values.theme,
-  //     status: values.status,
-  //     FunnelPhase: values.funnelPhase,
-  //     funnel: values.funnel,
-  //     coach: values.coach,
-  //     sponsor: values.sponsor,
-  //     spnsr: values.spnsr,
-  //   },
-
   settingValueStates = (type, e) => {
-    // useful for allowing 
+    // useful for checks 
     // 
     // if (type === "ideaName") {
     //   if (e.length >= 10) {
@@ -73,26 +58,6 @@ export class IdeaOnboardingForm extends React.Component {
     console.log(this.state);
   };
 
-  whenClicked = () => {
-    const { ideaName, emailAddress, department } = this.state;
-
-    const myData = {
-      description: ideaName,
-      asssignedUser: '1',
-      projectname: values.project,
-      horizon: values.horizon,
-      theme: values.theme,
-      status: values.status,
-      FunnelPhase: values.funnelPhase,
-      funnel: values.funnel,
-      coach: values.coach,
-      sponsor: values.sponsor,
-      spnsr: values.spnsr,
-    };
-
-    this.props.addNewTask(myData);
-  }
-
   render() {
     const { addNewTask } = this.props;
 
@@ -100,135 +65,67 @@ export class IdeaOnboardingForm extends React.Component {
       <div className="ideaOnboardingForm">
         <form className="ideaForm">
           <div className="content__body">
+            <h2 className="content__title">Idea owner credentials</h2>
             <div className="row">
               <div className="col col--6">
                 <dl className="dl">
-                  <div>
-                    <dt className="kpnSelectorTitle">Department</dt>
-                    <dd className="kpnSelectorField">
-                      <select
-                        className="select"
-                        defaultValue=""
-                      >
-                        <option disabled hidden></option>
-                        <option>OIH</option>
-                        <option>CM</option>
-                        <option>BM</option>
-                        <option>WS</option>
-                        <option>OPS</option>
-                      </select>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="kpnSelectorTitle">Theme</dt>
-                    <dd className="kpnSelectorField">
-                      <select
-                        className="select"
-                        defaultValue=""
-                      >
-                        <option disabled hidden></option>
-                        <option>Next Gen Infra</option>
-                        <option>DataTech</option>
-                        <option>TechCo</option>
-                        <option>Other</option>
-                      </select>
-                    </dd>
-                  </div>
                   <KpnSmallInput
-                    title="Project"
-                  />
+                    title="Idea name"
+                    smallInputValue={(e) => this.settingValueStates("ideaTitle", e)}>
+                  </KpnSmallInput>
+                </dl>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col col--6">
+                <dl className="dl">
                   <KpnSmallInput
-                    title="Sponsor"
-                  />
-                  <KpnLargeInput
-                    title="Description"
-                  />
+                    title="First name"
+                    smallInputValue={(e) => this.settingValueStates("ownerFirstName", e)}>
+                  </KpnSmallInput>
+                  <KpnSmallInput
+                    title="Last name"
+                    smallInputValue={(e) => this.settingValueStates("ownerLastName", e)}>
+                  </KpnSmallInput>
                 </dl>
               </div>
               <div className="col col--6">
                 <dl className="dl">
-                  <div>
-                    <dt className="kpnSelectorTitle">Horizon</dt>
-                    <dd className="kpnSelectorField">
-                      <select
-                        className="select"
-                        defaultValue=""
-                      >
-                        <option disabled hidden></option>
-                        <option>H1</option>
-                        <option>H2</option>
-                        <option>H3</option>
-                      </select>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="kpnSelectorTitle">Team members</dt>
-                    <dd className="kpnSelectorField">
-                      <select
-                        className="select"
-                        defaultValue=""
-                      >
-                        <option disabled hidden></option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                      </select>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="kpnSelectorTitle">Next funnel phase</dt>
-                    <dd className="kpnSelectorField">
-                      <select
-                        className="select"
-                        defaultValue=""
-                      >
-                        <option disabled hidden></option>
-                        <option>INITIATE</option>
-                        <option>BACKLOG</option>
-                        <option>ARCHIVE</option>
-                        <option>SCOPE</option>
-                        <option>PROBLEM</option>
-                        <option>SOLUTION</option>
-                        <option>BUSINESS</option>
-                        <option>FEASIBILITY</option>
-                        <option>MVP</option>
-                        <option>SOFTLAUNCH</option>
-                        <option>SCALELAUNCH</option>
-                      </select>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="kpnSelectorTitle">Status</dt>
-                    <dd className="kpnSelectorField">
-                      <select
-                        className="select"
-                        defaultValue=""
-                      >
-                        <option disabled hidden></option>
-                        <option>PROGRESSING</option>
-                        <option>IMPEDEMENT</option>
-                        <option>PARKED</option>
-                        <option>STOPPED</option>
-                      </select>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="kpnSelectorTitle">Coach</dt>
-                    <dd className="kpnSelectorField">
-                      <select
-                        className="select"
-                        defaultValue=""
-                      >
-                        <option disabled hidden></option>
-                        <option>Kevin</option>
-                        <option>Mike</option>
-                        <option>Mark</option>
-                        <option>Amber</option>
-                        <option>Melvin</option>
-                      </select>
-                    </dd>
-                  </div>
+                  <KpnSmallInput
+                    title="Email address"
+                    smallInputValue={(e) => this.settingValueStates("ownerEmail", e)}>
+                  </KpnSmallInput>
+                  <KpnSmallInput
+                    title="Phone"
+                    smallInputValue={(e) => this.settingValueStates("ownerPhone", e)}>
+                  </KpnSmallInput>
+                </dl>
+              </div>
+            </div>
+            <h2 className="content__title">Idea specifications</h2>
+            <div className="row">
+              <div className="col col--6">
+                <dl className="dl">
+                  <KpnLargeInput
+                    title="Problem solution"
+                    largeInputValue={(e) => this.settingValueStates("problem", e)}>
+                  </KpnLargeInput>
+                  <KpnLargeInput
+                    title="Idea elevator pitch"
+                    largeInputValue={(e) => this.settingValueStates("elevatorPitch", e)}>
+                  </KpnLargeInput>
+                </dl>
+              </div>
+              <div className="col col--6">
+                <dl className="dl">
+                  <KpnLargeInput
+                    title="Why is your idea useful for KPN?"
+                    largeInputValue={(e) => this.settingValueStates("orgValue", e)}>
+                  </KpnLargeInput>
+                  <KpnLargeInput
+                    title="What can you bring to the table?"
+                    largeInputValue={(e) => this.settingValueStates("ownerValue", e)}>
+                  </KpnLargeInput>
                 </dl>
               </div>
             </div>
