@@ -141,6 +141,7 @@ const getStyles = theme => ({
   },
   itemIcon: {
     minWidth: 40,
+    color: '#333',
   },
   emptyIcon: {
     paddingLeft: 56,
