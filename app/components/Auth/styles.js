@@ -47,10 +47,12 @@ const styles = () => ({
     textAlign: 'center',
     color: grey[500],
   },
+  logo: {
+    maxHeight: 80,
+  },
   logoContainer: {
     textAlign: 'center',
     maxWidth: 360,
-    // height: 80,
     paddingTop: 20,
   },
   logoSmallContainer: {
