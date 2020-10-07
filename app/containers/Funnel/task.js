@@ -82,9 +82,9 @@ return count;
       var string = taskproblem.projectname;
 
 //console.log(taskproblem);
-var po = taskproblem.cardpo.charAt(0);
-var coach = taskproblem.coach.charAt(0);
-var horizon = taskproblem.horizon.charAt(1);
+var po = taskproblem.cardpo ? taskproblem.cardpo.charAt(0) :null ;
+var coach = taskproblem.coach ? taskproblem.coach.charAt(0) : null ;
+
 
 
 
