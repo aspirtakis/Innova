@@ -82,7 +82,7 @@ const getStyles = theme => ({
   },
   listItemText: {
     fontSize: 14,
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
   },
   loadingText: {
     color: theme.palette.text.secondary,
