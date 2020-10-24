@@ -111,6 +111,7 @@ var coach = taskproblem.coach ? taskproblem.coach.charAt(0) : null ;
                               <div  style={{padding:8}}>
                                   <div className="row">
                                   <div  className="col col--1" >
+                                      
                                   <div style={{ marginLeft:1,marginTop:3 }} className="row">
                                   {taskproblem.status === 'green' && <div className='circle' style= {{ backgroundColor: 'green'}} ></div>}
                                   {taskproblem.status === 'yellow' && <div className='circle'  style= {{ backgroundColor: 'orange'}}></div>}

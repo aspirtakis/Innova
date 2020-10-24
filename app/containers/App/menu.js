@@ -8,13 +8,15 @@ import FunnelIcon from '@material-ui/icons/ViewDay';
 import DashboardPage from 'containers/Pages/DashboardPage/Loadable';
 import Funnel from 'containers/Funnel/Loadable';
 import initiatives from 'containers/Initiatives/Loadable';
-
+import IdeaOnboardingForm from 'containers/IdeaOnboardingForm/Loadable';
+import VotingForm from 'containers/VotingForm/Loadable';
 
 import STGCalendar from 'containers/SgCalendar/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import iconhome from '../../images/icon_home.png';
 import backlog from '../../images/icon_backlog.png';
 import graveyard from '../../images/icon_graveyard.png';
+
 // Menu tree
 const Menu = [
   {
@@ -45,6 +47,13 @@ const Menu = [
     icon: <i className="ui-calendar" />,
     url: '/Calendar',
     component: STGCalendar,
+  },
+  {
+    id: 'VotingForm',
+    text: 'Voting Form',
+    icon: <i className="ui-ticket-diap" />,
+    url: '/VotingForm',
+    component: VotingForm,
   },
 ];
 
