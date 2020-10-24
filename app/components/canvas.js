@@ -71,7 +71,7 @@ class Canvas extends React.Component {
 
 
     return (
-      <div  style={{paddingLeft:15,paddingRight:15 }}>
+      <div  style={{paddingLeft:15,paddingRight:70 }}>
 
       <div className="row nowrap" style={{backgroundColor:'#D9F6D2',maxHeight:70}}>
       <div className="col listGroup">
