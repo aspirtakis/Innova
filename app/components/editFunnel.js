@@ -74,39 +74,7 @@ class EditTask extends React.Component {
     this.props.sessionCheck();
   }
 
-  componentWillReceiveProps(next) {
 
-    const { data } = next;
-
-//const test1 = next.users && next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
-
-const gates = data.stageGates;
-    this.setState({
-      users:next.users,
-      spinning: false,
-      cardPO:data.cardpo,
-      funnel: data.funnel,
-      projectname: data.projectname,
-      description: data.description,
-      horizon: data.horizon,
-      theme: data.theme,
-      status: data.status,
-      FunnelPhase: data.FunnelPhase,
-      coach: data.coach,
-      sponsor: data.sponsor,
-      task_id: data.task_id,
-      createDate: data.createDate,
-      spnsr: data.spnsr,
-      remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
-      value:data.value,
-      value:data.value,
-      prjcost:data.prjcost,
-      assumptions:data.assumptions,
-      nexStageGate:data.nexStageGate,
-      stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
-      
-    });
-  }
 
   saveChecklist = (r,row) => {
     //this.props.sessionCheck();
@@ -1013,7 +981,7 @@ const gates = data.stageGates;
   <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={user} saveRemark={this.saveRemark} remarks={ TeamRemarks } />
 </TabPane>}
        
-      <TabPane tab="Meetings" key="6">
+      <TabPane tab="Agenta" key="6">
       
       
      {(this.state.cardPO === this.props.user.first_name + " " + this.props.user.last_name || this.props.user.role === 'Coach' || this.props.user.role === 'Manager') && 

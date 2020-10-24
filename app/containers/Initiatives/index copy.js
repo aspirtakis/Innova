@@ -44,7 +44,7 @@ class Initiatives extends React.Component {
     super(props);
 
   }
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
   //  this.props.sessionCheck();
     console.log(this.props);
 const data = this.props.location.state.data;
@@ -77,40 +77,7 @@ this.setState({
 
   }
 
-  componentWillReceiveProps(next) {
 
-    const  data  = next.location.state.data;
-    console.log(next);
-
-//const test1 = next.users && next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
-
-const gates = data.stageGates;
-    this.setState({
-      users:next.users,
-      spinning: false,
-      cardPO:data.cardpo,
-      funnel: data.funnel,
-      projectname: data.projectname,
-      description: data.description,
-      horizon: data.horizon,
-      theme: data.theme,
-      status: data.status,
-      FunnelPhase: data.FunnelPhase,
-      coach: data.coach,
-      sponsor: data.sponsor,
-      task_id: data.task_id,
-      createDate: data.createDate,
-      spnsr: data.spnsr,
-      remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
-      value:data.value,
-      value:data.value,
-      prjcost:data.prjcost,
-      assumptions:data.assumptions,
-      nexStageGate:data.nexStageGate,
-      stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
-      
-    });
-  }
 
   saveChecklist = (r,row) => {
     //this.props.sessionCheck();

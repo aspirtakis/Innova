@@ -26,8 +26,10 @@ import EditableTable from '../../components/editableTable';
 import StageGates from '../../components/stagegates';
 import { size } from 'lodash';
 import './initiativesStyles.css';
+import Agenda  from  '../../components/Agenda';
+import AddNewMeeting from '../../components/Agenda/addnewMeeting';
+import UpdateMeeting from '../../components/Agenda/updateMeeting';
 import Canvas from '../../components/canvas';
-
 
 import { Tab, TabItem, TabLink, TabMenu } from '@kpn-style/react';
 //import { boolean, withKnobs } from "@storybook/addon-knobs";
@@ -52,7 +54,11 @@ class Initiatives extends React.Component {
     };
 
   }
-  componentWillMount(){
+  componentDidUpdate(){
+
+    
+  }
+  UNSAFE_componentWillMount(){
 const data = this.props.location.state ? this.props.location.state.data :null ;
 if(!data){
   this.setState({
@@ -84,7 +90,10 @@ if(data){
     prjcost:data.prjcost,
     assumptions:data.assumptions,
     nexStageGate:data.nexStageGate,
-    stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,   
+    stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,  
+    meetingAddPanel: false, 
+    meetingEditPanel: false,
+    meetingEditData: null,
   });
 
 }
@@ -92,46 +101,6 @@ if(data){
 
   }
 
-  componentWillReceiveProps(next) {
-
-    const  data  = next.location.state ? next.location.state.data : null;
-    console.log(next);
-    if(!data){
-      this.setState({
-          hasSelectedcard: false,
-      });
-    }
-
-//const test1 = next.users && next.users.map(allusers => allusers.user_to_app_to_role_by_user_id);
-if(data){
-const gates = data.stageGates;
-    this.setState({
-      users:next.location.state.users,
-      spinning: false,
-      cardPO:data.cardpo,
-      funnel: data.funnel,
-      projectname: data.projectname,
-      description: data.description,
-      horizon: data.horizon,
-      theme: data.theme,
-      status: data.status,
-      FunnelPhase: data.FunnelPhase,
-      coach: data.coach,
-      sponsor: data.sponsor,
-      task_id: data.task_id,
-      createDate: data.createDate,
-      spnsr: data.spnsr,
-      remarks:data.remarks ? data.remarks.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : data.remarks,
-      value:data.value,
-      value:data.value,
-      prjcost:data.prjcost,
-      assumptions:data.assumptions,
-      nexStageGate:data.nexStageGate,
-      stageGates: gates ? gates.slice().sort((a, b) => new Date(b.created) - new Date(a.created)) : gates ,
-      
-    });
-  }
-  }
 
   saveChecklist = (r,row) => {
     //this.props.sessionCheck();
@@ -317,7 +286,7 @@ const gates = data.stageGates;
 
       })
       .catch(taskData => console.log(taskData));
-};
+  };
   addNewAssumption = values => {
    // this.props.sessionCheck();
     // this.setState({ spinning: true });
@@ -470,10 +439,18 @@ const gates = data.stageGates;
        })
        .catch(taskData => console.log(taskData));
   };
-  addNewMeeting = (type) => {
+  addNewMeeting = () =>{
+    console.log("clickadd");
+    this.setState({meetingAddPanel: true});
+  };
+  editOldMeeting = (data) =>{
+    console.log("clickedit");
+    this.setState({meetingEditData: data});
+    this.setState({meetingEditPanel: true});
+  };
+  saveNewMeeting = (formData) => {
    // this.props.sessionCheck();
     // this.setState({ spinning: true });
-    const { stageGates } = this.state;
      fetch(stageGatesUrl, {
        method: 'POST',
        headers: {
@@ -486,11 +463,15 @@ const gates = data.stageGates;
        body: JSON.stringify({
          resource: [
           {
-            title: "New Meeting",
+            type: formData.meetingType,
             cardid: this.state.task_id,
             editor: this.props.location.state.user.first_name,
-            type: type,
-            stage:0,
+            stage:this.state.FunnelPhase,
+            funding_request: formData.fundingRequest,
+            title: formData.meetingName,
+            meetingDate: formData.meetingDate,
+            feedback: formData.meetingFeedback,
+            goal: formData.meetingGoal,
           },
          ],
        }),
@@ -508,13 +489,19 @@ const gates = data.stageGates;
          //console.log(remarkData);
          const newRemark = {
           id:remarkData.resource[0].id,
-          title: "New Meeting",
+          type: formData.meetingType,
+          title: formData.meetingName,
           cardid: this.state.task_id,
           editor: this.props.location.state.user.first_name,
-          type: type,
-          stage:0,
+          stage:this.state.FunnelPhase,
+          funding_request: formData.fundingRequest,
+          goal: formData.meetingGoal,
+          meetingDate: formData.meetingDate,
+          feedback: formData.meetingFeedback,
         };
-  
+        
+        const { stageGates } = this.state;
+
         this.setState({
           stageGates: [newRemark,...stageGates],
         });
@@ -550,17 +537,16 @@ const gates = data.stageGates;
         })
         .catch(taskData => this.props.sessionCheck());
   };
-  saveMeeting = (e, remark) => {
+  saveMeeting = (formData) => {
+
+
     const newData = [...this.state.stageGates];
-    const index = newData.findIndex(item => remark.id === item.id);
+    const index = newData.findIndex(item => formData.id === formData.id);
     let item = newData[index];
-    item.title= e;
-    newData.splice(index, 1, {
-      ...item,
-      ...item,
-    });
+
     this.setState({stageGates:newData});
-    const id = remark.id
+    
+    const id = formData.id
     const url4 = stageGatesUrl +'/'+id;
     fetch(url4, {
       method: 'PATCH',
@@ -571,9 +557,16 @@ const gates = data.stageGates;
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        title: e,
-      }),
+      body: JSON.stringify(          {
+        type: formData.meetingType,
+        editor: this.props.location.state.user.first_name,
+        stage:0,
+        funding_request: formData.fundingRequest,
+        title: formData.meetingName,
+        meetingDate: formData.meetingDate,
+        feedback: formData.meetingFeedback,
+        goal: formData.meetingGoal,
+      },),
     })
       .then(response => {
         if (!response.ok) {
@@ -582,9 +575,26 @@ const gates = data.stageGates;
         return response;
       })
       .then(response => response.json())
-      .then(taskData => {
+      .then(taskData => 
+        
+        {
+          const index = newData.findIndex(item => formData.id === item.id);
+          let item = newData[index];
+          item.type= formData.meetingType;
+          item.editor= this.props.location.state.user.first_name;
+          item.funding_request=formData.fundingRequest;
+          item.title= formData.meetingName;
+          item.meetingDate= formData.meetingDate;
+          item.feedback= formData.meetingFeedback;
+          item.goal= formData.meetingGoal;
 
-      })
+          newData.splice(index, 1, {
+            ...item,
+            ...item,
+          });
+      }
+        
+)
       .catch(taskData => console.log(taskData));
   };
   saveRemark = (e, remark) => {
@@ -798,7 +808,6 @@ const gates = data.stageGates;
     const titles =  this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name ? data.projectname + "overview - You are PO of this project" : data.projectname + " overview";
 
   };
-
   remarksType = (type) =>
   {
   const TeamRemarks = this.state.remarks && this.state.remarks.filter(city => city.type === "User");
@@ -811,28 +820,25 @@ const gates = data.stageGates;
   }
   
   };
-
-  
-
-
-
   render() {
 
-    const  data  = this.state;
+    const  data = this.state;
+    const {meetingAddPanel, meetingEditPanel, meetingEditData} = this.state;
+
 
     return (
-      <div style={{padding:3}}>
+      <div className="row">
       {this.state.hasSelectedcard ? 
         <div
       >
-       <div className=" mainContainer">
+       <div className="mainContainer">
        <div className="titleContainer">
        <div className="titleInit">{this.state.projectname}</div>
        </div>
     <Tabs tabBarStyle={{borderBlockColor:"#009900", color:'green', fontFamily:"kpn-metric-bold",  }} className="mainTab">
       <TabPane  tab={<span className="titlesTab"> General</span>} key="1">
-
-                <Row style={{paddingLeft:15 ,minHeigh:1200}}>
+      <div>
+                <Row>
                   <Col span={8}>
                   <p className="titleInit">Team Members </p>
                   <p className="titleGeneral" >Product Owner </p>
@@ -887,7 +893,7 @@ const gates = data.stageGates;
 
                   </Col>
                 </Row>
-      
+              </div>
       </TabPane>
      {(this.state.cardPO === this.props.location.state.user.first_name+" "+this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach') &&  <TabPane tab={<span className="titlesTab"> Update</span>} key="2">
       <Form>
@@ -1076,51 +1082,28 @@ const gates = data.stageGates;
   <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={this.props.location.state.user} saveRemark={this.saveRemark} remarks={  this.remarksType("team") } />
 </TabPane>}
        
-      <TabPane tab={<span className="titlesTab"> Meetings</span>} key="6">
-      
-      
-     {(this.state.cardPO === this.props.location.state.user.first_name + " " + this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'Manager') && 
-     <div > 
-      <Button 
-      onClick={() => this.addNewMeeting("StageGate")} 
-      type="primary" 
-      style={{  marginRight: 16,marginLeft: 16  }}>
-      Create SG
-      </Button>
-      <Button style={{  marginRight: 16  }} onClick={() => this.addNewMeeting("FundingMoment")} type="primary" style={{  marginBottom: 16 }}>Funding Momment
-</Button>
-<span style={{  marginLeft: 30  }}>
-Next Meeting :
-<DatePicker 
+  <TabPane tab={<span className="titlesTab"> Agenda</span>} key="6">
+     
+{!meetingAddPanel && !meetingEditPanel ? <Agenda phase={this.state.FunnelPhase} AddNewMeeting={() => this.addNewMeeting()} AgendaData={this.state.stageGates} deleteMeetings={this.deleteMeeting} editMeeting={this.editOldMeeting} user={this.props.location.state.user} /> : 
+<div>
+  {meetingEditPanel && <UpdateMeeting editMeetingCancel={() => this.setState({meetingEditPanel:false})} meetingData={meetingEditData} onSaveMeeting={this.saveMeeting} />}
+  {meetingAddPanel && <AddNewMeeting addMeetingCancel={() => this.setState({meetingAddPanel:false})} onSaveMeeting={this.saveNewMeeting} />}
+</div>
+  }
 
-showTime={{
-  hideDisabledOptions: true,
-}}
-
-value={moment(this.state.nexStageGate, dateFormat)}
-format={dateFormat}
-onChange={(date, dateString) => {
-  this.setState({nexStageGate: moment(date).format(dateFormat)});
-  this.onSTGUpdate(moment(date).format(dateFormat));
-} } />
-</span>
-      
-      </div>}
-    
-  <StageGates 
-  onOK={this.props.onOK} 
-  deleteMeeting={this.deleteMeeting}
-  user={this.props.location.state.user} 
-  saveMeeting={this.saveMeeting}
-   stageGates={this.state.stageGates} 
-   nextGate={this.state.nexStageGate} />
 </TabPane>
+
+
+
+
+
 
 <TabPane style={{fontSize:10 ,color:'white'}} tab={<span className="titlesTab"> Canvas</span>} key="7">
 <Canvas
 data={data}
 assumptions={this.state.assumptions}
 TeamRemarks={this.remarksType("team")} />
+
 </TabPane>
     </Tabs>
   </div>

@@ -1,0 +1,93 @@
+.scroll-x {
+  width: 1200px;
+}
+
+.scroll-table {
+  overflow-y: auto;
+  max-height: 700px;
+}
+
+.content {
+  padding: 8px;
+}
+
+.content .content__title {
+  font-family: "Segoe UI Bold", sans-serif;
+  font-size: 20px;
+  color: #009900;
+  margin-top: 0px;
+}
+
+.dl {
+  margin-bottom: 0px;
+}
+
+.dl > dt {
+  font-family: "Segoe UI Bold", sans-serif;
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 3px;
+}
+
+.dl > dd {
+  font-family: "Segoe UI Regular", sans-serif;
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  size: center;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  margin: 2px;
+}
+
+.smallInputTitle,
+.largeInputTitle,
+.smallTextTitle,
+.largeTextTitle {
+  font-family: "Segoe UI Bold", sans-serif;
+  font-size: 14px;
+  color: #333333;
+}
+
+.smallInputField,
+.largeInputField,
+.smallTextField,
+.meetingSelect,
+.largeTextField {
+  font-family: "Segoe UI Regular", sans-serif;
+  font-size: 14px;
+}
+
+.largeTextField {
+  min-height: 128px;
+  max-width: 450px;
+}
+
+.meetingSelect,
+.smallInputField,
+.largeInputField > .input,
+.textarea {
+  width: 400px;
+}
+
+input[type="datetime-local"],
+input[type="text"],
+textarea {
+  padding: 8px;
+  width: 400px;
+  max-height: 40px;
+  font-family: "Segoe UI Regular", sans-serif;
+  font-size: 14px;
+}
+
+.reportSection {
+  display: flex;
+}
+
+.addMeetingButtons {
+  margin-top: 24px;
+}
