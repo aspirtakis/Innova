@@ -94,7 +94,7 @@ export const styles = {
     justifyContent: 'center',
   },
   titles: {
-    fontSize: 28,
+    fontSize: 32,
     backgroundColor:'#F3F3F3',
     fontWeight: 'bold',
     color: '#009900',
@@ -126,7 +126,7 @@ export const styles = {
   },
 
   ColTitles: {
-    fontSize: 23,
+    fontSize: 24,
     marginTop: 8,
     marginLeft:6,
     fontFamily: 'kpn-metric-normal',
