@@ -26,6 +26,7 @@ import EditableTable from '../../components/editableTable';
 import StageGates from '../../components/stagegates';
 import { size } from 'lodash';
 import './initiativesStyles.css';
+import Canvas from '../../components/canvas';
 
 
 import { Tab, TabItem, TabLink, TabMenu } from '@kpn-style/react';
@@ -820,7 +821,7 @@ const gates = data.stageGates;
     const  data  = this.state;
 
     return (
-      <div className="row">
+      <div style={{padding:3}}>
       {this.state.hasSelectedcard ? 
         <div
       >
@@ -830,8 +831,8 @@ const gates = data.stageGates;
        </div>
     <Tabs tabBarStyle={{borderBlockColor:"#009900", color:'green', fontFamily:"kpn-metric-bold",  }} className="mainTab">
       <TabPane  tab={<span className="titlesTab"> General</span>} key="1">
-      <div>
-                <Row>
+
+                <Row style={{paddingLeft:15 ,minHeigh:1200}}>
                   <Col span={8}>
                   <p className="titleInit">Team Members </p>
                   <p className="titleGeneral" >Product Owner </p>
@@ -886,7 +887,7 @@ const gates = data.stageGates;
 
                   </Col>
                 </Row>
-              </div>
+      
       </TabPane>
      {(this.state.cardPO === this.props.location.state.user.first_name+" "+this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach') &&  <TabPane tab={<span className="titlesTab"> Update</span>} key="2">
       <Form>
@@ -1116,7 +1117,10 @@ onChange={(date, dateString) => {
 </TabPane>
 
 <TabPane style={{fontSize:10 ,color:'white'}} tab={<span className="titlesTab"> Canvas</span>} key="7">
-
+<Canvas
+data={data}
+assumptions={this.state.assumptions}
+TeamRemarks={this.remarksType("team")} />
 </TabPane>
     </Tabs>
   </div>

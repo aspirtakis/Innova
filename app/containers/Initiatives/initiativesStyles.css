@@ -1,15 +1,14 @@
 .mainContainer {
-    height: 944px;
+   
     width: 100%;
     background-color: #FFFFFF;
-    margin-left:40px;
-    margin-right:40px;
-    margin-top:30px;
+
+
   }
 
   .titleContainer {
    padding-left: 30px;
-   padding-top: 27px;
+   padding-top: 18px;
   }
 
   .titleInit {
@@ -70,8 +69,8 @@
 
 
   .mainTab {
-
-padding: 30px;
+min-height: auto;
+padding: 15px;
 
   }
   .titlesTab {
