@@ -82,7 +82,7 @@ const getStyles = theme => ({
   },
   listItemText: {
     fontSize: 14,
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
   },
   loadingText: {
     color: theme.palette.text.secondary,
@@ -141,6 +141,7 @@ const getStyles = theme => ({
   },
   itemIcon: {
     minWidth: 40,
+    color: '#333',
   },
   emptyIcon: {
     paddingLeft: 56,

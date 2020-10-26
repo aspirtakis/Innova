@@ -40,7 +40,7 @@ export default class Column extends React.Component {
       <Container>
         <div style={styles.ColTitles}>
           <div className="title-bar__title">
-            {this.props.column.title}
+            {this.props.column.title + " "}
             (
             {tasksCount}
             )

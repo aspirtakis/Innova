@@ -45,8 +45,8 @@ class Profile extends React.Component {
     const { classes, drawerIsOpen ,user} = this.props;
     const open = Boolean(anchorEl);
     //console.log(user.first_name);
-    var first = user.first_name.charAt(0);
-    var last = user.last_name.charAt(0);
+    var first = user.first_name? user.first_name.charAt(0) :null;
+    var last = user.last_name ? user.last_name.charAt(0):null;
     var av = first+last;
 
  

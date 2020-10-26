@@ -82,9 +82,9 @@ return count;
       var string = taskproblem.projectname;
 
 //console.log(taskproblem);
-var po = taskproblem.cardpo.charAt(0);
-var coach = taskproblem.coach.charAt(0);
-var horizon = taskproblem.horizon.charAt(1);
+var po = taskproblem.cardpo ? taskproblem.cardpo.charAt(0) :null ;
+var coach = taskproblem.coach ? taskproblem.coach.charAt(0) : null ;
+
 
 
 
@@ -108,7 +108,7 @@ var horizon = taskproblem.horizon.charAt(1);
                       <div onClick={() => this.props.openEdit(taskproblem)}>
                           <div className="card">
                          
-                              <div  style={{padding:6}}>
+                              <div  style={{padding:8}}>
                                   <div className="row">
                                   <div  className="col col--1" >
                                       
@@ -172,7 +172,7 @@ var horizon = taskproblem.horizon.charAt(1);
                                   </div>
                                   <div style={{ maxWidth:39}} className="col col--8, right">
                                   <Tooltip placement="top" title={"Horizon > "+taskproblem.horizon}>
-                                  <div className='row right2' style={{marginTop:5,fontWeight:'bold', fontSize:12, maxWidth:24, maxHeight:24}} >{taskproblem.horizon}</div>
+                                  <div className='row right2' style={{marginTop:5,color:'#333333',fontWeight:'bold', fontSize:12, maxWidth:24, maxHeight:24}} >{taskproblem.horizon}</div>
                          </Tooltip>
                                   </div>
                 

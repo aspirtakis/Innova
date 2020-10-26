@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { isMobile } from 'utils/menuHelper';
 import styles from './styles';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo.svg';
 
 const Login = ({
   classes,
@@ -37,7 +37,7 @@ const Login = ({
     <div className={classes.boxWrapper}>
       <Paper className={classes.paper} elevation={3} square>
         <div className={classes.logoContainer}>
-        <img  src={logo} alt="Logo" />
+        <img className={classes.logo} src={logo} alt="Logo" />
         </div>
 
         {errorMessage ? (
