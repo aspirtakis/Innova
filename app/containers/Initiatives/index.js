@@ -54,10 +54,7 @@ class Initiatives extends React.Component {
     };
 
   }
-  componentDidUpdate(){
 
-    
-  }
   UNSAFE_componentWillMount(){
 const data = this.props.location.state ? this.props.location.state.data :null ;
 if(!data){
@@ -95,10 +92,7 @@ if(data){
     meetingEditPanel: false,
     meetingEditData: null,
   });
-
 }
-
-
   }
 
 
@@ -139,8 +133,9 @@ if(data){
     lit.status=row.status;
     this.setState({assumptions:newData});
       })
-      .catch(taskData => console.log(taskData));
+      .catch(taskData => this.props.sessionCheck());
   };
+
   deleteChecklist = (r,checklist) => {
     //this.props.sessionCheck();
       this.setState({ spinning: true });
@@ -177,7 +172,7 @@ if(data){
         this.setState({assumptions:newData});
 
         })
-        .catch(taskData => console.log(taskData));
+        .catch(taskData => this.props.sessionCheck());
   };
   addNewCheckList = (r) => {
 
@@ -231,7 +226,7 @@ if(data){
       }
       this.setState({assumptions:newData});
        })
-       .catch(taskData => console.log(taskData));
+       .catch(taskData => this.props.sessionCheck());
   };
   deleteAssumption = (r) => {
    // this.props.sessionCheck();
@@ -285,7 +280,7 @@ if(data){
 
 
       })
-      .catch(taskData => console.log(taskData));
+      .catch(taskData => this.props.sessionCheck());
   };
   addNewAssumption = values => {
    // this.props.sessionCheck();
@@ -338,7 +333,7 @@ if(data){
           assumptions: [...assumptions, newRemark],
         });
        })
-       .catch(taskData => console.log(taskData));
+       .catch(taskData => this.props.sessionCheck());
   };
   saveAssumption = (r,result,status) => {
     //this.props.sessionCheck();
@@ -387,7 +382,7 @@ if(data){
     });
     this.setState({assumptions:newData});
       })
-      .catch(taskData => console.log(taskData));
+      .catch(taskData => this.props.sessionCheck());
   };
   addNewRemark = type => {
   // this.props.sessionCheck();
@@ -437,7 +432,7 @@ if(data){
           remarks: [newRemark, ...remarks ],
         });
        })
-       .catch(taskData => console.log(taskData));
+       .catch(taskData => this.props.sessionCheck());
   };
   addNewMeeting = () =>{
     console.log("clickadd");
@@ -506,7 +501,7 @@ if(data){
           stageGates: [newRemark,...stageGates],
         });
        })
-       .catch(taskData => console.log(taskData));
+       .catch(taskData => this.props.sessionCheck());
   };
   deleteMeeting = (meeting) => {
   //  this.props.sessionCheck();
@@ -595,7 +590,7 @@ if(data){
       }
         
 )
-      .catch(taskData => console.log(taskData));
+      .catch(taskData => this.props.sessionCheck());
   };
   saveRemark = (e, remark) => {
     const newData = [...this.state.remarks];
@@ -632,7 +627,7 @@ if(data){
       .then(taskData => {
 
       })
-      .catch(taskData => console.log(taskData));
+      .catch(taskData => this.props.sessionCheck());
   };
   deleteRemark = (e, remark) => {
     const id = remark.id;
@@ -661,7 +656,7 @@ if(data){
       const dataSource = [...this.state.remarks];
       this.setState({remarks: dataSource.filter(item => item.id !== id) });
         })
-        .catch(taskData => console.log(taskData));
+        .catch(taskData => this.props.sessionCheck());
   };
   onSTGUpdate = (newDate) => {
     this.setState({ spinning: true });
@@ -693,7 +688,7 @@ if(data){
 
         this.setState({ spinning: false });
       })
-      .catch(taskData => console.log(taskData));
+      .catch(taskData => this.props.sessionCheck());
   };
   onUpdate = () => {
     this.setState({ spinning: true });
@@ -740,7 +735,7 @@ if(data){
         this.setState({ spinning: false });
         this.props.onOK();
       })
-      .catch(taskData => console.log(taskData));
+      .catch(taskData => this.props.sessionCheck());
   };
   onDelete = () => {
     this.setState({ spinning: true });
@@ -769,7 +764,7 @@ if(data){
         this.setState({ spinning: false });
         this.props.onOK();
       })
-      .catch(taskData => console.log(taskData));
+      .catch(taskData => this.props.sessionCheck());
   };
   fixStatus = status => {
     if (status === 'green') {
@@ -895,7 +890,8 @@ if(data){
                 </Row>
               </div>
       </TabPane>
-     {(this.state.cardPO === this.props.location.state.user.first_name+" "+this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach') &&  <TabPane tab={<span className="titlesTab"> Update</span>} key="2">
+     {(this.state.cardPO === this.props.location.state.user.first_name+" "+this.props.location.state.user.last_name || this.props.location.state.user.role === 'Coach') && 
+      <TabPane   tab={<span className="titlesTab"> Update</span>} key="2">
       <Form>
 <Form.Row>
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel">
@@ -939,7 +935,6 @@ if(data){
       rows="5"
     />
     </Form.Group>
-
 <Form.Group style={{flexWrap:"nowrap", marginLeft:10}} as={Col} controlId="ControlFunnel2"
     style={{ marginLeft: 10 }}
     as={Col}
@@ -1044,6 +1039,10 @@ if(data){
   Delete
 </Button>
 </Form>
+
+
+
+
       </TabPane>
 }
 
@@ -1057,6 +1056,7 @@ if(data){
     </Button>}
 
       <EditableTable 
+
       saveAssumption={this.saveAssumption} 
       saveChecklist={this.saveChecklist} 
       deleteChecklist={this.deleteChecklist}
@@ -1064,7 +1064,10 @@ if(data){
       assumptions={this.state.assumptions}
       addChecklist={this.addNewCheckList}
       role={this.props.location.state.user.role}
+
       />
+
+
       </TabPane>}
 
       { (this.props.location.state.user.role === 'Coach' || this.props.location.state.user.role === 'Manager' ) &&
@@ -1072,7 +1075,7 @@ if(data){
 
       { this.props.location.state.user.role === 'Coach'  && <Button onClick={() => this.addNewRemark("Coach")} type="primary" style={{  marginBottom: 16 }}>Create New
       </Button>}
-        <Remarks onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={this.props.location.state.user} saveRemark={this.saveRemark} remarks={  this.remarksType("coach")  }/>
+        <Remarks style={{maxWidth:100}} onOK={this.props.onOK} deleteRemark={this.deleteRemark} coach={data.coach} user={this.props.location.state.user} saveRemark={this.saveRemark} remarks={  this.remarksType("coach")  }/>
       </TabPane>}
 
       {<TabPane tab={<span className="titlesTab"> Team remarks</span>} key="5">
@@ -1090,14 +1093,7 @@ if(data){
   {meetingAddPanel && <AddNewMeeting addMeetingCancel={() => this.setState({meetingAddPanel:false})} onSaveMeeting={this.saveNewMeeting} />}
 </div>
   }
-
 </TabPane>
-
-
-
-
-
-
 <TabPane style={{fontSize:10 ,color:'white'}} tab={<span className="titlesTab"> Canvas</span>} key="7">
 <Canvas
 data={data}

@@ -26,10 +26,7 @@ class Remarks extends React.Component {
 
 
     return (
-      <Row style={{
-        display: 'flex', minWidth: '100%', flexWrap: 'wrap', marginLeft: 10,
-      }}
-      >
+      <Row style={{maxWidth:1100}}>
         <List
           itemLayout="horizontal"
           dataSource={remarks}

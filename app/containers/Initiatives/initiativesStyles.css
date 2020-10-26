@@ -1,7 +1,9 @@
 .mainContainer {
    
-    width: 100%;
+max-width: '70%';
     background-color: #FFFFFF;
+    padding-left: 20px;
+    padding-right: 20px;
 
 
   }
@@ -17,6 +19,10 @@
     font-family: "kpn-metric-bold";
     font-size: 30px;
     letter-spacing: 0;
+
+  }
+  .Assumptions {
+
 
   }
 

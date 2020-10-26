@@ -1,5 +1,5 @@
 .scroll-x {
-  width: auto;
+  max-width:1100px ;
 }
 
 .scroll-table {
