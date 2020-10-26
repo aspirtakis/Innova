@@ -56,18 +56,20 @@
 .smallInputField,
 .largeInputField,
 .smallTextField,
-.meetingSelect,
-.largeTextField {
+.largeTextField,
+.datePicker,
+.meetingSelector {
   font-family: "Segoe UI Regular", sans-serif;
   font-size: 14px;
 }
 
-.largeTextField {
+.largeTextField,
+.feedbackEditor {
   min-height: 128px;
   max-width: 450px;
 }
 
-.meetingSelect,
+.meetingSelector,
 .smallInputField,
 .largeInputField > .input,
 .textarea {
@@ -88,6 +90,6 @@ textarea {
   display: flex;
 }
 
-.addMeetingButtons {
+.meetingButtons {
   margin-top: 24px;
 }
