@@ -50,42 +50,48 @@ class MeetingRow extends React.Component {
                     title="Goal"
                     description={meetingData.title}
                   />
+
+                  {meetingData && meetingData.type == "FundingMoment" &&(
                   <TextSmall
                     title="Requested funding"
                     description={meetingData.funding_request}
                   />
+                  )}
+
                   {/* <dt>Documents</dt>
 									<dd>Linkje na linkje naar allemaal docs</dd> */}
 
                 </dl>
-				{user && meetingData && user.first_name == meetingData.editor && (
-                <button
-                  className="button link--button"
-                  onClick={() => editMeetingRow(meetingData)}
-                >
-                  Edit
-				</button>
-				)}
                 {user && meetingData && user.first_name == meetingData.editor && (
-                <button
-                  className="button link--button"
-                  onClick={() => deteteMeetinRow(meetingData)}
-                >
-                  Delete
-                </button>
-                ) }
+                  <dl className="dl meetingButtons">
+                    <button
+                      className="button"
+                      onClick={() => editMeetingRow(meetingData)}
+                    >
+                      Edit
+                    </button>
 
+                    <button
+                      className="button button--link"
+                      onClick={() => deteteMeetinRow(meetingData)}
+                    >
+                      Delete
+                    </button>
+
+                  </dl>
+                )}
               </div>
+
 
               {/* Column with data after concluding meeting */}
               <div className="col col--5">
-				<dl className="dl">
-				Feedback
-				<div
-				dangerouslySetInnerHTML={{
-				  __html: meetingData.feedback,
-				}}
-			  />
+                <dl className="dl">
+                  <dt className="dt">Feedback</dt>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: meetingData.feedback,
+                    }}
+                  />
 
                 </dl>
               </div>
