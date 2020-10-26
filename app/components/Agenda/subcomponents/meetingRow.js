@@ -40,22 +40,31 @@ class MeetingRow extends React.Component {
           <td>{meetingData.stage}</td>
           <td className="text-align-right" />
         </tr>
-        {/* insert detailed content here, it sows when the row is clicked */}
+        {/* insert detailed content here, it shows when the row is clicked */}
         <tr className="table__row-content">
           <td colSpan="5">
             <div className="row">
               <div className="col col--5">
                 <dl className="dl">
-                  <TextLarge
-                    title="Goal"
-                    description={meetingData.title}
-                  />
+                  {meetingData && meetingData.title
+                    ? (
+                      <TextLarge
+                        title="Goal"
+                        description={meetingData.title}
+                      />
+                    )
+                    : (
+                      <TextLarge
+                        title="Goal"
+                        description={meetingData.goal}
+                      />
+                    )}
 
-                  {meetingData && meetingData.type == "FundingMoment" &&(
-                  <TextSmall
-                    title="Requested funding"
-                    description={meetingData.funding_request}
-                  />
+                  {meetingData && meetingData.type == "FundingMoment" && (
+                    <TextSmall
+                      title="Requested funding"
+                      description={meetingData.funding_request}
+                    />
                   )}
 
                   {/* <dt>Documents</dt>
@@ -84,17 +93,19 @@ class MeetingRow extends React.Component {
 
 
               {/* Column with data after concluding meeting */}
-              <div className="col col--5">
-                <dl className="dl">
-                  <dt className="dt">Feedback</dt>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: meetingData.feedback,
-                    }}
-                  />
+              {meetingData && meetingData.feedback && (
+                <div className="col col--5">
+                  <dl className="dl">
+                    <dt className="dt">Feedback</dt>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: meetingData.feedback,
+                      }}
+                    />
 
-                </dl>
-              </div>
+                  </dl>
+                </div>
+              )}
 
             </div>
           </td>
