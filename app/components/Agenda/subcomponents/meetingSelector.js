@@ -23,14 +23,15 @@ class MeetingSelector extends React.Component {
         <dd>
 
           <Select
+            className="meetingSelector"
             style={{ width: 200 }}
-            placeholder="Select a person"
+            placeholder="Select a type"
             defaultValue={valueData}
             onChange={(value) => selectedValue(value)}
             filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
           >
-            <Option value="StageGate">Stage Gate</Option>
-            <Option value="FundingMoment">Funding momment</Option>
+            <Option value="StageGate">Stagegate</Option>
+            <Option value="FundingMoment">Funding moment</Option>
 
           </Select>
         </dd>
