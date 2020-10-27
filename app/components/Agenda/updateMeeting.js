@@ -50,32 +50,35 @@ class UpdateMeeting extends React.Component {
             <div className="col col--7">
               <dl className="dl">
                 <dt className="dt smallInputTitle">Meeting type</dt>
-                <Select
-                  className="meetingSelector"
-                  style={{ width: 200 }}
-                  placeholder="Select a type"
-                  value={this.state.meetingType}
-                  onChange={(value) => this.settingValueStates("meetingType", value)}
-                  filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                >
-                  <Option value="StageGate">Stagegate</Option>
-                  <Option value="FundingMoment">Funding moment</Option>
-                </Select>
-
+                <dd className="smallInputField">
+                  <Select
+                    className="meetingSelector"
+                    style={{ width: 200 }}
+                    placeholder="Select a type"
+                    value={this.state.meetingType}
+                    onChange={(value) => this.settingValueStates("meetingType", value)}
+                    filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                  >
+                    <Option value="StageGate">Stagegate</Option>
+                    <Option value="FundingMoment">Funding moment</Option>
+                  </Select>
+                </dd>
 
                 <dt className="dt smallInputTitle">Meeting date</dt>
-                <DatePicker
-                  showTime={{
-                    hideDisabledOptions: true,
-                  }}
+                <dd className="smallInputField">
+                  <DatePicker
+                    showTime={{
+                      hideDisabledOptions: true,
+                    }}
 
-                  className="datePicker"
-                  value={moment(this.state.meetingDate, dateFormat)}
-                  format={dateFormat}
-                  onChange={(date, dateString) => {
-                    this.settingValueStates("meetingDate", moment(date, dateFormat))
-                  }} />
-
+                    className="datePicker"
+                    value={moment(this.state.meetingDate, dateFormat)}
+                    format={dateFormat}
+                    onChange={(date, dateString) => {
+                      this.settingValueStates("meetingDate", moment(date, dateFormat))
+                    }}
+                  />
+                </dd>
 
                 <InputSmall
                   title="Funding request"
@@ -101,24 +104,25 @@ class UpdateMeeting extends React.Component {
                   )}
 
                 <dt className="dt">Feedback</dt>
-                <Editor
-                  className="feedbackEditor"
-                  initialValue={this.state.meetingFeedback}
-                  init={{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                      'advlist autolink lists link image charmap print preview anchor',
-                      'searchreplace visualblocks code fullscreen',
-                      'insertdatetime media table paste code help wordcount',
-                    ],
-                    toolbar:
-                      'undo redo | formatselect | bold italic backcolor | \
+                <dd className="largeInputField feedbackEditor">
+                  <Editor
+                    initialValue={this.state.meetingFeedback}
+                    init={{
+                      height: 300,
+                      menubar: false,
+                      plugins: [
+                        'advlist autolink lists link image charmap print preview anchor',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table paste code help wordcount',
+                      ],
+                      toolbar:
+                        'undo redo | formatselect | bold italic backcolor | \
               alignleft aligncenter alignright alignjustify | \
               bullist numlist outdent indent | removeformat | help',
-                  }}
-                  onEditorChange={(content) => this.settingValueStates("meetingFeedback", content)}
-                />
+                    }}
+                    onEditorChange={(content) => this.settingValueStates("meetingFeedback", content)}
+                  />
+                </dd>
 
                 <InputSmall
                   title="Approved funding"
