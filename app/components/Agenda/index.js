@@ -33,7 +33,7 @@ class Agenda extends React.Component {
               items
             </div>
             <div className="table-toolbar__action">
-              <button onClick={() => AddNewMeeting()} className="button">Add item</button>
+              <button onClick={() => AddNewMeeting()} className="button">Add meeting</button>
             </div>
           </div>
           <div className="scroll-table">
