@@ -18,7 +18,7 @@ class MeetingSelector extends React.Component {
     const { title, selectedValue,valueData } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
         <dt className="smallInputTitle">{title}</dt>
         <dd className="smallInputField">
 
@@ -35,7 +35,7 @@ class MeetingSelector extends React.Component {
 
           </Select>
         </dd>
-      </div>
+      </React.Fragment>
     );
   }
 }

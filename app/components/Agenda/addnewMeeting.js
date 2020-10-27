@@ -48,7 +48,7 @@ class AddNewMeeting extends React.Component {
                 />
 
                 <dt className="dt smallInputTitle">Meeting date</dt>
-                <dd className="smallInputField">
+                <dd>
                   <DatePicker
                     title="Meeting date"
                     showTime={{
