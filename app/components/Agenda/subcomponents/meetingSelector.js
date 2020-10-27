@@ -20,7 +20,7 @@ class MeetingSelector extends React.Component {
     return (
       <div>
         <dt className="smallInputTitle">{title}</dt>
-        <dd>
+        <dd className="smallInputField">
 
           <Select
             className="meetingSelector"

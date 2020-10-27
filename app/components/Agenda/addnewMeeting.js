@@ -46,41 +46,38 @@ class AddNewMeeting extends React.Component {
                   title="Meeting type"
                   selectedValue={(e) => this.settingValueStates("meetingType", e)}
                 />
-                
+
                 <dt className="dt smallInputTitle">Meeting date</dt>
-                <DatePicker 
-                title="Meeting date"
-                showTime={{
-                  hideDisabledOptions: true,
-                }}
-                
-                className="datePicker"
-              //  value={moment(this.state.meetingDate, dateFormat)}
-                format={dateFormat}
-                onChange={(date, dateString) => {
-                  this.settingValueStates("meetingDate", moment(date,dateFormat))
-                } } />
+                <dd className="smallInputField">
+                  <DatePicker
+                    title="Meeting date"
+                    showTime={{
+                      hideDisabledOptions: true,
+                    }}
 
-
-                <InputSmall
-                  title="Funding request"
-                  inputType="text"
-                  placeholder="€"
-                  smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
-                />
+                    className="datePicker"
+                    //  value={moment(this.state.meetingDate, dateFormat)}
+                    format={dateFormat}
+                    onChange={(date, dateString) => {
+                      this.settingValueStates("meetingDate", moment(date, dateFormat))
+                    }}
+                  />
+                </dd>
 
                 <InputLarge
                   title="Goal"
                   placeholder="Explain why this meeting is required"
                   largeInputValue={(e) => this.settingValueStates("meetingGoal", e)}
                 />
-                
-                {/* 
-                <div>
-                  <dt className="documentTitle">Add documents</dt>
-                  <dd className="documentField">Drag and drop your documents here or add them HERE.</dd>
-                </div> 
-                */}
+
+                {this.state.meetingType == "FundingMoment" && (
+                  <InputSmall
+                    title="Funding request"
+                    inputType="text"
+                    placeholder="€"
+                    smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
+                  />
+                )}
 
               </dl>
               <div className="meetingButtons">

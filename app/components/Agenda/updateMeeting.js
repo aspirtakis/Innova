@@ -127,16 +127,9 @@ class UpdateMeeting extends React.Component {
                   smallInputValue={(e) => this.settingValueStates("fundingApproved", e)}
                 />
 
-                {/*
-                <div>
-                  <dt className="documentTitle">Add documents</dt>
-                  <dd className="documentField">Drag and drop your documents here or add them HERE.</dd>
-                </div>
-                */}
-
               </dl>
               <div className="meetingButtons">
-                <button onClick={this.saveData} className="button button--4">Send meeting</button>
+                <button onClick={this.saveData} className="button button--4">Send</button>
                 <button onClick={editMeetingCancel} className="button button--link">Cancel</button>
               </div>
             </div>
