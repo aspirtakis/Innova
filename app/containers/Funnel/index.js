@@ -48,11 +48,11 @@ const columnsdata = [
     },
     {
         id: 'business',
-        title: 'business',
+        title: 'Business',
     },
     {
         id: 'mvp',
-        title: 'Mvp',
+        title: 'MVP',
     },
     {
         id: 'feasibility',
@@ -76,7 +76,7 @@ const columnsdata = [
     },
     {
         id: 'integration',
-        title: 'integration',
+        title: 'Integration',
     },
 
 ];
