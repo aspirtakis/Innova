@@ -60,7 +60,7 @@ class MeetingRow extends React.Component {
                       />
                     )}
 
-                  {meetingData && meetingData.type == "FundingMoment" && (
+                  {meetingData.funding_request && meetingData.type == "FundingMoment" && (
                     <TextSmall
                       title="Requested funding"
                       description={meetingData.funding_request}
@@ -92,20 +92,33 @@ class MeetingRow extends React.Component {
               </div>
 
 
-              {/* Column with data after concluding meeting */}
-              {meetingData && meetingData.feedback && (
-                <div className="col col--5">
-                  <dl className="dl">
-                    <dt className="dt">Feedback</dt>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: meetingData.feedback,
-                      }}
-                    />
+              <div className="col col--5">
+                <dl className="dl">
+                  {/* Column with data after concluding meeting */}
+                  {meetingData && meetingData.feedback && (
+                    <div>
+                      <dt className="dt">Feedback</dt>
+                      <dd className="largeTextField">
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: meetingData.feedback,
+                          }}
+                        />
+                      </dd>
 
-                  </dl>
-                </div>
-              )}
+                    </div>
+
+                  )}
+
+                  {meetingData && meetingData.feedback && meetingData.type == "FundingMoment" && (
+                    <TextSmall
+                      title="Approved funding"
+                      description={meetingData.funding_Approved}
+                    />
+                  )}
+
+                </dl>
+              </div>
 
             </div>
           </td>

@@ -463,6 +463,7 @@ if(data){
             editor: this.props.location.state.user.first_name,
             stage:this.state.FunnelPhase,
             funding_request: formData.fundingRequest,
+            funding_Approved: formData.funding_Approved,
             title: formData.meetingName,
             meetingDate: formData.meetingDate,
             feedback: formData.meetingFeedback,
@@ -490,6 +491,7 @@ if(data){
           editor: this.props.location.state.user.first_name,
           stage:this.state.FunnelPhase,
           funding_request: formData.fundingRequest,
+          funding_Approved: formData.funding_Approved,
           goal: formData.meetingGoal,
           meetingDate: formData.meetingDate,
           feedback: formData.meetingFeedback,
@@ -557,6 +559,7 @@ if(data){
         editor: this.props.location.state.user.first_name,
         stage:0,
         funding_request: formData.fundingRequest,
+        funding_Approved: formData.funding_Approved,
         title: formData.meetingName,
         meetingDate: formData.meetingDate,
         feedback: formData.meetingFeedback,
@@ -578,6 +581,7 @@ if(data){
           item.type= formData.meetingType;
           item.editor= this.props.location.state.user.first_name;
           item.funding_request=formData.fundingRequest;
+          item.funding_Approved=formData.funding_Approved;
           item.title= formData.meetingName;
           item.meetingDate= formData.meetingDate;
           item.feedback= formData.meetingFeedback;

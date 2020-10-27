@@ -22,6 +22,7 @@ class UpdateMeeting extends React.Component {
       meetingType: meetingData.type,
       meetingDate: meetingData.meetingDate,
       fundingRequest: meetingData.funding_request,
+      fundingApproved: meetingData.funding_Approved,
       meetingGoal: meetingData.goal,
       meetingFeedback: meetingData.feedback,
       meetingName: meetingData.title,
@@ -117,6 +118,13 @@ class UpdateMeeting extends React.Component {
               bullist numlist outdent indent | removeformat | help',
                   }}
                   onEditorChange={(content) => this.settingValueStates("meetingFeedback", content)}
+                />
+
+                <InputSmall
+                  title="Approved funding"
+                  inputType="text"
+                  cval={this.state.fundingApproved}
+                  smallInputValue={(e) => this.settingValueStates("fundingApproved", e)}
                 />
 
                 {/*
