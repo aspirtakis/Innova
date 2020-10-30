@@ -71,8 +71,8 @@ class MeetingRow extends React.Component {
 									<dd>Linkje na linkje naar allemaal docs</dd> */}
 
                 </dl>
-                  <dl className="dl meetingButtons">
-                  {user && meetingData && ((user.first_name == meetingData.editor) || (user.role == "Coach")) && (
+                <dl className="dl meetingButtons">
+                  {user && meetingData && (user.first_name == meetingData.editor) && (
                     <button
                       className="button"
                       onClick={() => editMeetingRow(meetingData)}
@@ -81,16 +81,16 @@ class MeetingRow extends React.Component {
                     </button>
                   )}
 
-                    {user && meetingData && user.first_name == meetingData.editor && (
+                  {user && meetingData && user.first_name == meetingData.editor && (
                     <button
                       className="button button--link"
                       onClick={() => deteteMeetinRow(meetingData)}
                     >
                       Delete
                     </button>
-                    )}
+                  )}
 
-                  </dl>
+                </dl>
               </div>
 
 
@@ -119,6 +119,25 @@ class MeetingRow extends React.Component {
                     />
                   )}
 
+                </dl>
+
+                <dl className="dl meetingButtons">
+                  {user && !meetingData.feedback && (user.role == "Coach") ? (
+                    <button
+                      className="button feedbackButton"
+                      onClick={() => editMeetingRow(meetingData)
+                      }
+                    >
+                      Add feedback
+                    </button>
+                  ) : (
+                    <button
+                      className="button"
+                      onClick={() => editMeetingRow(meetingData)}
+                    >
+                      Edit feedback
+                    </button>
+                  )}
                 </dl>
               </div>
 
