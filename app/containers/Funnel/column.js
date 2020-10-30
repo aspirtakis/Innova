@@ -34,8 +34,8 @@ const TaskList = styled.div`
 
 export default class Column extends React.Component {
   render() {
-    const { userRole,tasksCount } = this.props;
-
+    const { tasksCount } = this.props;
+   const userRole = this.props.userRole.role;
     return (
       <Container>
         <div style={styles.ColTitles}>
@@ -55,11 +55,12 @@ export default class Column extends React.Component {
             >
               {this.props.tasks.map((task, index) => (
                 <Task
-                  userRole={userRole}
+                  user={this.props.userRole}
                   openEdit={this.props.openEdit}
                   key={task.task_id}
                   task={task}
                   index={index}
+                  makeFavorites={this.props.makeFavorite}
                 />
               ))}
               {provided.placeholder}

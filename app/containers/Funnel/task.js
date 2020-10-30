@@ -79,11 +79,14 @@ return count;
   render() {
       const isDragDisabled = this.props.task.task_id === '1' || this.props.userRole === 'Tv' || this.props.userRole === "Viewer";
       const taskproblem = this.props.task;
+      console.log(this.props);
       var string = taskproblem.projectname;
+
 
 //console.log(taskproblem);
 var po = taskproblem.cardpo ? taskproblem.cardpo.charAt(0) :null ;
 var coach = taskproblem.coach ? taskproblem.coach.charAt(0) : null ;
+
 
 
 
@@ -105,11 +108,11 @@ var coach = taskproblem.coach ? taskproblem.coach.charAt(0) : null ;
                   >
 
 
-                      <div onClick={() => this.props.openEdit(taskproblem)}>
+                      <div >
                           <div className="card">
                          
-                              <div  style={{padding:8}}>
-                                  <div className="row">
+                              <div  style={{padding:8}} >
+                                  <div className="row" onClick={() => this.props.openEdit(taskproblem)}>
                                   <div  className="col col--1" >
                                   <div style={{ marginLeft:1,marginTop:3 }} className="row">
                                   {taskproblem.status === 'green' && <div className='circle' style= {{ backgroundColor: 'green'}} ></div>}
@@ -164,11 +167,22 @@ var coach = taskproblem.coach ? taskproblem.coach.charAt(0) : null ;
                                   <Avatar style={{maxWidth:24, maxHeight:24}} >{po}</Avatar>
                          </Tooltip>
                                   </div>
+
                                   <div style={{maxWidth:39}} className="col col--4">
                                   <Tooltip placement="top" title={taskproblem.coach}>
                                   <Avatar style={{maxWidth:24, maxHeight:24}} >{coach}</Avatar>
                          </Tooltip>
                                   </div>
+
+                                  <div style={{maxWidth:39}} className="col col--4">
+                                  <Tooltip placement="top" title={"Make it Favorite"}>
+                                  <Avatar onClick={()=>this.props.makeFavorites(taskproblem.task_id)} style={{maxWidth:24, maxHeight:24}} >F</Avatar>
+                         </Tooltip>
+                                  </div>
+
+
+
+                                  
                                   <div style={{ maxWidth:39}} className="col col--8, right">
                                   <Tooltip placement="top" title={"Horizon > "+taskproblem.horizon}>
                                   <div className='row right2' style={{marginTop:5,color:'#333333',fontWeight:'bold', fontSize:12, maxWidth:24, maxHeight:24}} >{taskproblem.horizon}</div>

@@ -8,6 +8,7 @@ const backendProd = {
   assumptions: 'funnel/_table/funnel.assumptions',
   checklists: 'funnel/_table/funnel.checklists',
   stageGates: 'funnel/_table/funnel.stagegates',
+  favorites: 'funnel/_table/funnel.favorites',
   passrst:'user/password',
   register:'user/register',
   defUser: '',
@@ -24,6 +25,7 @@ const backendDev = {
   assumptions: 'funnel_dev/_table/funnel.assumptions',
   checklists: 'funnel_dev/_table/funnel.checklists',
   stageGates: 'funnel_dev/_table/funnel.stagegates',
+  favorites: 'funnel/_table/funnel.favorites',
   passrst:'user/password',
   register:'user/register',
   defUser: '',
@@ -39,6 +41,7 @@ const backendAga = {
   assumptions: 'funnel_dev/_table/funnel.assumptions',
   checklists: 'funnel_dev/_table/funnel.checklists',
   stageGates: 'funnel_dev/_table/funnel.stagegates',
+  favorites: 'funnel_dev/_table/funnel.favorites',
   passrst:'user/password',
   register:'user/register',
   defUser: 'agamemnon.aspirtakis@kpn.com',
@@ -54,6 +57,7 @@ const backendAgaSTG = {
   assumptions: 'FunnSTG/_table/funnel.assumptions',
   checklists: 'FunnSTG/_table/funnel.checklists',
   stageGates: 'FunnSTG/_table/funnel.stagegates',
+  favorites: 'FunnSTG/_table/funnel.favorites',
   passrst:'user/password',
   register:'user/register',
   defUser: 'agamemnon.aspirtakis@kpn.com',
@@ -69,6 +73,7 @@ const backendSTG = {
   assumptions: 'FunnSTG/_table/funnel.assumptions',
   checklists: 'FunnSTG/_table/funnel.checklists',
   stageGates: 'FunnSTG/_table/funnel.stagegates',
+  favorites: 'FunnSTG/_table/funnel.favorites',
   passrst:'user/password',
   register:'user/register',
   defUser: '',
@@ -77,5 +82,5 @@ const backendSTG = {
 
 
 
-const backend = backendSTG;
+const backend = backendAgaSTG;
 export {backend} ;

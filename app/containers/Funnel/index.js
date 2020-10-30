@@ -264,7 +264,6 @@ class Funnel extends Component {
 
   handleOpenEdit = (data) => {
 
-
     this.props.history.push("/initiatives",
     {data:data,
     users:this.props.users,
@@ -279,6 +278,43 @@ class Funnel extends Component {
     //   this.setState({ setOpenEdit: true });
 
   };
+
+
+
+handleMakeFavorite  = (taskid) => {
+
+    const {user} = this.props;
+
+      fetch(backend.beUrl+backend.favorites, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'X-DreamFactory-API-Key': apptoken,
+          'X-DreamFactory-Session-Token': this.state.sestoken,
+          'Cache-Control': 'no-cache',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          resource: [
+           {
+             taskid: taskid,
+             user_id: user.id,
+           },
+          ],
+        }),
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(remarkData => {
+        //  this.props.onOK();
+        })
+        .catch(taskData => console.log(taskData));
+   };
 
   filter = (type, project) => {
       this.setState({ spinning: true });
@@ -788,17 +824,19 @@ class Funnel extends Component {
                               <Row style={{ flexWrap: 'nowrap' }}>
                                   <Column
                           
-                                      userRole={this.props.user.role}
+                                      userRole={this.props.user}
                                       xs={6}
                                       openEdit={this.handleOpenEdit}
+                                      makeFavorite={this.handleMakeFavorite}
                                       addNewTask={this.handleOpen}
                                       key={columnsdata[9].id}
                                       column={columnsdata[9]}
                                       tasks={this.state[columnsdata[9].id]} />
                                   <Column
-                                      userRole={this.props.user.role}
+                                  userRole={this.props.user}
                                       xs={6}
                                       openEdit={this.handleOpenEdit}
+                                      makeFavorite={this.handleMakeFavorite}
                                       addNewTask={this.handleOpen}
                                       key={columnsdata[10].id}
                                       column={columnsdata[10]}
@@ -817,9 +855,10 @@ class Funnel extends Component {
 
                           <Row style={{ flexWrap: 'nowrap' }}>
                               <Column
-                                  userRole={this.props.user.role}
+                              userRole={this.props.user}
                                   xs={6}
                                   openEdit={this.handleOpenEdit}
+                                  makeFavorite={this.handleMakeFavorite}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[0].id}
                                   column={columnsdata[0]}
@@ -828,9 +867,10 @@ class Funnel extends Component {
                                   tasks={this.state[columnsdata[0].id]} />
                            
                               <Column
-                                  userRole={this.props.user.role}
+                              userRole={this.props.user}
                                   xs={6}
                                   openEdit={this.handleOpenEdit}
+                                  makeFavorite={this.handleMakeFavorite}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[1].id}
                                   tasksCount={this.state.scope.length}
@@ -849,31 +889,34 @@ class Funnel extends Component {
                           <Row style={styles.rowsborder}></Row>
                           <Row style={{ flexWrap: 'nowrap' }}>
                               <Column
-                                      userRole={this.props.user.role}
+                              userRole={this.props.user}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
+                                  makeFavorite={this.handleMakeFavorite}
                                   key={columnsdata[2].id}
                                   column={columnsdata[2]}
                                   tasksCount={this.state.problem.length}
                                   tasks={this.state[columnsdata[2].id]} />
                               <Column
-                                      userRole={this.props.user.role}
+                              userRole={this.props.user}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
+                                  makeFavorite={this.handleMakeFavorite}
                                   key={columnsdata[3].id}
                                   column={columnsdata[3]}
                                   tasksCount={this.state.solution.length}
                                   tasks={this.state[columnsdata[3].id]} />
                               <Column
-                                      userRole={this.props.user.role}
+                              userRole={this.props.user}
                                   openEdit={this.handleOpenEdit}
+                                  makeFavorite={this.handleMakeFavorite}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[4].id}
                                   column={columnsdata[4]}
                                   tasksCount={this.state.business.length}
                                   tasks={this.state[columnsdata[4].id]} />
                                                         <Column
-                                  userRole={this.props.user.role}
+                                                        userRole={this.props.user}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[6].id}
@@ -893,15 +936,16 @@ class Funnel extends Component {
                           <Row style={{ flexWrap: 'nowrap' }}>
         
                               <Column
-                                      userRole={this.props.user.role}
+                              userRole={this.props.user}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
+                                  makeFavorite={this.handleMakeFavorite}
                                   key={columnsdata[5].id}
                                   column={columnsdata[5]}
                                   tasksCount={this.state.mvp.length}
                                   tasks={this.state[columnsdata[5].id]} />
                                         <Column
-                                      userRole={this.props.user.role}
+                                        userRole={this.props.user}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[8].id}
@@ -920,16 +964,18 @@ class Funnel extends Component {
 
                           <Row style={{ flexWrap: 'nowrap' }}>
                           <Column
-                                  userRole={this.props.user.role}
+                          userRole={this.props.user}
                                   openEdit={this.handleOpenEdit}
                                   addNewTask={this.handleOpen}
+                                  makeFavorite={this.handleMakeFavorite}
                                   key={columnsdata[7].id}
                                   tasksCount={this.state.scalelaunch.length}
                                   column={columnsdata[7]}
                                   tasks={this.state[columnsdata[7].id]} />
                           <Column
-                                  userRole={this.props.user.role}
+                          userRole={this.props.user}
                                   openEdit={this.handleOpenEdit}
+                                  makeFavorite={this.handleMakeFavorite}
                                   addNewTask={this.handleOpen}
                                   key={columnsdata[11].id}
                                   column={columnsdata[11]}
