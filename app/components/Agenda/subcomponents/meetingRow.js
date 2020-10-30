@@ -122,7 +122,7 @@ class MeetingRow extends React.Component {
                 </dl>
 
                 <dl className="dl meetingButtons">
-                  {user && !meetingData.feedback && (user.role == "Coach") ? (
+                  {user && !meetingData.feedback && ((user.role == "Coach") || (user.role == "LT")) ? (
                     <button
                       className="button feedbackButton"
                       onClick={() => editMeetingRow(meetingData)
