@@ -71,26 +71,6 @@ class MeetingRow extends React.Component {
 									<dd>Linkje na linkje naar allemaal docs</dd> */}
 
                 </dl>
-                <dl className="dl meetingButtons">
-                  {user && meetingData && (user.first_name == meetingData.editor) && (
-                    <button
-                      className="button"
-                      onClick={() => editMeetingRow(meetingData)}
-                    >
-                      Edit
-                    </button>
-                  )}
-
-                  {user && meetingData && user.first_name == meetingData.editor && (
-                    <button
-                      className="button button--link"
-                      onClick={() => deteteMeetinRow(meetingData)}
-                    >
-                      Delete
-                    </button>
-                  )}
-
-                </dl>
               </div>
 
 
@@ -120,17 +100,38 @@ class MeetingRow extends React.Component {
                   )}
 
                 </dl>
+              </div>
+            </div>
+            <div className="row meetingButtons">
+              <div className="col col--5">
+                {user && meetingData && (user.first_name == meetingData.editor) && (
+                  <button
+                    className="button"
+                    onClick={() => editMeetingRow(meetingData)}
+                  >
+                    Edit
+                  </button>
+                )}
 
-                <dl className="dl meetingButtons">
-                  {user && !meetingData.feedback && ((user.role == "Coach") || (user.role == "LT")) ? (
-                    <button
-                      className="button feedbackButton"
-                      onClick={() => editMeetingRow(meetingData)
-                      }
-                    >
-                      Add feedback
-                    </button>
-                  ) : (
+                {user && meetingData && user.first_name == meetingData.editor && (
+                  <button
+                    className="button button--link"
+                    onClick={() => deteteMeetinRow(meetingData)}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
+              <div className="col col--5">
+                {user && !meetingData.feedback && ((user.role == "Coach") || (user.role == "LT")) ? (
+                  <button
+                    className="button"
+                    onClick={() => editMeetingRow(meetingData)
+                    }
+                  >
+                    Add feedback
+                  </button>
+                ) : (
                     <button
                       className="button"
                       onClick={() => editMeetingRow(meetingData)}
@@ -138,9 +139,7 @@ class MeetingRow extends React.Component {
                       Edit feedback
                     </button>
                   )}
-                </dl>
               </div>
-
             </div>
           </td>
         </tr>
