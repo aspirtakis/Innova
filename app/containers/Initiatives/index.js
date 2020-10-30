@@ -559,7 +559,7 @@ if(data){
         editor: this.props.location.state.user.first_name,
         stage:0,
         funding_request: formData.fundingRequest,
-        funding_Approved: formData.funding_Approved,
+        funding_Approved: formData.fundingApproved,
         title: formData.meetingName,
         meetingDate: formData.meetingDate,
         feedback: formData.meetingFeedback,
@@ -581,7 +581,7 @@ if(data){
           item.type= formData.meetingType;
           item.editor= this.props.location.state.user.first_name;
           item.funding_request=formData.fundingRequest;
-          item.funding_Approved=formData.funding_Approved;
+          item.funding_Approved=formData.fundingApproved;
           item.title= formData.meetingName;
           item.meetingDate= formData.meetingDate;
           item.feedback= formData.meetingFeedback;
