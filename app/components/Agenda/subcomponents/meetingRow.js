@@ -60,12 +60,17 @@ class MeetingRow extends React.Component {
                       />
                     )}
 
-                  {meetingData.funding_request && meetingData.type == "FundingMoment" && (
-                    <TextSmall
-                      title="Requested funding"
-                      description={meetingData.funding_request}
-                    />
-                  )}
+                  {!meetingData.funding_request ? (
+                    <div>
+                      <dt className="dt">Requested funding</dt>
+                      <dd className="dd smallTextField"> - </dd>
+                    </div>
+                  ) : (
+                      <TextSmall
+                        title="Requested funding"
+                        description={meetingData.funding_request}
+                      />
+                    )}
 
                   {/* <dt>Documents</dt>
 									<dd>Linkje na linkje naar allemaal docs</dd> */}
@@ -88,16 +93,21 @@ class MeetingRow extends React.Component {
                         />
                       </dd>
 
+                      {!meetingData.funding_Approved ? (
+                        <div>
+                          <dt className="dt">Approved funding</dt>
+                          <dd className="smallTextField"> - </dd>
+                        </div>
+                      ) : (
+                          <TextSmall
+                            title="Approved funding"
+                            description={meetingData.funding_Approved}
+                          />
+                        )}
+
                     </div>
-
                   )}
 
-                  {meetingData && meetingData.feedback && meetingData.type == "FundingMoment" && (
-                    <TextSmall
-                      title="Approved funding"
-                      description={meetingData.funding_Approved}
-                    />
-                  )}
 
                 </dl>
               </div>

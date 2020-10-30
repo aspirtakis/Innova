@@ -61,6 +61,7 @@ class AddNewMeeting extends React.Component {
                     onChange={(date, dateString) => {
                       this.settingValueStates("meetingDate", moment(date, dateFormat))
                     }}
+                    required
                   />
                 </dd>
 
@@ -70,14 +71,12 @@ class AddNewMeeting extends React.Component {
                   largeInputValue={(e) => this.settingValueStates("meetingGoal", e)}
                 />
 
-                {this.state.meetingType == "FundingMoment" && (
                   <InputSmall
                     title="Funding request"
                     inputType="text"
                     placeholder="€"
                     smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
                   />
-                )}
 
               </dl>
               <div className="meetingButtons">

@@ -99,14 +99,12 @@ class UpdateMeeting extends React.Component {
                         />
                       )}
 
-                    {meetingData && this.state.meetingType == "FundingMoment" && (
                       <InputSmall
                         title="Funding request"
                         inputType="text"
                         cval={this.state.fundingRequest}
                         smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
                       />
-                    )}
 
                   </div>
                 )}
@@ -135,14 +133,12 @@ class UpdateMeeting extends React.Component {
                       />
                     </dd>
 
-                    {meetingData && this.state.meetingType == "FundingMoment" && (
                       <InputSmall
                         title="Approved funding"
                         inputType="text"
                         cval={this.state.fundingApproved}
                         smallInputValue={(e) => this.settingValueStates("fundingApproved", e)}
                       />
-                    )}
 
                   </div>
                 )}
