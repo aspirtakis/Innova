@@ -47,6 +47,24 @@ event1s:[],
 //   }
 // }
 
+eventStyleGetter = (event, start, end, isSelected) => {
+  console.log(event);
+  const type = event.data.type;
+  const backgroundColor =  type === "FundingMoment" ? "orange" : "green" ;
+  
+  var style = {
+      backgroundColor: backgroundColor,
+      borderRadius: '0px',
+      opacity: 0.8,
+      color: 'white',
+      border: '2px',
+      display: 'block'
+  };
+  return {
+      style: style
+  };
+};
+
 getData = () => {
   fetch(tasksUrl, {
       method: 'GET',
@@ -68,34 +86,53 @@ getData = () => {
       .then((taskData) => {
           const datas = taskData.resource;
           let mak = [];
-          const officersIds2 = datas.map(function(officer2) {
-            console.log(officer2);
-          
-          const events = 
+          const officersIds2 = datas.map(function(cardData) {
+
+            cardData.stageGates.map((stgates) => {
+              console.log(stgates.meetingDate);
+
+              const events = 
               {
-                start: moment(officer2.nexStageGate, dateFormat).toDate(),
-                end: moment(officer2.nexStageGate, dateFormat)
-                .add(20, "minutes")
+                data:stgates,
+                start: moment(stgates.meetingDate).toDate(),
+                end: moment(stgates.meetingDate)
+                .add(60, "minutes")
                 .toDate(),
           
-              title: officer2.projectname,
+              title: cardData.projectname,
               };
               mak.push(events);
+      
+
+
+            })
+
 
           });
-
+             
           this.setState({event1s: mak});
+
+    
 
      
       })
       .catch(taskData => console.log(taskData));
 };
 
+Event= ( event ) => {
+  console.log(event);
+  return (
+    <span>
+      <strong>{event.title}</strong>
+      <br/>
+      {event.event.data.editor}
+    </span>
+  )
+}
 
 
 
   render() {
-    console.log(this.state);
     return (
       <div >
       <DnDCalendar
@@ -105,7 +142,10 @@ getData = () => {
       localizer={localizer}
       onDoubleClickEvent={() => console.log("CLICKCK")}
       style={{ height: "100vh" }}
-      
+      eventPropGetter={(this.eventStyleGetter)}
+      components={{
+        event: this.Event
+      }}
     />
       </div>
 
