@@ -83,15 +83,6 @@ class UpdateMeeting extends React.Component {
                       />
                     </dd>
 
-                    {meetingData && this.state.meetingType == "FundingMoment" && (
-                      <InputSmall
-                        title="Funding request"
-                        inputType="text"
-                        cval={this.state.fundingRequest}
-                        smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
-                      />
-                    )}
-
                     {meetingData && !this.state.meetingName
                       ? (
                         <InputLarge
@@ -107,6 +98,16 @@ class UpdateMeeting extends React.Component {
                           largeInputValue={(e) => this.settingValueStates("meetingName", e)}
                         />
                       )}
+
+                    {meetingData && this.state.meetingType == "FundingMoment" && (
+                      <InputSmall
+                        title="Funding request"
+                        inputType="text"
+                        cval={this.state.fundingRequest}
+                        smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
+                      />
+                    )}
+
                   </div>
                 )}
 
