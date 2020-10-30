@@ -556,7 +556,7 @@ if(data){
       },
       body: JSON.stringify(          {
         type: formData.meetingType,
-        editor: this.props.location.state.user.first_name,
+        // editor: this.props.location.state.user.first_name,
         stage:0,
         funding_request: formData.fundingRequest,
         funding_Approved: formData.fundingApproved,
@@ -579,7 +579,7 @@ if(data){
           const index = newData.findIndex(item => formData.id === item.id);
           let item = newData[index];
           item.type= formData.meetingType;
-          item.editor= this.props.location.state.user.first_name;
+          // item.editor= this.props.location.state.user.first_name;
           item.funding_request=formData.fundingRequest;
           item.funding_Approved=formData.fundingApproved;
           item.title= formData.meetingName;
@@ -1093,7 +1093,7 @@ if(data){
      
 {!meetingAddPanel && !meetingEditPanel ? <Agenda phase={this.state.FunnelPhase} AddNewMeeting={() => this.addNewMeeting()} AgendaData={this.state.stageGates} deleteMeetings={this.deleteMeeting} editMeeting={this.editOldMeeting} user={this.props.location.state.user} /> : 
 <div>
-  {meetingEditPanel && <UpdateMeeting editMeetingCancel={() => this.setState({meetingEditPanel:false})} meetingData={meetingEditData} onSaveMeeting={this.saveMeeting} />}
+  {meetingEditPanel && <UpdateMeeting editMeetingCancel={() => this.setState({meetingEditPanel:false})} meetingData={meetingEditData} onSaveMeeting={this.saveMeeting} user={this.props.location.state.user} />}
   {meetingAddPanel && <AddNewMeeting addMeetingCancel={() => this.setState({meetingAddPanel:false})} onSaveMeeting={this.saveNewMeeting} />}
 </div>
   }

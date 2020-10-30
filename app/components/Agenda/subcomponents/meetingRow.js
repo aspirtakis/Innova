@@ -71,24 +71,26 @@ class MeetingRow extends React.Component {
 									<dd>Linkje na linkje naar allemaal docs</dd> */}
 
                 </dl>
-                {user && meetingData && user.first_name == meetingData.editor && (
                   <dl className="dl meetingButtons">
+                  {user && meetingData && ((user.first_name == meetingData.editor) || (user.role == "Coach")) && (
                     <button
                       className="button"
                       onClick={() => editMeetingRow(meetingData)}
                     >
                       Edit
                     </button>
+                  )}
 
+                    {user && meetingData && user.first_name == meetingData.editor && (
                     <button
                       className="button button--link"
                       onClick={() => deteteMeetinRow(meetingData)}
                     >
                       Delete
                     </button>
+                    )}
 
                   </dl>
-                )}
               </div>
 
 
