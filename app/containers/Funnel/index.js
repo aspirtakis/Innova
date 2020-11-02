@@ -60,11 +60,11 @@ const columnsdata = [
     },
     {
         id: 'scalelaunch',
-        title: 'Scalelaunch',
+        title: 'Scale',
     },
     {
         id: 'softlaunch',
-        title: 'Softlaunch',
+        title: 'Soft launch',
     },
     {
         id: 'backlog',
