@@ -44,7 +44,7 @@ class UpdateMeeting extends React.Component {
     const { editMeetingCancel, meetingData, user } = this.props;
     //  console.log(this.state);
     return (
-      <div>
+      <div className="meetingFormPadding">
         <div className="content__body">
           <div className="row">
             <div className="col col--7">
