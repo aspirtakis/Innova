@@ -116,7 +116,7 @@ class MeetingRow extends React.Component {
               <div className="col col--5">
                 {user && meetingData && (user.first_name == meetingData.editor) && (
                   <button
-                    className="button"
+                    className="button button--link"
                     onClick={() => editMeetingRow(meetingData)}
                   >
                     Edit
