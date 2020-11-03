@@ -858,7 +858,9 @@ if(data){
                   <p>Created Date : {data.createDate} </p>
                   <p>Added :{moment(data.createDate).fromNow()}</p>
                   <p>Updated :{moment(data.updateDate).fromNow()}</p>
-                  <p>Updated :{moment(data.birthonproblem).fromNow()}</p>
+
+                  {/* Double updated? */}
+                  {/* <p>Updated :{moment(data.birthonproblem).fromNow()}</p> */}
 
   
                   </Col>
