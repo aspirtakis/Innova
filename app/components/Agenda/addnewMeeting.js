@@ -37,7 +37,7 @@ class AddNewMeeting extends React.Component {
   render() {
     const { addMeetingCancel, saveMeeting } = this.props;
     return (
-      <div className="content">
+      <div>
         <div className="content__body">
           <div className="row">
             <div className="col col--7">
