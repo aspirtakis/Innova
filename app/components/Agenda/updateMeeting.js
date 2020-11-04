@@ -88,7 +88,7 @@ class UpdateMeeting extends React.Component {
                         <InputLarge
                           title="Goal"
                           cval={this.state.meetingGoal}
-                          placeholder="What do you want to present, discuss? What do you need help with?"
+                          placeholder="What do you want to present or discuss? What do you need help with?"
                           largeInputValue={(e) => this.settingValueStates("meetingGoal", e)}
                         />
                       )
@@ -96,7 +96,7 @@ class UpdateMeeting extends React.Component {
                         <InputLarge
                           title="Goal"
                           cval={this.state.meetingName}
-                          placeholder="What do you want to present, discuss? What do you need help with?"
+                          placeholder="What do you want to present or discuss? What do you need help with?"
                           largeInputValue={(e) => this.settingValueStates("meetingName", e)}
                         />
                       )}

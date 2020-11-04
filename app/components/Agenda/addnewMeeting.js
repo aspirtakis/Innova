@@ -67,7 +67,7 @@ class AddNewMeeting extends React.Component {
 
                 <InputLarge
                   title="Goal"
-                  placeholder="What do you want to present, discuss? What do you need help with?"
+                  placeholder="What do you want to present or discuss? What do you need help with?"
                   largeInputValue={(e) => this.settingValueStates("meetingGoal", e)}
                 />
 
