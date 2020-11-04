@@ -1,8 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import moment from 'moment';
-
-var momentTZ = require('moment-timezone');
+require('moment-timezone');
 
 import '../agenda.css';
 
