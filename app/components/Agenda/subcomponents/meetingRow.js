@@ -2,6 +2,8 @@
 import React from 'react';
 import moment from 'moment';
 
+var momentTZ = require('moment-timezone');
+
 import '../agenda.css';
 
 import TextSmall from './textSmall';
@@ -36,7 +38,7 @@ class MeetingRow extends React.Component {
           onClick={this.handleClick}
         >
           <td>{meetingData.type}</td>
-          <td>{moment(meetingData.meetingDate).format('ddd DD-MM-YYYY, HH:mm')}</td>
+          <td>{moment.utc(meetingData.meetingDate).tz('Europe/Amsterdam').format('ddd DD-MM-YYYY, HH:mm')}</td>
           <td>{meetingData.stage}</td>
           <td className="text-align-right" />
         </tr>
