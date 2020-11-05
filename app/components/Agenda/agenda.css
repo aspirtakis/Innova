@@ -76,6 +76,15 @@
   width: 400px;
 }
 
+.fundingInputField {
+  max-width: 400px;
+}
+
+.fundingEuroSign {
+  padding: 8px 8px 8px 0px;
+  color: #333333;
+}
+
 input[type="datetime-local"],
 input[type="text"],
 textarea {

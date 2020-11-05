@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import moment from 'moment';
-import InputSmall from "./subcomponents/inputSmall";
+import FundingSmall from "./subcomponents/fundingInput";
 import InputLarge from "./subcomponents/inputLarge";
 import MeetingSelector from "./subcomponents/meetingSelector";
 const dateFormat = 'DD/MM/YYYY HH:mm';
@@ -101,9 +101,8 @@ class UpdateMeeting extends React.Component {
                         />
                       )}
 
-                      <InputSmall
+                      <FundingSmall
                         title="Funding request"
-                        inputType="text"
                         cval={this.state.fundingRequest}
                         smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
                       />
@@ -135,7 +134,7 @@ class UpdateMeeting extends React.Component {
                       />
                     </dd>
 
-                      <InputSmall
+                      <FundingSmall
                         title="Approved funding"
                         inputType="text"
                         cval={this.state.fundingApproved}

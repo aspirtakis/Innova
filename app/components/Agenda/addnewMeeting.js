@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 
-import InputSmall from "./subcomponents/inputSmall";
+import FundingSmall from "./subcomponents/fundingInput";
 import InputLarge from "./subcomponents/inputLarge";
 import { DatePicker } from 'antd';
 import './agenda.css';
@@ -71,10 +71,8 @@ class AddNewMeeting extends React.Component {
                   largeInputValue={(e) => this.settingValueStates("meetingGoal", e)}
                 />
 
-                  <InputSmall
+                  <FundingSmall
                     title="Funding request"
-                    inputType="text"
-                    placeholder="€"
                     smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
                   />
 
