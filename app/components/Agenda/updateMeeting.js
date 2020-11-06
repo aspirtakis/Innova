@@ -101,11 +101,11 @@ class UpdateMeeting extends React.Component {
                         />
                       )}
 
-                      <FundingSmall
-                        title="Funding request"
-                        cval={this.state.fundingRequest}
-                        smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
-                      />
+                    <FundingSmall
+                      title="Funding request"
+                      cval={this.state.fundingRequest}
+                      smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
+                    />
 
                   </div>
                 )}
@@ -134,19 +134,23 @@ class UpdateMeeting extends React.Component {
                       />
                     </dd>
 
-                      <FundingSmall
-                        title="Approved funding"
-                        inputType="text"
-                        cval={this.state.fundingApproved}
-                        smallInputValue={(e) => this.settingValueStates("fundingApproved", e)}
-                      />
+                    <FundingSmall
+                      title="Approved funding"
+                      inputType="text"
+                      cval={this.state.fundingApproved}
+                      smallInputValue={(e) => this.settingValueStates("fundingApproved", e)}
+                    />
 
                   </div>
                 )}
 
               </dl>
               <div className="meetingButtons">
-                <button onClick={this.saveData} className="button button--4">Send</button>
+                {(this.state.meetingType && this.state.meetingDate && this.state.meetingGoal) ? (
+                  <button onClick={this.saveData} className="button button--4">Send</button>
+                ) : (
+                    <button onClick={this.saveData} className="button button--4" disabled>Send</button>
+                  )}
                 <button onClick={editMeetingCancel} className="button button--link">Cancel</button>
               </div>
             </div>

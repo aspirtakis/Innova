@@ -15,10 +15,8 @@ class AddNewMeeting extends React.Component {
     this.state = {
       meetingName: null,
       meetingDate: null,
-      meetingLocation: null,
       fundingRequest: null,
       meetingGoal: null,
-      meetingFeedback: null,
     };
   }
 
@@ -71,14 +69,18 @@ class AddNewMeeting extends React.Component {
                   largeInputValue={(e) => this.settingValueStates("meetingGoal", e)}
                 />
 
-                  <FundingSmall
-                    title="Funding request"
-                    smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
-                  />
+                <FundingSmall
+                  title="Funding request"
+                  smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
+                />
 
               </dl>
               <div className="meetingButtons">
-                <button onClick={this.saveData} className="button button--4">Send meeting</button>
+                {(this.state.meetingType && this.state.meetingDate && this.state.meetingGoal) ? (
+                  <button onClick={this.saveData} className="button button--4">Send meeting</button>
+                ) : (
+                    <button onClick={this.saveData} className="button button--4" disabled>Send meeting</button>
+                  )}
                 <button onClick={addMeetingCancel} className="button button--link">Cancel</button>
               </div>
             </div>
