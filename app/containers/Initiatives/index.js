@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, Component } from 'react';
 import {
   Modal,
   Button,
@@ -7,8 +7,15 @@ import {
   Row,
   Col,
 DatePicker, 
-Tabs 
+Tabs ,
+Space,notification
 } from 'antd';
+
+
+
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { sessionCheck } from 'containers/App/actions';
 import nlNL from 'antd/es/locale/nl_NL';
 
 import { FaCheck } from 'react-icons/fa';
@@ -44,6 +51,7 @@ const checklistsUrl = backend.beUrl + backend.checklists;
 const stageGatesUrl = backend.beUrl + backend.stageGates;
 const dateFormat = 'DD/MM/YYYY HH:mm:ss';
 
+
 // eslint-disable-next-line react/prefer-stateless-function
 class Initiatives extends React.Component {
   constructor(props) {
@@ -64,6 +72,7 @@ if(!data){
 }
 if(data){
   const gates = data.stageGates;
+  console.log(this.props);
   this.setState({
     hasSelectedcard: true,
     users:this.props.location.state.users,
@@ -94,10 +103,17 @@ if(data){
   });
 }
   }
-
-
+  openNotification = placement => {
+    notification.info({
+      message: "Success",
+      description:
+        'SuccessSuccessSuccessSuccessSuccessSuccess',
+      placement,
+    });
+  };
+  
   saveChecklist = (r,row) => {
-    //this.props.sessionCheck();
+    //this.props.location.state.sessionCheck();
     const url = checklistsUrl+'/'+row.id;
     //console.log(row);
     //console.log(r);
@@ -106,7 +122,7 @@ if(data){
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -132,12 +148,13 @@ if(data){
     lit.title= row.title;
     lit.status=row.status;
     this.setState({assumptions:newData});
+
       })
-      .catch(taskData => this.props.sessionCheck());
+      .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
 
   deleteChecklist = (r,checklist) => {
-    //this.props.sessionCheck();
+    //this.props.location.state.sessionCheck();
       this.setState({ spinning: true });
       const taskid = this.state.task_id;
       const url4 = checklistsUrl+'/'+checklist;
@@ -147,7 +164,7 @@ if(data){
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+          'X-DreamFactory-Session-Token': this.props.user.session_token,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -172,16 +189,15 @@ if(data){
         this.setState({assumptions:newData});
 
         })
-        .catch(taskData => this.props.sessionCheck());
+        .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   addNewCheckList = (r) => {
-
      fetch(checklistsUrl, {
        method: 'POST',
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+         'X-DreamFactory-Session-Token': this.props.user.session_token,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -226,10 +242,10 @@ if(data){
       }
       this.setState({assumptions:newData});
        })
-       .catch(taskData => this.props.sessionCheck());
+       .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   deleteAssumption = (r) => {
-   // this.props.sessionCheck();
+   //this.props.dispatch(sessionCheck());
     this.setState({ spinning: true });
     const url4 = assumptionsUrl+'/'+r.id;
     const checklistsU = checklistsUrl +"?filter=assumptionid="+r.id;
@@ -240,7 +256,7 @@ if(data){
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -262,7 +278,7 @@ if(data){
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+          'X-DreamFactory-Session-Token': this.props.user.session_token,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -280,10 +296,10 @@ if(data){
 
 
       })
-      .catch(taskData => this.props.sessionCheck());
+      .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   addNewAssumption = values => {
-   // this.props.sessionCheck();
+   //this.props.dispatch(sessionCheck());
     // this.setState({ spinning: true });
     const { assumptions } = this.state;
      fetch(assumptionsUrl, {
@@ -291,7 +307,7 @@ if(data){
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+         'X-DreamFactory-Session-Token': this.props.user.session_token,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -333,10 +349,10 @@ if(data){
           assumptions: [...assumptions, newRemark],
         });
        })
-       .catch(taskData => this.props.sessionCheck());
+       .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   saveAssumption = (r,result,status) => {
-    //this.props.sessionCheck();
+    //this.props.location.state.sessionCheck();
     const url = assumptionsUrl+'/'+r.id;
     console.log(result);
     console.log(status);
@@ -346,7 +362,7 @@ if(data){
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -382,10 +398,10 @@ if(data){
     });
     this.setState({assumptions:newData});
       })
-      .catch(taskData => this.props.sessionCheck());
+      .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   addNewRemark = type => {
-  // this.props.sessionCheck();
+  //this.props.dispatch(sessionCheck());
     // this.setState({ spinning: true });
    const { remarks } = this.state;
      fetch(remarksUrl, {
@@ -393,7 +409,7 @@ if(data){
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+         'X-DreamFactory-Session-Token': this.props.user.session_token,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -432,26 +448,28 @@ if(data){
           remarks: [newRemark, ...remarks ],
         });
        })
-       .catch(taskData => this.props.sessionCheck());
+       .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   addNewMeeting = () =>{
     console.log("clickadd");
     this.setState({meetingAddPanel: true});
   };
+
   editOldMeeting = (data) =>{
     console.log("clickedit");
     this.setState({meetingEditData: data});
     this.setState({meetingEditPanel: true});
   };
+
   saveNewMeeting = (formData) => {
-   // this.props.sessionCheck();
+   //this.props.dispatch(sessionCheck());
     // this.setState({ spinning: true });
      fetch(stageGatesUrl, {
        method: 'POST',
        headers: {
          Accept: 'application/json',
          'X-DreamFactory-API-Key': apptoken,
-         'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+         'X-DreamFactory-Session-Token': this.props.user.session_token,
          'Cache-Control': 'no-cache',
          'Content-Type': 'application/json',
        },
@@ -503,10 +521,10 @@ if(data){
           stageGates: [newRemark,...stageGates],
         });
        })
-       .catch(taskData => this.props.sessionCheck());
+       .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   deleteMeeting = (meeting) => {
-  //  this.props.sessionCheck();
+  // this.props.dispatch(sessionCheck());
     const id = meeting.id;
       this.setState({ spinning: true });
       const url4 = stageGatesUrl+'/'+id;
@@ -516,7 +534,7 @@ if(data){
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+          'X-DreamFactory-Session-Token': this.props.user.session_token,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -532,7 +550,7 @@ if(data){
       const dataSource = [...this.state.stageGates];
       this.setState({stageGates: dataSource.filter(item => item.id !== id) });
         })
-        .catch(taskData => this.props.sessionCheck());
+        .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   saveMeeting = (formData) => {
 
@@ -550,7 +568,7 @@ if(data){
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -591,10 +609,11 @@ if(data){
             ...item,
             ...item,
           });
+          this.openNotification('topLeft');
       }
         
 )
-      .catch(taskData => this.props.sessionCheck());
+      .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   saveRemark = (e, remark) => {
     const newData = [...this.state.remarks];
@@ -613,7 +632,7 @@ if(data){
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -631,7 +650,7 @@ if(data){
       .then(taskData => {
 
       })
-      .catch(taskData => this.props.sessionCheck());
+      .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   deleteRemark = (e, remark) => {
     const id = remark.id;
@@ -644,7 +663,7 @@ if(data){
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+          'X-DreamFactory-Session-Token': this.props.user.session_token,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
@@ -660,7 +679,7 @@ if(data){
       const dataSource = [...this.state.remarks];
       this.setState({remarks: dataSource.filter(item => item.id !== id) });
         })
-        .catch(taskData => this.props.sessionCheck());
+        .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   onSTGUpdate = (newDate) => {
     this.setState({ spinning: true });
@@ -672,7 +691,7 @@ if(data){
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -692,7 +711,7 @@ if(data){
 
         this.setState({ spinning: false });
       })
-      .catch(taskData => this.props.sessionCheck());
+      .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   onUpdate = () => {
     this.setState({ spinning: true });
@@ -704,7 +723,7 @@ if(data){
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -739,7 +758,7 @@ if(data){
         this.setState({ spinning: false });
         this.props.onOK();
       })
-      .catch(taskData => this.props.sessionCheck());
+      .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   onDelete = () => {
     this.setState({ spinning: true });
@@ -751,7 +770,7 @@ if(data){
       headers: {
         Accept: 'application/json',
         'X-DreamFactory-API-Key': apptoken,
-        'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
         'Cache-Control': 'no-cache',
         'Content-Type': 'application/json',
       },
@@ -768,7 +787,7 @@ if(data){
         this.setState({ spinning: false });
         this.props.onOK();
       })
-      .catch(taskData => this.props.sessionCheck());
+      .catch(taskData =>this.props.dispatch(sessionCheck()));
   };
   fixStatus = status => {
     if (status === 'green') {
@@ -827,6 +846,8 @@ if(data){
 
     return (
       <div className="row">
+      
+
       {this.state.hasSelectedcard ? 
         <div
       >
@@ -1111,9 +1132,34 @@ TeamRemarks={this.remarksType("team")} />
   </div>
       </div>:<div>You have to Select a Card from funnel</div>
       }
+
     </div>
     );
   }
 }
 
-export default Initiatives;
+
+
+
+
+function mapStateToProps(state) {
+  return {
+      user: state.global.user,
+      users: state.global.users,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+      dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(Initiatives);

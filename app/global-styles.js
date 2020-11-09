@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    background: #f3f3f3;
+    background: #ffffff;
     color: #333;
     min-height: 100%;
     min-width: 100%;
@@ -92,7 +92,7 @@ const GlobalStyle = createGlobalStyle`
 
   /* main container */
   main.main-container {
-    background-color: #F3F3F3;
+    background-color: #ffffff;
     padding:0;
     
   }

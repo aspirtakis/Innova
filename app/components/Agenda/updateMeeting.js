@@ -103,6 +103,7 @@ class UpdateMeeting extends React.Component {
 
                     <FundingSmall
                       title="Funding request"
+                      types="number"
                       cval={this.state.fundingRequest}
                       smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
                     />
@@ -136,7 +137,7 @@ class UpdateMeeting extends React.Component {
 
                     <FundingSmall
                       title="Approved funding"
-                      inputType="text"
+                      types="number"
                       cval={this.state.fundingApproved}
                       smallInputValue={(e) => this.settingValueStates("fundingApproved", e)}
                     />
@@ -152,6 +153,9 @@ class UpdateMeeting extends React.Component {
                     <button onClick={this.saveData} className="button button--4" disabled>Send</button>
                   )}
                 <button onClick={editMeetingCancel} className="button button--link">Cancel</button>
+              </div>
+              <div className="col col--7">
+              
               </div>
             </div>
           </div>

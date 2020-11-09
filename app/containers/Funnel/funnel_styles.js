@@ -95,7 +95,7 @@ export const styles = {
   },
   titles: {
     fontSize: 32,
-    backgroundColor:'#F3F3F3',
+    backgroundColor:'#ffffff',
     fontWeight: 'bold',
     color: '#009900',
     textAlign: 'left',
@@ -111,7 +111,7 @@ export const styles = {
     minWidth: 468,
     maxHeight: 800,
     minHeight: '100%',
-    backgroundColor: '#F3F3F3',
+    backgroundColor: '#ffffff',
 
 
   },

@@ -101,6 +101,9 @@ const reorder = (list, startIndex, endIndex) => {
     return result;
 };
 
+
+
+
 class Funnel extends Component {
     constructor(props) {
         super(props);
