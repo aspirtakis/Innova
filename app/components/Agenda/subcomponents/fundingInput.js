@@ -23,7 +23,7 @@ class FundingSmall extends React.Component {
 					<dd className="smallInputField">
 						<input
 							className="input"
-	
+	type={types}
 							value={cval}
 							onChange={(e) => smallInputValue(e.target.value)}>
 						</input>
