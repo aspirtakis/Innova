@@ -17,7 +17,7 @@ const Container = styled.div`
   min-height: 760px;
   flex-direction: column;
   height: calc(100vh - 8.6rem);
-  background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
+  background-color: ${(props) => (props.isDraggingOver ? 'green' : '#ffffff')}
 
 `;
 
@@ -25,7 +25,7 @@ const TaskList = styled.div`
   padding-left:5px;
   padding-right:1px;
   transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isDraggingOver ? 'green' : '#F3F3F3')}
+  background-color: ${(props) => (props.isDraggingOver ? 'green' : '#ffffff')}
   max-height: calc(100vh - 11.8rem);
   height: calc(100vh - 8.6rem);
   overflow-x: hidden;

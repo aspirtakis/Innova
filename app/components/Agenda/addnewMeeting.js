@@ -71,6 +71,7 @@ class AddNewMeeting extends React.Component {
 
                 <FundingSmall
                   title="Funding request"
+                  types="number"
                   smallInputValue={(e) => this.settingValueStates("fundingRequest", e)}
                 />
 

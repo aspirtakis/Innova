@@ -13,7 +13,7 @@ class FundingSmall extends React.Component {
 	}
 
 	render() {
-		const { title, cval, smallInputValue } = this.props;
+		const { title, cval, smallInputValue,types } = this.props;
 
 		return (
 			<React.Fragment>
@@ -23,7 +23,7 @@ class FundingSmall extends React.Component {
 					<dd className="smallInputField">
 						<input
 							className="input"
-							type="text"
+	type={types}
 							value={cval}
 							onChange={(e) => smallInputValue(e.target.value)}>
 						</input>
