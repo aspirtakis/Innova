@@ -105,9 +105,9 @@ if(data){
   }
   openNotification = placement => {
     notification.info({
-      message: "Success",
+      message: "Meeting saved!",
       description:
-        'SuccessSuccessSuccessSuccessSuccessSuccess',
+        'Succesfully saved meeting!',
       placement,
     });
   };
@@ -521,7 +521,10 @@ if(data){
           stageGates: [newRemark,...stageGates],
         });
        })
+       
        .catch(taskData =>this.props.dispatch(sessionCheck()));
+       this.openNotification('middle');
+
   };
   deleteMeeting = (meeting) => {
   // this.props.dispatch(sessionCheck());
@@ -609,7 +612,7 @@ if(data){
             ...item,
             ...item,
           });
-          this.openNotification('topLeft');
+          this.openNotification('middle');
       }
         
 )
