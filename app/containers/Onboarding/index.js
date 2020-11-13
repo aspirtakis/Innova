@@ -22,6 +22,13 @@ import KpnSmallInput from "./components/kpnSmallInput";
 import KpnLargeInput from "./components/kpnLargeInput";
 
 import "./ideaOnboardingFormStyles.css"
+import { backend } from '../../utils/config';
+
+
+const apptoken = backend.apptoken;
+
+const onboardingUrl = backend.beUrl + backend.onboarding;
+
 
  class Onboarding extends React.Component {
     constructor(props) {
@@ -41,6 +48,7 @@ import "./ideaOnboardingFormStyles.css"
         buttonDisabled: false, // button always available
       };
     }
+
   
     settingValueStates = (type, e) => {
       this.setState({ [type]: e });
@@ -49,23 +57,30 @@ import "./ideaOnboardingFormStyles.css"
 
 
 
-    addNewIdea = (r) => {
+    addNewIdea = () => {
 
-      fetch(checklistsUrl, {
+      fetch(onboardingUrl, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.location.state.sestoken,
+          'X-DreamFactory-Session-Token': this.props.user.session_token,
           'Cache-Control': 'no-cache',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           resource: [
            {
-             title: "New Experiment",
-             assumptionid: r.id,
-             status:"Backlog",
+             OwnerValue: this.state.ownerValue,
+             orgValue: this.state.orgValue,
+             ElevatorPitch: this.state.elevatorPitch,
+             OwnerPhone: this.state.ownerPhone,
+             OwnerEmail:this.state.ownerEmail,
+             OwnerLastName:this.state.ownerLastName,
+             OwnerFirstName:this.state.ownerFirstName,
+             Title: this.state.ideaTitle,
+             Problem: this.state.problem,
+
            },
           ],
         }),
@@ -108,6 +123,7 @@ import "./ideaOnboardingFormStyles.css"
 
 
     render(){
+      console.log(this.props);
 
 
   return (
@@ -184,7 +200,7 @@ import "./ideaOnboardingFormStyles.css"
       <button
         className="kpnSubmitIdeaButton button button--3"
         disabled={this.state.buttonDisabled}
-
+        onClick={this.addNewIdea}
       >
         Send
         </button>
@@ -205,13 +221,16 @@ Onboarding.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = createStructuredSelector({
-  onboarding: makeSelectOnboarding(),
-});
 
+function mapStateToProps(state) {
+  return {
+      user: state.global.user,
+      users: state.global.users,
+  };
+}
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+      dispatch,
   };
 }
 
@@ -223,4 +242,7 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(Onboarding);
+  )(Onboarding);
+
+
+

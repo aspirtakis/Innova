@@ -10,6 +10,7 @@ const backendProd = {
   stageGates: 'funnel/_table/funnel.stagegates',
   passrst:'user/password',
   register:'user/register',
+  onboarding: 'funnel/_table/funnel.onboarding',
   defUser: '',
   defPass: '',
 };
@@ -26,6 +27,7 @@ const backendDev = {
   stageGates: 'funnel_dev/_table/funnel.stagegates',
   passrst:'user/password',
   register:'user/register',
+  onboarding: 'funnel_dev/_table/funnel.onboarding',
   defUser: '',
   defPass: '',
 };
@@ -42,6 +44,7 @@ const backendAga = {
   passrst:'user/password',
   register:'user/register',
   defUser: 'agamemnon.aspirtakis@kpn.com',
+  onboarding: 'funnel_dev/_table/funnel.onboarding',
   defPass: 'a224935a',
 };
 const backendAgaSTG = {
@@ -55,6 +58,7 @@ const backendAgaSTG = {
   checklists: 'FunnSTG/_table/funnel.checklists',
   stageGates: 'FunnSTG/_table/funnel.stagegates',
   passrst:'user/password',
+  onboarding: 'FunnSTG/_table/funnel.onboarding',
   register:'user/register',
   defUser: 'agamemnon.aspirtakis@kpn.com',
   defPass: 'a224935a',
@@ -69,6 +73,7 @@ const backendSTG = {
   assumptions: 'FunnSTG/_table/funnel.assumptions',
   checklists: 'FunnSTG/_table/funnel.checklists',
   stageGates: 'FunnSTG/_table/funnel.stagegates',
+  onboarding: 'FunnSTG/_table/funnel.onboarding',
   passrst:'user/password',
   register:'user/register',
   defUser: '',
