@@ -108,7 +108,7 @@ var coach = taskproblem.coach ? taskproblem.coach.charAt(0) : null ;
                       <div onClick={() => this.props.openEdit(taskproblem)}>
                           <div className="card">
                          
-                              <div  style={{padding:6}}>
+                              <div  style={{padding:8}}>
                                   <div className="row">
                                   <div  className="col col--1" >
                                   <div style={{ marginLeft:1,marginTop:3 }} className="row">
@@ -171,7 +171,7 @@ var coach = taskproblem.coach ? taskproblem.coach.charAt(0) : null ;
                                   </div>
                                   <div style={{ maxWidth:39}} className="col col--8, right">
                                   <Tooltip placement="top" title={"Horizon > "+taskproblem.horizon}>
-                                  <div className='row right2' style={{marginTop:5,fontWeight:'bold', fontSize:12, maxWidth:24, maxHeight:24}} >{taskproblem.horizon}</div>
+                                  <div className='row right2' style={{marginTop:5,color:'#333333',fontWeight:'bold', fontSize:12, maxWidth:24, maxHeight:24}} >{taskproblem.horizon}</div>
                          </Tooltip>
                                   </div>
                 
