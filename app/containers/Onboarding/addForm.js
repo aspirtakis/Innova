@@ -124,7 +124,6 @@ const onboardingUrl = backend.beUrl + backend.onboarding;
 
 
     render(){
-      console.log(this.props);
 
 
   return (

@@ -22,13 +22,13 @@ import KpnSmallInput from './components/kpnSmallInput';
 import KpnLargeInput from './components/kpnLargeInput';
 import { List, Avatar, Button, Skeleton } from 'antd';
 import './ideaOnboardingFormStyles.css';
+
 import { backend } from '../../utils/config';
 import Onboardingform from './addForm';
+import Votingform from './voting';
 
 const { apptoken } = backend;
-
 const onboardingUrl = backend.beUrl + backend.onboarding;
-
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -46,7 +46,7 @@ class Onboarding extends React.Component {
 
       openAddform: false, // button always available
       list:[],
-      selectedItem:{},
+      selectedItem:null,
     };
   }
 
@@ -93,25 +93,31 @@ class Onboarding extends React.Component {
 
   render() {
     const { openAddform } = this.state;
-    console.log(this.state.list);
 
 
 
     return (
 
       <div>
+
+
       
         {!openAddform && 
 
+  
 
+
+          <div style={{padding:25}}>
           <div class="row">
-          <div > 
-
-          
           <button onClick={() => this.setState({ openAddform: true })}>Add New Idea</button>
 
+        </div>
+
+          <div class="row"> 
+          <div class="col col--4" >
+
           <List
-          style={{padding:50,maxWidth:600}}
+          style={{maxWidth:500}}
           itemLayout="vertical"
           size="large"
           dataSource={this.state.list}
@@ -145,25 +151,12 @@ class Onboarding extends React.Component {
         />
           
          </div>
-  <div class="col col--6" style={{padding:100}}>
-  <div class="row" style={{backgroundColor:'pink' ,minHeight:300}}>
-  <div>OVERVIEW</div>
-  <div>{this.state.selectedItem.Title}</div>
-  <div>{this.state.selectedItem.OwnerFirstName}</div>
-  <div>{this.state.selectedItem.OwnerLastName}</div>
-  <div>{this.state.selectedItem.ElevatorPitch}</div>
-  <div>{this.state.selectedItem.Problem}</div>
-  <div>{this.state.selectedItem.OwnerEmail}</div>
-  <div>{this.state.selectedItem.OwnerValue}</div>
-  <div>{this.state.selectedItem.orgValue}</div>
-</div>
-<div class="row" style={{backgroundColor:'lightgray' ,minHeight:300}}>
-VOTEEEEEE
+         <div class="col col--8" >
+         {this.state.selectedItem && <Votingform  item={this.state.selectedItem}></Votingform>} 
+          </div>
+         </div>
 
-</div>
 
-  
-  </div>
 </div>
           
    }
