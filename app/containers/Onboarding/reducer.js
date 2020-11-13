@@ -6,14 +6,27 @@
 import produce from "immer";
 import { DEFAULT_ACTION } from "./constants";
 
-export const initialState = {};
+import {
+  IDEAS_LOADED,
+  IDEAS_FAILED,
+  IDEAS_LOADING
+} from './constants';
+
+export const initialState = {
+
+  ideas: [],
+
+};
 
 /* eslint-disable default-case, no-param-reassign */
 const onboardingReducer = (state = initialState, action) =>
   produce(state, (/* draft */) => {
     switch (action.type) {
-      case DEFAULT_ACTION:
+      case IDEAS_LOADED: {
+        ideas.authenticationErrorMessage = action.message;
         break;
+      }
+
     }
   });
 

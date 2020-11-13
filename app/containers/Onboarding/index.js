@@ -11,226 +11,182 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import { sessionCheck } from 'containers/App/actions';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectOnboarding from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import KpnSmallInput from "./components/kpnSmallInput";
-import KpnLargeInput from "./components/kpnLargeInput";
-
-import "./ideaOnboardingFormStyles.css"
+import KpnSmallInput from './components/kpnSmallInput';
+import KpnLargeInput from './components/kpnLargeInput';
+import { List, Avatar, Button, Skeleton } from 'antd';
+import './ideaOnboardingFormStyles.css';
 import { backend } from '../../utils/config';
+import Onboardingform from './addForm';
 
-
-const apptoken = backend.apptoken;
+const { apptoken } = backend;
 
 const onboardingUrl = backend.beUrl + backend.onboarding;
 
 
- class Onboarding extends React.Component {
-    constructor(props) {
- //     useInjectReducer({ key: 'onboarding', reducer });
- //     useInjectSaga({ key: 'onboarding', saga });
-      super(props);
-      this.state = {
-        ideaTitle: null,
-        ownerFirstName: null,
-        ownerLastName: null,
-        ownerEmail: null,
-        ownerPhone: null,
-        ownerValue: null,
-        elevatorPitch: null,
-        problem: null,
-        orgValue: null,
-        buttonDisabled: false, // button always available
-      };
-    }
+const IconText = ({ icon, text }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
 
-  
-    settingValueStates = (type, e) => {
-      this.setState({ [type]: e });
-      console.log(this.state);
+class Onboarding extends React.Component {
+  constructor(props) {
+    //     useInjectReducer({ key: 'onboarding', reducer });
+    //     useInjectSaga({ key: 'onboarding', saga });
+    super(props);
+    this.state = {
+
+      openAddform: false, // button always available
+      list:[],
+      selectedItem:{},
     };
+  }
 
 
+  componentDidMount() {
 
-    addNewIdea = () => {
-
-      fetch(onboardingUrl, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'X-DreamFactory-API-Key': apptoken,
-          'X-DreamFactory-Session-Token': this.props.user.session_token,
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          resource: [
-           {
-             OwnerValue: this.state.ownerValue,
-             orgValue: this.state.orgValue,
-             ElevatorPitch: this.state.elevatorPitch,
-             OwnerPhone: this.state.ownerPhone,
-             OwnerEmail:this.state.ownerEmail,
-             OwnerLastName:this.state.ownerLastName,
-             OwnerFirstName:this.state.ownerFirstName,
-             Title: this.state.ideaTitle,
-             Problem: this.state.problem,
-
-           },
-          ],
-        }),
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw Error(response.statusText);
-          }
-          return response;
-        })
-        .then(response => response.json())
-        .then(assumptionData => {
- 
-       const newData = [...this.state.assumptions];
-       const index = newData.findIndex(item => r.id === item.id);
-       let item = newData[index];
-       let chkl = item.experiments;
- 
-       const newCheckList =     {
-         title: "New Experiment",
-         id:assumptionData.resource[0].id,
-          assumptionid: r.id,
-          status:"Backlog",
-         };
-       if(chkl) {
-           chkl.push(newCheckList);
-       }
-       if(!chkl){
-         //console.log(item);
-       item.experiments=[];
-         item.experiments.push(newCheckList);
- 
-       }
-       this.setState({assumptions:newData});
-        })
-        .catch(taskData => console.log(taskData));
-   };
-
-
-
-
-    render(){
-      console.log(this.props);
-
-
-  return (
-
-    <div >
-    <div className="ideaForm">
-      <div className="content__body">
-        <h2 className="content__title">Idea owner credentials</h2>
-        <div className="row">
-          <div className="col col--6">
-            <dl className="dl">
-              <KpnSmallInput
-                title="Idea name"
-                smallInputValue={(e) => this.settingValueStates("ideaTitle", e)}>
-              </KpnSmallInput>
-            </dl>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col col--6">
-            <dl className="dl">
-              <KpnSmallInput
-                title="First name"
-                smallInputValue={(e) => this.settingValueStates("ownerFirstName", e)}>
-              </KpnSmallInput>
-              <KpnSmallInput
-                title="Last name"
-                smallInputValue={(e) => this.settingValueStates("ownerLastName", e)}>
-              </KpnSmallInput>
-            </dl>
-          </div>
-          <div className="col col--6">
-            <dl className="dl">
-              <KpnSmallInput
-                title="Email address"
-                smallInputValue={(e) => this.settingValueStates("ownerEmail", e)}>
-              </KpnSmallInput>
-              <KpnSmallInput
-                title="Phone"
-                smallInputValue={(e) => this.settingValueStates("ownerPhone", e)}>
-              </KpnSmallInput>
-            </dl>
-          </div>
-        </div>
-        <h2 className="content__title">Idea specifications</h2>
-        <div className="row">
-          <div className="col col--6">
-            <dl className="dl">
-              <KpnLargeInput
-                title="Problem solution"
-                largeInputValue={(e) => this.settingValueStates("problem", e)}>
-              </KpnLargeInput>
-              <KpnLargeInput
-                title="Idea elevator pitch"
-                largeInputValue={(e) => this.settingValueStates("elevatorPitch", e)}>
-              </KpnLargeInput>
-            </dl>
-          </div>
-          <div className="col col--6">
-            <dl className="dl">
-              <KpnLargeInput
-                title="Why is your idea useful for KPN?"
-                largeInputValue={(e) => this.settingValueStates("orgValue", e)}>
-              </KpnLargeInput>
-              <KpnLargeInput
-                title="What can you bring to the table?"
-                largeInputValue={(e) => this.settingValueStates("ownerValue", e)}>
-              </KpnLargeInput>
-            </dl>
-          </div>
-        </div>
-      </div>
-
-      <button
-        className="kpnSubmitIdeaButton button button--3"
-        disabled={this.state.buttonDisabled}
-        onClick={this.addNewIdea}
-      >
-        Send
-        </button>
-    </div>
-    </div>
-
-  );
-
-
+    //console.log(this.props.user);
+    if (this.props.user && this.props.user.session_token.length > 0) {
+        this.getData();
     }
-      
-    
+    if (!this.props.user && !this.props.user.session_token.length > 0) {
+        location.href = '/';
+    }
 
 }
 
+
+  getData = () => {
+    this.props.dispatch(sessionCheck());
+       fetch(onboardingUrl, {
+           method: 'GET',
+           headers: {
+               Accept: 'application/json',
+               'X-DreamFactory-API-Key': apptoken,
+               'X-DreamFactory-Session-Token': this.props.user.session_token,
+               'Cache-Control': 'no-cache',
+               'Content-Type': 'application/json',
+           },
+       })
+           .then((response) => {
+               if (!response.ok) {
+                   throw Error(response.statusText);
+               }
+               return response;
+           })
+           .then(response => response.json())
+           .then((taskData) => {
+               const datas = taskData.resource;
+             //console.log(datas);
+             this.setState({list:datas})
+           })
+           .catch(taskData => console.log(taskData));
+   };
+
+  render() {
+    const { openAddform } = this.state;
+    console.log(this.state.list);
+
+
+
+    return (
+
+      <div>
+      
+        {!openAddform && 
+
+
+          <div class="row">
+          <div > 
+
+          
+          <button onClick={() => this.setState({ openAddform: true })}>Add New Idea</button>
+
+          <List
+          style={{padding:50,maxWidth:600}}
+          itemLayout="vertical"
+          size="large"
+          dataSource={this.state.list}
+          footer={
+            <div>
+              <b>Backlog Ideas</b> 
+            </div>
+          }
+          renderItem={item => (
+            <List.Item
+              key={item.Title}
+              extra={
+                <img
+                  width={272}
+                  alt="logo"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                />
+              }
+            >
+              <List.Item.Meta
+                avatar={<Avatar src={item.avatar} />}
+                title={<a href={item.href}>{item.Title}</a>}
+                description={item.OwnerFirstName}
+                onClick={() => this.setState({selectedItem:item})} 
+              />
+
+              <button>Vote</button>
+              <button>Innovate</button>
+            </List.Item>
+          )}
+        />
+          
+         </div>
+  <div class="col col--6" style={{padding:100}}>
+  <div class="row" style={{backgroundColor:'pink' ,minHeight:300}}>
+  <div>OVERVIEW</div>
+  <div>{this.state.selectedItem.Title}</div>
+  <div>{this.state.selectedItem.OwnerFirstName}</div>
+  <div>{this.state.selectedItem.OwnerLastName}</div>
+  <div>{this.state.selectedItem.ElevatorPitch}</div>
+  <div>{this.state.selectedItem.Problem}</div>
+  <div>{this.state.selectedItem.OwnerEmail}</div>
+  <div>{this.state.selectedItem.OwnerValue}</div>
+  <div>{this.state.selectedItem.orgValue}</div>
+</div>
+<div class="row" style={{backgroundColor:'lightgray' ,minHeight:300}}>
+VOTEEEEEE
+
+</div>
+
+  
+  </div>
+</div>
+          
+   }
+        {openAddform && <Onboardingform closeForm={() => this.setState({ openAddform: false })} />}
+      </div>
+
+    );
+  }
+}
 
 Onboarding.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-
 function mapStateToProps(state) {
   return {
-      user: state.global.user,
-      users: state.global.users,
+    user: state.global.user,
+    users: state.global.users,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-      dispatch,
+    dispatch,
   };
 }
 
@@ -242,7 +198,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-  )(Onboarding);
-
-
-
+)(Onboarding);
