@@ -29,7 +29,7 @@ export function Onboarding() {
         <title>Onboarding</title>
         <meta name="description" content="Description of Onboarding" />
       </Helmet>
-      <FormattedMessage {...messages.header} />
+      <div></div>
     </div>
   );
 }
