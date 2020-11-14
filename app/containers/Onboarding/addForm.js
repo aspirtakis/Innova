@@ -80,6 +80,8 @@ const onboardingUrl = backend.beUrl + backend.onboarding;
              OwnerFirstName:this.state.ownerFirstName,
              Title: this.state.ideaTitle,
              Problem: this.state.problem,
+             status:"ACTIVE",
+             origin:"DASHBOARD",
 
            },
           ],
@@ -94,27 +96,6 @@ const onboardingUrl = backend.beUrl + backend.onboarding;
         .then(response => response.json())
         .then(assumptionData => {
           this.props.closeForm();
- 
-       const newData = [...this.state.assumptions];
-       const index = newData.findIndex(item => r.id === item.id);
-       let item = newData[index];
-       let chkl = item.experiments;
- 
-       const newCheckList =     {
-         title: "New Experiment",
-         id:assumptionData.resource[0].id,
-          assumptionid: r.id,
-          status:"Backlog",
-         };
-       if(chkl) {
-           chkl.push(newCheckList);
-       }
-       if(!chkl){
-         //console.log(item);
-       item.experiments=[];
-         item.experiments.push(newCheckList);
- 
-       }
        this.setState({assumptions:newData});
         })
         .catch(taskData => console.log(taskData));

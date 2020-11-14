@@ -20,8 +20,9 @@ import saga from './saga';
 import messages from './messages';
 import KpnSmallInput from './components/kpnSmallInput';
 import KpnLargeInput from './components/kpnLargeInput';
-import { List, Avatar, Button, Skeleton,Tabs } from 'antd';
+import { Popover,List, Avatar, Button, Skeleton,Tabs } from 'antd';
 import './ideaOnboardingFormStyles.css';
+import Votes from './votes';
 
 import { backend } from '../../utils/config';
 import Onboardingform from './addForm';
@@ -31,6 +32,7 @@ const { TabPane } = Tabs;
 
 const { apptoken } = backend;
 const onboardingUrl = backend.beUrl + backend.onboarding;
+const tasksUrl = backend.beUrl + backend.tasks;
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -65,6 +67,11 @@ class Onboarding extends React.Component {
 
 }
 
+closeandReload = () =>{
+
+  this.setState({ openAddform: false });
+  this.getData();
+}
 
   getData = () => {
     this.props.dispatch(sessionCheck());
@@ -93,8 +100,89 @@ class Onboarding extends React.Component {
            .catch(taskData => console.log(taskData));
    };
 
+
+   addNewFunnelTask = values => {
+     const data = this.state.selectedItem;
+     const datastring = JSON.stringify(data);
+    this.setState({ spinning: true });
+    fetch(tasksUrl, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify({
+        resource: [
+          {
+            description: data.ElevatorPitch,
+            asssignedUser: '1',
+            projectname: data.Title,
+            horizon: "H1",
+            theme: "Other",
+            status: "red",
+            FunnelPhase: "backlog",
+            funnel: "OTHER",
+            coach: "NotSet",
+            sponsor: "1ppl",
+            spnsr: "NotSet",
+           ideaData: datastring,
+          },
+        ],
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(taskData => {
+
+        this.setState({ spinning: false });
+        this.archiveIdea();
+      })
+      .catch(taskData => this.setState({ spinning: false }));
+  };
+
+  archiveIdea = () => {
+    const url4 = `${onboardingUrl}/${this.state.selectedItem.id}`;
+    fetch(url4, {
+        method: 'PATCH',
+        headers: {
+            Accept: 'application/json',
+            'X-DreamFactory-API-Key': apptoken,
+            'X-DreamFactory-Session-Token': this.props.user.session_token,
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          status:"ARCHIVE",
+        }),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response;
+        })
+        .then(response => response.json())
+        .then((taskData) => {
+            this.getData();
+            this.setState({selectedItem:null})
+            this.setState({visible:false});
+        })
+        .catch(taskData => console.log(taskData));
+};
+
   render() {
     const { openAddform } = this.state;
+    const ideas = this.state.list.filter(idea => idea.status === "ACTIVE");
+
 
 
 
@@ -103,23 +191,24 @@ class Onboarding extends React.Component {
       <div>
 
 
+
       
         {!openAddform && 
-
           <div style={{padding:25}}>
-          <div class="row">
-          <button onClick={() => this.setState({ openAddform: true })}>Add New Idea</button>
+          <div className="row">
+
+          <button onClick={() => this.setState({openAddform:true})}>Add New Idea</button>
 
         </div>
 
-          <div class="row"> 
-          <div class="col col--4" >
+          <div className="row"> 
+          <div className="col col--4" >
 
           <List
           style={{maxWidth:500}}
           itemLayout="vertical"
           size="large"
-          dataSource={this.state.list}
+          dataSource={ideas}
           footer={
             <div>
               <b>Backlog Ideas</b> 
@@ -130,6 +219,7 @@ class Onboarding extends React.Component {
               key={item.Title}
               extra={
                 <img
+                onClick={() => this.setState({selectedItem:item})}
                   width={272}
                   alt="logo"
                   src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
@@ -140,26 +230,62 @@ class Onboarding extends React.Component {
                 avatar={<Avatar src={item.avatar} />}
                 title={<a href={item.href}>{item.Title}</a>}
                 description={item.OwnerFirstName}
-                onClick={() => this.setState({selectedItem:item})} 
+    
               />
 
-              <button>Vote</button>
+              <button   >Vote</button>
               <button>Innovate</button>
             </List.Item>
           )}
         />
           
          </div>
-         <div class="col col--8" >
+         <div className="col col--8" >
 
-
+{this.state.selectedItem && 
          <Tabs tabBarStyle={{borderBlockColor:"#009900", color:'green'}} >
          <TabPane  tab={<span className="titlesTab"> General</span>} key="1">
          {this.state.selectedItem && <Votingform  item={this.state.selectedItem}></Votingform>} 
          </TabPane>
 
-         <TabPane  tab={<span className="titlesTab"> Votes</span>} key="2"></TabPane>
+         <TabPane  tab={<span className="titlesTab" >Votes</span>} key="2">
+         <div>
+         <Votes item={this.state.selectedItem}></Votes>
+       </div>
+  
+         
+         </TabPane>
+         <TabPane  tab={<span className="titlesTab" >Actions</span>} key="3">
+         <div>
+         COACH AND PO AREA  <br/>
+         Here You can transform IDEA to Innovation Card <br/>
+         <br/>
+         <div>{this.state.selectedItem.Title}</div>
+         <div>{this.state.selectedItem.OwnerFirstName}</div>
+         <div>{this.state.selectedItem.ElevatorPitch}</div>
+        <br/>
+         <Popover
+         content={<div>
+          <div>You are trasfering Idea to Funnel - Idea Will be archived and will not be visible anymore </div> <br/>
+          <div>Are you sure ?</div>
+          <button onClick={this.addNewFunnelTask}>Send</button>
+          <a onClick={() => this.setState({visible:false})}>Cancel</a>
+          </div>
+         }
+         title={"Idea "+this.state.selectedItem.Title }
+         trigger="click"
+         visible={this.state.visible}
+         onVisibleChange={this.handleVisibleChange}
+       >
+       <Button onClick={() => this.setState({visible:true})}>Approve and send to  funnel Backlog</Button>
+       </Popover>
+   
+       </div>
+  
+         
+         </TabPane>
          </Tabs>
+        }
 
          
           </div>
@@ -169,7 +295,8 @@ class Onboarding extends React.Component {
 </div>
           
    }
-        {openAddform && <Onboardingform closeForm={() => this.setState({ openAddform: false })} />}
+        {openAddform && <Onboardingform closeForm={this.closeandReload} />}
+
       </div>
 
     );

@@ -106,6 +106,8 @@ class Votingform extends React.Component {
                 </div>
                 {!this.state.voteNow 
                   && <button onClick={() => this.setState({voteNow:true})} className="kpnNotesFieldButton button">Vote</button>}
+                 
+
               </div>
             </div>
           </div>
