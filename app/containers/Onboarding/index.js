@@ -20,12 +20,14 @@ import saga from './saga';
 import messages from './messages';
 import KpnSmallInput from './components/kpnSmallInput';
 import KpnLargeInput from './components/kpnLargeInput';
-import { List, Avatar, Button, Skeleton } from 'antd';
+import { List, Avatar, Button, Skeleton,Tabs } from 'antd';
 import './ideaOnboardingFormStyles.css';
 
 import { backend } from '../../utils/config';
 import Onboardingform from './addForm';
 import Votingform from './voting';
+
+const { TabPane } = Tabs;
 
 const { apptoken } = backend;
 const onboardingUrl = backend.beUrl + backend.onboarding;
@@ -104,9 +106,6 @@ class Onboarding extends React.Component {
       
         {!openAddform && 
 
-  
-
-
           <div style={{padding:25}}>
           <div class="row">
           <button onClick={() => this.setState({ openAddform: true })}>Add New Idea</button>
@@ -152,7 +151,17 @@ class Onboarding extends React.Component {
           
          </div>
          <div class="col col--8" >
+
+
+         <Tabs tabBarStyle={{borderBlockColor:"#009900", color:'green'}} >
+         <TabPane  tab={<span className="titlesTab"> General</span>} key="1">
          {this.state.selectedItem && <Votingform  item={this.state.selectedItem}></Votingform>} 
+         </TabPane>
+
+         <TabPane  tab={<span className="titlesTab"> Votes</span>} key="2"></TabPane>
+         </Tabs>
+
+         
           </div>
          </div>
 
