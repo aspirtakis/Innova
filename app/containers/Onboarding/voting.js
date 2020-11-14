@@ -20,7 +20,7 @@ import { backend } from '../../utils/config';
 
 const { apptoken } = backend;
 
-const onboardingUrl = backend.beUrl + backend.onboarding;
+const votesUrl = backend.beUrl + backend.votes;
 
 class Votingform extends React.Component {
   constructor(props) {
@@ -39,13 +39,76 @@ class Votingform extends React.Component {
       orgValue: null,
       buttonDisabled: false, // button always available
       voteNow: false,
+      vot1:"1",
+      vot2:"1",
+      vot3:"1",
+      vot4:"1",
+      vot5:"1",
+      votComment:"",
+      score:"",
+
     };
   }
+
+
+
+  voteNow = () => {
+
+    const {vot1,vot2,vot3,vot4,vot5} = this.state;
+const scores = parseInt(vot1)+parseInt(vot2)+parseInt(vot3)+parseInt(vot4)+parseInt(vot5);
+
+
+const vots = JSON.stringify({ Boportunity:vot1,
+Seagment:vot2,
+ProblemSolving:vot3,
+KPNfit:vot4,
+ticketFit:vot5});
+
+
+    fetch(votesUrl, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-DreamFactory-API-Key': apptoken,
+        'X-DreamFactory-Session-Token': this.props.user.session_token,
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        resource: [
+         {
+           idea_id: this.props.item.id,
+           comment: this.state.votComment,
+           voteData: vots,
+           user_email:this.props.user.email,
+           score:scores,
+
+         },
+        ],
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(assumptionData => {
+        this.setState({voteNow:false})
+        this.props.saveReload();
+
+      })
+      .catch(taskData => console.log(taskData));
+ };
+
+
 
   render() {
 
     const {item} = this.props;
-    console.log(item);
+    console.log(this.props);
+
 
     return (
 
@@ -121,31 +184,77 @@ class Votingform extends React.Component {
               </div>
               <div className="content__body">
                 <dl className="dl">
-                  <KpnSelect
-                    title="Business opportunity"
-                  />
-                  <KpnSelect
-                    title="Clear user segment"
-                  />
-                  <KpnSelect
-                    title="Problem solving"
-                  />
-                  <KpnSelect
-                    title="KPN fit"
-                  />
-                  <KpnSelect
-                    title="Ticket fit"
-                  />
+
+             
+                  <dt className="kpnSelectTitle">Business opportunity</dt>
+                  <select onChange={(e) => this.setState({vot1:e.target.value})} className="kpnSelectSelector select">
+                    <option hidden disabled > 1 - 5 </option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+
+
+                  <dt className="kpnSelectTitle">Clear user segment</dt>
+                  <select value={this.state.vot2} onChange={(e) => this.setState({vot2:e.target.value})} className="kpnSelectSelector select">
+                    <option hidden disabled > 1 - 5 </option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+
+                  <dt className="kpnSelectTitle">Problem Solving</dt>
+                  <select value={this.state.vot3}  onChange={(e) => this.setState({vot3:e.target.value})} className="kpnSelectSelector select">
+                    <option hidden disabled > 1 - 5 </option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+           
+                  <dt className="kpnSelectTitle">KPN Fit</dt>
+                  <select value={this.state.vot4}  onChange={(e) => this.setState({vot4:e.target.value})} className="kpnSelectSelector select">
+                    <option hidden disabled > 1 - 5 </option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+
+                  <dt className="kpnSelectTitle">Ticket Fit</dt>
+                  <select value={this.state.vot5}  onChange={(e) => this.setState({vot5:e.target.value})} className="kpnSelectSelector select">
+                    <option hidden disabled > 1 - 5 </option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+
                 </dl>
               </div>
               <div className="content__body kpnNotesField">
                 <dl className="dl">
-                  <KpnTextArea
-                    title="Notes"
-                    textArea="."
-                  />
+                <div>
+                <dt className="kpnTextAreaTitle">Comment</dt>
+                <dd>
+                  <textarea 
+                  value={this.state.votComment} 
+                  onChange={(e) => this.setState({votComment:e.target.value})}
+                  className="kpnTextAreaDescription textarea">
+           
+                  </textarea>
+                </dd>
+              </div>
+                  
          
-                  <button disabled className="kpnNotesFieldButton button">Vote</button>
+                  <button onClick={this.voteNow}disabled={this.state.votComment.length < 5} className="kpnNotesFieldButton button">Vote</button>
                   {this.state.voteNow 
                     && <button onClick={() => this.setState({voteNow:false})} className="kpnNotesFieldButton button">Cancel</button>}
                 </dl>
@@ -168,7 +277,7 @@ Votingform.propTypes = {
 function mapStateToProps(state) {
   return {
     user: state.global.user,
-    users: state.global.users,
+
   };
 }
 function mapDispatchToProps(dispatch) {

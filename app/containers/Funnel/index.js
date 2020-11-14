@@ -676,11 +676,9 @@ class Funnel extends Component {
       }
   };
   countTasks = (type) =>{
-
   }
+  
   render() {
-
-
       const { selectedTask, sestoken, checked } = this.state;
 
       return (

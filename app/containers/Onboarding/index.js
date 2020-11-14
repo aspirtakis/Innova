@@ -68,9 +68,10 @@ class Onboarding extends React.Component {
 }
 
 closeandReload = () =>{
-
-  this.setState({ openAddform: false });
   this.getData();
+  this.setState({ openAddform: false });
+  this.setState({selectedItem:null});
+
 }
 
   getData = () => {
@@ -245,17 +246,17 @@ closeandReload = () =>{
 {this.state.selectedItem && 
          <Tabs tabBarStyle={{borderBlockColor:"#009900", color:'green'}} >
          <TabPane  tab={<span className="titlesTab"> General</span>} key="1">
-         {this.state.selectedItem && <Votingform  item={this.state.selectedItem}></Votingform>} 
+         {this.state.selectedItem && <Votingform saveReload={this.closeandReload} item={this.state.selectedItem}></Votingform>} 
          </TabPane>
 
          <TabPane  tab={<span className="titlesTab" >Votes</span>} key="2">
          <div>
-         <Votes item={this.state.selectedItem}></Votes>
+         <Votes  item={this.state.selectedItem}></Votes>
        </div>
   
          
          </TabPane>
-         <TabPane  tab={<span className="titlesTab" >Actions</span>} key="3">
+         <TabPane  tab={<span className="titlesTab" >PO Actions</span>} key="3">
          <div>
          COACH AND PO AREA  <br/>
          Here You can transform IDEA to Innovation Card <br/>
@@ -277,7 +278,7 @@ closeandReload = () =>{
          visible={this.state.visible}
          onVisibleChange={this.handleVisibleChange}
        >
-       <Button onClick={() => this.setState({visible:true})}>Approve and send to  funnel Backlog</Button>
+       <Button onClick={() => this.setState({visible:true})}>Approve and send to funnel Backlog</Button>
        </Popover>
    
        </div>

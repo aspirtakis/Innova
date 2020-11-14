@@ -37,19 +37,18 @@ class Votes extends React.Component {
     const { item } = this.props;
 
     return (
-
       <div>
-
         {item && item.votes.map((vote) => (
-          <div key={vote.id}>
+          <div key={vote.id} style={{padding:10}}>
             <div>
+            Email <br/>
               {vote.user_email}<br/>
-              {vote.comment}
-              {vote.score}
+              Comment <br/>
+              {vote.comment}<br/>
+              SCORE: {vote.score}<br/>
             </div>
           </div>
         ))}
-
       </div>
 
     );
