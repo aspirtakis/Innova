@@ -124,7 +124,7 @@ ticketFit:vot5});
                 <div className="content__body">
                   <dl className="dl">
                     <KpnSmallText
-                      title={"Name"}
+                      title={"Idea owner"}
                       description={item.OwnerFirstName + " " + item.OwnerLastName}
                     />
                     <KpnSmallText
@@ -149,7 +149,7 @@ ticketFit:vot5});
                       description={item.id}
                     />
                     <KpnLongText
-                      title="ElevatorPitch"
+                      title="Elevator Pitch"
                       description={item.ElevatorPitch}
                     />
         
@@ -158,7 +158,7 @@ ticketFit:vot5});
                       description={item.Problem}
                     />
                     <KpnLongText
-                      title="KPN fit -Org Value"
+                      title="KPN value"
                       description={item.orgValue}
                     />
                     <KpnLongText
