@@ -40,7 +40,7 @@ class Votes extends React.Component {
       <div>
         {item && item.votes.map((vote) => (
           <div key={vote.id}>
-            <div className="card" style={{ padding: 10 }}>
+            <div className="card">
               <div className="card__body">
                 <dl className="dl">
                   <dt>Email</dt>
