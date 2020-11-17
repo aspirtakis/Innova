@@ -177,21 +177,23 @@ class Onboardingform extends React.Component {
               </div>
             </div>
           </div>
-          <div className="buttonRow">
-            <button
-              className="kpnSubmitIdeaButton button button--2"
-              disabled={this.state.buttonDisabled}
-              onClick={this.addNewIdea}
-            >
-              Send
-        </button>
-            <button
-              className="kpnSubmitIdeaButton button button--1"
-              disabled={this.state.buttonDisabled}
-              onClick={this.props.closeForm}
-            >
-              Close
-        </button>
+          <div className="col col--4">
+            <div className="row">
+              <button
+                className="button"
+                disabled={this.state.buttonDisabled}
+                onClick={this.addNewIdea}
+              >
+                Send
+              </button>
+              <button
+                className="button button--link"
+                disabled={this.state.buttonDisabled}
+                onClick={this.props.closeForm}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
