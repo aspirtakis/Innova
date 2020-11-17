@@ -30,3 +30,9 @@
   margin-top: 8px;
   width: 200px;
 }
+
+.buttonRow {
+  display: flex;
+  max-width: 450px;
+  justify-content: space-between;
+}

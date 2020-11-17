@@ -124,8 +124,8 @@ ticketFit:vot5});
                 <div className="content__body">
                   <dl className="dl">
                     <KpnSmallText
-                      title={"Owner Name"}
-                      description={item.OwnerFirstName}
+                      title={"Name"}
+                      description={item.OwnerFirstName + " " + item.OwnerLastName}
                     />
                     <KpnSmallText
                       title="Email address"

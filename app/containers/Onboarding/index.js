@@ -203,7 +203,7 @@ closeandReload = () =>{
         </div>
 
           <div className="row"> 
-          <div className="col col--4" >
+          <div className="col col--6" >
 
           <List
           style={{maxWidth:500}}
@@ -223,7 +223,7 @@ closeandReload = () =>{
                 onClick={() => this.setState({selectedItem:item})}
                   width={272}
                   alt="logo"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                  src="https://images.unsplash.com/photo-1586980368323-8ce5db4c85ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2815&q=80"
                 />
               }
             >
@@ -241,7 +241,7 @@ closeandReload = () =>{
         />
           
          </div>
-         <div className="col col--8" >
+         <div className="col col--6" >
 
 {this.state.selectedItem && 
          <Tabs tabBarStyle={{borderBlockColor:"#009900", color:'green'}} >
