@@ -196,10 +196,11 @@ class Onboarding extends React.Component {
 
         {!openAddform &&
           <div style={{ padding: 25 }}>
-            <div className="row">
-
-              <button onClick={() => this.setState({ openAddform: true })}>Add New Idea</button>
-
+            <div className="row col col--6">
+              <h2 class="h2">Idea inbox</h2>
+              <div class="button-group button-group--right newIdeaButton">
+                <button className="button" onClick={() => this.setState({ openAddform: true })}>Add new idea</button>
+              </div>
             </div>
 
             <div className="row">
@@ -210,11 +211,6 @@ class Onboarding extends React.Component {
                   itemLayout="vertical"
                   size="large"
                   dataSource={ideas}
-                  footer={
-                    <div>
-                      <b>Backlog Ideas</b>
-                    </div>
-                  }
                   renderItem={item => (
                     <List.Item
                       key={item.Title}
@@ -230,12 +226,13 @@ class Onboarding extends React.Component {
                       <List.Item.Meta
                         avatar={<Avatar src={item.avatar} />}
                         title={<a href={item.href}>{item.Title}</a>}
-                        description={item.OwnerFirstName}
+                        description={item.OwnerFirstName + " " + item.OwnerLastName}
 
                       />
-
-                      <button   >Vote</button>
-                      <button>Innovate</button>
+                      <div class="button-group button-group--respond">
+                        <button class="button">Vote</button>
+                        <button class="button button--secondary">Innovate</button>
+                      </div>
                     </List.Item>
                   )}
                 />
@@ -245,18 +242,18 @@ class Onboarding extends React.Component {
 
                 {this.state.selectedItem &&
                   <Tabs tabBarStyle={{ borderBlockColor: "#009900", color: 'green' }} >
-                    <TabPane tab={<span className="titlesTab"> General</span>} key="1">
+                    <TabPane tab={<span className="titlesTab">General</span>} key="1">
                       {this.state.selectedItem && <Votingform saveReload={this.closeandReload} item={this.state.selectedItem}></Votingform>}
                     </TabPane>
 
-                    <TabPane tab={<span className="titlesTab" >Votes</span>} key="2">
+                    <TabPane tab={<span className="titlesTab">Votes</span>} key="2">
                       <div>
                         <Votes item={this.state.selectedItem}></Votes>
                       </div>
 
 
                     </TabPane>
-                    <TabPane tab={<span className="titlesTab" >PO Actions</span>} key="3">
+                    <TabPane tab={<span className="titlesTab">PO Actions</span>} key="3">
                       <div>
                         <br />
          Here you can approve of an idea and send it to the funnel!<br />
@@ -272,10 +269,12 @@ class Onboarding extends React.Component {
                         <br />
                         <Popover
                           content={<div>
-                            <div>You are trasfering Idea to Funnel - Idea Will be archived and will not be visible anymore </div> <br />
-                            <div>Are you sure ?</div>
-                            <button onClick={this.addNewFunnelTask}>Send</button>
-                            <a onClick={() => this.setState({ visible: false })}>Cancel</a>
+                            <div>
+                              You are transferring this idea to the funnel.<br />
+                            This idea will be archived and will not be visible anymore.</div> <br />
+                            <div>Are you sure ?</div><br />
+                            <button className="button button--link" onClick={this.addNewFunnelTask}>Send</button>
+                            <button className="button" onClick={() => this.setState({ visible: false })}>Cancel</button>
                           </div>
                           }
                           title={"Idea " + this.state.selectedItem.Title}
@@ -283,7 +282,7 @@ class Onboarding extends React.Component {
                           visible={this.state.visible}
                           onVisibleChange={this.handleVisibleChange}
                         >
-                          <Button onClick={() => this.setState({ visible: true })}>Approve and send to funnel Backlog</Button>
+                          <button className="button" onClick={() => this.setState({ visible: true })}>Approve idea</button>
                         </Popover>
 
                       </div>

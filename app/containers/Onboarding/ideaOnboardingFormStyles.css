@@ -36,3 +36,7 @@
   max-width: 450px;
   justify-content: space-between;
 }
+
+.newIdeaButton {
+  margin: 0px 16px;
+}
