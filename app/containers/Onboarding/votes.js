@@ -39,13 +39,18 @@ class Votes extends React.Component {
     return (
       <div>
         {item && item.votes.map((vote) => (
-          <div key={vote.id} style={{padding:10}}>
-            <div>
-            Email <br/>
-              {vote.user_email}<br/>
-              Comment <br/>
-              {vote.comment}<br/>
-              SCORE: {vote.score}<br/>
+          <div key={vote.id}>
+            <div className="card" style={{ padding: 10 }}>
+              <div className="card__body">
+                <dl className="dl">
+                  <dt>Email</dt>
+                  <dd>{vote.user_email}</dd>
+                  <dt>Comment</dt>
+                  <dd>{vote.comment}</dd>
+                  <dt>Score</dt>
+                  <dd>{vote.score}</dd>
+                </dl>
+              </div>
             </div>
           </div>
         ))}
