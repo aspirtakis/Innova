@@ -20,7 +20,7 @@ import saga from './saga';
 import messages from './messages';
 import KpnSmallInput from './components/kpnSmallInput';
 import KpnLargeInput from './components/kpnLargeInput';
-import { Popover, List, Avatar, Button, Skeleton, Tabs ,Table, } from 'antd';
+import { Popover, List, Avatar, Button, Skeleton, Tabs ,Table,Rate ,Tooltip} from 'antd';
 import './ideaOnboardingFormStyles.css';
 import Votes from './votes';
 
@@ -181,9 +181,29 @@ class Onboarding extends React.Component {
       .catch(taskData => console.log(taskData));
   };
 
+
+avatChar = (text) => {
+  var avatChars = text ? text.charAt(0) :null ;
+return avatChars;
+}
+
+
   render() {
     const { openAddform } = this.state;
     const ideas = this.state.list.filter(idea => idea.status === "ACTIVE");
+    console.log(this.state.selectedItem);
+
+
+
+    const columns = [
+      {
+        title: 'Title',
+        dataIndex: 'Title',
+        key: 'Title',
+      },
+
+
+    ];
 
 
 
@@ -197,32 +217,69 @@ class Onboarding extends React.Component {
             <div className="row">
               <div className="col col--6" >
 
-              <div class="table-toolbar">
-              <div class="table-toolbar__data">3 items</div>
-              <div class="table-toolbar__action">
-                <div class="input-field">
-                  <div class="input-field__input">
-                    <input class="input" type="text" placeholder="Search keyword" />
+              <div className="table-toolbar">
+              <div className="table-toolbar__data">3 items</div>
+              <div className="table-toolbar__action">
+                <div className="input-field">
+                  <div className="input-field__input">
+                    <input className="input" type="text" placeholder="Search keyword" />
                   </div>
-                  <button class="input-field__action-button"><i class="ui-search"></i></button>
+                  <button className="input-field__action-button"><i className="ui-search"></i></button>
                 </div>
-                <button onClick={() => this.setState({ openAddform: true })} class="button button--secondary">Add item</button>
+                <button onClick={() => this.setState({ openAddform: true })} className="button button--secondary">Add item</button>
               </div>
             </div>
 
-            <Table dataSource={ideas}>
-
+            <Table   rowKey={(record) => record.id } dataSource={ideas}>
             <Column
-              title="Title"
-              key="action"
-              render={(text, item) => (
-                <div size="middle">
-                  <a  onClick={() => this.setState({ selectedItem: item})} >{item.Title}</a>
-       
-                </div>
-              )}
-            />
+            title="Title"
+            key="Title"
+            render={(text, record) => (
+              <div onClick={() => this.setState({selectedItem:record})} size="middle">
+                <span >{record.Title}</span>
+              </div>
+            )}
+          />
           </Table>
+     {this.state.selectedItem !== null && this.state.selectedItem.votes.length > 0 ?
+          <div className="row">
+
+          <div className="col col--4" >
+          <div className="row"><div> Ranking </div>:</div>
+   
+     {this.state.selectedItem && this.state.selectedItem.votes.map((vote) =>    
+      <div key={vote.id}>
+
+      <Tooltip placement="top" title={vote.user_email}>
+      <Avatar style={{maxWidth:24, maxHeight:24}} >{this.avatChar(vote.user_email)}</Avatar>
+</Tooltip>
+
+
+      <Rate allowClear={false}  defaultValue={parseInt(vote.score) / 5} />    </div>
+      )}
+  
+          </div>
+
+          <div className="col col--4" >
+          <div className="row"><div> Status</div>:</div>
+          <Rate defaultValue={3} />
+          <br />
+          <Rate allowClear={false} defaultValue={3} />
+          <br />
+          <Rate allowClear={false} defaultValue={6} />
+          </div>
+
+          <div className="col col--4" >
+          <div className="row"><div>Sinds</div>:</div>
+          <Rate defaultValue={3} />
+          <br />
+          <Rate allowClear={false} defaultValue={3} />
+          <br />
+          <Rate allowClear={false} defaultValue={6} />
+          </div>
+          </div>
+    : <div></div> }
+          
 
 
 
