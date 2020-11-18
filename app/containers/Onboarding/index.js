@@ -20,13 +20,14 @@ import saga from './saga';
 import messages from './messages';
 import KpnSmallInput from './components/kpnSmallInput';
 import KpnLargeInput from './components/kpnLargeInput';
-import { Popover, List, Avatar, Button, Skeleton, Tabs } from 'antd';
+import { Popover, List, Avatar, Button, Skeleton, Tabs ,Table, } from 'antd';
 import './ideaOnboardingFormStyles.css';
 import Votes from './votes';
 
 import { backend } from '../../utils/config';
 import Onboardingform from './addForm';
 import Votingform from './voting';
+const { Column, ColumnGroup } = Table;
 
 const { TabPane } = Tabs;
 
@@ -190,55 +191,40 @@ class Onboarding extends React.Component {
     return (
 
       <div>
-
-
-
-
         {!openAddform &&
           <div style={{ padding: 25 }}>
-            <div className="row">
-
-              <button onClick={() => this.setState({ openAddform: true })}>Add New Idea</button>
-
-            </div>
 
             <div className="row">
               <div className="col col--6" >
 
-                <List
-                  style={{ maxWidth: 500 }}
-                  itemLayout="vertical"
-                  size="large"
-                  dataSource={ideas}
-                  footer={
-                    <div>
-                      <b>Backlog Ideas</b>
-                    </div>
-                  }
-                  renderItem={item => (
-                    <List.Item
-                      key={item.Title}
-                      extra={
-                        <img
-                          onClick={() => this.setState({ selectedItem: item })}
-                          width={272}
-                          alt="logo"
-                          src="https://images.unsplash.com/photo-1586980368323-8ce5db4c85ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2815&q=80"
-                        />
-                      }
-                    >
-                      <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
-                        title={<a href={item.href}>{item.Title}</a>}
-                        description={item.OwnerFirstName}
+              <div class="table-toolbar">
+              <div class="table-toolbar__data">3 items</div>
+              <div class="table-toolbar__action">
+                <div class="input-field">
+                  <div class="input-field__input">
+                    <input class="input" type="text" placeholder="Search keyword" />
+                  </div>
+                  <button class="input-field__action-button"><i class="ui-search"></i></button>
+                </div>
+                <button onClick={() => this.setState({ openAddform: true })} class="button button--secondary">Add item</button>
+              </div>
+            </div>
 
-                      />
+            <Table dataSource={ideas}>
 
-                      <button   >Vote</button>
-                      <button>Innovate</button>
-                    </List.Item>
-                  )}
-                />
+            <Column
+              title="Title"
+              key="action"
+              render={(text, item) => (
+                <div size="middle">
+                  <a  onClick={() => this.setState({ selectedItem: item})} >{item.Title}</a>
+       
+                </div>
+              )}
+            />
+          </Table>
+
+
 
               </div>
               <div className="col col--6" >
@@ -253,8 +239,6 @@ class Onboarding extends React.Component {
                       <div>
                         <Votes item={this.state.selectedItem}></Votes>
                       </div>
-
-
                     </TabPane>
                     <TabPane tab={<span className="titlesTab" >PO Actions</span>} key="3">
                       <div>
@@ -285,19 +269,12 @@ class Onboarding extends React.Component {
                         >
                           <Button onClick={() => this.setState({ visible: true })}>Approve and send to funnel Backlog</Button>
                         </Popover>
-
                       </div>
-
-
                     </TabPane>
                   </Tabs>
                 }
-
-
               </div>
             </div>
-
-
           </div>
 
         }
