@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { compose } from 'redux';
-
+import { Popover, List, Avatar, Button, Skeleton, Tabs ,Table,Rate ,Tooltip} from 'antd';
 import KpnLongText from './components/kpnLongText';
 import KpnSmallText from './components/kpnSmallText';
 import KpnSelect from './components/kpnSelect';
@@ -51,7 +51,11 @@ class Votingform extends React.Component {
   }
 
 
-
+  avatChar = (text) => {
+    var avatChars = text ? text.charAt(0) :null ;
+  return avatChars;
+  }
+  
   voteNow = () => {
 
     const {vot1,vot2,vot3,vot4,vot5} = this.state;
@@ -115,10 +119,10 @@ ticketFit:vot5});
       <div className="votingForms">
 
         <div className="row">
-          <div className="col col--6">
+          <div className="col col--12">
             <div className="leftForm">
               <div className="leftFormContent">
-                <div className="content__header">
+                <div >
                   <h2 className="content__title">{item.Title}</h2>
                 </div>
                 <div className="content__body">
@@ -137,6 +141,26 @@ ticketFit:vot5});
                   />
                   </dl>
                 </div>
+                
+                {item !== null && item.votes.length > 0 ?
+                  <div className="row">
+        
+                  <div className="col col--4" >
+                  <div className="row"><div> Ranking </div>:</div>
+           
+             {item && item.votes.map((vote) =>    
+              <div key={vote.id}>
+        
+              <Tooltip placement="top" title={vote.user_email}>
+              <Avatar style={{maxWidth:24, maxHeight:24}} >{this.avatChar(vote.user_email)}</Avatar>
+        </Tooltip>
+  
+              <Rate allowClear={false}  defaultValue={parseInt(vote.score) / 5} />    </div>
+              )}
+
+                  </div>
+                  </div>
+            : <div></div> }
 
                 <div className="content__header">
                   <h2 className="content__title">Idea specifications</h2>

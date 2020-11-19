@@ -20,13 +20,14 @@ import saga from './saga';
 import messages from './messages';
 import KpnSmallInput from './components/kpnSmallInput';
 import KpnLargeInput from './components/kpnLargeInput';
-import { Popover, List, Avatar, Button, Skeleton, Tabs } from 'antd';
+import { Popover, List, Avatar, Button, Skeleton, Tabs, Table, Rate, Tooltip } from 'antd';
 import './ideaOnboardingFormStyles.css';
 import Votes from './votes';
 
 import { backend } from '../../utils/config';
 import Onboardingform from './addForm';
 import Votingform from './voting';
+const { Column, ColumnGroup } = Table;
 
 const { TabPane } = Tabs;
 
@@ -180,9 +181,29 @@ class Onboarding extends React.Component {
       .catch(taskData => console.log(taskData));
   };
 
+
+  avatChar = (text) => {
+    var avatChars = text ? text.charAt(0) : null;
+    return avatChars;
+  }
+
+
   render() {
     const { openAddform } = this.state;
     const ideas = this.state.list.filter(idea => idea.status === "ACTIVE");
+    console.log(this.state.selectedItem);
+
+
+
+    const columns = [
+      {
+        title: 'Title',
+        dataIndex: 'Title',
+        key: 'Title',
+      },
+
+
+    ];
 
 
 
@@ -190,68 +211,148 @@ class Onboarding extends React.Component {
     return (
 
       <div>
-
-
-
-
         {!openAddform &&
           <div style={{ padding: 25 }}>
-            <div className="row col col--6">
-              <h2 class="h2">Idea inbox</h2>
-              <div class="button-group button-group--right newIdeaButton">
-                <button className="button" onClick={() => this.setState({ openAddform: true })}>Add new idea</button>
-              </div>
-            </div>
-
             <div className="row">
               <div className="col col--6" >
 
-                <List
-                  style={{ maxWidth: 500 }}
-                  itemLayout="vertical"
-                  size="large"
-                  dataSource={ideas}
-                  renderItem={item => (
-                    <List.Item
-                      key={item.Title}
-                      extra={
-                        <img
-                          onClick={() => this.setState({ selectedItem: item })}
-                          width={272}
-                          alt="logo"
-                          src="https://images.unsplash.com/photo-1586980368323-8ce5db4c85ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2815&q=80"
-                        />
-                      }
-                    >
-                      <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
-                        title={<a href={item.href}>{item.Title}</a>}
-                        description={item.OwnerFirstName + " " + item.OwnerLastName}
-
-                      />
-                      <div class="button-group button-group--respond">
-                        <button class="button">Vote</button>
-                        <button class="button button--secondary">Innovate</button>
+                <div className="table-toolbar">
+                  <div className="table-toolbar__data">({ideas.length}) Ideas</div>
+                  <div className="table-toolbar__action">
+                    <div className="input-field">
+                      <div className="input-field__input">
+                        <input className="input" type="text" placeholder="Search keyword" />
                       </div>
-                    </List.Item>
-                  )}
-                />
+                      <button className="input-field__action-button"><i className="ui-search"></i></button>
+                    </div>
+                    <button className="button" onClick={() => this.setState({ openAddform: true })}>Add new idea</button>
+                  </div>
+                </div>
 
-              </div>
-              <div className="col col--6" >
+                <Table rowKey={(record) => record.id} dataSource={ideas}>
+                  <Column
+                    title="Title"
+                    key="Title"
+                    render={(text, record) => (
+                      <div onClick={() => this.setState({ selectedItem: record })} size="middle">
+                        <span >{record.Title}</span>
+                      </div>
+                    )}
+                  />
+                </Table>
+                {this.state.selectedItem !== null && this.state.selectedItem.votes.length > 0 ?
+                  <div className="row">
 
-                {this.state.selectedItem &&
+                    <div className="col col--4" >
+                      <div className="row"><div> Ranking </div>:</div>
+
+                      {this.state.selectedItem && this.state.selectedItem.votes.map((vote) =>
+                        <div key={vote.id}>
+
+                          <Tooltip placement="top" title={vote.user_email}>
+                            <Avatar style={{ maxWidth: 24, maxHeight: 24 }} >{this.avatChar(vote.user_email)}</Avatar>
+                          </Tooltip>
+
+
+                          <Rate allowClear={false} defaultValue={parseInt(vote.score) / 5} />    </div>
+                      )}
+
+                    </div>
+
+                    <div className="col col--4" >
+                      <div className="row"><div> Status</div>:</div>
+                      <Rate defaultValue={3} />
+                      <br />
+                      <Rate allowClear={false} defaultValue={3} />
+                      <br />
+                      <Rate allowClear={false} defaultValue={6} />
+                    </div>
+
+                    <div className="col col--4" >
+                      <div className="row"><div>Sinds</div>:</div>
+                      <Rate defaultValue={3} />
+                      <br />
+                      <Rate allowClear={false} defaultValue={3} />
+                      <br />
+                      <Rate allowClear={false} defaultValue={6} />
+                    </div>
+                  </div>
+                  : <div></div>}
+
+
+
+
+            </div>
+            <div className="col col--6" >
+
+
+              {this.state.selectedItem &&
+
+                <div>
+
+                  <div className="table-toolbar">
+
+                    <div className="table-toolbar__action">
+
+                      <Popover
+                        content={<div>
+                          <div>You are trasfering Idea to Funnel - Idea Will be archived and will not be visible anymore </div> <br />
+                          <div>Are you sure ?</div>
+                          <button onClick={this.addNewFunnelTask}>Send</button>
+                          <a onClick={() => this.setState({ visible: false })}>Cancel</a>
+                        </div>
+                        }
+                        title={"Idea " + this.state.selectedItem.Title}
+                        trigger="click"
+                        visible={this.state.visible}
+                        onVisibleChange={this.handleVisibleChange}
+                      >
+                        <button style={{ maxWidth: 100 }} className="button button--secondary" onClick={() => this.setState({ visible: true })}>Approve</button>
+                      </Popover>
+
+
+                      <Popover
+                        content={<div>
+                          <div>Idea Will be archived and will not be visible anymore </div> <br />
+                          <div>Are you sure ?</div>
+                          <button onClick={this.archiveIdea}>Archive</button>
+                          <a onClick={() => this.setState({ visibleArch: false })}>Cancel</a>
+                        </div>
+                        }
+                        title={"Idea " + this.state.selectedItem.Title}
+                        trigger="click"
+                        visible={this.state.visibleArch}
+                        onVisibleChange={this.handleVisibleChange}
+                      >
+                        <button style={{ maxWidth: 100 }} className="button button--secondary" onClick={() => this.setState({ visibleArch: true })}>Reject</button>
+                      </Popover>
+
+
+                    </div>
+                  </div>
+
                   <Tabs tabBarStyle={{ borderBlockColor: "#009900", color: 'green' }} >
-                    <TabPane tab={<span className="titlesTab">General</span>} key="1">
+                    <TabPane tab={<span className="titlesTab"> General</span>} key="1">
+
+
+
+
+
+
+
+
+
+
                       {this.state.selectedItem && <Votingform saveReload={this.closeandReload} item={this.state.selectedItem}></Votingform>}
+
+
+
                     </TabPane>
 
                     <TabPane tab={<span className="titlesTab">Votes</span>} key="2">
                       <div>
                         <Votes item={this.state.selectedItem}></Votes>
                       </div>
-
-
                     </TabPane>
                     <TabPane tab={<span className="titlesTab">PO Actions</span>} key="3">
                       <div>
@@ -284,25 +385,19 @@ class Onboarding extends React.Component {
                         >
                           <button className="button" onClick={() => this.setState({ visible: true })}>Approve idea</button>
                         </Popover>
-
                       </div>
-
-
                     </TabPane>
                   </Tabs>
-                }
-
-
-              </div>
+                </div>
+              }
             </div>
-
-
+          </div>
           </div>
 
         }
-        {openAddform && <Onboardingform closeForm={this.closeandReload} />}
+        { openAddform && <Onboardingform closeForm={this.closeandReload} /> }
 
-      </div>
+      </div >
 
     );
   }
