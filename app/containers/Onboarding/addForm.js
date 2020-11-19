@@ -80,7 +80,7 @@ class Onboardingform extends React.Component {
             OwnerFirstName: this.state.ownerFirstName,
             Title: this.state.ideaTitle,
             Problem: this.state.problem,
-            status: "ACTIVE",
+            status: "OPEN",
             origin: "DASHBOARD",
 
           },

@@ -146,12 +146,12 @@ class Onboarding extends React.Component {
       .then(taskData => {
 
         this.setState({ spinning: false });
-        this.archiveIdea();
+        this.changeIdeaStatus("ARCHIVE");
       })
       .catch(taskData => this.setState({ spinning: false }));
   };
 
-  archiveIdea = () => {
+  changeIdeaStatus = (status) => {
     const url4 = `${onboardingUrl}/${this.state.selectedItem.id}`;
     fetch(url4, {
       method: 'PATCH',
@@ -163,7 +163,7 @@ class Onboarding extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        status: "ARCHIVE",
+        status: status,
       }),
     })
       .then((response) => {
@@ -190,23 +190,9 @@ class Onboarding extends React.Component {
 
   render() {
     const { openAddform } = this.state;
-    const ideas = this.state.list.filter(idea => idea.status === "ACTIVE");
+    const ideas = this.state.list.filter(idea => idea.status === "OPEN" || idea.status === "COMPLETE");
+    const rankedideas = this.state.list.filter(idea => idea.status === "RANKED");
     console.log(this.state.selectedItem);
-
-
-
-    const columns = [
-      {
-        title: 'Title',
-        dataIndex: 'Title',
-        key: 'Title',
-      },
-
-
-    ];
-
-
-
 
     return (
 
@@ -239,45 +225,51 @@ class Onboarding extends React.Component {
                       </div>
                     )}
                   />
-                </Table>
-                {this.state.selectedItem !== null && this.state.selectedItem.votes.length > 0 ?
-                  <div className="row">
 
-                    <div className="col col--4" >
-                      <div className="row"><div> Ranking </div>:</div>
-
-                      {this.state.selectedItem && this.state.selectedItem.votes.map((vote) =>
-                        <div key={vote.id}>
-
-                          <Tooltip placement="top" title={vote.user_email}>
-                            <Avatar style={{ maxWidth: 24, maxHeight: 24 }} >{this.avatChar(vote.user_email)}</Avatar>
-                          </Tooltip>
-
-
-                          <Rate allowClear={false} defaultValue={parseInt(vote.score) / 5} />    </div>
-                      )}
-
+                  <Column
+                  title="status"
+                  key="status"
+                  render={(text, record) => (
+                    <div size="middle">
+                      <span >{record.status}</span>
                     </div>
-
-                    <div className="col col--4" >
-                      <div className="row"><div> Status</div>:</div>
-                      <Rate defaultValue={3} />
-                      <br />
-                      <Rate allowClear={false} defaultValue={3} />
-                      <br />
-                      <Rate allowClear={false} defaultValue={6} />
-                    </div>
-
-                    <div className="col col--4" >
-                      <div className="row"><div>Sinds</div>:</div>
-                      <Rate defaultValue={3} />
-                      <br />
-                      <Rate allowClear={false} defaultValue={3} />
-                      <br />
-                      <Rate allowClear={false} defaultValue={6} />
-                    </div>
+                  )}
+                />
+                <Column
+                title="Created"
+                key="created"
+                render={(text, record) => (
+                  <div size="middle">
+                    <span >{record.created}</span>
                   </div>
-                  : <div></div>}
+                )}
+              />
+                </Table>
+
+
+
+                <Table rowKey={(record) => record.id} dataSource={rankedideas}>
+                <Column
+                  title="Title"
+                  key="Title"
+                  render={(text, record) => (
+                    <div onClick={() => this.setState({ selectedItem: record })} size="middle">
+                      <span >{record.Title}</span>
+                    </div>
+                  )}
+                />
+                <Column
+                title="status"
+                key="status"
+                render={(text, record) => (
+                  <div size="middle">
+                    <span >{record.status}</span>
+                  </div>
+                )}
+              />
+
+              </Table>
+
 
 
 
@@ -307,15 +299,18 @@ class Onboarding extends React.Component {
                         visible={this.state.visible}
                         onVisibleChange={this.handleVisibleChange}
                       >
+                      {this.state.selectedItem.status === "RANKED" && 
                         <button style={{ maxWidth: 100 }} className="button button--secondary" onClick={() => this.setState({ visible: true })}>Approve</button>
-                      </Popover>
+                     
+                         }   </Popover>
+                         
 
 
                       <Popover
                         content={<div>
                           <div>Idea Will be archived and will not be visible anymore </div> <br />
                           <div>Are you sure ?</div>
-                          <button onClick={this.archiveIdea}>Archive</button>
+                          <button onClick={() => this.changeIdeaStatus("ARCHIVE")}>Archive</button>
                           <a onClick={() => this.setState({ visibleArch: false })}>Cancel</a>
                         </div>
                         }
@@ -324,8 +319,31 @@ class Onboarding extends React.Component {
                         visible={this.state.visibleArch}
                         onVisibleChange={this.handleVisibleChange}
                       >
+
                         <button style={{ maxWidth: 100 }} className="button button--secondary" onClick={() => this.setState({ visibleArch: true })}>Reject</button>
                       </Popover>
+
+                      <Popover
+                      content={<div>
+                        <div>Idea will be completed and ready to be ranked  </div> <br />
+                        <div>Are you sure ?</div>
+                        <button onClick={() => this.changeIdeaStatus("COMPLETE")}>Complete</button>
+                        <a onClick={() => this.setState({ visibleComplete: false })}>Cancel</a>
+                      </div>
+                      }
+                      title={"Idea " + this.state.selectedItem.Title}
+                      trigger="click"
+                      visible={this.state.visibleComplete}
+                      onVisibleChange={this.handleVisibleChange}
+                    >
+                    {this.state.selectedItem.status === "OPEN" && 
+                      <button style={{ maxWidth: 100 }} className="button button--secondary" onClick={() => this.setState({ visibleComplete: true })}>Complete</button>
+                    }
+                      </Popover>
+
+
+
+               
 
 
                     </div>
@@ -343,7 +361,7 @@ class Onboarding extends React.Component {
 
 
 
-                      {this.state.selectedItem && <Votingform saveReload={this.closeandReload} item={this.state.selectedItem}></Votingform>}
+                      {this.state.selectedItem && <Votingform completeIdea={this.changeIdeaStatus} saveReload={this.closeandReload} item={this.state.selectedItem}></Votingform>}
 
 
 
@@ -351,7 +369,7 @@ class Onboarding extends React.Component {
 
                     <TabPane tab={<span className="titlesTab">Votes</span>} key="2">
                       <div>
-                        <Votes item={this.state.selectedItem}></Votes>
+                        <Votes Reload={this.closeandReload} item={this.state.selectedItem}></Votes>
                       </div>
                     </TabPane>
                     <TabPane tab={<span className="titlesTab">PO Actions</span>} key="3">
@@ -383,6 +401,7 @@ class Onboarding extends React.Component {
                           visible={this.state.visible}
                           onVisibleChange={this.handleVisibleChange}
                         >
+    
                           <button className="button" onClick={() => this.setState({ visible: true })}>Approve idea</button>
                         </Popover>
                       </div>

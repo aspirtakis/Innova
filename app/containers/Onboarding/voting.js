@@ -21,6 +21,7 @@ import { backend } from '../../utils/config';
 const { apptoken } = backend;
 
 const votesUrl = backend.beUrl + backend.votes;
+const onboardingUrl = backend.beUrl + backend.onboarding;
 
 class Votingform extends React.Component {
   constructor(props) {
@@ -55,6 +56,8 @@ class Votingform extends React.Component {
     var avatChars = text ? text.charAt(0) :null ;
   return avatChars;
   }
+
+
   
   voteNow = () => {
 
@@ -100,6 +103,9 @@ ticketFit:vot5});
       .then(response => response.json())
       .then(assumptionData => {
         this.setState({voteNow:false})
+        if(this.props.item.votes.length > 1){
+          this.props.completeIdea("RANKED");
+        }
         this.props.saveReload();
 
       })
@@ -146,7 +152,7 @@ ticketFit:vot5});
                   <div className="row">
         
                   <div className="col col--4" >
-                  <div className="row"><div> Ranking </div>:</div>
+                  <div className="row"><div> Ranking :{item && item.votes.length}</div>:</div>
            
              {item && item.votes.map((vote) =>    
               <div key={vote.id}>
@@ -193,9 +199,10 @@ ticketFit:vot5});
                 </div>
                 {!this.state.voteNow 
                   && <button onClick={() => this.setState({voteNow:true})} className="kpnNotesFieldButton button">Vote</button>}
-                 
-
-              </div>
+                 {item.status === "OPEN" && 
+                  <button onClick={() => this.props.completeIdea("COMPLETE")} className="kpnNotesFieldButton button">Complete</button>
+                }
+                  </div>
             </div>
           </div>
 
