@@ -386,7 +386,9 @@ class Onboarding extends React.Component {
                           <dd>{this.state.selectedItem.ElevatorPitch}</dd>
                         </dl>
                         <br />
-                        <Popover
+                        
+                        {/* Button with the same action as the top approve button? */}
+                        {/* <Popover
                           content={<div>
                             <div>
                               You are transferring this idea to the funnel.<br />
@@ -403,7 +405,8 @@ class Onboarding extends React.Component {
                         >
     
                           <button className="button" onClick={() => this.setState({ visible: true })}>Approve idea</button>
-                        </Popover>
+                        </Popover> */}
+
                       </div>
                     </TabPane>
                   </Tabs>
