@@ -190,8 +190,10 @@ class Onboarding extends React.Component {
 
   render() {
     const { openAddform } = this.state;
-    const ideas = this.state.list.filter(idea => idea.status === "OPEN" || idea.status === "COMPLETE");
+    const ideas = this.state.list.filter(idea => idea.status === "OPEN");
     const rankedideas = this.state.list.filter(idea => idea.status === "RANKED");
+    const completeideas = this.state.list.filter(idea => idea.status === "COMPLETE");
+    const archivedideas = this.state.list.filter(idea => idea.status === "ARCHIVE");
     console.log(this.state.selectedItem);
 
     return (
@@ -201,80 +203,137 @@ class Onboarding extends React.Component {
           <div style={{ padding: 25 }}>
             <div className="row">
               <div className="col col--6" >
+              <div className="table-toolbar">
+              <div className="table-toolbar__data">({this.state.list.length}) Ideas</div>
+              <div className="table-toolbar__action">
 
-                <div className="table-toolbar">
-                  <div className="table-toolbar__data">({ideas.length}) Ideas</div>
-                  <div className="table-toolbar__action">
-                    <div className="input-field">
-                      <div className="input-field__input">
-                        <input className="input" type="text" placeholder="Search keyword" />
-                      </div>
-                      <button className="input-field__action-button"><i className="ui-search"></i></button>
-                    </div>
-                    <button className="button" onClick={() => this.setState({ openAddform: true })}>Add new idea</button>
-                  </div>
-                </div>
-
-                <Table rowKey={(record) => record.id} dataSource={ideas}>
-                  <Column
-                    title="Title"
-                    key="Title"
-                    render={(text, record) => (
-                      <div onClick={() => this.setState({ selectedItem: record })} size="middle">
-                        <span >{record.Title}</span>
-                      </div>
-                    )}
-                  />
-
-                  <Column
-                  title="status"
-                  key="status"
-                  render={(text, record) => (
-                    <div size="middle">
-                      <span >{record.status}</span>
-                    </div>
-                  )}
-                />
-                <Column
-                title="Created"
-                key="created"
-                render={(text, record) => (
-                  <div size="middle">
-                    <span >{record.created}</span>
-                  </div>
-                )}
-              />
-                </Table>
-
-
-
-                <Table rowKey={(record) => record.id} dataSource={rankedideas}>
-                <Column
-                  title="Title"
-                  key="Title"
-                  render={(text, record) => (
-                    <div onClick={() => this.setState({ selectedItem: record })} size="middle">
-                      <span >{record.Title}</span>
-                    </div>
-                  )}
-                />
-                <Column
-                title="status"
-                key="status"
-                render={(text, record) => (
-                  <div size="middle">
-                    <span >{record.status}</span>
-                  </div>
-                )}
-              />
-
-              </Table>
-
-
-
-
-
+                <button className="button" onClick={() => this.setState({ openAddform: true })}>Add new idea</button>
+              </div>
             </div>
+
+              <Tabs tabBarStyle={{ borderBlockColor: "#009900", color: 'green' }} >
+              <TabPane tab={<span className="titlesTab"> Open ({ideas.length})</span>} key="1">
+              <Table rowKey={(record) => record.id} dataSource={ideas}>
+              <Column
+                title="Title"
+                key="Title"
+                render={(text, record) => (
+                  <div onClick={() => this.setState({ selectedItem: record })} size="middle">
+                    <span >{record.Title}</span>
+                  </div>
+                )}
+              />
+
+              <Column
+              title="status"
+              key="status"
+              render={(text, record) => (
+                <div size="middle">
+                  <span >{record.status}</span>
+                </div>
+              )}
+            />
+            <Column
+            title="Created"
+            key="created"
+            render={(text, record) => (
+              <div size="middle">
+                <span >{record.created}</span>
+              </div>
+            )}
+          />
+            </Table>
+              </TabPane>
+
+              <TabPane tab={<span className="titlesTab"> Complete ({completeideas.length})</span>} key="2">
+
+
+              <Table rowKey={(record) => record.id} dataSource={completeideas}>
+              <Column
+                title="Title"
+                key="Title"
+                render={(text, record) => (
+                  <div onClick={() => this.setState({ selectedItem: record })} size="middle">
+                    <span >{record.Title}</span>
+                  </div>
+                )}
+              />
+              <Column
+              title="status"
+              key="status"
+              render={(text, record) => (
+                <div size="middle">
+                  <span >{record.status}</span>
+                </div>
+              )}
+            />
+
+            </Table>
+              
+              
+              </TabPane>
+
+              
+
+              <TabPane tab={<span className="titlesTab"> Ranked ({rankedideas.length})</span>} key="3">
+
+
+              <Table rowKey={(record) => record.id} dataSource={rankedideas}>
+              <Column
+                title="Title"
+                key="Title"
+                render={(text, record) => (
+                  <div onClick={() => this.setState({ selectedItem: record })} size="middle">
+                    <span >{record.Title}</span>
+                  </div>
+                )}
+              />
+              <Column
+              title="status"
+              key="status"
+              render={(text, record) => (
+                <div size="middle">
+                  <span >{record.status}</span>
+                </div>
+              )}
+            />
+
+            </Table>
+              
+              
+              </TabPane>
+
+
+              <TabPane tab={<span className="titlesTab"> Archived ({archivedideas.length})</span>} key="4">
+
+
+              <Table rowKey={(record) => record.id} dataSource={archivedideas}>
+              <Column
+                title="Title"
+                key="Title"
+                render={(text, record) => (
+                  <div onClick={() => this.setState({ selectedItem: record })} size="middle">
+                    <span >{record.Title}</span>
+                  </div>
+                )}
+              />
+              <Column
+              title="status"
+              key="status"
+              render={(text, record) => (
+                <div size="middle">
+                  <span >{record.status}</span>
+                </div>
+              )}
+            />
+
+            </Table>
+              
+              
+              </TabPane>
+              </Tabs>
+            </div>
+
             <div className="col col--6" >
 
 
