@@ -212,7 +212,7 @@ class Onboarding extends React.Component {
             </div>
 
               <Tabs tabBarStyle={{ borderBlockColor: "#009900", color: 'green' }} >
-              <TabPane tab={<span className="titlesTab"> Open ({ideas.length})</span>} key="1">
+              <TabPane tab={<span className="titlesTab"> Inbox ({ideas.length})</span>} key="1">
               <Table rowKey={(record) => record.id} dataSource={ideas}>
               <Column
                 title="Title"
@@ -245,7 +245,7 @@ class Onboarding extends React.Component {
             </Table>
               </TabPane>
 
-              <TabPane tab={<span className="titlesTab"> Complete ({completeideas.length})</span>} key="2">
+              <TabPane tab={<span className="titlesTab"> Vote ({completeideas.length})</span>} key="2">
 
 
               <Table rowKey={(record) => record.id} dataSource={completeideas}>
@@ -275,7 +275,7 @@ class Onboarding extends React.Component {
 
               
 
-              <TabPane tab={<span className="titlesTab"> Ranked ({rankedideas.length})</span>} key="3">
+              <TabPane tab={<span className="titlesTab"> Backlog ({rankedideas.length})</span>} key="3">
 
 
               <Table rowKey={(record) => record.id} dataSource={rankedideas}>
@@ -304,7 +304,7 @@ class Onboarding extends React.Component {
               </TabPane>
 
 
-              <TabPane tab={<span className="titlesTab"> Archived ({archivedideas.length})</span>} key="4">
+              <TabPane tab={<span className="titlesTab"> Graveyard ({archivedideas.length})</span>} key="4">
 
 
               <Table rowKey={(record) => record.id} dataSource={archivedideas}>
@@ -408,9 +408,6 @@ class Onboarding extends React.Component {
                     </div>
                   </div>
 
-                  <Tabs tabBarStyle={{ borderBlockColor: "#009900", color: 'green' }} >
-                    <TabPane tab={<span className="titlesTab"> General</span>} key="1">
-
 
 
 
@@ -424,48 +421,7 @@ class Onboarding extends React.Component {
 
 
 
-                    </TabPane>
 
-                    <TabPane tab={<span className="titlesTab">Votes</span>} key="2">
-                      <div>
-                        <Votes Reload={this.closeandReload} item={this.state.selectedItem}></Votes>
-                      </div>
-                    </TabPane>
-                    <TabPane tab={<span className="titlesTab">PO Actions</span>} key="3">
-                      <div>
-                        <br />
-         Here you can approve of an idea and send it to the funnel!<br />
-                        <br />
-                        <dl className="dl">
-                          <dt>Idea name</dt>
-                          <dd>{this.state.selectedItem.Title}</dd>
-                          <dt>Idea owner</dt>
-                          <dd>{this.state.selectedItem.OwnerFirstName + " " + this.state.selectedItem.OwnerLastName}</dd>
-                          <dt>Elevator pitch</dt>
-                          <dd>{this.state.selectedItem.ElevatorPitch}</dd>
-                        </dl>
-                        <br />
-                        <Popover
-                          content={<div>
-                            <div>
-                              You are transferring this idea to the funnel.<br />
-                            This idea will be archived and will not be visible anymore.</div> <br />
-                            <div>Are you sure ?</div><br />
-                            <button className="button button--link" onClick={this.addNewFunnelTask}>Send</button>
-                            <button className="button" onClick={() => this.setState({ visible: false })}>Cancel</button>
-                          </div>
-                          }
-                          title={"Idea " + this.state.selectedItem.Title}
-                          trigger="click"
-                          visible={this.state.visible}
-                          onVisibleChange={this.handleVisibleChange}
-                        >
-    
-                          <button className="button" onClick={() => this.setState({ visible: true })}>Approve idea</button>
-                        </Popover>
-                      </div>
-                    </TabPane>
-                  </Tabs>
                 </div>
               }
             </div>
