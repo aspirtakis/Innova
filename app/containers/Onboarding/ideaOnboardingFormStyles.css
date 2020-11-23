@@ -7,7 +7,7 @@
 
 .ideaForm {
   background-color: white;
-
+  
   padding: 40px;
 }
 
@@ -18,7 +18,11 @@
 .kpnSmallInputField, .kpnLargeInputField, .kpnSelectorField {
   font-family: "Segoe UI Regular", sans-serif;
   font-size: 14px;
-  max-width: 300px;
+  max-width: 350px;
+}
+
+.kpnLargeInputField > textarea {
+  min-width: 350px;
 }
 
 .kpnSmallInputTitle, .kpnLargeInputTitle, .kpnSelectorTitle {

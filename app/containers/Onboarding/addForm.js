@@ -114,7 +114,7 @@ class Onboardingform extends React.Component {
           <div className="content__body">
             <h2 className="content__title">Idea owner credentials</h2>
             <div className="row">
-              <div className="col col--4">
+              <div className="col col--3">
                 <dl className="dl">
                   <KpnSmallInput
                     title="Idea name"
@@ -124,7 +124,7 @@ class Onboardingform extends React.Component {
               </div>
             </div>
             <div className="row">
-              <div className="col col--4">
+              <div className="col col--3">
                 <dl className="dl">
                   <KpnSmallInput
                     title="First name"
@@ -136,7 +136,7 @@ class Onboardingform extends React.Component {
                   </KpnSmallInput>
                 </dl>
               </div>
-              <div className="col col--4">
+              <div className="col col--3">
                 <dl className="dl">
                   <KpnSmallInput
                     title="Email address"
@@ -151,7 +151,7 @@ class Onboardingform extends React.Component {
             </div>
             <h2 className="content__title">Idea specifications</h2>
             <div className="row">
-              <div className="col col--4">
+              <div className="col col--3">
                 <dl className="dl">
                   <KpnLargeInput
                     title="Problem solution"
@@ -163,7 +163,7 @@ class Onboardingform extends React.Component {
                   </KpnLargeInput>
                 </dl>
               </div>
-              <div className="col col--4">
+              <div className="col col--3">
                 <dl className="dl">
                   <KpnLargeInput
                     title="Why is your idea useful for KPN?"
@@ -177,7 +177,7 @@ class Onboardingform extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col col--4">
+          <div className="col col--3">
             <div className="row">
               <button
                 className="button"
