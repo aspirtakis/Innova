@@ -840,7 +840,7 @@ if(data){
     return TeamRemarks;
   }
   
-  };
+  }; 
   render() {
 
     const  data = this.state;
@@ -855,8 +855,15 @@ if(data){
         <div
       >
        <div className="mainContainer">
-       <div className="titleContainer">
-       <div className="titleInit">{this.state.projectname}</div>
+       <div className="titleContainer" style={{display: "flex", flexDirection: "row"}}>
+       <button
+         class="button button--secondary"
+         style={{ marginRight: "16px" }}
+       >
+         <i className="ui-arrow-left" />
+          Back
+       </button>
+         <div className="titleInit">{this.state.projectname}</div>
        </div>
     <Tabs tabBarStyle={{borderBlockColor:"#009900", color:'green', fontFamily:"kpn-metric-bold",  }} className="mainTab">
       <TabPane  tab={<span className="titlesTab"> General</span>} key="1">
