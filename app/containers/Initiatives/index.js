@@ -859,7 +859,7 @@ if(data){
        <div className="titleContainer" style={{display: "flex", flexDirection: "row"}}>
        <Link to="/Funnel">
        <button
-         class="button button--secondary"
+         class="button button--link"
          style={{ marginRight: "16px" }}
        >
          <i className="ui-arrow-left" />
