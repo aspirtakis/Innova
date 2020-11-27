@@ -25,6 +25,7 @@ import { FaClock } from 'react-icons/fa';
 const { TabPane } = Tabs;
 import moment from 'moment';
 import Form from 'react-bootstrap/Form';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { backend } from '../../utils/config';
 import Remarks from '../../components/remarks';
@@ -856,6 +857,7 @@ if(data){
       >
        <div className="mainContainer">
        <div className="titleContainer" style={{display: "flex", flexDirection: "row"}}>
+       <Link to="/Funnel">
        <button
          class="button button--secondary"
          style={{ marginRight: "16px" }}
@@ -863,6 +865,8 @@ if(data){
          <i className="ui-arrow-left" />
           Back
        </button>
+       </Link>
+       
          <div className="titleInit">{this.state.projectname}</div>
        </div>
     <Tabs tabBarStyle={{borderBlockColor:"#009900", color:'green', fontFamily:"kpn-metric-bold",  }} className="mainTab">
