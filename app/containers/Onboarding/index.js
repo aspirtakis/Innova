@@ -341,7 +341,7 @@ class Onboarding extends React.Component {
 
                 <div>
 
-                  {/* <div className="table-toolbar">
+                  <div className="table-toolbar">
 
                     <div className="table-toolbar__action">
 
@@ -399,7 +399,7 @@ class Onboarding extends React.Component {
                       </Popover>
 
                     </div>
-                  </div> */}
+                  </div>
 
                       {this.state.selectedItem && <Votingform completeIdea={this.changeIdeaStatus} saveReload={this.closeandReload} item={this.state.selectedItem}></Votingform>}
 
