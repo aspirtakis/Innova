@@ -341,7 +341,7 @@ class Onboarding extends React.Component {
 
                 <div>
 
-                  <div className="table-toolbar">
+                  {/* <div className="table-toolbar">
 
                     <div className="table-toolbar__action">
 
@@ -362,8 +362,6 @@ class Onboarding extends React.Component {
                         <button style={{ maxWidth: 100 }} className="button button--secondary" onClick={() => this.setState({ visible: true })}>Approve</button>
                      
                          }   </Popover>
-                         
-
 
                       <Popover
                         content={<div>
@@ -400,27 +398,10 @@ class Onboarding extends React.Component {
                     }
                       </Popover>
 
-
-
-               
-
-
                     </div>
-                  </div>
-
-
-
-
-
-
-
-
-
+                  </div> */}
 
                       {this.state.selectedItem && <Votingform completeIdea={this.changeIdeaStatus} saveReload={this.closeandReload} item={this.state.selectedItem}></Votingform>}
-
-
-
 
                 </div>
               }
