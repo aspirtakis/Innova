@@ -347,8 +347,8 @@ class Onboarding extends React.Component {
 
                       <Popover
                         content={<div>
-                          <div>You are trasfering Idea to Funnel - Idea Will be archived and will not be visible anymore </div> <br />
-                          <div>Are you sure ?</div>
+                          <div>You are transferring this idea to the funnel - idea will be archived and will not be visible anymore.</div> <br />
+                          <div>Are you sure?</div>
                           <button onClick={this.addNewFunnelTask}>Send</button>
                           <a onClick={() => this.setState({ visible: false })}>Cancel</a>
                         </div>
@@ -367,8 +367,8 @@ class Onboarding extends React.Component {
 
                       <Popover
                         content={<div>
-                          <div>Idea Will be archived and will not be visible anymore </div> <br />
-                          <div>Are you sure ?</div>
+                          <div>Idea will be archived and will not be visible anymore.</div> <br />
+                          <div>Are you sure?</div>
                           <button onClick={() => this.changeIdeaStatus("ARCHIVE")}>Archive</button>
                           <a onClick={() => this.setState({ visibleArch: false })}>Cancel</a>
                         </div>
@@ -384,8 +384,8 @@ class Onboarding extends React.Component {
 
                       <Popover
                       content={<div>
-                        <div>Idea will be completed and ready to be ranked  </div> <br />
-                        <div>Are you sure ?</div>
+                        <div>Idea will be completed and will be made ready to be ranked.</div> <br />
+                        <div>Are you sure?</div>
                         <button onClick={() => this.changeIdeaStatus("COMPLETE")}>Complete</button>
                         <a onClick={() => this.setState({ visibleComplete: false })}>Cancel</a>
                       </div>
