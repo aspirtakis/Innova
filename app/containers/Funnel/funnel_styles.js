@@ -106,6 +106,20 @@ export const styles = {
 
 
   },
+
+  titlesBacklog: {
+    fontSize: 32,
+    backgroundColor:'#F3F3F3',
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'left',
+    minWidth: '100%',
+    maxHeight: 40,
+    minHeight: 40,
+    fontFamily: 'kpn-metric-bold',
+
+
+  },
   coreColumn: {
     marginTop: 3,
     minWidth: 468,
@@ -165,9 +179,9 @@ export const styles = {
   },
 
   containerTop: {
-    backgroundColor: 'white',
+    paddingTop: 15,
     minHeight: 30,
-    marginLeft: 10,
+
   },
 
   modal: {

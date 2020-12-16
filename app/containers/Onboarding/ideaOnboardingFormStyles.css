@@ -1,0 +1,46 @@
+.content__title {
+	font-family: "Segoe UI Bold", sans-serif;
+	font-size: 20px;
+	color: #009900;
+	margin-top: 0px;
+}
+
+.ideaForm {
+  background-color: white;
+  
+  padding: 40px;
+}
+
+.select {
+  max-width: 150px;
+}
+
+.kpnSmallInputField, .kpnLargeInputField, .kpnSelectorField {
+  font-family: "Segoe UI Regular", sans-serif;
+  font-size: 14px;
+  max-width: 350px;
+}
+
+.kpnLargeInputField > textarea {
+  min-width: 350px;
+}
+
+.kpnSmallInputTitle, .kpnLargeInputTitle, .kpnSelectorTitle {
+	font-family: "Segoe UI Bold", sans-serif;
+	font-size: 14px;
+}
+
+.kpnSubmitIdeaButton {
+  margin-top: 8px;
+  width: 200px;
+}
+
+.buttonRow {
+  display: flex;
+  max-width: 450px;
+  justify-content: space-between;
+}
+
+.newIdeaButton {
+  margin: 0px 16px;
+}

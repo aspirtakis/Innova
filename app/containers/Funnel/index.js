@@ -384,98 +384,16 @@ class Funnel extends Component {
       this.setState({ checked });
   };
   filterBar = () => (
-      <Collapse>
-          <Panel header="Filters" key="1">
+
+          <div >
               <Row style={styles.containerTop}>
                    {!(this.props.user.role === "Tv" || this.props.user.role === "Viewer") && <Col style={{ maxWidth: 100 }}>
-                        <Row style={{ maxHeigth: 20 }}>BackLog</Row>
-                        <Switch checked={this.state.checked} defaultChecked={false} onChange={this.showOperations} />
+               
+                        <Switch checked={this.state.checked} defaultChecked={false} onChange={this.showOperations} >Backlog </Switch>
                     </Col>}
-                    <Col>
-     
-                    <Row>
-                        <Button onClick={this.reloadData} style={{ marginTop:15}}>Reset
-                    
-                        </Button>
-                    </Row>
-                </Col>
-
-                    <Col>
-                      <Row style={{ maxHeigth: 10 }}>StageGate</Row>
-                      <Row>
-                      <DatePicker 
-
-                      showTime={{
-                        hideDisabledOptions: true,
-                      }}
-                      
-                      format={dateFormat}
-                      onChange={(date, dateString) => {
-                        this.filterToday(moment(date).format(dateFormat));
-                       
-                      } } />
-                      </Row>
-                  </Col>
-              
-                  <Col>
-                      <Row style={{ maxHeigth: 10 }}>Department</Row>
-                      <Row>
-                          <Select allowClear onChange={this.filterDepartment} style={{ width: 80 }}>
-                          <Option value="OIH">OIH</Option>
-                      <Option value="CM">CM</Option>
-                      <Option value="BM">BM</Option>
-                      <Option value="WS">WS</Option>
-                      <Option value="OPS">OPS</Option>
-                          </Select>
-                      </Row>
-                  </Col>
-       
-                  <Col>
-                      <Row style={{ maxHeigth: 5 }}>Search</Row>
-                      <Row>
-                          <Input allowClear  onChange={e => this.getDataFiltered(e.target.value)} style={{ width: 150 }}>
-                          </Input>
-                      </Row>
-                  </Col>
-                  <Col style={styles.containerTopCol}>
-                      <Row style={{ maxHeigth: 5 }}> Status</Row>
-                      <Row>
-                          <Select allowClear  onChange={e => this.filter('status', e)} style={{ width: 150 }}>
-                              <Option value="green">
-                                  <div style={{ flex: 1, alignContent: 'center' }}>
-                    PROGRESSING
-                                      {' '}
-                                      <Icon style={{ color: 'green' }} type="login" />
-                                  </div>
-                                  {' '}
-                              </Option>
-                              <Option value="yellow">
-                                  <div style={{ flex: 1 }}>
-                    IMPEDIMENT
-                                      {' '}
-                                      <Icon style={{ color: 'yellow' }} type="login" />
-                                  </div>
-                              </Option>
-                              <Option value="orange">
-                                  <div style={{ flex: 1 }}>
-                    PARKED
-                                      {' '}
-                                      <Icon style={{ color: 'orange' }} type="login" />
-                                  </div>
-                              </Option>
-                              <Option value="red">
-                                  <div style={{ flex: 1 }}>
-                    STOPPED
-                                      {' '}
-                                      <Icon style={{ color: 'red' }} type="login" />
-                                  </div>
-                              </Option>
-                          </Select>
-                      </Row>
-                  </Col>
               </Row>
-          </Panel>
-      </Collapse>
+          </div>
+
   );
   handleClose = () => {
       this.setState({ setOpen: false });
@@ -758,11 +676,9 @@ class Funnel extends Component {
       }
   };
   countTasks = (type) =>{
-
   }
+  
   render() {
-
-
       const { selectedTask, sestoken, checked } = this.state;
 
       return (
@@ -777,14 +693,15 @@ class Funnel extends Component {
           
                   handleSubmit={this.handleSubmit} />
 
-              {/*!(this.props.user.role === 'Tv' ) && this.filterBar()*/}
+              {(this.props.user.role === 'Coach' ) && this.filterBar()}
               <DragDropContext  
               onDragEnd={this.onDragEnd}>
                   <div style={styles.coreContainer}>
+    
                       { checked && (
                           <Col style={styles.coreColumn}>
                               <Row>
-                                  <div style={styles.titles}>
+                                  <div style={styles.titlesBacklog}>
                                       <div className="title-bar__title">Operations</div>
                                   </div>
                               </Row>
@@ -797,7 +714,9 @@ class Funnel extends Component {
                                       openEdit={this.handleOpenEdit}
                                       addNewTask={this.handleOpen}
                                       key={columnsdata[9].id}
+                                      tasksCount={this.state.backlog.length}
                                       column={columnsdata[9]}
+                                      
                                       tasks={this.state[columnsdata[9].id]} />
                                   <Column
                                       userRole={this.props.user.role}
@@ -806,6 +725,7 @@ class Funnel extends Component {
                                       addNewTask={this.handleOpen}
                                       key={columnsdata[10].id}
                                       column={columnsdata[10]}
+                                      tasksCount={this.state.archive.length}
                                       tasks={this.state[columnsdata[10].id]} />
                               </Row>
                           </Col>

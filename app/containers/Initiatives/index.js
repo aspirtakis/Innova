@@ -38,7 +38,7 @@ import AddNewMeeting from '../../components/Agenda/addnewMeeting';
 import UpdateMeeting from '../../components/Agenda/updateMeeting';
 import Canvas from '../../components/canvas';
 
-import { Tab, TabItem, TabLink, TabMenu } from '@kpn-style/react';
+
 //import { boolean, withKnobs } from "@storybook/addon-knobs";
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
